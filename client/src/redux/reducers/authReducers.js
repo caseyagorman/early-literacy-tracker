@@ -9,13 +9,12 @@ import {
 export default function auth(state = initialState.auth, action) {
   switch (action.type) {
     case SET_USER:
-      console.log("action", action.type);
+      console.log("SET USER", action.auth);
       return Object.assign({}, state, {
         user: action.auth,
         isAuthenticated: true
       });
     case LOGIN_ERROR:
-      console.log("action", action.type);
       return Object.assign({}, state, {
         user: {
           username: "",
@@ -25,7 +24,6 @@ export default function auth(state = initialState.auth, action) {
         loginError: action.auth
       });
     case CLEAR_ERRORS:
-      console.log("action", action.type);
       return Object.assign({}, state, {
         user: {
           username: "",

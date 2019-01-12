@@ -5,12 +5,11 @@ function getUserApi() {
 }
 
 export function checkUser(auth) {
-  console.log("auth", auth);
-  if (!auth.error) return { type: types.SET_USER, auth: auth };
-
+  console.log("checkUser", auth);
   if (auth.error) {
     return { type: types.LOGIN_ERROR, auth: auth };
   }
+  return { type: types.SET_USER, auth: auth };
 }
 
 export function logoutUser(auth) {
