@@ -1,3 +1,4 @@
 export default {
-  // state goes here
+  registerUser: { newUser: "", registerError: "" },
+  auth: { user: "", isAuthenticated: false, loginError: "" }
 };

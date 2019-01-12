@@ -4,6 +4,7 @@ import { Router, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 import RegisterUser from "./containers/Users/RegisterUser";
+import LoginUser from "./containers/Users/LoginUser";
 import history from "./history";
 import { Provider } from "react-redux";
 import configureStore from "./redux/store/configureStore";
@@ -14,6 +15,7 @@ const AppRouter = () => (
   <Router history={history}>
     <div>
       <Route path="/register" component={RegisterUser} />
+      <Route path="/login" component={LoginUser} />
     </div>
   </Router>
 );

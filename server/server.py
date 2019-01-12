@@ -1,7 +1,7 @@
 from flask import (Flask, jsonify, request, session)
 from jinja2 import StrictUndefined
 from flask_cors import CORS, cross_origin
-from flask_restful import  Api
+from flask_restful import  Api, Resource, reqparse
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
@@ -33,12 +33,15 @@ def token_required(f):
     return decorated
 
 
+@app.route("/foo")
+def foo():
+    return "good job"
+
 @app.route("/api/register", methods=['POST'])
 @cross_origin()
 def add_user():
     data = request.get_json()
     print("user data", data)
- 
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
