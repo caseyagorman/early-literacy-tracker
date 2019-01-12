@@ -75,7 +75,59 @@ def login():
     else:
         return jsonify({'error': 'incorrect password'})
 
+@app.route("/api/students")
+@token_required
+def get_students(current_user):
+    start = time.time()
+    public_id = current_user.public_id
+    # look up all students- I have to do this, I have no other way of getting them
+    students = Student.query.filter_by(user_id=public_id).options(
+        db.joinedload('studentwords')).all()
+    student_list = []
+    for student in students:
+    
 
+        # word_list = sorted(get_student_word_list(student)[0])
+        # unlearned_word_list = sorted(get_student_word_list(student)[1])
+        # letter_list = sorted(get_student_letter_list(student)[0])
+
+        # unlearned_letter_list = sorted(get_student_letter_list(student)[1])
+
+        # sound_list = sorted(get_student_sound_list(student)[0])
+        # unlearned_sound_list = sorted(get_student_sound_list(student)[1])
+        # word_count = len(word_list)
+        # letter_count = len(letter_list)
+        # sound_count = len(sound_list)
+        # unlearned_word_count = len(unlearned_word_list)
+        # unlearned_letter_count = len(unlearned_letter_list)
+        # unlearned_sound_count = len(unlearned_sound_list)
+        student = {
+            'student_id': student.student_id,
+            'fname': student.fname,
+            'lname': student.lname,
+            'grade': student.grade,
+            # 'word_count': word_count,
+            # 'letter_count': letter_count,
+            # 'sound_count': sound_count,
+            # 'word_list': word_list,
+            # 'letter_list': letter_list,
+            # 'sound_list': sound_list,
+            # 'unlearned_word_count': unlearned_word_count,
+            # 'unlearned_letter_count': unlearned_letter_count,
+            # 'unlearned_sound_count': unlearned_sound_count,
+            # 'unlearned_word_list': unlearned_word_list,
+            # 'unlearned_letter_list': unlearned_letter_list,
+            # 'unlearned_sound_list': unlearned_sound_list
+            
+
+        }
+        student_list.append(student)
+
+    student_list = sorted(student_list, key=itemgetter('fname', 'lname'),  reverse=False) 
+    end = time.time()
+    elapsed_time = end - start
+    print('getting all students took', elapsed_time)
+    return jsonify(student_list)
 
 if __name__ == "__main__":
 
