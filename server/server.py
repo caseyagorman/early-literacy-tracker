@@ -71,7 +71,6 @@ def login():
     if auth_user and check_password_hash(auth_user.password, password.encode('utf-8')):
         token = jwt.encode({'public_id': auth_user.public_id, 'exp': datetime.datetime.utcnow(
         ) + datetime.timedelta(hours=24)}, app.config['SECRET_KEY'])
-        print({'token': token.decode('utf-8'), 'username': auth_user.username})
         return jsonify({'token': token.decode('utf-8'), 'username': auth_user.username})
     else:
         return jsonify({'error': 'incorrect password'})

@@ -5,10 +5,12 @@ function getUserApi() {
 }
 
 export function checkUser(auth) {
+  console.log("auth", auth);
+  if (!auth.error) return { type: types.SET_USER, auth: auth };
+
   if (auth.error) {
     return { type: types.LOGIN_ERROR, auth: auth };
   }
-  return { type: types.SET_USER, auth: auth };
 }
 
 export function logoutUser(auth) {
@@ -21,6 +23,7 @@ export function clearErrors() {
 }
 
 export function loginUser(user) {
+  console.log(user);
   return dispatch => {
     return fetch(getUserApi(), {
       method: "POST",
