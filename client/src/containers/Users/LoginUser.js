@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import LoginUserForm from "../../components/Users/LoginUserForm";
 
-class Login extends Component {
+class LoginUser extends Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
@@ -20,7 +20,7 @@ class Login extends Component {
     } else if (newProps.auth.loginError.error) {
       if (newProps.auth.loginError.error === "incorrect password") {
         alert(newProps.auth.loginError.error);
-        return <div />;
+        return;
       }
       if (newProps.auth.loginError.error === "user does not exist") {
         alert(newProps.auth.loginError.error);
@@ -48,7 +48,14 @@ class Login extends Component {
   }
 
   render() {
-    return <LoginUserForm />;
+    return (
+      <LoginUserForm
+        username={this.state.username}
+        password={this.state.password}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
@@ -67,4 +74,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(LoginUser);
