@@ -5,14 +5,7 @@ import * as authActions from "../../redux/actions/authActions";
 import HomePage from "../../components/Home/HomePage";
 
 class Home extends Component {
-  componentDidMount() {
-    if (sessionStorage.token) {
-      this.props.authActions.checkUser(sessionStorage);
-    } else {
-      alert("Please log in");
-      this.props.history.push("/login");
-    }
-  }
+  componentDidMount() {}
 
   displayHomePage() {
     if (this.props.auth.isAuthenticated === false) {
@@ -29,7 +22,8 @@ class Home extends Component {
   }
 
   render() {
-    return <div id="homepage">{this.displayHomePage()}</div>;
+    return <div />;
+    // return <div id="homepage">{this.displayHomePage()}</div>;
   }
 }
 

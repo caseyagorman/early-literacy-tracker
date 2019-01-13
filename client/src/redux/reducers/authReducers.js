@@ -12,7 +12,8 @@ export default function auth(state = initialState.auth, action) {
       console.log("SET USER", action.auth);
       return Object.assign({}, state, {
         user: action.auth,
-        isAuthenticated: true
+        isAuthenticated: true,
+        loginError: ""
       });
     case LOGIN_ERROR:
       return Object.assign({}, state, {

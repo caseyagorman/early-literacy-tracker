@@ -1,4 +1,5 @@
 export default {
   registerUser: { newUser: "", registerError: "" },
-  auth: { user: "", isAuthenticated: false, loginError: "" }
+  auth: { user: null, isAuthenticated: false, loginError: "" },
+  students: ""
 };

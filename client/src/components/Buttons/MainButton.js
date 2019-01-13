@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MainButton = props => {
   return (
     <Link to={props.route}>
-      <button>View {props.name}</button>
+      <button>{props.text}</button>
     </Link>
   );
 };

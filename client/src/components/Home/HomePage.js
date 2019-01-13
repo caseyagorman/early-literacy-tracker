@@ -9,19 +9,23 @@ const HomePage = props => (
     details.
     <MainButton
       id="main-menu-students-button"
-      name={"students"}
+      text={"View Students"}
       route={`/students`}
     />
-    <MainButton id="main-menu-words-button" name={"words"} route={`/words`} />
+    <MainButton
+      id="main-menu-words-button"
+      text={"View Words"}
+      route={`/words`}
+    />
     ;
     <MainButton
       id="main-menu-letters-button"
-      name={"letters"}
+      text={"View Letters"}
       route={`/letters`}
     />
     <MainButton
       id="main-menu-sounds-button"
-      name={"sounds"}
+      text={"View Sounds"}
       route={`/letters`}
     />
   </div>

@@ -29,7 +29,7 @@ class LoginUser extends Component {
     }
   }
   updateInput(key, value) {
-    sessionStorage.setItem(key, value);
+    localStorage.setItem(key, value);
   }
 
   handleSubmit(event) {
