@@ -6,10 +6,6 @@ import AllStudents from "../../components/Students/AllStudents";
 
 class ViewStudents extends Component {
   componentDidMount() {
-    if (this.props.auth.isAuthenicated === false) {
-      alert("Please log in");
-      this.props.history.push("/login");
-    }
     const user = this.props.auth.user.token;
     this.props.studentsActions.fetchStudents(user);
   }

@@ -36,10 +36,6 @@ def token_required(f):
     return decorated
 
 
-@app.route("/foo")
-def foo():
-    return "good job"
-
 @app.route("/api/register", methods=['POST'])
 @cross_origin()
 def add_user():
@@ -131,6 +127,19 @@ def get_students(current_user):
     print('getting all students took', elapsed_time)
     return jsonify(student_list)
 
+
+@app.route("/api/add-student", methods=['POST'])
+@token_required
+def add_student(current_user):
+    data = request.get_json()
+    fname = data.get('fname')
+    lname = data.get('lname')
+    user_id = current_user.public_id
+    new_student = Student(user_id=user_id, fname=fname, lname=lname, grade="K")
+    db.session.add(new_student)
+    db.session.commit()
+    return 'student added!'
+    
 if __name__ == "__main__":
 
     app.debug = True

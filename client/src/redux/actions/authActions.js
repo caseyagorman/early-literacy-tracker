@@ -22,7 +22,6 @@ export function clearErrors() {
 }
 
 export function loginUser(user) {
-  console.log(user);
   return dispatch => {
     return fetch(getUserApi(), {
       method: "POST",

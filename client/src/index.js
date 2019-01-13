@@ -2,17 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-import RegisterUser from "./containers/Users/RegisterUser";
-import LoginUser from "./containers/Users/LoginUser";
-import Home from "./containers/Home/Home";
-import history from "./history";
+
 import { Provider } from "react-redux";
 import configureStore from "./redux/store/configureStore";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/lib/integration/react";
-import AllStudents from "./containers/Students/AllStudents";
 import locationHelperBuilder from "redux-auth-wrapper/history4/locationHelper";
 import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect";
+
+import RegisterUser from "./containers/Users/RegisterUser";
+import LoginUser from "./containers/Users/LoginUser";
+import Home from "./containers/Home/Home";
+import history from "./history";
+import AllStudents from "./containers/Students/AllStudents";
+import AddStudent from "./containers/Forms/AddStudent";
+
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -39,6 +43,7 @@ const AppRouter = () => (
       <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
       <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="//" component={userIsAuthenticated(Home)} />
+      <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
     </div>
   </Router>
 );
