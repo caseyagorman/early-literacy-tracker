@@ -11,16 +11,34 @@ import configureStore from "./redux/store/configureStore";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import AllStudents from "./containers/Students/AllStudents";
+import locationHelperBuilder from "redux-auth-wrapper/history4/locationHelper";
+import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect";
 const initialState = {};
+const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
-export const persistor = persistStore(store);
+const persistor = persistStore(store);
+
+const userIsAuthenticated = connectedRouterRedirect({
+  redirectPath: "/login",
+  authenticatedSelector: state => state.auth.user !== null,
+  wrapperDisplayName: "UserIsAuthenticated"
+});
+
+const userIsNotAuthenticated = connectedRouterRedirect({
+  redirectPath: (state, ownProps) =>
+    locationHelper.getRedirectQueryParam(ownProps) || "/",
+  allowRedirectBack: false,
+  authenticatedSelector: state => state.auth.user === null,
+  wrapperDisplayName: "UserIsNotAuthenticated"
+});
+
 const AppRouter = () => (
   <Router history={history}>
     <div>
       <Route path="/register" component={RegisterUser} />
-      <Route path="/login" component={LoginUser} />
-      <Route path="/students" component={AllStudents} />
-      <Route path="//" component={Home} />
+      <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
+      <Route path="/students" component={userIsAuthenticated(AllStudents)} />
+      <Route path="//" component={userIsAuthenticated(Home)} />
     </div>
   </Router>
 );

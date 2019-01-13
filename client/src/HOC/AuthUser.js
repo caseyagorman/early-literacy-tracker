@@ -4,15 +4,13 @@ import { connect } from "react-redux";
 
 class AuthUser extends Component {
   componentDidMount() {
-    console.log("auth user", this.props);
-    if (localStorage) {
-      this.props.authActions.checkUser(localStorage);
-    } else {
-      console.log("no!");
+    if (this.props.auth.isAuthenicated === false) {
+      alert("Please log in");
+      this.props.history.push("/login");
     }
   }
   render() {
-    return;
+    return this.props.children;
   }
 }
 

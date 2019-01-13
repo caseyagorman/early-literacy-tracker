@@ -1,4 +1,6 @@
 import datetime
+import time
+from operator import itemgetter
 from flask import (Flask, jsonify, request, session)
 from jinja2 import StrictUndefined
 from flask_cors import CORS, cross_origin
@@ -105,7 +107,7 @@ def get_students(current_user):
             'student_id': student.student_id,
             'fname': student.fname,
             'lname': student.lname,
-            'grade': student.grade,
+            # 'grade': student.grade,
             # 'word_count': word_count,
             # 'letter_count': letter_count,
             # 'sound_count': sound_count,

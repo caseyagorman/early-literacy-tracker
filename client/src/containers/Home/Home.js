@@ -4,24 +4,27 @@ import * as authActions from "../../redux/actions/authActions";
 import HomePage from "../../components/Home/HomePage";
 
 class Home extends Component {
-  componentDidMount() {}
-
-  displayHomePage() {
-    if (this.props.auth.isAuthenticated === false) {
+  displayHomePage(username, token) {
+    console.log("token", token, "username", username);
+    if (!token || !username) {
       return <div>loading...</div>;
     }
     return (
       <div id="homepage">
-        <HomePage
-          token={this.props.auth.user.token}
-          username={this.props.auth.user.username}
-        />
+        <HomePage token={token} username={username} />
       </div>
     );
   }
 
   render() {
-    return <div id="homepage">{this.displayHomePage()}</div>;
+    return (
+      <div id="homepage">
+        {this.displayHomePage(
+          this.props.auth.user.username,
+          this.props.auth.user.token
+        )}
+      </div>
+    );
   }
 }
 

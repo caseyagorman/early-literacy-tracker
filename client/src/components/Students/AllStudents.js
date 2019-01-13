@@ -13,12 +13,12 @@ const AllStudents = props => (
       student data. Click book to view student reports.
     </div>
     <br />
-    <StudentSnapshot />
+    {/* <StudentSnapshot /> */}
     <div>
       <MainButton
         id="students-button-add-student"
         text={"Add Student"}
-        route={`/students`}
+        route={`/add-student`}
       />
       <MainButton
         id="students-button-view-charts"
@@ -35,11 +35,11 @@ const AllStudents = props => (
       <br />
     </div>
     <div>
-      <TableContainer
+      {/* <TableContainer
         token={props.token}
         renderTable={StudentTable}
         tableElements={props.students}
-      />
+      /> */}
     </div>
   </div>
 );
