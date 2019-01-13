@@ -6,33 +6,26 @@ import AllStudents from "../../components/Students/AllStudents";
 
 class ViewStudents extends Component {
   componentDidMount() {
-    console.log("view students", this.props);
-    if (localStorage.token) {
-      this.props.authActions.checkUser(localStorage);
-    } else {
+    if (this.props.auth.isAuthenicated === false) {
       alert("Please log in");
       this.props.history.push("/login");
     }
-  }
-
-  getStudents(user) {
-    if (!user) {
-      return <div>loading user...</div>;
-    }
+    const user = this.props.auth.user.token;
     this.props.studentsActions.fetchStudents(user);
-    this.displayAllStudents(this.props.students, user);
   }
 
   displayAllStudents(students, token) {
-    console.log("display all students", students);
     if (!token) {
-      return <div>loading...</div>;
+      return <div>no token...</div>;
     }
     return <AllStudents token={token} students={students} />;
   }
 
   render() {
-    return this.getStudents(this.props.auth.user.token);
+    return this.displayAllStudents(
+      this.props.students,
+      this.props.auth.user.token
+    );
   }
 }
 function mapStateToProps(state) {
@@ -46,8 +39,7 @@ function mapDispatchToProps(dispatch) {
   return {
     studentsActions: studentsActions,
     dispatch,
-    authActions: authActions,
-    dispatch
+    authActions: authActions
   };
 }
 

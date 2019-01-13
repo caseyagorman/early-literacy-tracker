@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import HomePage from "../../components/Home/HomePage";
 
@@ -22,14 +21,14 @@ class Home extends Component {
   }
 
   render() {
-    return <div />;
-    // return <div id="homepage">{this.displayHomePage()}</div>;
+    return <div id="homepage">{this.displayHomePage()}</div>;
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    authActions: bindActionCreators(authActions, dispatch)
+    authActions: authActions,
+    dispatch
   };
 }
 function mapStateToProps(state) {
