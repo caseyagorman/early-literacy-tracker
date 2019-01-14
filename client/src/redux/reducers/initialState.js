@@ -15,6 +15,7 @@ export default {
     fetchingStudents: false
   },
   items: {
+    items: null,
     itemType: "",
     fetchingItems: false
   }

@@ -114,8 +114,11 @@ def get_words(current_user):
             'item_type': item.item_type,
         }
         item_list.append(item)
-    print(item_list)
-    return jsonify(item_list)
+    item_type = "words"
+    return jsonify({
+        "items": item_list,
+        "itemType": item_type
+        })
 
 @app.route("/api/letters")
 @token_required
@@ -132,7 +135,11 @@ def get_letters(current_user):
             'item_type': item.item_type,
         }
         item_list.append(item)
-    return jsonify(item_list)
+    item_type = "letters"
+    return jsonify({
+        "items": item_list,
+        "itemType": item_type
+        })
 
 @app.route("/api/sounds")
 @token_required
@@ -149,7 +156,12 @@ def get_sounds(current_user):
             'item_type': item.item_type,
         }
         item_list.append(item)
-    return jsonify(item_list)
+    item_type = "sounds"
+    return jsonify({
+        "items": item_list,
+        "itemType": item_type
+        })
+ 
 
 
 @app.route("/api/add-student", methods=['POST'])

@@ -23,7 +23,7 @@ export function receiveItem(item) {
 }
 
 export function receiveItems(items) {
-  console.log(items);
+  console.log("items", items);
   return { type: types.RECEIVE_ITEMS, items: items };
 }
 

@@ -6,41 +6,37 @@ import * as authActions from "../../redux/actions/authActions";
 import AllItemsPage from "../../components/Items/AllItemsPage";
 
 class AllItems extends React.Component {
-  getData(type, user) {
-    console.log("getting data", type, user);
-    if (!type) {
-      return <p>loading...</p>;
-    }
-    if (type === "words") {
+  componentDidMount() {
+    let user = this.props.auth.user.token;
+    if (this.props.itemType === "words") {
       this.props.itemsActions.fetchWords(user);
-      let route = "/add-words";
-      let text = "Add Words";
-      this.displayData(this.props.items, route, text);
-    } else if (type === "letters") {
+    } else if (this.props.itemType === "letters") {
       this.props.itemsActions.fetchLetters(user);
-      let route = "/add-letters";
-      let text = "Add Letters";
-      this.displayData(this.props.items, route, text);
-    } else if (type === "sounds") {
+    } else if (this.props.itemType === "sounds") {
       this.props.itemsActions.fetchSounds(user);
-      let route = "/add-sounds";
-      let text = "Add Sounds";
-      this.displayData(this.props.items, route, text);
     }
   }
-
-  displayData(items, route, text) {
-    console.log("displaying data", items, route, text);
+  displayItems(items) {
     if (!items) {
       return <p>loading...</p>;
     }
-
-    return <AllItemsPage items={items} route={route} text={text} />;
+    if (items.itemType === "words") {
+      let route = "/add-words";
+      let text = "Add Words";
+      return <AllItemsPage items={items} route={route} text={text} />;
+    } else if (items.itemType === "letters") {
+      let route = "/add-letters";
+      let text = "Add Letters";
+      return <AllItemsPage items={items} route={route} text={text} />;
+    } else if (items.itemType === "sounds") {
+      let route = "/add-sounds";
+      let text = "Add Sounds";
+      return <AllItemsPage items={items} route={route} text={text} />;
+    }
   }
 
   render() {
-    // return <div>{this.props.itemType}</div>;
-    return this.getData(this.props.itemType, this.props.auth.user.token);
+    return <div>{this.displayItems(this.props.items)}</div>;
   }
 }
 
