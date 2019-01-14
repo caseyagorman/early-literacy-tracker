@@ -23,6 +23,7 @@ const StudentTable = (students, onSort) => (
                 <Link to={`/details/${student.student_id}`} className="link">
                   <h2 id="student-name-table-header">
                     {student.fname}
+                    <span> </span>
                     {student.lname}
                   </h2>
                 </Link>
