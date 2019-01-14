@@ -101,8 +101,13 @@ def get_students(current_user):
 def get_items(current_user):
 
     user_id = current_user.public_id
-    items = Item.query.filter_by(user_id=user_id).options(
-        db.joinedload('studentitems')).filter_by(user_id=user_id).all()
+    items = StudentItem.query.filter_by(user_id=user_id).options(
+        db.joinedload('items')).filter_by(user_id=user_id).options(
+        db.joinedload('students')).filter_by(user_id=user_id).all()
+    for item in items:
+        print("item", item)
+        print("item.items", item.items)
+        print("item.students", item.students)
         # .options(
         # db.joinedload('students')).filter_by(user_id=user_id).all()
     # for word in words:
@@ -139,8 +144,8 @@ def get_items(current_user):
 
     #     word_list.append(word)
     # word_list = sorted(word_list, key=itemgetter('word'))
-    return jsonify(items)
-    # return "yay!"
+    # return jsonify(items)
+    return "yay!"
 
 
 
@@ -155,6 +160,25 @@ def add_student(current_user):
     db.session.add(new_student)
     db.session.commit()
     return 'student added!'
+
+@app.route("/api/add-item", methods=['POST'])
+@token_required
+def add_word(current_user):
+    new_items = request.get_json()
+    user_id = current_user.public_id
+    new_items = new_items.split()
+    item_dict = {}
+    user_items = Item.query.filter_by(user_id=user_id).all()
+    for item in new_items:
+        if item not in user_items:
+            user_id = user_id
+            item = Item(item=item, user_id=user_id)
+            db.session.add(item)
+            db.session.commit()
+        else:
+            continue
+
+    return 'items added'
 
 if __name__ == "__main__":
 
