@@ -16,6 +16,9 @@ import Home from "./containers/Home/Home";
 import history from "./history";
 import AllStudents from "./containers/Students/AllStudents";
 import AddStudent from "./containers/Forms/AddStudent";
+import AddData from "./containers/Forms/AddData";
+import AllData from "./containers/Data/AllData";
+import AddPropsToRoute from "./components/HOC/AddPropsToRoute";
 
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
@@ -41,9 +44,58 @@ const AppRouter = () => (
     <div>
       <Route path="/register" component={RegisterUser} />
       <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
-      <Route path="/students" component={userIsAuthenticated(AllStudents)} />
+
       <Route path="//" component={userIsAuthenticated(Home)} />
+      <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
+      <Route
+        path="/words"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AllData, {
+            itemType: "words"
+          })
+        )}
+      />
+      <Route
+        path="/letters"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AllData, {
+            itemType: "letters"
+          })
+        )}
+      />
+      <Route
+        path="/sounds"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AllData, {
+            itemType: "sounds"
+          })
+        )}
+      />
+      <Route
+        path="/add-words"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AddData, {
+            itemType: "words"
+          })
+        )}
+      />
+      <Route
+        path="/add-letters"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AddData, {
+            itemType: "letters"
+          })
+        )}
+      />
+      <Route
+        path="/add-sounds"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AddData, {
+            itemType: "sounds"
+          })
+        )}
+      />
     </div>
   </Router>
 );
@@ -73,8 +125,3 @@ serviceWorker.unregister();
 //   saveState(store.getState());
 // });
 // {
-//   /* <Route
-// path="/students"
-// render={props => <AllStudents token={localStorage.token} {...props} />}
-// /> */
-// }

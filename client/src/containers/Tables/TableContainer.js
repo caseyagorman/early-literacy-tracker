@@ -12,8 +12,7 @@ class TableContainer extends Component {
   }
 
   sortArray(array, sortKey, reverseSort) {
-    console.log("array", array);
-    // array = array.slice();
+    array = array.slice();
     if (sortKey) {
       array.sort(function(a, b) {
         return a[sortKey] < b[sortKey] ? 1 : a[sortKey] > b[sortKey] ? -1 : 0;

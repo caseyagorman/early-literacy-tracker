@@ -1,10 +1,10 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
 import TableContainer from "../../containers/Tables/TableContainer";
-import StudentSnapshot from "./StudentSnapshot";
+// import StudentSnapshot from "./StudentSnapshot";
 import StudentTable from "../Tables/StudentTable";
 
-const AllStudents = props => (
+const AllDataPage = props => (
   <div className="container">
     <br />
     <h1 id="display-student">All Students</h1>
@@ -43,4 +43,4 @@ const AllStudents = props => (
     </div>
   </div>
 );
-export default AllStudents;
+export default AllDataPage;

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as studentsActions from "../../redux/actions/studentsActions";
 import * as authActions from "../../redux/actions/authActions";
-import AllStudents from "../../components/Students/AllStudents";
+import AllStudentsPage from "../../components/Students/AllStudentsPage";
 import { bindActionCreators } from "redux";
 
-class ViewStudents extends Component {
+class AllStudents extends Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
     this.props.studentsActions.fetchStudents(user);
@@ -15,7 +15,7 @@ class ViewStudents extends Component {
     if (!token || !students) {
       return <div>loading...</div>;
     }
-    return <AllStudents token={token} students={students.students} />;
+    return <AllStudentsPage token={token} students={students.students} />;
   }
 
   render() {
@@ -42,4 +42,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ViewStudents);
+)(AllStudents);
