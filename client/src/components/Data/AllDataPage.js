@@ -6,6 +6,7 @@ import StudentTable from "../Tables/StudentTable";
 
 const AllDataPage = props => (
   <div className="container">
+    {console.log("props", props)}
     <br />
     <h1 id="display-student">All Students</h1>
     <div id="instructions">
@@ -35,11 +36,11 @@ const AllDataPage = props => (
       <br />
     </div>
     <div>
-      <TableContainer
+      {/* <TableContainer
         token={props.token}
         renderTable={StudentTable}
         tableElements={props.students}
-      />
+      /> */}
     </div>
   </div>
 );

@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
 from functools import wraps
-from model import Student, Word, Sound, StudentWord, StudentWordTestResult, StudentLetterTestResult, StudentSoundTestResult, Letter, StudentLetter, StudentSound, connect_to_db, db, User
+from model import Student, Item, StudentItem, StudentTestResult, connect_to_db, db, User
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
@@ -78,55 +78,70 @@ def login():
 def get_students(current_user):
     start = time.time()
     public_id = current_user.public_id
-    # look up all students- I have to do this, I have no other way of getting them
     students = Student.query.filter_by(user_id=public_id).options(
         db.joinedload('studentwords')).all()
     student_list = []
     for student in students:
-        print(student)
-    
 
-        # word_list = sorted(get_student_word_list(student)[0])
-        # unlearned_word_list = sorted(get_student_word_list(student)[1])
-        # letter_list = sorted(get_student_letter_list(student)[0])
-
-        # unlearned_letter_list = sorted(get_student_letter_list(student)[1])
-
-        # sound_list = sorted(get_student_sound_list(student)[0])
-        # unlearned_sound_list = sorted(get_student_sound_list(student)[1])
-        # word_count = len(word_list)
-        # letter_count = len(letter_list)
-        # sound_count = len(sound_list)
-        # unlearned_word_count = len(unlearned_word_list)
-        # unlearned_letter_count = len(unlearned_letter_list)
-        # unlearned_sound_count = len(unlearned_sound_list)
         student = {
             'student_id': student.student_id,
             'fname': student.fname,
             'lname': student.lname,
-            # 'grade': student.grade,
-            # 'word_count': word_count,
-            # 'letter_count': letter_count,
-            # 'sound_count': sound_count,
-            # 'word_list': word_list,
-            # 'letter_list': letter_list,
-            # 'sound_list': sound_list,
-            # 'unlearned_word_count': unlearned_word_count,
-            # 'unlearned_letter_count': unlearned_letter_count,
-            # 'unlearned_sound_count': unlearned_sound_count,
-            # 'unlearned_word_list': unlearned_word_list,
-            # 'unlearned_letter_list': unlearned_letter_list,
-            # 'unlearned_sound_list': unlearned_sound_list
-            
-
         }
         student_list.append(student)
-
-    student_list = sorted(student_list, key=itemgetter('fname', 'lname'),  reverse=False) 
+    # doubles time, think of other way if possible
+    #  - student_list = sorted(student_list, key=itemgetter('fname', 'lname'),  reverse=False) 
     end = time.time()
     elapsed_time = end - start
     print('getting all students took', elapsed_time)
     return jsonify(student_list)
+
+@app.route("/api/words")
+@token_required
+def get_words(current_user):
+
+    user_id = current_user.public_id
+    words = Word.query.filter_by(user_id=user_id).options(
+        db.joinedload('studentwords')).filter_by(user_id=user_id).all()
+        # .options(
+        # db.joinedload('students')).filter_by(user_id=user_id).all()
+    for word in words:
+        print (word.studentwords) 
+    # .options(
+    #     db.joinedload('studentwords')).options(db.joinedload('students')
+    # word_list = []
+
+    # for word in words:
+    #     student_list = []
+    #     unlearned_student_list =[]
+    #     for item in word.studentwords:
+    #         if item.Learned == True:
+    #             student = Student.query.filter_by(
+    #                 student_id=item.student_id).first()
+    #             student_list.append(student.fname + " " + student.lname)
+    #         else:
+    #             student = Student.query.filter_by(
+    #                 student_id=item.student_id).first()
+    #             unlearned_student_list.append(student.fname + " " + student.lname)
+
+    #     count = get_word_student_counts(word)
+    #     unlearned_count = get_unlearned_word_student_counts(word)
+    #     unlearned_student_list = sorted(unlearned_student_list)
+    #     student_list = sorted(student_list)
+    #     word = {
+    #         'word_id': word.word_id,
+    #         'word': word.word,
+    #         'count': count,
+    #         'unlearned_count': unlearned_count,
+    #         'students': student_list,
+    #         'unlearned_students':unlearned_student_list
+    #     }
+
+    #     word_list.append(word)
+    # word_list = sorted(word_list, key=itemgetter('word'))
+    return jsonify(words)
+    # return "yay!"
+
 
 
 @app.route("/api/add-student", methods=['POST'])

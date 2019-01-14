@@ -9,6 +9,7 @@ export function receiveWords(words) {
 }
 
 export function fetchWords(user) {
+  console.log("fetch words", user);
   return dispatch => {
     return fetch(api(user), {
       method: "GET",

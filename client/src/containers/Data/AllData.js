@@ -8,22 +8,20 @@ import * as authActions from "../../redux/actions/authActions";
 import AllDataPage from "../../components/Data/AllDataPage";
 
 class AllData extends React.Component {
-  componentDidMount() {
-    console.log("props", this.props);
-  }
   getData(type, user) {
     console.log(type, user);
     if (!type) {
       return <p>loading...</p>;
     }
     if (type === "words") {
+      console.log("words!");
       this.props.wordsActions.fetchWords(user);
       this.displayData(this.props.words);
     } else if (type === "letters") {
       this.props.lettersActions.fetchLetters(user);
       this.displayData(this.props.letters);
     } else if (type === "sounds") {
-      this.props.soundsActions.fetchSound(user);
+      this.props.soundsActions.fetchSounds(user);
       this.displayData(this.props.sounds);
     }
   }
@@ -42,8 +40,8 @@ class AllData extends React.Component {
   }
 
   render() {
-    return <div />;
-    // return this.getData(this.props.itemType);
+    // return <div>{this.props.itemType}</div>;
+    return this.getData(this.props.itemType, this.props.auth.user.token);
   }
 }
 

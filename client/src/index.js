@@ -18,7 +18,7 @@ import AllStudents from "./containers/Students/AllStudents";
 import AddStudent from "./containers/Forms/AddStudent";
 import AddData from "./containers/Forms/AddData";
 import AllData from "./containers/Data/AllData";
-import AddPropsToRoute from "./components/HOC/AddPropsToRoute";
+import AddPropsToRoute from "./HOC/AddPropsToRoute";
 
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
