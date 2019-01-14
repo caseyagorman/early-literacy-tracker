@@ -83,6 +83,7 @@ def get_students(current_user):
         db.joinedload('studentwords')).all()
     student_list = []
     for student in students:
+        print(student)
     
 
         # word_list = sorted(get_student_word_list(student)[0])
@@ -139,7 +140,7 @@ def add_student(current_user):
     db.session.add(new_student)
     db.session.commit()
     return 'student added!'
-    
+
 if __name__ == "__main__":
 
     app.debug = True

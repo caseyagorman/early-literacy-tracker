@@ -15,6 +15,7 @@ function deleteStudentApi() {
 }
 
 export function receiveStudents(students) {
+  console.log("receive students", students);
   return { type: types.RECEIVE_STUDENTS, students: students };
 }
 
@@ -23,19 +24,20 @@ export function receiveStudent(student) {
 }
 
 export function fetchStudents(user) {
-  return fetch(getStudentsApi(user), {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "x-access-token": user
-    }
-  })
-    .then(response => response.json())
-    .then(students => receiveStudents(students));
+  return dispatch => {
+    return fetch(getStudentsApi(user), {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      }
+    })
+      .then(response => response.json())
+      .then(students => dispatch(receiveStudents(students)));
+  };
 }
-
 export function addStudent(student, user) {
   return fetch(addStudentApi(), {
     method: "POST",

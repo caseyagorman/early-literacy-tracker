@@ -35,11 +35,11 @@ const AllStudents = props => (
       <br />
     </div>
     <div>
-      {/* <TableContainer
+      <TableContainer
         token={props.token}
         renderTable={StudentTable}
         tableElements={props.students}
-      /> */}
+      />
     </div>
   </div>
 );

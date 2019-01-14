@@ -30,12 +30,12 @@ const StudentTable = (students, onSort, token) => (
         <tr>
           <th onClick={e => onSort(e, "fname")}>Name</th>
           <th onClick={e => onSort(e, "links")}>Links</th>
-          <th onClick={e => onSort(e, "word_count")}>Words</th>
+          {/* <th onClick={e => onSort(e, "word_count")}>Words</th>
           <th onClick={e => onSort(e, "letter_count")}>Letters</th>
           <th onClick={e => onSort(e, "sound_count")}>Sounds</th>
           <th onClick={e => onSort(e, "unlearned_word_count")}>Words</th>
           <th onClick={e => onSort(e, "unlearned_letter_count")}>Letters</th>
-          <th onClick={e => onSort(e, "unlearned_sound_count")}>Sounds</th>
+          <th onClick={e => onSort(e, "unlearned_sound_count")}>Sounds</th> */}
         </tr>
       </thead>
       <tbody>
@@ -51,7 +51,7 @@ const StudentTable = (students, onSort, token) => (
                   </Link>
                   {/* <DeleteStudent token={token} studentId={student.student_id} /> */}
                 </th>
-                <tr>
+                {/* <tr>
                   <td>
                     <h5>Learned</h5>
                     words: {student.word_count}
@@ -68,7 +68,7 @@ const StudentTable = (students, onSort, token) => (
                     <br />
                     sounds: {student.unlearned_sound_count}
                   </td>
-                </tr>
+                </tr> */}
               </td>
               <td>
                 <Link to={`/details/${student.student_id}`} className="link">
@@ -82,7 +82,7 @@ const StudentTable = (students, onSort, token) => (
                   {/* <Glyphicon glyph="glyphicon glyphicon-book" id="book" /> */}
                 </Link>
               </td>
-              <td>
+              {/* <td>
                 <ul style={noBulletList}>
                   {student.word_list.map(listElements)}
                 </ul>
@@ -113,7 +113,7 @@ const StudentTable = (students, onSort, token) => (
                 <ul style={noBulletList}>
                   {student.unlearned_sound_list.map(listElements)}
                 </ul>
-              </td>
+              </td> */}
             </tr>
           );
         })}

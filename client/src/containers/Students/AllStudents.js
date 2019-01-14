@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as studentsActions from "../../redux/actions/studentsActions";
 import * as authActions from "../../redux/actions/authActions";
 import AllStudents from "../../components/Students/AllStudents";
+import { bindActionCreators } from "redux";
 
 class ViewStudents extends Component {
   componentDidMount() {
@@ -11,7 +12,8 @@ class ViewStudents extends Component {
   }
 
   displayAllStudents(students, token) {
-    if (!token) {
+    console.log(this.props);
+    if (!token || !students) {
       return <div>no token...</div>;
     }
     return <AllStudents token={token} students={students} />;
@@ -33,8 +35,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentsActions: studentsActions,
-    dispatch,
+    studentsActions: bindActionCreators(studentsActions, dispatch),
     authActions: authActions
   };
 }
