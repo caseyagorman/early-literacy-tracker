@@ -98,55 +98,45 @@ def get_students(current_user):
 
 @app.route("/api/words")
 @token_required
-def get_items(current_user):
+def get_words(current_user):
 
     user_id = current_user.public_id
-    items = StudentItem.query.filter_by(user_id=user_id).options(
-        db.joinedload('items')).filter_by(user_id=user_id).options(
+    items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="words").options(
+        db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="words").options(
         db.joinedload('students')).filter_by(user_id=user_id).all()
     for item in items:
         print("item", item)
         print("item.items", item.items)
         print("item.students", item.students)
-        # .options(
-        # db.joinedload('students')).filter_by(user_id=user_id).all()
-    # for word in words:
-    #     print (word.studentwords) 
-    # .options(
-    #     db.joinedload('studentwords')).options(db.joinedload('students')
-    # word_list = []
-
-    # for word in words:
-    #     student_list = []
-    #     unlearned_student_list =[]
-    #     for item in word.studentwords:
-    #         if item.Learned == True:
-    #             student = Student.query.filter_by(
-    #                 student_id=item.student_id).first()
-    #             student_list.append(student.fname + " " + student.lname)
-    #         else:
-    #             student = Student.query.filter_by(
-    #                 student_id=item.student_id).first()
-    #             unlearned_student_list.append(student.fname + " " + student.lname)
-
-    #     count = get_word_student_counts(word)
-    #     unlearned_count = get_unlearned_word_student_counts(word)
-    #     unlearned_student_list = sorted(unlearned_student_list)
-    #     student_list = sorted(student_list)
-    #     word = {
-    #         'word_id': word.word_id,
-    #         'word': word.word,
-    #         'count': count,
-    #         'unlearned_count': unlearned_count,
-    #         'students': student_list,
-    #         'unlearned_students':unlearned_student_list
-    #     }
-
-    #     word_list.append(word)
-    # word_list = sorted(word_list, key=itemgetter('word'))
-    # return jsonify(items)
     return "yay!"
 
+@app.route("/api/letters")
+@token_required
+def get_letters(current_user):
+
+    user_id = current_user.public_id
+    items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="letters").options(
+        db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="letters").options(
+        db.joinedload('students')).filter_by(user_id=user_id).all()
+    for item in items:
+        print("item", item)
+        print("item.items", item.items)
+        print("item.students", item.students)
+    return "yay!"
+
+@app.route("/api/sounds")
+@token_required
+def get_sounds(current_user):
+
+    user_id = current_user.public_id
+    items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="sounds").options(
+        db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="sounds").options(
+        db.joinedload('students')).filter_by(user_id=user_id).all()
+    for item in items:
+        print("item", item)
+        print("item.items", item.items)
+        print("item.students", item.students)
+    return "yay!"
 
 
 @app.route("/api/add-student", methods=['POST'])
@@ -164,7 +154,9 @@ def add_student(current_user):
 @app.route("/api/add-item", methods=['POST'])
 @token_required
 def add_word(current_user):
-    new_items = request.get_json()
+    data = request.get_json()
+    new_items = data.get("new_items")
+    item_type = data.get("item_type")
     user_id = current_user.public_id
     new_items = new_items.split()
     item_dict = {}
@@ -172,7 +164,7 @@ def add_word(current_user):
     for item in new_items:
         if item not in user_items:
             user_id = user_id
-            item = Item(item=item, user_id=user_id)
+            item = Item(item=item, user_id=user_id, item_type=item_type)
             db.session.add(item)
             db.session.commit()
         else:

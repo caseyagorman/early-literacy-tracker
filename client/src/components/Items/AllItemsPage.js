@@ -4,7 +4,7 @@ import TableContainer from "../../containers/Tables/TableContainer";
 // import StudentSnapshot from "./StudentSnapshot";
 import StudentTable from "../Tables/StudentTable";
 
-const AllDataPage = props => (
+const AllItemsPage = props => (
   <div className="container">
     {console.log("props", props)}
     <br />
@@ -44,4 +44,4 @@ const AllDataPage = props => (
     </div>
   </div>
 );
-export default AllDataPage;
+export default AllItemsPage;

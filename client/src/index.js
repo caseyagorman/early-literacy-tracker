@@ -16,8 +16,8 @@ import Home from "./containers/Home/Home";
 import history from "./history";
 import AllStudents from "./containers/Students/AllStudents";
 import AddStudent from "./containers/Forms/AddStudent";
-import AddData from "./containers/Forms/AddData";
-import AllData from "./containers/Data/AllData";
+import AddItems from "./containers/Forms/AddItem";
+import AllItems from "./containers/Items/AllItems";
 import AddPropsToRoute from "./HOC/AddPropsToRoute";
 import AppNav from "./components/Navbar/AppNav";
 
@@ -52,7 +52,7 @@ const AppRouter = () => (
       <Route
         path="/words"
         component={userIsAuthenticated(
-          AddPropsToRoute(AllData, {
+          AddPropsToRoute(AllItems, {
             itemType: "words"
           })
         )}
@@ -60,7 +60,7 @@ const AppRouter = () => (
       <Route
         path="/letters"
         component={userIsAuthenticated(
-          AddPropsToRoute(AllData, {
+          AddPropsToRoute(AllItems, {
             itemType: "letters"
           })
         )}
@@ -68,7 +68,7 @@ const AppRouter = () => (
       <Route
         path="/sounds"
         component={userIsAuthenticated(
-          AddPropsToRoute(AllData, {
+          AddPropsToRoute(AllItems, {
             itemType: "sounds"
           })
         )}
@@ -76,7 +76,7 @@ const AppRouter = () => (
       <Route
         path="/add-words"
         component={userIsAuthenticated(
-          AddPropsToRoute(AddData, {
+          AddPropsToRoute(AddItems, {
             itemType: "words"
           })
         )}
@@ -84,7 +84,7 @@ const AppRouter = () => (
       <Route
         path="/add-letters"
         component={userIsAuthenticated(
-          AddPropsToRoute(AddData, {
+          AddPropsToRoute(AddItems, {
             itemType: "letters"
           })
         )}
@@ -92,7 +92,7 @@ const AppRouter = () => (
       <Route
         path="/add-sounds"
         component={userIsAuthenticated(
-          AddPropsToRoute(AddData, {
+          AddPropsToRoute(AddItems, {
             itemType: "sounds"
           })
         )}

@@ -13,5 +13,9 @@ export default {
   students: {
     students: [],
     fetchingStudents: false
+  },
+  items: {
+    itemType: "",
+    fetchingItems: false
   }
 };
