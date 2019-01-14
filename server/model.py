@@ -119,8 +119,7 @@ class StudentTestResult(db.Model):
         'students.student_id'), nullable=False)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
-    test_type = db.Column(db.String(25), db.ForeignKey(
-        'users.public_id'), nullable=False)
+    test_type = db.Column(db.String(25), nullable=False)
     score = db.Column(db.Float)
     test_date = db.Column(db.DateTime, nullable=True,
                           default=datetime.today)

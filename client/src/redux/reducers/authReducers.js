@@ -12,34 +12,28 @@ export default function auth(state = initialState.auth, action) {
       return Object.assign({}, state, {
         user: action.auth,
         isAuthenticated: true,
-        loginError: ""
+        loginError: false,
+        loginErrorMessage: ""
       });
     case LOGIN_ERROR:
       return Object.assign({}, state, {
-        user: {
-          username: "",
-          userId: ""
-        },
+        user: null,
         isAuthenticated: false,
         loginError: action.auth
       });
     case CLEAR_ERRORS:
       return Object.assign({}, state, {
-        user: {
-          username: "",
-          userId: ""
-        },
+        user: null,
         isAuthenticated: false,
-        loginError: ""
+        loginError: false,
+        loginErrorMessage: ""
       });
     case LOGOUT_USER:
       return Object.assign({}, state, {
-        user: {
-          username: "",
-          userId: ""
-        },
+        user: null,
         isAuthenticated: false,
-        loginError: ""
+        loginError: false,
+        loginErrorMessage: ""
       });
 
     default:

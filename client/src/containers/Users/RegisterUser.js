@@ -3,6 +3,7 @@ import RegisterUserForm from "../../components/Users/RegisterUserForm";
 import { connect } from "react-redux";
 import * as registrationActions from "../../redux/actions/registerActions";
 import * as authActions from "../../redux/actions/authActions";
+import { bindActionCreators } from "redux";
 class RegisterUser extends Component {
   constructor(props) {
     super(props);
@@ -16,15 +17,16 @@ class RegisterUser extends Component {
     this.props.authActions.clearErrors();
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.register.newUser.error) {
-      alert(newProps.register.newUser.error);
-      return;
-    }
-    if (newProps.register.newUser) {
-      this.props.props.history.push("/login");
-    }
-  }
+  // componentWillReceiveProps(newProps) {
+  //   console.log("new props", newProps);
+  //   if (newProps.register.newUser.registerError) {
+  //     alert(newProps.register.newUser.registerError);
+  //     return;
+  //   }
+  //   if (newProps.register.newUser) {
+  //     this.props.props.history.push("/login");
+  //   }
+  // }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -61,9 +63,8 @@ class RegisterUser extends Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    registrationActions: registrationActions,
-    dispatch,
-    authActions: authActions
+    registrationActions: bindActionCreators(registrationActions, dispatch),
+    authActions: bindActionCreators(authActions, dispatch)
   };
 }
 

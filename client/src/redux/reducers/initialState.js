@@ -1,5 +1,9 @@
 export default {
-  registerUser: { newUser: "", registerErrorMessage: "", registerError: false },
+  registerUser: {
+    newUser: null,
+    registerErrorMessage: "",
+    registerError: false
+  },
   auth: {
     user: null,
     isAuthenticated: false,

@@ -55,7 +55,7 @@ def add_user():
                     password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({'newUser': 'user added'})
+    return jsonify({'username': username})
 
 
 @app.route("/api/login", methods=["POST"])
@@ -79,7 +79,7 @@ def get_students(current_user):
     start = time.time()
     public_id = current_user.public_id
     students = Student.query.filter_by(user_id=public_id).options(
-        db.joinedload('studentwords')).all()
+        db.joinedload('studentitems')).all()
     student_list = []
     for student in students:
 
@@ -98,15 +98,15 @@ def get_students(current_user):
 
 @app.route("/api/words")
 @token_required
-def get_words(current_user):
+def get_items(current_user):
 
     user_id = current_user.public_id
-    words = Word.query.filter_by(user_id=user_id).options(
-        db.joinedload('studentwords')).filter_by(user_id=user_id).all()
+    items = Item.query.filter_by(user_id=user_id).options(
+        db.joinedload('studentitems')).filter_by(user_id=user_id).all()
         # .options(
         # db.joinedload('students')).filter_by(user_id=user_id).all()
-    for word in words:
-        print (word.studentwords) 
+    # for word in words:
+    #     print (word.studentwords) 
     # .options(
     #     db.joinedload('studentwords')).options(db.joinedload('students')
     # word_list = []
@@ -139,7 +139,7 @@ def get_words(current_user):
 
     #     word_list.append(word)
     # word_list = sorted(word_list, key=itemgetter('word'))
-    return jsonify(words)
+    return jsonify(items)
     # return "yay!"
 
 

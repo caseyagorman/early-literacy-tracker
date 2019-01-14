@@ -8,7 +8,9 @@ export default function registerUser(
   switch (action.type) {
     case REGISTER_USER:
       return Object.assign({}, state, {
-        newUser: action.register
+        newUser: action.register,
+        registerError: false,
+        registerErrorMessage: ""
       });
     case REGISTER_ERROR:
       return Object.assign({}, state, {

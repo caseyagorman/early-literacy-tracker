@@ -19,6 +19,7 @@ import AddStudent from "./containers/Forms/AddStudent";
 import AddData from "./containers/Forms/AddData";
 import AllData from "./containers/Data/AllData";
 import AddPropsToRoute from "./HOC/AddPropsToRoute";
+import AppNav from "./components/Navbar/AppNav";
 
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
@@ -42,9 +43,9 @@ const userIsNotAuthenticated = connectedRouterRedirect({
 const AppRouter = () => (
   <Router history={history}>
     <div>
+      <AppNav />
       <Route path="/register" component={RegisterUser} />
       <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
-
       <Route path="//" component={userIsAuthenticated(Home)} />
       <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
