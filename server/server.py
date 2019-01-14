@@ -76,6 +76,7 @@ def login():
 @app.route("/api/students")
 @token_required
 def get_students(current_user):
+    print(current_user)
     start = time.time()
     public_id = current_user.public_id
     students = Student.query.filter_by(user_id=public_id).options(

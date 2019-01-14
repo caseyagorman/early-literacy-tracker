@@ -13,7 +13,7 @@ export function checkUser(auth) {
 }
 
 export function logoutUser(auth) {
-  localStorage.clear();
+  console.log("logout action", auth);
   return { type: types.LOGOUT_USER, auth: auth };
 }
 

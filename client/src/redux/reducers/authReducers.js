@@ -1,4 +1,6 @@
 import initialState from "./initialState";
+import configureStore from "../store/configureStore";
+import { persistStore } from "redux-persist";
 import {
   SET_USER,
   LOGIN_ERROR,
