@@ -16,7 +16,7 @@ import Home from "./containers/Home/Home";
 import history from "./history";
 import AllStudents from "./containers/Students/AllStudents";
 import AddStudent from "./containers/Forms/AddStudent";
-import AddItems from "./containers/Forms/AddItem";
+import AddItems from "./containers/Forms/AddItems";
 import AllItems from "./containers/Items/AllItems";
 import AddPropsToRoute from "./HOC/AddPropsToRoute";
 import AppNav from "./components/Navbar/AppNav";

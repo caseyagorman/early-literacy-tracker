@@ -1,10 +1,14 @@
 import * as types from "./actionTypes";
 import history from "../../history";
-function getItemApi(id) {
-  return `http://localhost:5000/api/item-detail/${id}`;
+
+function getWordsApi() {
+  return "http://localhost:5000/api/words";
 }
-function getItemsApi(user) {
-  return "http://localhost:5000/api/items";
+function getLettersApi() {
+  return "http://localhost:5000/api/letters";
+}
+function getSoundsApi() {
+  return "http://localhost:5000/api/sounds";
 }
 function addItemApi() {
   return "http://localhost:5000/api/add-item";
@@ -14,13 +18,18 @@ function deleteItemApi() {
   return "http://localhost:5000/api/delete-item";
 }
 
-export function receiveitem(item) {
+export function receiveItem(item) {
   return { type: types.RECEIVE_ITEM, item: item };
 }
 
-export function fetchItem(id, user, itemType) {
+export function receiveItems(items) {
+  console.log(items);
+  return { type: types.RECEIVE_ITEMS, items: items };
+}
+
+export function fetchWords(user) {
   return dispatch => {
-    return fetch(getItemApi(id), {
+    return fetch(getWordsApi(), {
       method: "GET",
       mode: "cors",
       headers: {
@@ -30,16 +39,27 @@ export function fetchItem(id, user, itemType) {
       }
     })
       .then(response => response.json())
-      .then(item => dispatch(receiveitem(item)));
+      .then(words => dispatch(receiveItems(words)));
   };
 }
-
-export function receiveItems(items) {
-  return { type: types.RECEIVE_items, items: items };
-}
-export function fetchItems(user, itemType) {
+export function fetchLetters(user) {
   return dispatch => {
-    return fetch(getItemsApi(user), {
+    return fetch(getLettersApi(user), {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      }
+    })
+      .then(response => response.json())
+      .then(letters => dispatch(receiveItems(letters)));
+  };
+}
+export function fetchSounds(user) {
+  return dispatch => {
+    return fetch(getSoundsApi(user), {
       method: "GET",
       mode: "cors",
       headers: {
@@ -52,24 +72,8 @@ export function fetchItems(user, itemType) {
       .then(items => dispatch(receiveItems(items)));
   };
 }
-export function deleteitem(user, item, itemType) {
-  return dispatch => {
-    return fetch(deleteItemApi(), {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      },
-      body: JSON.stringify(item)
-    })
-      .then(() => dispatch(fetchItems(user, itemType)))
-      .then(() => history.push("/items"));
-  };
-}
 
-export function additem(user, item, itemType) {
+export function addWord(user, item, itemType) {
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -80,9 +84,92 @@ export function additem(user, item, itemType) {
 
         "x-access-token": user
       },
-      body: JSON.stringify(item)
+      body: JSON.stringify(item, itemType)
     })
-      .then(() => dispatch(fetchItems(user, itemType)))
-      .then(() => history.push("/items"));
+      .then(() => dispatch(fetchWords(user)))
+      .then(() => history.push("/words"));
+  };
+}
+export function addLetter(user, item, itemType) {
+  return dispatch => {
+    return fetch(addItemApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+
+        "x-access-token": user
+      },
+      body: JSON.stringify(item, itemType)
+    })
+      .then(() => dispatch(fetchLetters(user)))
+      .then(() => history.push("/letters"));
+  };
+}
+export function addSound(user, item, itemType) {
+  return dispatch => {
+    return fetch(addItemApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+
+        "x-access-token": user
+      },
+      body: JSON.stringify(item, itemType)
+    })
+      .then(() => dispatch(fetchSounds(user, itemType)))
+      .then(() => history.push("/sounds"));
+  };
+}
+
+export function deleteWord(user, item, itemType) {
+  return dispatch => {
+    return fetch(deleteItemApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      },
+      body: JSON.stringify(item, itemType)
+    })
+      .then(() => dispatch(fetchWords(user)))
+      .then(() => history.push("/words"));
+  };
+}
+export function deleteLetter(user, item, itemType) {
+  return dispatch => {
+    return fetch(deleteItemApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      },
+      body: JSON.stringify(item, itemType)
+    })
+      .then(() => dispatch(fetchLetters(user)))
+      .then(() => history.push("/letters"));
+  };
+}
+export function deleteSound(user, item, itemType) {
+  return dispatch => {
+    return fetch(deleteItemApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      },
+      body: JSON.stringify(item, itemType)
+    })
+      .then(() => dispatch(fetchSounds(user)))
+      .then(() => history.push("/sounds"));
   };
 }

@@ -99,44 +99,57 @@ def get_students(current_user):
 @app.route("/api/words")
 @token_required
 def get_words(current_user):
-
     user_id = current_user.public_id
     items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="words").options(
         db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="words").options(
         db.joinedload('students')).filter_by(user_id=user_id).all()
+    item_list = []
     for item in items:
         print("item", item)
         print("item.items", item.items)
         print("item.students", item.students)
-    return "yay!"
+        word = {
+            'item_id': item.item_id,
+            'item': item.item,
+            'item_type': item.item_type,
+        }
+        item_list.append(item)
+    print(item_list)
+    return jsonify(item_list)
 
 @app.route("/api/letters")
 @token_required
 def get_letters(current_user):
-
     user_id = current_user.public_id
     items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="letters").options(
         db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="letters").options(
         db.joinedload('students')).filter_by(user_id=user_id).all()
+    item_list = []
     for item in items:
-        print("item", item)
-        print("item.items", item.items)
-        print("item.students", item.students)
-    return "yay!"
+        letter = {
+            'item_id': item.item_id,
+            'item': item.item,
+            'item_type': item.item_type,
+        }
+        item_list.append(item)
+    return jsonify(item_list)
 
 @app.route("/api/sounds")
 @token_required
 def get_sounds(current_user):
-
     user_id = current_user.public_id
     items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="sounds").options(
         db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="sounds").options(
         db.joinedload('students')).filter_by(user_id=user_id).all()
+    item_list =[]
     for item in items:
-        print("item", item)
-        print("item.items", item.items)
-        print("item.students", item.students)
-    return "yay!"
+        sound = {
+            'item_id': item.item_id,
+            'item': item.item,
+            'item_type': item.item_type,
+        }
+        item_list.append(item)
+    return jsonify(item_list)
 
 
 @app.route("/api/add-student", methods=['POST'])

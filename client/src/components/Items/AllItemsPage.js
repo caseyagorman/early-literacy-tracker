@@ -1,47 +1,19 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
-import TableContainer from "../../containers/Tables/TableContainer";
+// import TableContainer from "../../containers/Tables/TableContainer";
 // import StudentSnapshot from "./StudentSnapshot";
-import StudentTable from "../Tables/StudentTable";
-
+// import StudentTable from "../Tables/StudentTable";
 const AllItemsPage = props => (
   <div className="container">
     {console.log("props", props)}
     <br />
-    <h1 id="display-student">All Students</h1>
+    <h1 id="display-items">All {props.type}</h1>
     <div id="instructions">
       Click dashboard to test student, view words student is learning, and view
       student data. Click book to view student reports.
     </div>
     <br />
-    {/* <StudentSnapshot /> */}
-    <div>
-      <MainButton
-        id="students-button-add-student"
-        text={"Add Student"}
-        route={`/add-student`}
-      />
-      <MainButton
-        id="students-button-view-charts"
-        text={"View Charts"}
-        route={`/student-charts`}
-      />
-      <MainButton
-        id="students-button-view-data"
-        text={"View Past Test Results"}
-        route={`/student-data`}
-      />
-    </div>
-    <div>
-      <br />
-    </div>
-    <div>
-      {/* <TableContainer
-        token={props.token}
-        renderTable={StudentTable}
-        tableElements={props.students}
-      /> */}
-    </div>
+    <MainButton route={props.route} text={props.text} />
   </div>
 );
 export default AllItemsPage;
