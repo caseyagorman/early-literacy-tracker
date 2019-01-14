@@ -6,6 +6,7 @@ export default function students(state = initialState.students, action) {
     case FETCH_STUDENTS:
       return action;
     case RECEIVE_STUDENTS:
+      // return action.students;
       return Object.assign({}, state, {
         students: action.students
       });

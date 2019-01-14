@@ -12,11 +12,10 @@ class ViewStudents extends Component {
   }
 
   displayAllStudents(students, token) {
-    console.log(this.props);
     if (!token || !students) {
-      return <div>no token...</div>;
+      return <div>loading...</div>;
     }
-    return <AllStudents token={token} students={students} />;
+    return <AllStudents token={token} students={students.students} />;
   }
 
   render() {
