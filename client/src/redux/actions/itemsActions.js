@@ -63,7 +63,7 @@ export function fetchLetters(user) {
   };
 }
 export function fetchSounds(user) {
-  console.log("fetching sounds");
+  console.log("fetching sounds", user);
   return dispatch => {
     return fetch(getSoundsApi(user), {
       method: "GET",
@@ -80,7 +80,7 @@ export function fetchSounds(user) {
   };
 }
 
-export function addWord(item, itemType, user) {
+export function addWord(item, user, itemType) {
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -97,7 +97,7 @@ export function addWord(item, itemType, user) {
       .then(() => history.push("/words"));
   };
 }
-export function addLetter(user, item, itemType) {
+export function addLetter(item, user, itemType) {
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -115,7 +115,6 @@ export function addLetter(user, item, itemType) {
   };
 }
 export function addSound(item, user, itemType) {
-  console.log("user===============", user);
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
