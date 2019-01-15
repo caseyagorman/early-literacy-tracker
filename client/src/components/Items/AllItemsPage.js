@@ -23,6 +23,7 @@ const AllItemsPage = props => (
       token={props.token}
       renderTable={ItemsTable}
       tableElements={props.items.items}
+      route={props.route}
     />
   </div>
 );

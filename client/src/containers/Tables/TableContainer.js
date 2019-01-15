@@ -40,6 +40,7 @@ class TableContainer extends Component {
   }
 
   render() {
+    let route = this.props.route;
     let token = this.props.token;
     let tableElements = this.sortArray(
       this.props.tableElements,
@@ -47,7 +48,7 @@ class TableContainer extends Component {
       this.state.reverseSort
     );
 
-    return this.props.renderTable(tableElements, this.onSort, token);
+    return this.props.renderTable(tableElements, this.onSort, token, route);
   }
 }
 

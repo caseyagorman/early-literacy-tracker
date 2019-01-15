@@ -92,7 +92,7 @@ export function addWord(item, user, itemType) {
       },
       body: JSON.stringify({ item, itemType })
     })
-      .then(() => dispatch(fetchWords(user)))
+      .then(() => dispatch(fetchWords(user, itemType)))
       .then(() => history.push("/words"));
   };
 }
@@ -107,9 +107,9 @@ export function addLetter(item, user, itemType) {
 
         "x-access-token": user
       },
-      body: JSON.stringify(item, itemType)
+      body: JSON.stringify({ item, itemType })
     })
-      .then(() => dispatch(fetchLetters(user)))
+      .then(() => dispatch(fetchLetters(user, itemType)))
       .then(() => history.push("/letters"));
   };
 }
