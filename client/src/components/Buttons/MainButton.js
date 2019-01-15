@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MainButton = props => {
   return (
     <Link to={props.route}>
-      <button>{props.text}</button>
+      <button onClick={props.onClick}>{props.text}</button>
     </Link>
   );
 };

@@ -18,5 +18,6 @@ export default {
     items: [],
     itemType: "",
     fetchingItems: false
-  }
+  },
+  student: null
 };

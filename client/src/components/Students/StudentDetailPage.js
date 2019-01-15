@@ -4,10 +4,11 @@ import StudentSnapshot from "./StudentSnapshot";
 import AssignItemForm from "../Forms/AssignItemForm";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
+    {console.log("student detail page", props)}
     <div className="display-student-name">
-      {props.fname}
+      {props.student[0].fname}
       <span />
-      {props.lname}
+      {/* {props.lname}
     </div>
     <MainButton
       id="view-student-word-data-button"
@@ -37,23 +38,25 @@ const StudentDetailPage = props => (
     <AssignItemForm />
 
     <MainButton
-      id="test-student-words-button"
+      id="test-student-button"
       text={"Test Student Words"}
       testType={"words"}
       route={`/test-student${props.id}`}
     />
     <MainButton
-      id="test-student-words-button"
+      id="test-student-button"
       text={"Test Student Letters"}
       testType={"letters"}
       route={`/test-student${props.id}`}
     />
     <MainButton
-      id="test-student-words-button"
+      id="test-student-button"
       text={"Test Student Sounds"}
       testType={"sounds"}
+      onClick={props.beginTest}
       route={`/test-student${props.id}`}
-    />
+    /> */}
+    </div>
   </div>
 );
 

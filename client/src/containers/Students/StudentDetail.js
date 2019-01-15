@@ -6,18 +6,19 @@ import StudentDetailPage from "../../components/Students/StudentDetailPage";
 
 class StudentDetail extends Component {
   componentDidMount() {
-    if (!this.props.id) {
+    console.log(this.props);
+    let studentId = this.props.match.params.id;
+    if (!studentId) {
       return <div>loading...</div>;
     }
-    const student = this.props.id;
-    const user = this.props.token;
-    this.props.studentsActions.fetchStudent(student, user);
+    const user = this.props.auth.user.token;
+    this.props.studentsActions.fetchStudent(studentId, user);
   }
   displayStudentDetailPage(student) {
     if (!student) {
       return <div>loading...</div>;
     }
-    return <StudentDetailPage />;
+    return <StudentDetailPage student={student} />;
   }
 
   render() {
