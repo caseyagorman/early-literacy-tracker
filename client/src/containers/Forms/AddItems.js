@@ -19,7 +19,12 @@ class AddItem extends Component {
     const item = this.state.newItem;
     const itemType = this.props.itemType;
     if (itemType === "words") {
-      this.props.itemsActions.addWord(item, user, itemType);
+      this.props.itemsActions.addWord(
+        item,
+        user,
+        itemType,
+        this.props.itemsActions.fetchWords
+      );
     } else if (itemType === "letters") {
       this.props.itemsActions.addLetter(item, user, itemType);
     }

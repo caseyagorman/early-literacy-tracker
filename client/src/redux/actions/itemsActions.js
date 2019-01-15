@@ -131,7 +131,6 @@ export function fetchSound(id, user) {
   };
 }
 export function addWord(item, user, itemType) {
-  console.log("action", item, user, itemType);
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",

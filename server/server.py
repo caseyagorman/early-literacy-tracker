@@ -79,15 +79,13 @@ def get_words(current_user):
     user_id = current_user.public_id
     items = Item.query.filter_by(user_id=user_id).filter_by(item_type="words").options(
         db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="words").all()
-    print("items", items)
     item_list =[]
     for item in items:
         word = {
             'item_id': item.item_id,
             'item': item.item
-        }
+            }
         item_list.append(word)
-    item_type = "words"
     return jsonify({
         "items": item_list
         })
@@ -99,7 +97,6 @@ def get_letters(current_user):
     user_id = current_user.public_id
     items = Item.query.filter_by(user_id=user_id).filter_by(item_type="letters").options(
     db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="letters").all()
-    print("items", items)
     item_list =[]
     for item in items:
         letter = {
@@ -235,14 +232,12 @@ def student_detail(current_user, student):
                 }
                 word_list.append(word)
             else:
-                 unlearned_word = {
+                unlearned_word = {
                     'item_id': item.items.item_id,
-                    'item': item.items.item,
-                }
+                    'item': item.items.item
+                    }
                 unlearned_word_list.append(unlearned_word)
-
-
-        else if item.item_type == "letters":
+        elif item.item_type == "letters":
             if item.Learned == True:
                 letter = {
                     'item_id': item.items.item_id,
@@ -250,13 +245,12 @@ def student_detail(current_user, student):
                 }
                 letter_list.append(letter)
             else:
-                 unlearned_letter = {
+                unlearned_letter = {
                     'item_id': item.items.item_id,
-                    'item': item.items.item,
-                }
+                    'item': item.items.item}
                 unlearned_letter_list.append(unlearned_letter)
 
-        else if item.item_type == "sounds":
+        elif item.item_type == "sounds":
             if item.Learned == True:
                 sound = {
                     'item_id': item.items.item_id,
@@ -264,10 +258,9 @@ def student_detail(current_user, student):
                 }
                 sound_list.append(sound)
             else:
-                 unlearned_sound = {
+                unlearned_sound = {
                     'item_id': item.items.item_id,
-                    'item': item.items.item,
-                }
+                    'item': item.items.item}
                 unlearned_sound_list.append(unlearned_sound)
             
     end = time.time()

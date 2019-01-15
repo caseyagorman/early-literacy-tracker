@@ -16,8 +16,8 @@ const ItemsTable = (items, onSort, route) => (
     <tbody>
       {items.map(function(item) {
         return (
-          <tr>
-            <td key={item.item_id}>
+          <tr key={item.item_id}>
+            <td>
               <Link to={`/item-detail/${item.item_id}`} className="link">
                 <h2 id="item-name-table-header">{item.item}</h2>
               </Link>
@@ -26,7 +26,7 @@ const ItemsTable = (items, onSort, route) => (
         );
       })}
       <tr>
-        <td colspan="8">
+        <td colSpan="8">
           <a href={route} className="link">
             + Click to add new item
           </a>

@@ -16,9 +16,11 @@ import LogoutUser from "./containers/Users/LogoutUser";
 import Home from "./containers/Home/Home";
 import history from "./history";
 import AllStudents from "./containers/Students/AllStudents";
+import StudentDetail from "./containers/Students/StudentDetail";
 import AddStudent from "./containers/Forms/AddStudent";
 import AddItems from "./containers/Forms/AddItems";
 import AllItems from "./containers/Items/AllItems";
+import ItemDetail from "./containers/Items/ItemDetail";
 import AddPropsToRoute from "./HOC/AddPropsToRoute";
 import AppNav from "./components/Navbar/AppNav";
 
@@ -51,14 +53,7 @@ const AppRouter = () => (
       <Route path="//" component={userIsAuthenticated(Home)} />
       <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
-      <Route
-        path="/words"
-        component={userIsAuthenticated(
-          AddPropsToRoute(AllItems, {
-            itemType: "words"
-          })
-        )}
-      />
+
       <Route
         path="/letters"
         component={userIsAuthenticated(
@@ -95,6 +90,42 @@ const AppRouter = () => (
         path="/add-sounds"
         component={userIsAuthenticated(
           AddPropsToRoute(AddItems, {
+            itemType: "sounds"
+          })
+        )}
+      />
+      <Route
+        path="/words"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AllItems, {
+            itemType: "words"
+          })
+        )}
+      />
+      <Route
+        path="/details/:id"
+        component={userIsAuthenticated(StudentDetail)}
+      />
+      <Route
+        path="/word-detail/:id"
+        component={userIsAuthenticated(
+          AddPropsToRoute(ItemDetail, {
+            itemType: "words"
+          })
+        )}
+      />
+      <Route
+        path="/letter-detail/:id"
+        component={userIsAuthenticated(
+          AddPropsToRoute(ItemDetail, {
+            itemType: "letters"
+          })
+        )}
+      />
+      <Route
+        path="/sound-detail/:id"
+        component={userIsAuthenticated(
+          AddPropsToRoute(ItemDetail, {
             itemType: "sounds"
           })
         )}
