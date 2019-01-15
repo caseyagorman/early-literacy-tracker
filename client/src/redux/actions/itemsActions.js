@@ -23,12 +23,12 @@ export function receiveItem(item) {
 }
 
 export function receiveItems(items) {
-  console.log("items", items);
+  console.log("receive items", items);
   return { type: types.RECEIVE_ITEMS, items: items };
 }
 
 export function setItemType(itemType) {
-  console.log("items", itemType);
+  console.log("set item type", itemType);
   return { type: types.SET_ITEM_TYPE, items: itemType };
 }
 
@@ -75,7 +75,6 @@ export function fetchSounds(user) {
       }
     })
       .then(response => response.json())
-      .then(sounds => console.log("sounds", sounds))
       .then(items => dispatch(receiveItems(items)));
   };
 }

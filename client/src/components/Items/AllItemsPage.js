@@ -1,8 +1,8 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
-// import TableContainer from "../../containers/Tables/TableContainer";
+import TableContainer from "../../containers/Tables/TableContainer";
 // import StudentSnapshot from "./StudentSnapshot";
-// import StudentTable from "../Tables/StudentTable";
+import ItemsTable from "../Tables/ItemsTable";
 const AllItemsPage = props => (
   <div className="container">
     {console.log("All Items Page", props)}
@@ -19,6 +19,11 @@ const AllItemsPage = props => (
     </div>
     <br />
     <MainButton route={props.route} text={props.text} />
+    <TableContainer
+      token={props.token}
+      renderTable={ItemsTable}
+      tableElements={props.items.items}
+    />
   </div>
 );
 

@@ -102,19 +102,17 @@ def get_words(current_user):
     user_id = current_user.public_id
     items = Item.query.filter_by(user_id=user_id).filter_by(item_type="words").options(
         db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="words").all()
-    item_list = []
+    print("items", items)
+    item_list =[]
     for item in items:
         word = {
             'item_id': item.item_id,
-            'item': item.item,
-            'item_type': item.item_type,
+            'item': item.item
         }
-        item_list.append(item)
+        item_list.append(word)
     item_type = "words"
-
     return jsonify({
-        "items": item_list,
-        "itemType": item_type
+        "items": item_list
         })
 
 
@@ -122,42 +120,38 @@ def get_words(current_user):
 @token_required
 def get_letters(current_user):
     user_id = current_user.public_id
-    items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="letters").options(
-        db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="letters").options(
-        db.joinedload('students')).filter_by(user_id=user_id).all()
-    item_list = []
+    items = Item.query.filter_by(user_id=user_id).filter_by(item_type="letters").options(
+    db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="letters").all()
+    print("items", items)
+    item_list =[]
     for item in items:
         letter = {
             'item_id': item.item_id,
-            'item': item.item,
-            'item_type': item.item_type,
+            'item': item.item
         }
-        item_list.append(item)
+        item_list.append(letter)
     item_type = "letters"
     return jsonify({
-        "items": item_list,
-        "itemType": item_type
+        "items": item_list
         })
 
 @app.route("/api/sounds")
 @token_required
 def get_sounds(current_user):
     user_id = current_user.public_id
-    items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="sounds").options(
-        db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="sounds").options(
-        db.joinedload('students')).filter_by(user_id=user_id).all()
+    items = Item.query.filter_by(user_id=user_id).filter_by(item_type="sounds").options(
+        db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="sounds").all()
+    print("items", items)
     item_list =[]
     for item in items:
         sound = {
             'item_id': item.item_id,
-            'item': item.item,
-            'item_type': item.item_type,
+            'item': item.item
         }
-        item_list.append(item)
+        item_list.append(sound)
     item_type = "sounds"
     return jsonify({
-        "items": item_list,
-        "itemType": item_type
+        "items": item_list
         })
  
 

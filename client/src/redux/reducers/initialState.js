@@ -15,7 +15,7 @@ export default {
     fetchingStudents: false
   },
   items: {
-    items: null,
+    items: [],
     itemType: "",
     fetchingItems: false
   }
