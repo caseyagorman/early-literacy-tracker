@@ -72,29 +72,6 @@ def login():
     else:
         return jsonify({'error': 'incorrect password'})
 
-@app.route("/api/students")
-@token_required
-def get_students(current_user):
-    print(current_user)
-    start = time.time()
-    public_id = current_user.public_id
-    students = Student.query.filter_by(user_id=public_id).options(
-        db.joinedload('studentitems')).all()
-    student_list = []
-    for student in students:
-
-        student = {
-            'student_id': student.student_id,
-            'fname': student.fname,
-            'lname': student.lname,
-        }
-        student_list.append(student)
-    # doubles time, think of other way if possible
-    #  - student_list = sorted(student_list, key=itemgetter('fname', 'lname'),  reverse=False) 
-    end = time.time()
-    elapsed_time = end - start
-    print('getting all students took', elapsed_time)
-    return jsonify(student_list)
 
 @app.route("/api/words")
 @token_required
@@ -169,22 +146,30 @@ def add_student(current_user):
     db.session.commit()
     return 'student added!'
 
+@app.route("/api/delete-student", methods=['POST'])
+@token_required
+def delete_student(current_user):
+    student_id = request.get_json()
+    user_id = current_user.public_id
+    student = Student.query.filter_by(
+        student_id=student_id, user_id=user_id).first()
+    db.session.delete(student)
+    db.session.commit()
+    return 'student deleted!'
+
 @app.route("/api/add-item", methods=['POST'])
 @token_required
-def add_word(current_user):
+def add_item(current_user):
     data = request.get_json()
-    print("data", data)
     items = data['item']
     item_type = data['itemType']
     user_id = current_user.public_id
     new_items = items.split()
-    print("new items", new_items)
     user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
     user_list = []
     for item in user_items:
         user_list.append(item.item)
     list_to_add = list(set(new_items).difference(user_list))
-    print("list to add", list_to_add)
     for item in list_to_add:
             user_id = user_id
             item = Item(item=item, user_id=user_id, item_type=item_type)
@@ -192,6 +177,103 @@ def add_word(current_user):
             db.session.commit()
 
     return 'items added'
+
+
+@app.route("/api/students")
+@token_required
+def get_students(current_user):
+    print(current_user)
+    start = time.time()
+    public_id = current_user.public_id
+    students = Student.query.filter_by(user_id=public_id).options(
+        db.joinedload('studentitems')).all()
+    student_list = []
+    for student in students:
+
+        student = {
+            'student_id': student.student_id,
+            'fname': student.fname,
+            'lname': student.lname,
+        }
+        student_list.append(student)
+    # doubles time, think of other way if possible
+    #  - student_list = sorted(student_list, key=itemgetter('fname', 'lname'),  reverse=False) 
+    end = time.time()
+    elapsed_time = end - start
+    print('getting all students took', elapsed_time)
+    return jsonify(student_list)
+
+
+@app.route("/api/details/<student>")
+@token_required
+def student_detail(current_user, student):
+    """Show student detail"""
+    start = time.time()
+    user_id = current_user.public_id
+    student_object = Student.query.filter_by(
+        student_id=student, user_id=user_id).first()
+    student_items = StudentItem.query.filter_by(
+        student_id=student).options(db.joinedload('items')).all()
+    student_object = {
+        'student_id': student_object.student_id,
+        'fname': student_object.fname,
+        'lname': student_object.lname
+    }
+    word_list = []
+    letter_list = []
+    sound_list = []
+    unlearned_word_list = []
+    unlearned_letter_list = []
+    unlearned_sound_list = []
+
+    for item in student_items:
+        if item.item_type == "words":
+            if item.Learned == True:
+                word = {
+                    'item_id': item.items.item_id,
+                    'item': item.items.item,
+                }
+                word_list.append(word)
+            else:
+                 unlearned_word = {
+                    'item_id': item.items.item_id,
+                    'item': item.items.item,
+                }
+                unlearned_word_list.append(unlearned_word)
+
+
+        else if item.item_type == "letters":
+            if item.Learned == True:
+                letter = {
+                    'item_id': item.items.item_id,
+                    'item': item.items.item,
+                }
+                letter_list.append(letter)
+            else:
+                 unlearned_letter = {
+                    'item_id': item.items.item_id,
+                    'item': item.items.item,
+                }
+                unlearned_letter_list.append(unlearned_letter)
+
+        else if item.item_type == "sounds":
+            if item.Learned == True:
+                sound = {
+                    'item_id': item.items.item_id,
+                    'item': item.items.item,
+                }
+                sound_list.append(sound)
+            else:
+                 unlearned_sound = {
+                    'item_id': item.items.item_id,
+                    'item': item.items.item,
+                }
+                unlearned_sound_list.append(unlearned_sound)
+            
+    end = time.time()
+    elapsed_time = end - start
+    print('getting student detail took', elapsed_time)
+    return jsonify([student_object, word_list, letter_list, sound_list, unlearned_word_list, unlearned_letter_list, unlearned_sound_list])
 
 if __name__ == "__main__":
 
