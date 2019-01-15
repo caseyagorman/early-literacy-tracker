@@ -18,7 +18,6 @@ class AddItem extends Component {
     const user = this.props.auth.user.token;
     const item = this.state.newItem;
     const itemType = this.props.itemType;
-    console.log("handleSubmit", item, itemType, user);
     if (itemType === "words") {
       this.props.itemsActions.addWord(item, user, itemType);
     } else if (itemType === "letters") {

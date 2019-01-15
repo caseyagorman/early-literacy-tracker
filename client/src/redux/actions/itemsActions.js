@@ -23,12 +23,12 @@ export function receiveItem(item) {
 }
 
 export function receiveItems(items) {
-  console.log("receive items", items);
+  console.log("items", items);
   return { type: types.RECEIVE_ITEMS, items: items };
 }
 
 export function setItemType(itemType) {
-  console.log("set item type", itemType);
+  console.log("items", itemType);
   return { type: types.SET_ITEM_TYPE, items: itemType };
 }
 
@@ -63,7 +63,6 @@ export function fetchLetters(user) {
   };
 }
 export function fetchSounds(user) {
-  console.log("fetching sounds", user);
   return dispatch => {
     return fetch(getSoundsApi(user), {
       method: "GET",
@@ -80,6 +79,7 @@ export function fetchSounds(user) {
 }
 
 export function addWord(item, user, itemType) {
+  console.log("action", item, user, itemType);
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -92,7 +92,7 @@ export function addWord(item, user, itemType) {
       },
       body: JSON.stringify({ item, itemType })
     })
-      .then(() => dispatch(fetchWords(user, itemType)))
+      .then(() => dispatch(fetchWords(user)))
       .then(() => history.push("/words"));
   };
 }
@@ -107,9 +107,9 @@ export function addLetter(item, user, itemType) {
 
         "x-access-token": user
       },
-      body: JSON.stringify({ item, itemType })
+      body: JSON.stringify(item, itemType)
     })
-      .then(() => dispatch(fetchLetters(user, itemType)))
+      .then(() => dispatch(fetchLetters(user)))
       .then(() => history.push("/letters"));
   };
 }
@@ -124,7 +124,7 @@ export function addSound(item, user, itemType) {
 
         "x-access-token": user
       },
-      body: JSON.stringify({ item, itemType })
+      body: JSON.stringify(item, itemType)
     })
       .then(() => dispatch(fetchSounds(user, itemType)))
       .then(() => history.push("/sounds"));
