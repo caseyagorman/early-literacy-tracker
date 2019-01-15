@@ -179,19 +179,13 @@ def add_student(current_user):
 @token_required
 def add_word(current_user):
     data = request.get_json()
-    print("current_user", current_user)
-    print("data", data)
     items = data['item']
     item_type = data['itemType']
     user_id = current_user.public_id
     new_items = items.split()
-    print("new items", new_items)
     user_items = Item.query.filter_by(user_id=user_id).all()
-    print("user items", user_items)
     list_to_add = list(set(new_items).difference(user_items))
-    print("list to add", list_to_add)
-    for item in list_to_add:
-            print(item, item_type)
+    for item in list_to_add:)
             user_id = user_id
             item = Item(item=item, user_id=user_id, item_type=item_type)
             db.session.add(item)
