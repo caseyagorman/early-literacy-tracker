@@ -1,62 +1,61 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
 import StudentSnapshot from "./StudentSnapshot";
-import AssignItemForm from "../Forms/AssignItemForm";
+// import AssignItemForm from "../Forms/AssignItemForm";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
     {console.log("student detail page", props)}
     <div className="display-student-name">
       {props.student[0].fname}
       <span />
-      {/* {props.lname}
+      {props.student[0].lname}
     </div>
     <MainButton
       id="view-student-word-data-button"
       text={"View Word Data"}
-      route={`/word-data${props.id}`}
+      route={`/word-data${props.student[0].student_id}`}
     />
     <MainButton
       id="view-student-letter-data-button"
       text={"View Letter Data"}
-      route={`/letter-data${props.id}`}
+      route={`/letter-data${props.student[0].student_id}`}
     />
     <MainButton
       id="view-student-sound-data-button"
       text={"View Sound Data"}
-      route={`/sound-data${props.id}`}
+      route={`/sound-data${props.student[0].student_id}`}
     />
     <MainButton
       id="view-student-data-button"
       text={"View All Student Data"}
-      route={`/student-data${props.id}`}
+      route={`/student-data${props.student[0].student_id}`}
     />
 
     <StudentSnapshot />
-
+    {/* 
     <AssignItemForm />
     <AssignItemForm />
-    <AssignItemForm />
+    <AssignItemForm /> */}
 
     <MainButton
       id="test-student-button"
       text={"Test Student Words"}
       testType={"words"}
-      route={`/test-student${props.id}`}
+      route={`/test-student${props.student[0].student_id}`}
     />
     <MainButton
       id="test-student-button"
       text={"Test Student Letters"}
       testType={"letters"}
-      route={`/test-student${props.id}`}
+      route={`/test-student${props.student[0].student_id}`}
     />
     <MainButton
       id="test-student-button"
       text={"Test Student Sounds"}
       testType={"sounds"}
       onClick={props.beginTest}
-      route={`/test-student${props.id}`}
-    /> */}
-    </div>
+      route={`/test-student${props.student[0].student_id}`}
+    />
   </div>
 );
 
