@@ -40,7 +40,6 @@ def token_required(f):
 @cross_origin()
 def add_user():
     data = request.get_json()
-    print("user data", data)
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
@@ -101,14 +100,10 @@ def get_students(current_user):
 @token_required
 def get_words(current_user):
     user_id = current_user.public_id
-    items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type="words").options(
-        db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type="words").options(
-        db.joinedload('students')).filter_by(user_id=user_id).all()
+    items = Item.query.filter_by(user_id=user_id).filter_by(item_type="words").options(
+        db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="words").all()
     item_list = []
     for item in items:
-        print("item", item)
-        print("item.items", item.items)
-        print("item.students", item.students)
         word = {
             'item_id': item.item_id,
             'item': item.item,
@@ -116,10 +111,12 @@ def get_words(current_user):
         }
         item_list.append(item)
     item_type = "words"
+
     return jsonify({
         "items": item_list,
         "itemType": item_type
         })
+
 
 @app.route("/api/letters")
 @token_required
@@ -168,6 +165,7 @@ def get_sounds(current_user):
 @app.route("/api/add-student", methods=['POST'])
 @token_required
 def add_student(current_user):
+    print("current user", current_user)
     data = request.get_json()
     fname = data.get('fname')
     lname = data.get('lname')
@@ -181,20 +179,23 @@ def add_student(current_user):
 @token_required
 def add_word(current_user):
     data = request.get_json()
-    new_items = data.get("new_items")
-    item_type = data.get("item_type")
+    print("current_user", current_user)
+    print("data", data)
+    items = data['item']
+    item_type = data['itemType']
     user_id = current_user.public_id
-    new_items = new_items.split()
-    item_dict = {}
+    new_items = items.split()
+    print("new items", new_items)
     user_items = Item.query.filter_by(user_id=user_id).all()
-    for item in new_items:
-        if item not in user_items:
+    print("user items", user_items)
+    list_to_add = list(set(new_items).difference(user_items))
+    print("list to add", list_to_add)
+    for item in list_to_add:
+            print(item, item_type)
             user_id = user_id
             item = Item(item=item, user_id=user_id, item_type=item_type)
             db.session.add(item)
             db.session.commit()
-        else:
-            continue
 
     return 'items added'
 

@@ -11,22 +11,22 @@ class AddItem extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidMount() {
-    if (sessionStorage.token) {
-      this.props.authActions.checkUser(sessionStorage);
-    } else {
-      alert("Please log in");
-      this.props.history.push("/login");
-    }
-  }
 
   handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
-    const user = this.props.token;
+    const user = this.props.auth.user.token;
     const item = this.state.newItem;
     const itemType = this.props.itemType;
-    this.props.itemActions.addWord(user, item, itemType);
+    console.log("handleSubmit", item, itemType, user);
+    if (itemType === "words") {
+      this.props.itemsActions.addWord(item, user, itemType);
+    } else if (itemType === "letters") {
+      this.props.itemsActions.addLetter(item, user, itemType);
+    }
+    if (itemType === "sounds") {
+      this.props.itemsActions.addSound(item, user, itemType);
+    }
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });

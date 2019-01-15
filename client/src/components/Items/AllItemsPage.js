@@ -5,7 +5,7 @@ import MainButton from "../Buttons/MainButton";
 // import StudentTable from "../Tables/StudentTable";
 const AllItemsPage = props => (
   <div className="container">
-    {console.log("props", props)}
+    {console.log("All Items Page", props)}
     <br />
     <h1 id="display-items">
       All{" "}

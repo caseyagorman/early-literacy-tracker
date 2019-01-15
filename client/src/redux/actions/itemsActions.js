@@ -27,6 +27,11 @@ export function receiveItems(items) {
   return { type: types.RECEIVE_ITEMS, items: items };
 }
 
+export function setItemType(itemType) {
+  console.log("items", itemType);
+  return { type: types.SET_ITEM_TYPE, items: itemType };
+}
+
 export function fetchWords(user) {
   return dispatch => {
     return fetch(getWordsApi(), {
@@ -58,6 +63,7 @@ export function fetchLetters(user) {
   };
 }
 export function fetchSounds(user) {
+  console.log("fetching sounds");
   return dispatch => {
     return fetch(getSoundsApi(user), {
       method: "GET",
@@ -69,11 +75,12 @@ export function fetchSounds(user) {
       }
     })
       .then(response => response.json())
+      .then(sounds => console.log("sounds", sounds))
       .then(items => dispatch(receiveItems(items)));
   };
 }
 
-export function addWord(user, item, itemType) {
+export function addWord(item, itemType, user) {
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -84,7 +91,7 @@ export function addWord(user, item, itemType) {
 
         "x-access-token": user
       },
-      body: JSON.stringify(item, itemType)
+      body: JSON.stringify({ item, itemType })
     })
       .then(() => dispatch(fetchWords(user)))
       .then(() => history.push("/words"));
@@ -107,7 +114,8 @@ export function addLetter(user, item, itemType) {
       .then(() => history.push("/letters"));
   };
 }
-export function addSound(user, item, itemType) {
+export function addSound(item, user, itemType) {
+  console.log("user===============", user);
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -118,7 +126,7 @@ export function addSound(user, item, itemType) {
 
         "x-access-token": user
       },
-      body: JSON.stringify(item, itemType)
+      body: JSON.stringify({ item, itemType })
     })
       .then(() => dispatch(fetchSounds(user, itemType)))
       .then(() => history.push("/sounds"));

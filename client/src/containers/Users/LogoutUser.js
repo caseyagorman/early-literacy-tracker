@@ -7,6 +7,7 @@ class Logout extends Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
     this.props.authActions.logoutUser(user);
+    localStorage.clear();
     this.handleLogout();
   }
 

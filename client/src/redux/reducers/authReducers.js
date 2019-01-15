@@ -31,6 +31,10 @@ export default function auth(state = initialState.auth, action) {
         loginErrorMessage: ""
       });
     case LOGOUT_USER:
+      localStorage.clear();
+      const store = configureStore(initialState);
+      const persistor = persistStore(store);
+      persistor.purge();
       return Object.assign({}, state, {
         user: null,
         isAuthenticated: false,

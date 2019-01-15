@@ -7,6 +7,8 @@ import AllItemsPage from "../../components/Items/AllItemsPage";
 
 class AllItems extends React.Component {
   componentDidMount() {
+    console.log("All Items Component Did Mount", this.props);
+    this.props.itemsActions.setItemType(this.props.itemType);
     let user = this.props.auth.user.token;
     if (this.props.itemType === "words") {
       this.props.itemsActions.fetchWords(user);
@@ -17,6 +19,7 @@ class AllItems extends React.Component {
     }
   }
   displayItems(items) {
+    console.log("All Items Display Items", items);
     if (!items) {
       return <p>loading...</p>;
     }
