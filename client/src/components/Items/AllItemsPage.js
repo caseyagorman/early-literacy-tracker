@@ -1,11 +1,9 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
 import TableContainer from "../../containers/Tables/TableContainer";
-// import StudentSnapshot from "./StudentSnapshot";
 import ItemsTable from "../Tables/ItemsTable";
 const AllItemsPage = props => (
   <div className="container">
-    {console.log("All Items Page", props)}
     <br />
     <h1 id="display-items">
       All{" "}
