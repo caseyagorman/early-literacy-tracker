@@ -21,7 +21,7 @@ export default function studentItems(
       return newState;
     case RECEIVE_STUDENT_ITEMS:
       newState = action.studentItems;
-      console.log("RECEIVE_STUDENT_ITEMS Action");
+      console.log("RECEIVE_STUDENT_ITEMS Action", newState);
       return newState;
     case SET_ITEM_TYPE:
       console.log("SET_STUDENT_ITEMS Action", action.studentItems);

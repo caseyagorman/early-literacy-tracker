@@ -34,6 +34,7 @@ export function addStudentItems(studentItems, user, itemType) {
 }
 
 export function receiveUnknownItems(unknownItems) {
+  console.log(unknownItems, "unknown items");
   return { type: types.RECEIVE_UNKNOWN_ITEMS, unknownItems: unknownItems };
 }
 
