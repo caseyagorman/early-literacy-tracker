@@ -24,7 +24,7 @@ export default {
     fetchingStudent: false
   },
   item: {
-    item: "",
+    item: null,
     itemType: "",
     fetchingItem: false
   },
