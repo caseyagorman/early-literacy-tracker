@@ -32,5 +32,10 @@ export default {
     items: [],
     itemType: "",
     fetchingItems: false
+  },
+  studentTest: {
+    testType: "",
+    testItems: [],
+    submittingTest: false
   }
 };
