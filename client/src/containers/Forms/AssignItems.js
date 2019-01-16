@@ -50,19 +50,16 @@ class AssignItems extends Component {
     let itemList = [];
     for (let key in obj) {
       let itemObj = obj[key];
-      itemList.push(itemObj.word);
+      itemList.push(itemObj.item);
     }
     return itemList;
   }
 
   getOptions() {
-    if (!this.props.unknownItems) {
+    if (!this.props.studentUnknownWords) {
       return <div>Loading!</div>;
     }
-    let itemList = this.turnIntoArray(this.props.unknownItems);
-    if (itemList.length === 0) {
-      itemList = ["No words to display"];
-    }
+    let itemList = this.turnIntoArray(this.props.studentUnknownWords);
     return (
       <AssignItemsForm
         student={this.props.student[0]}
@@ -87,6 +84,9 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     studentItems: state.studentItems,
+    studentUnknownWords: state.studentUnknownWords,
+    studentUnknownLetters: state.studentUnknownLetters,
+    studentUnknownSounds: state.studentUnknownSounds,
     auth: state.auth
   };
 }
