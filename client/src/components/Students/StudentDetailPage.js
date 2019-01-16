@@ -1,9 +1,10 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
 import StudentSnapshot from "./StudentSnapshot";
-// import AssignItemForm from "../Forms/AssignItemForm";
+import AssignItems from "../../containers/Forms/AssignItems";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
+    {console.log("student detail", props)}
     <div className="display-student-name">
       {props.student[0].fname}
       <span />
@@ -31,10 +32,10 @@ const StudentDetailPage = props => (
     />
 
     <StudentSnapshot />
-    {/* 
-    <AssignItemForm />
-    <AssignItemForm />
-    <AssignItemForm /> */}
+
+    <AssignItems student={props.student} />
+    <AssignItems student={props.student} />
+    <AssignItems student={props.student} />
 
     <MainButton
       id="test-student-button"

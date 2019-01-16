@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as studentItemsActions from "../../../redux/actions/studentItemsActions";
+import * as studentItemsActions from "../../redux/actions/studentItemsActions";
 import AssignItemsForm from "../../components/Forms/AssignItemsForm";
 
 class AssignItems extends Component {
@@ -14,6 +14,7 @@ class AssignItems extends Component {
   }
 
   componentDidMount() {
+    console.log("assign items container", this.props);
     const id = this.props.student[0].student_id;
     const user = this.props.auth.user.token;
     this.props.studentItems.fetchUnknownItems(id, user);
