@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   items,
   item,
   student,
-  studentItems,
+  // studentItems,
   studentTest
 });
 

@@ -268,6 +268,30 @@ def student_detail(current_user, student):
     print('getting student detail took', elapsed_time)
     return jsonify([student_object, word_list, letter_list, sound_list, unlearned_word_list, unlearned_letter_list, unlearned_sound_list])
 
+
+@app.route("/api/unknown-items/<student>")
+@token_required
+def get_unknown_sounds(current_user, student, item_type):
+    """gets items that student does not know and are not in current item list, items can then be added to students item list"""
+    user_id = current_user.public_id
+    items = StudentItem.query.filter_by(
+        student_id=student, user_id=user_id, item_type=item_type).options(db.joinedload('items')).all()
+    item_ids = []
+    for item in items:
+        item_ids.append(item.item_id)
+
+    unknown_items = Item.query.filter_by(user_id=user_id, item_type=item_type).filter(
+        Item.item_id.notin_(item_ids)).all()
+    item_list = []
+
+    for item in unknown_items:
+        item = {
+            'item_id': item.item_id,
+            'item': item.item
+        }
+        item_list.append(sound)
+    return jsonify(item_list)
+
 if __name__ == "__main__":
 
     app.debug = True
