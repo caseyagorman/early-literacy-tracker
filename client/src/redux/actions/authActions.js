@@ -5,7 +5,6 @@ function getUserApi() {
 }
 
 export function checkUser(auth) {
-  console.log("checkUser", auth);
   if (!auth.error) {
     return { type: types.SET_USER, auth: auth };
   }
@@ -13,7 +12,6 @@ export function checkUser(auth) {
 }
 
 export function logoutUser(auth) {
-  console.log("logout action", auth);
   return { type: types.LOGOUT_USER, auth: auth };
 }
 

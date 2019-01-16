@@ -4,7 +4,6 @@ import StudentSnapshot from "./StudentSnapshot";
 // import AssignItemForm from "../Forms/AssignItemForm";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
-    {console.log("student detail page", props)}
     <div className="display-student-name">
       {props.student[0].fname}
       <span />

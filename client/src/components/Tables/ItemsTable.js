@@ -7,7 +7,6 @@ const listElements = el => <li>{el}</li>;
 
 const ItemsTable = (items, onSort, route) => (
   <table bordered="true" hover="true">
-    {console.log("table items", items)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "item")}> Item</th>

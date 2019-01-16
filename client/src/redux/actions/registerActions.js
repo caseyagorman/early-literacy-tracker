@@ -3,7 +3,6 @@ function registerUserApi() {
   return "http://localhost:5000/api/register";
 }
 export function checkNewUser(register) {
-  console.log("check new user", register);
   if (!register.error) {
     return { type: types.REGISTER_USER, register: register };
   } else if (register.error) {

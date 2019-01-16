@@ -13,7 +13,6 @@ class RegisterUser extends Component {
   }
 
   componentDidMount() {
-    console.log("register props", this.props);
     this.props.authActions.clearErrors();
   }
 

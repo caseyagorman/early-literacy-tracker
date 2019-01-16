@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as studentsActions from "../../redux/actions/studentsActions";
+import * as studentActions from "../../redux/actions/studentActions";
 import StudentDetailPage from "../../components/Students/StudentDetailPage";
 
 class StudentDetail extends Component {
   componentDidMount() {
-    console.log(this.props);
     let studentId = this.props.match.params.id;
     if (!studentId) {
       return <div>loading...</div>;
     }
     const user = this.props.auth.user.token;
-    this.props.studentsActions.fetchStudent(studentId, user);
+    this.props.studentActions.fetchStudent(studentId, user);
   }
   displayStudentDetailPage(student) {
-    if (!student) {
+    if (student.student === null) {
       return <div>loading...</div>;
     }
     return <StudentDetailPage student={student} />;
@@ -28,7 +27,7 @@ class StudentDetail extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentsActions: bindActionCreators(studentsActions, dispatch)
+    studentActions: bindActionCreators(studentActions, dispatch)
   };
 }
 

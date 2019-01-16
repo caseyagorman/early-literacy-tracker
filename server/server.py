@@ -205,6 +205,7 @@ def get_students(current_user):
 @token_required
 def student_detail(current_user, student):
     """Show student detail"""
+    print("current user", current_user, "student", student)
     start = time.time()
     user_id = current_user.public_id
     student_object = Student.query.filter_by(
