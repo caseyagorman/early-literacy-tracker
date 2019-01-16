@@ -33,9 +33,9 @@ const StudentDetailPage = props => (
 
     <StudentSnapshot />
 
-    <AssignItems student={props.student} />
-    <AssignItems student={props.student} />
-    <AssignItems student={props.student} />
+    <AssignItems student={props.student} itemType={"words"} />
+    <AssignItems student={props.student} itemType={"letters"} />
+    <AssignItems student={props.student} itemType={"sounds"} />
 
     <MainButton
       id="test-student-button"
@@ -45,7 +45,7 @@ const StudentDetailPage = props => (
     />
     <MainButton
       id="test-student-button"
-      text={"Test Student Letters"}
+      text={"Test Student sLetters"}
       testType={"letters"}
       route={`/test-student${props.student[0].student_id}`}
     />

@@ -17,7 +17,8 @@ class AssignItems extends Component {
     console.log("assign items container", this.props);
     const id = this.props.student[0].student_id;
     const user = this.props.auth.user.token;
-    this.props.studentItems.fetchUnknownItems(id, user);
+    const itemType = this.props.itemType;
+    this.props.studentItems.fetchUnknownItems(id, user, itemType);
   }
 
   handleSubmit(event) {

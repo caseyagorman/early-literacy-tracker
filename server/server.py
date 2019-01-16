@@ -270,10 +270,12 @@ def student_detail(current_user, student):
     return jsonify([student_object, word_list, letter_list, sound_list, unlearned_word_list, unlearned_letter_list, unlearned_sound_list])
 
 
-@app.route("/api/unknown-items/<student>")
+@app.route("/api/unknown-items/<student>/<item_type>")
 @token_required
-def get_unknown_sounds(current_user, student, item_type):
+def get_unknown_items(current_user, student, item_type):
     """gets items that student does not know and are not in current item list, items can then be added to students item list"""
+    print("item_type", item_type)
+    print("student", student)
     user_id = current_user.public_id
     items = StudentItem.query.filter_by(
         student_id=student, user_id=user_id, item_type=item_type).options(db.joinedload('items')).all()
@@ -290,7 +292,7 @@ def get_unknown_sounds(current_user, student, item_type):
             'item_id': item.item_id,
             'item': item.item
         }
-        item_list.append(sound)
+        item_list.append(item)
     return jsonify(item_list)
 
 if __name__ == "__main__":

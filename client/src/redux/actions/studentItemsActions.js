@@ -8,8 +8,8 @@ function addStudentItemsApi() {
   return "http://localhost:5000/api/add-item-to-student";
 }
 
-function getUnknownItemsApi(id) {
-  return `http://localhost:5000/api/unknown-items/${id}`;
+function getUnknownItemsApi(id, itemType) {
+  return `http://localhost:5000/api/unknown-items/${id}/${itemType}`;
 }
 
 export function receiveStudent(student) {
@@ -38,8 +38,9 @@ export function receiveUnknownItems(unknownItems) {
 }
 
 export function fetchUnknownItems(student, user, itemType) {
+  console.log("fetch unknown items", student, user, itemType);
   return dispatch => {
-    return fetch(getUnknownItemsApi(student), {
+    return fetch(getUnknownItemsApi(student, itemType), {
       method: "GET",
       mode: "cors",
       headers: {

@@ -6,8 +6,8 @@ import {
   SET_ITEM_TYPE
 } from "../actions/actionTypes";
 
-export default function studentWords(
-  state = initialState.studentWords,
+export default function studentItems(
+  state = initialState.studentItems,
   action
 ) {
   let newState;
@@ -24,9 +24,9 @@ export default function studentWords(
       console.log("RECEIVE_STUDENT_ITEMS Action");
       return newState;
     case SET_ITEM_TYPE:
-      console.log("SET_ITEMS Action", action.items);
+      console.log("SET_STUDENT_ITEMS Action", action.studentItems);
       return Object.assign({}, state, {
-        itemType: action.items
+        itemType: action.studentItems
       });
     default:
       return state;
