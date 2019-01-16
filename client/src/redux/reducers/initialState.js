@@ -33,6 +33,18 @@ export default {
     itemType: "",
     fetchingItems: false
   },
+  studentUnknownWords: {
+    unknownWords: [],
+    fetchingItem: false
+  },
+  studentUnknownLetters: {
+    unknownLetters: [],
+    fetchingItem: false
+  },
+  studentUnknownSounds: {
+    unknownItems: [],
+    fetchingItem: false
+  },
   studentTest: {
     testType: "",
     testItems: [],

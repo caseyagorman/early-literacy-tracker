@@ -293,7 +293,7 @@ def get_unknown_items(current_user, student, item_type):
             'item': item.item
         }
         item_list.append(item)
-    return jsonify(item_list)
+    return jsonify([item_list, item_type])
 
 if __name__ == "__main__":
 

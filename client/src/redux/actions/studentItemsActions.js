@@ -33,9 +33,26 @@ export function addStudentItems(studentItems, user, itemType) {
   };
 }
 
-export function receiveUnknownItems(unknownItems) {
-  console.log(unknownItems, "unknown items");
-  return { type: types.RECEIVE_UNKNOWN_ITEMS, unknownItems: unknownItems };
+export function receiveUnknownWords(studentUnknownWords) {
+  console.log(studentUnknownWords, "unknown words");
+  return {
+    type: types.RECEIVE_STUDENT_UNKNOWN_WORDS,
+    studentUnknownWords: studentUnknownWords
+  };
+}
+export function receiveUnknownLetters(studentUnknownLetters) {
+  console.log(studentUnknownLetters, "unknown letters");
+  return {
+    type: types.RECEIVE_STUDENT_UNKNOWN_LETTERS,
+    studentUnknownLetters: studentUnknownLetters
+  };
+}
+export function receiveUnknownSounds(studentUnknownSounds) {
+  console.log(studentUnknownSounds, "unknown sounds");
+  return {
+    type: types.RECEIVE_STUDENT_UNKNOWN_SOUNDS,
+    studentUnknownSounds: studentUnknownSounds
+  };
 }
 
 export function fetchUnknownItems(student, user, itemType) {
@@ -51,9 +68,22 @@ export function fetchUnknownItems(student, user, itemType) {
       }
     })
       .then(response => response.json())
-      .then(unknownItems => dispatch(receiveUnknownItems(unknownItems)));
+      .then(unknownItems => sortItems(unknownItems));
+    //   .then(unknownItems => dispatch(receiveUnknownItems(unknownItems)));
   };
 }
+
+export function sortItems(unknownItems) {
+  if (unknownItems[1] === "words") {
+    console.log(unknownItems);
+    receiveUnknownWords(unknownItems[0]);
+  } else if (unknownItems[1] === "letters") {
+    receiveUnknownLetters(unknownItems[0]);
+  } else if (unknownItems[1] === "sounds") {
+    receiveUnknownSounds(unknownItems[0]);
+  }
+}
+
 export function fetchStudent(student, user) {
   return dispatch => {
     return fetch(getStudentApi(student), {
