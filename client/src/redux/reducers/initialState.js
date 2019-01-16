@@ -19,5 +19,18 @@ export default {
     itemType: "",
     fetchingItems: false
   },
-  student: null
+  student: {
+    student: null,
+    fetchingStudent: false
+  },
+  item: {
+    item: "",
+    itemType: "",
+    fetchingItem: false
+  },
+  studentItems: {
+    items: [],
+    itemType: "",
+    fetchingItems: false
+  }
 };
