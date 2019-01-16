@@ -34,7 +34,6 @@ export function addStudentItems(studentItems, user, itemType) {
 }
 
 export function receiveUnknownWords(studentUnknownWords) {
-  console.log(studentUnknownWords, "unknown words");
   return {
     type: types.RECEIVE_STUDENT_UNKNOWN_WORDS,
     studentUnknownWords: studentUnknownWords
@@ -68,15 +67,14 @@ export function fetchUnknownItems(student, user, itemType) {
       }
     })
       .then(response => response.json())
-      .then(unknownItems => sortItems(unknownItems));
-    //   .then(unknownItems => dispatch(receiveUnknownItems(unknownItems)));
+      .then(unknownItems => sortItems(unknownItems, dispatch));
   };
 }
 
-export function sortItems(unknownItems) {
+export function sortItems(unknownItems, dispatch) {
   if (unknownItems[1] === "words") {
     console.log(unknownItems);
-    receiveUnknownWords(unknownItems[0]);
+    dispatch(receiveUnknownWords(unknownItems[0]));
   } else if (unknownItems[1] === "letters") {
     receiveUnknownLetters(unknownItems[0]);
   } else if (unknownItems[1] === "sounds") {

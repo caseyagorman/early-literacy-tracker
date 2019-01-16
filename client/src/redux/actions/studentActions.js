@@ -15,6 +15,10 @@ export function receiveStudents(students) {
   return { type: types.RECEIVE_STUDENTS, students: students };
 }
 
+export function receiveStudent(student) {
+  return { type: types.RECEIVE_STUDENT, student: student };
+}
+
 export function addStudent(student, user) {
   return dispatch => {
     return fetch(addStudentApi(), {
@@ -33,6 +37,7 @@ export function addStudent(student, user) {
 }
 
 export function deleteStudent(student, user) {
+  console.log("DELETE STUDENT", student, user);
   return dispatch => {
     return fetch(deleteStudentApi(), {
       method: "POST",
@@ -47,10 +52,6 @@ export function deleteStudent(student, user) {
       .then(() => dispatch(fetchStudents(user)))
       .then(() => history.push("/students"));
   };
-}
-
-export function receiveStudent(student) {
-  return { type: types.RECEIVE_STUDENT, student: student };
 }
 
 export function fetchStudent(student, user) {
