@@ -29,20 +29,26 @@ export default {
     fetchingItem: false
   },
   studentItems: {
-    items: [],
+    studentItemSets: {
+      // words: {
+      // items: [],
+      // itemType: "",
+      // fetchingItems: false
+      // }
+      // whateverYouWant: {}
+    }
+  },
+  studentUnassignedWords: {
+    unassignedWords: [],
+    fetchingItem: false
+  },
+  studentUnassignedLetters: {
+    unassignedLetters: [],
+    fetchingItem: false
+  },
+  studentUnassignedSounds: {
+    unassignedItems: [],
     itemType: "",
-    fetchingItems: false
-  },
-  studentUnknownWords: {
-    unknownWords: [],
-    fetchingItem: false
-  },
-  studentUnknownLetters: {
-    unknownLetters: [],
-    fetchingItem: false
-  },
-  studentUnknownSounds: {
-    unknownItems: [],
     fetchingItem: false
   },
   studentTest: {

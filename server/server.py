@@ -270,9 +270,9 @@ def student_detail(current_user, student):
     return jsonify([student_object, word_list, letter_list, sound_list, unlearned_word_list, unlearned_letter_list, unlearned_sound_list])
 
 
-@app.route("/api/unknown-items/<student>/<item_type>")
+@app.route("/api/unassigned-items/<student>/<item_type>")
 @token_required
-def get_unknown_items(current_user, student, item_type):
+def get_unassigned_items(current_user, student, item_type):
     """gets items that student does not know and are not in current item list, items can then be added to students item list"""
     print("item_type", item_type)
     print("student", student)
@@ -283,11 +283,11 @@ def get_unknown_items(current_user, student, item_type):
     for item in items:
         item_ids.append(item.item_id)
 
-    unknown_items = Item.query.filter_by(user_id=user_id, item_type=item_type).filter(
+    unassigned_items = Item.query.filter_by(user_id=user_id, item_type=item_type).filter(
         Item.item_id.notin_(item_ids)).all()
     item_list = []
 
-    for item in unknown_items:
+    for item in unassigned_items:
         item = {
             'item_id': item.item_id,
             'item': item.item

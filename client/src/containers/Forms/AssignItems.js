@@ -18,7 +18,7 @@ class AssignItems extends Component {
     const id = this.props.student[0].student_id;
     const user = this.props.auth.user.token;
     const itemType = this.props.itemType;
-    this.props.studentItems.fetchUnknownItems(id, user, itemType);
+    this.props.studentItems.fetchUnassignedItems(id, user, itemType);
   }
 
   handleSubmit(event) {
@@ -56,10 +56,10 @@ class AssignItems extends Component {
   }
 
   getOptions() {
-    if (!this.props.studentUnknownWords) {
+    if (!this.props.studentUnassignedWords) {
       return <div>Loading!</div>;
     }
-    let itemList = this.turnIntoArray(this.props.studentUnknownWords);
+    let itemList = this.turnIntoArray(this.props.studentUnassignedWords);
     return (
       <AssignItemsForm
         student={this.props.student[0]}
@@ -84,9 +84,9 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     studentItems: state.studentItems,
-    studentUnknownWords: state.studentUnknownWords,
-    studentUnknownLetters: state.studentUnknownLetters,
-    studentUnknownSounds: state.studentUnknownSounds,
+    studentUnassignedWords: state.studentUnassignedWords,
+    studentUnassignedLetters: state.studentUnassignedLetters,
+    studentUnassignedSounds: state.studentUnassignedSounds,
     auth: state.auth
   };
 }

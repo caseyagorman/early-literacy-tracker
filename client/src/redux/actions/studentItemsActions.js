@@ -8,8 +8,8 @@ function addStudentItemsApi() {
   return "http://localhost:5000/api/add-item-to-student";
 }
 
-function getUnknownItemsApi(id, itemType) {
-  return `http://localhost:5000/api/unknown-items/${id}/${itemType}`;
+function getUnassignedItemsApi(id, itemType) {
+  return `http://localhost:5000/api/unassigned-items/${id}/${itemType}`;
 }
 
 export function receiveStudent(student) {
@@ -29,35 +29,32 @@ export function addStudentItems(studentItems, user, itemType) {
       body: JSON.stringify({ studentItems, itemType })
     })
       .then(() => dispatch(fetchStudent(studentItems.student, user)))
-      .then(() => dispatch(fetchUnknownItems(studentItems.student, user)));
+      .then(() => dispatch(fetchUnassignedItems(studentItems.student, user)));
   };
 }
 
-export function receiveUnknownWords(studentUnknownWords) {
+export function receiveUnassignedWords(studentUnassignedWords) {
   return {
-    type: types.RECEIVE_STUDENT_UNKNOWN_WORDS,
-    studentUnknownWords: studentUnknownWords
+    type: types.RECEIVE_STUDENT_UNASSIGNED_WORDS,
+    studentUnassignedWords: studentUnassignedWords
   };
 }
-export function receiveUnknownLetters(studentUnknownLetters) {
-  console.log(studentUnknownLetters, "unknown letters");
+export function receiveUnassignedLetters(studentUnassignedLetters) {
   return {
-    type: types.RECEIVE_STUDENT_UNKNOWN_LETTERS,
-    studentUnknownLetters: studentUnknownLetters
+    type: types.RECEIVE_STUDENT_UNASSIGNED_LETTERS,
+    studentUnassignedLetters: studentUnassignedLetters
   };
 }
-export function receiveUnknownSounds(studentUnknownSounds) {
-  console.log(studentUnknownSounds, "unknown sounds");
+export function receiveUnassignedSounds(studentUnassignedSounds) {
   return {
-    type: types.RECEIVE_STUDENT_UNKNOWN_SOUNDS,
-    studentUnknownSounds: studentUnknownSounds
+    type: types.RECEIVE_STUDENT_UNASSIGNED_SOUNDS,
+    studentUnassignedSounds: studentUnassignedSounds
   };
 }
 
-export function fetchUnknownItems(student, user, itemType) {
-  console.log("fetch unknown items", student, user, itemType);
+export function fetchUnassignedItems(student, user, itemType) {
   return dispatch => {
-    return fetch(getUnknownItemsApi(student, itemType), {
+    return fetch(getUnassignedItemsApi(student, itemType), {
       method: "GET",
       mode: "cors",
       headers: {
@@ -67,18 +64,18 @@ export function fetchUnknownItems(student, user, itemType) {
       }
     })
       .then(response => response.json())
-      .then(unknownItems => sortItems(unknownItems, dispatch));
+      .then(unassignedItems => sortItems(unassignedItems, dispatch));
   };
 }
 
-export function sortItems(unknownItems, dispatch) {
-  if (unknownItems[1] === "words") {
-    console.log(unknownItems);
-    dispatch(receiveUnknownWords(unknownItems[0]));
-  } else if (unknownItems[1] === "letters") {
-    receiveUnknownLetters(unknownItems[0]);
-  } else if (unknownItems[1] === "sounds") {
-    receiveUnknownSounds(unknownItems[0]);
+export function sortItems(unassignedItems, dispatch) {
+  if (unassignedItems[1] === "words") {
+    console.log(unassignedItems);
+    dispatch(receiveUnassignedWords(unassignedItems[0]));
+  } else if (unassignedItems[1] === "letters") {
+    receiveUnassignedLetters(unassignedItems[0]);
+  } else if (unassignedItems[1] === "sounds") {
+    receiveUnassignedSounds(unassignedItems[0]);
   }
 }
 

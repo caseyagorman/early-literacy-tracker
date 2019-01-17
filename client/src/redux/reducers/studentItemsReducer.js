@@ -17,7 +17,11 @@ export default function studentItems(
       return action;
     case ADD_STUDENT_ITEMS:
       newState = action.studentItems;
+      const placeholder = {};
+      placeholder[action.itemType] = action.studentItems;
       console.log("ADD_STUDENT_ITEMS Action");
+      let itemSets = state.studentItemSets;
+      itemSets = Object.assign({}, itemSets, placeholder);
       return newState;
     case RECEIVE_STUDENT_ITEMS:
       newState = action.studentItems;
