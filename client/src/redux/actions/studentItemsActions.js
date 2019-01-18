@@ -16,7 +16,7 @@ export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
 }
 
-export function assignStudentItems(studentItems, user, itemType) {
+export function assignStudentItems(studentItems, user) {
   return dispatch => {
     return fetch(addStudentItemsApi(), {
       method: "POST",
@@ -26,10 +26,9 @@ export function assignStudentItems(studentItems, user, itemType) {
         "Content-Type": "application/json",
         "x-access-token": user
       },
-      body: JSON.stringify({ studentItems, itemType })
-    })
-      .then(() => dispatch(fetchStudent(studentItems.student, user)))
-      .then(() => dispatch(fetchUnassignedItems(studentItems.student, user)));
+      body: JSON.stringify({ studentItems })
+    }).then(() => dispatch(fetchStudent(studentItems.student, user)));
+    // .then(() => dispatch(fetchUnassignedItems(studentItems.student, user)));
   };
 }
 

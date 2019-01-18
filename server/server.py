@@ -175,7 +175,28 @@ def add_item(current_user):
 
     return 'items added'
 
+@app.route('/api/add-item-to-student', methods=['POST'])
+@token_required
+def add_sound_to_student(current_user):
+    data = request.get_json()
+    print("data", data)
+    data = data.get("studentItems")
+    items = data.get("items")
+    item_type = data.get("itemType")
+    student_id = data.get("student")
+    user_id = current_user.public_id
+    item_list = Item.query.filter(
+        (Item.item.in_(items))).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
+    item_ids = []
+    for item in item_list:
+        item_ids.append(item.item_id)
+    for item_id in item_ids:
+        new_student_item = StudentItem(
+            item_id=item_id, item_type=item_type,student_id=student_id, user_id=user_id)
+        db.session.add(new_student_item)
+        db.session.commit()
 
+    return "student sounds added!"
 @app.route("/api/students")
 @token_required
 def get_students(current_user):

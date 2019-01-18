@@ -24,11 +24,10 @@ class AssignItems extends Component {
     event.preventDefault();
     let newStudentItems = {
       student: this.props.student[0].student_id,
-      items: this.state.value
+      items: this.state.value,
+      itemType: this.props.itemType
     };
-    let itemType = this.props.itemType;
     let user = this.props.auth.user.token;
-    console.log(newStudentItems, itemType, user);
     this.props.studentItems.assignStudentItems(newStudentItems, user);
   }
 
