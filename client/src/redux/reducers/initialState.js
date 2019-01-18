@@ -29,6 +29,9 @@ export default {
     fetchingItem: false
   },
 
+  studentUnassignedItems: {
+    studentItemSets: {}
+  },
   studentItems: {
     studentItemSets: {}
   },

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as studentItemsActions from "../../redux/actions/studentItemsActions";
+import * as studentUnassignedItemsActions from "../../redux/actions/studentUnassignedItemsActions";
 import AssignItemsForm from "../../components/Forms/AssignItemsForm";
 
 class AssignItems extends Component {
@@ -17,7 +17,7 @@ class AssignItems extends Component {
     const id = this.props.student[0].student_id;
     const user = this.props.auth.user.token;
     const itemType = this.props.itemType;
-    this.props.studentItems.fetchUnassignedItems(id, user, itemType);
+    this.props.studentUnassignedItems.fetchUnassignedItems(id, user, itemType);
   }
 
   handleSubmit(event) {
@@ -28,7 +28,7 @@ class AssignItems extends Component {
       itemType: this.props.itemType
     };
     let user = this.props.auth.user.token;
-    this.props.studentItems.assignStudentItems(newStudentItems, user);
+    this.props.studentUnassignedItems.assignStudentItems(newStudentItems, user);
   }
 
   handleChange(e) {
@@ -73,13 +73,16 @@ class AssignItems extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentItems: bindActionCreators(studentItemsActions, dispatch)
+    studentUnassignedItems: bindActionCreators(
+      studentUnassignedItemsActions,
+      dispatch
+    )
   };
 }
 
 function mapStateToProps(state) {
   return {
-    unassignedItems: state.studentItems,
+    unassignedItems: state.studentUnassignedItems,
     auth: state.auth
   };
 }

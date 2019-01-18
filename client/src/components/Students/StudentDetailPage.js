@@ -2,6 +2,7 @@ import React from "react";
 import MainButton from "../Buttons/MainButton";
 import StudentSnapshot from "./StudentSnapshot";
 import AssignItems from "../../containers/Forms/AssignItems";
+import BasicTablePage from "../Tables/BasicTablePage";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
     {console.log("student detail", props)}
@@ -32,6 +33,10 @@ const StudentDetailPage = props => (
     />
 
     <StudentSnapshot />
+
+    <BasicTablePage itemType={"words"} items={props.student[4]} />
+    {/* <BasicTablePage itemType={"letters"} />
+    <BasicTablePage itemType={"sounds"} /> */}
 
     <AssignItems student={props.student} itemType={"words"} />
     <AssignItems student={props.student} itemType={"letters"} />
