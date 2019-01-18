@@ -35,8 +35,8 @@ const StudentDetailPage = props => (
     <StudentSnapshot />
 
     <BasicTablePage itemType={"words"} items={props.student[4]} />
-    {/* <BasicTablePage itemType={"letters"} />
-    <BasicTablePage itemType={"sounds"} /> */}
+    <BasicTablePage itemType={"letters"} items={props.student[5]} />
+    <BasicTablePage itemType={"sounds"} items={props.student[6]} />
 
     <AssignItems student={props.student} itemType={"words"} />
     <AssignItems student={props.student} itemType={"letters"} />
@@ -46,20 +46,20 @@ const StudentDetailPage = props => (
       id="test-student-button"
       text={"Test Student Words"}
       testType={"words"}
-      route={`/test-student${props.student[0].student_id}`}
+      route={`/test-student/${props.student[0].student_id}`}
     />
     <MainButton
       id="test-student-button"
       text={"Test Student sLetters"}
       testType={"letters"}
-      route={`/test-student${props.student[0].student_id}`}
+      route={`/test-student/${props.student[0].student_id}`}
     />
     <MainButton
       id="test-student-button"
       text={"Test Student Sounds"}
       testType={"sounds"}
       onClick={props.beginTest}
-      route={`/test-student${props.student[0].student_id}`}
+      route={`/test-student/${props.student[0].student_id}`}
     />
   </div>
 );

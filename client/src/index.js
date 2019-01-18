@@ -23,7 +23,7 @@ import AllItems from "./containers/Items/AllItems";
 import ItemDetail from "./containers/Items/ItemDetail";
 import AddPropsToRoute from "./HOC/AddPropsToRoute";
 import AppNav from "./components/Navbar/AppNav";
-
+import TestStudent from "./containers/TestStudent/TestStudent";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -126,6 +126,30 @@ const AppRouter = () => (
         path="/sound-detail/:id"
         component={userIsAuthenticated(
           AddPropsToRoute(ItemDetail, {
+            itemType: "sounds"
+          })
+        )}
+      />
+      <Route
+        path="/test-student/:id"
+        component={userIsAuthenticated(
+          AddPropsToRoute(TestStudent, {
+            itemType: "words"
+          })
+        )}
+      />
+      <Route
+        path="/test-student/:id"
+        component={userIsAuthenticated(
+          AddPropsToRoute(TestStudent, {
+            itemType: "letters"
+          })
+        )}
+      />
+      <Route
+        path="/test-student/:id"
+        component={userIsAuthenticated(
+          AddPropsToRoute(TestStudent, {
             itemType: "sounds"
           })
         )}

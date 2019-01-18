@@ -4,9 +4,6 @@ import * as types from "./actionTypes";
 function getStudentApi(id) {
   return `http://localhost:5000/api/details/${id}`;
 }
-function addStudentItemsApi() {
-  return "http://localhost:5000/api/add-item-to-student";
-}
 
 function getUnassignedItemsApi(id, itemType) {
   return `http://localhost:5000/api/unassigned-items/${id}/${itemType}`;
@@ -14,22 +11,6 @@ function getUnassignedItemsApi(id, itemType) {
 
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
-}
-
-export function assignStudentItems(studentItems, user) {
-  return dispatch => {
-    return fetch(addStudentItemsApi(), {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      },
-      body: JSON.stringify({ studentItems })
-    }).then(() => dispatch(fetchStudent(studentItems.student, user)));
-    // .then(() => dispatch(fetchUnassignedItems(studentItems.student, user)));
-  };
 }
 
 export function receiveStudentUnassignedItems(studentUnassignedItems) {
