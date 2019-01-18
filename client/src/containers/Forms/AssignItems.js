@@ -14,7 +14,6 @@ class AssignItems extends Component {
   }
 
   componentDidMount() {
-    console.log("assign items container", this.props);
     const id = this.props.student[0].student_id;
     const user = this.props.auth.user.token;
     const itemType = this.props.itemType;
@@ -27,8 +26,9 @@ class AssignItems extends Component {
       student: this.props.student[0].student_id,
       items: this.state.value
     };
-
+    let itemType = this.props.itemType;
     let user = this.props.auth.user.token;
+    console.log(newStudentItems, itemType, user);
     this.props.studentItems.assignStudentItems(newStudentItems, user);
   }
 
@@ -43,27 +43,24 @@ class AssignItems extends Component {
     this.setState({ value: value });
   }
 
-  turnIntoArray(obj) {
-    if (!obj) {
-      return <p>Loading...</p>;
-    }
-    let itemList = [];
-    for (let key in obj) {
-      let itemObj = obj[key];
-      itemList.push(itemObj.item);
-    }
-    return itemList;
-  }
-
-  getOptions() {
-    if (!this.props.studentUnassignedWords) {
+  getOptions(studentItems) {
+    let itemType = this.props.itemType;
+    if (!studentItems) {
       return <div>Loading!</div>;
     }
-    let itemList = this.turnIntoArray(this.props.studentUnassignedWords);
+    studentItems = studentItems.studentItemSets;
+    let items = studentItems[itemType];
+    let itemList = [];
+    for (let key in items) {
+      let itemObj = items[key];
+      itemList.push(itemObj.item);
+    }
+
     return (
       <AssignItemsForm
         student={this.props.student[0]}
         handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
         itemList={itemList}
         itemType={this.props.itemType}
       />
@@ -71,7 +68,7 @@ class AssignItems extends Component {
   }
 
   render() {
-    return <div>{this.getOptions()}</div>;
+    return <div>{this.getOptions(this.props.unassignedItems)}</div>;
   }
 }
 
@@ -83,10 +80,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    studentItems: state.studentItems,
-    studentUnassignedWords: state.studentUnassignedWords,
-    studentUnassignedLetters: state.studentUnassignedLetters,
-    studentUnassignedSounds: state.studentUnassignedSounds,
+    unassignedItems: state.studentItems,
     auth: state.auth
   };
 }

@@ -28,28 +28,9 @@ export default {
     itemType: "",
     fetchingItem: false
   },
+
   studentItems: {
-    studentItemSets: {
-      // words: {
-      // items: [],
-      // itemType: "",
-      // fetchingItems: false
-      // }
-      // whateverYouWant: {}
-    }
-  },
-  studentUnassignedWords: {
-    unassignedWords: [],
-    fetchingItem: false
-  },
-  studentUnassignedLetters: {
-    unassignedLetters: [],
-    fetchingItem: false
-  },
-  studentUnassignedSounds: {
-    unassignedItems: [],
-    itemType: "",
-    fetchingItem: false
+    studentItemSets: {}
   },
   studentTest: {
     testType: "",

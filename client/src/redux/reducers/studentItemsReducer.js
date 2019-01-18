@@ -19,19 +19,69 @@ export default function studentItems(
       newState = action.studentItems;
       const placeholder = {};
       placeholder[action.itemType] = action.studentItems;
-      console.log("ADD_STUDENT_ITEMS Action");
       let itemSets = state.studentItemSets;
       itemSets = Object.assign({}, itemSets, placeholder);
       return newState;
+
     case RECEIVE_STUDENT_ITEMS:
-      newState = action.studentItems;
-      console.log("RECEIVE_STUDENT_ITEMS Action", newState);
-      return newState;
-    case SET_ITEM_TYPE:
-      console.log("SET_STUDENT_ITEMS Action", action.studentItems);
-      return Object.assign({}, state, {
-        itemType: action.studentItems
+      console.log("receiving student items.\n", state, action);
+
+      // const items = action.studentItems[0];
+      var itemType = action.studentItems[1];
+      const oldStudentItemSets = state.studentItemSets;
+      var newStudentItems = action.studentItems[0];
+      var newStudentItemSets = {};
+      newStudentItemSets[itemType] = newStudentItems;
+      newStudentItemSets = Object.assign(
+        {},
+        oldStudentItemSets,
+        newStudentItemSets
+      );
+      const newState = Object.assign({}, state, {
+        studentItemSets: newStudentItemSets
       });
+      return newState;
+
+    // delete state.studentItemSets
+    // state.studentItemSets[itemType] = studentItems;
+    // return state;
+
+    //   if (newState[1] === "words") {
+    //       console.log("words")
+    // itemSets = Object.assign({}, studentItems.studentItemSets, {
+    //   words: {
+    //     items: newState[0],
+    //     itemType: "words",
+    //     fetchingItems: false
+    //   }
+    // });
+    // return itemSets;
+    //   }
+    //   if (newState[1] === "letters") {
+    // itemSets = Object.assign({}, studentItems.studentItemSets, {
+    //   letters: {
+    //     items: newState[0],
+    //     itemType: "letters",
+    //     fetchingItems: false
+    //   }
+    // }
+    // return state;
+    //     return itemSets;
+    //   }
+    //   if (newState[1] === "sounds") {
+    //     itemSets = Object.assign(
+    //       {},
+    //       initialState.studentItems.studentItemSets,
+    //       {
+    //         sounds: {
+    //           items: newState[0],
+    //           itemType: "sounds",
+    //           fetchingItems: false
+    //         }
+    //       }
+    // );
+    // return itemSets;
+    //   }
     default:
       return state;
   }
