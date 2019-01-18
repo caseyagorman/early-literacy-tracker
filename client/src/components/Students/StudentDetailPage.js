@@ -3,14 +3,16 @@ import MainButton from "../Buttons/MainButton";
 import StudentSnapshot from "./StudentSnapshot";
 import AssignItems from "../../containers/Forms/AssignItems";
 import BasicTablePage from "../Tables/BasicTablePage";
+import DeleteStudent from "../../containers/Forms/DeleteStudent";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
-    {console.log("student detail", props)}
     <div className="display-student-name">
       {props.student.student.fname}
       <span />
       {props.student.student.lname}
+      <DeleteStudent student={props.student} />
     </div>
+
     <MainButton
       id="view-student-word-data-button"
       text={"View Word Data"}
@@ -54,21 +56,18 @@ const StudentDetailPage = props => (
     <MainButton
       id="test-student-button"
       text={"Test Student Words"}
-      testType={"words"}
       route={`/test-student/${props.student.student.student_id}`}
       onClick={() => props.studentTestActions.beginTest("words")}
     />
     <MainButton
       id="test-student-button"
       text={"Test Student sLetters"}
-      testType={"letters"}
       route={`/test-student/${props.student.student.student_id}`}
       onClick={() => props.studentTestActions.beginTest("letters")}
     />
     <MainButton
       id="test-student-button"
       text={"Test Student Sounds"}
-      testType={"sounds"}
       route={`/test-student/${props.student.student.student_id}`}
       onClick={() => props.studentTestActions.beginTest("sounds")}
     />

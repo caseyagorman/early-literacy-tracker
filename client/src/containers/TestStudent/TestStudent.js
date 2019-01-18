@@ -17,7 +17,7 @@ class TestStudent extends React.Component {
       return <p> Loading... </p>;
     }
 
-    let words = this.turnIntoArray(student[1]);
+    let words = this.turnIntoArray(student.unlearnedWordList);
     return (
       <StudentTest
         user={this.props.token}
@@ -31,7 +31,7 @@ class TestStudent extends React.Component {
     if (!student) {
       return <p> Loading... </p>;
     }
-    let letters = this.turnIntoArray(student[2]);
+    let letters = this.turnIntoArray(student.unlearnedLetterList);
     return (
       <StudentTest
         user={this.props.token}
@@ -45,7 +45,7 @@ class TestStudent extends React.Component {
     if (!student) {
       return <p> Loading... </p>;
     }
-    let sounds = this.turnIntoArray(student[3]);
+    let sounds = this.turnIntoArray(student.unlearnedSoundList);
 
     return (
       <StudentTest
@@ -57,6 +57,7 @@ class TestStudent extends React.Component {
   }
 
   turnIntoArray(obj) {
+    console.log("OBJ", obj);
     if (!obj) {
       return <p>Loading...</p>;
     }
@@ -70,15 +71,16 @@ class TestStudent extends React.Component {
   }
 
   renderTestFunction(student) {
-    console.log("STUDENT", student, this.props.studentTest);
+    console.log("testType", this.props.studentTest.testType);
     if (!student) {
       return <div>loading...</div>;
     } else if (this.props.studentTest.testType === "word") {
-      return this.getWords(student);
-    } else if (this.props.studentTest.testType === "letter") {
-      return this.getLetters(student);
-    } else if (this.props.studentTest.testType === "sound") {
-      return this.getSounds(student);
+      console.log("HIIIIIIIIII");
+      this.getWords(student);
+    } else if (this.props.testType === "letter") {
+      this.getLetters(student);
+    } else if (this.props.testType === "sound") {
+      this.getSounds(student);
     }
   }
 
