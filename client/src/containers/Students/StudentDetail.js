@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentActions from "../../redux/actions/studentActions";
+import * as studentTestActions from "../../redux/actions/studentTestActions";
 import StudentDetailPage from "../../components/Students/StudentDetailPage";
 
 class StudentDetail extends Component {
@@ -17,7 +18,12 @@ class StudentDetail extends Component {
     if (student.student === null) {
       return <div>loading...</div>;
     }
-    return <StudentDetailPage student={student} />;
+    return (
+      <StudentDetailPage
+        student={student}
+        studentTestActions={this.props.studentTestActions}
+      />
+    );
   }
 
   render() {
@@ -27,13 +33,15 @@ class StudentDetail extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentActions: bindActionCreators(studentActions, dispatch)
+    studentActions: bindActionCreators(studentActions, dispatch),
+    studentTestActions: bindActionCreators(studentTestActions, dispatch)
   };
 }
 
 function mapStateToProps(state) {
   return {
     student: state.student,
+    studentTest: state.studentTest,
     auth: state.auth
   };
 }

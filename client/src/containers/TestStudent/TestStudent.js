@@ -6,8 +6,9 @@ import * as studentTestActions from "../../redux/actions/studentTestActions";
 import StudentTest from "./StudentTest";
 class TestStudent extends React.Component {
   componentDidMount() {
-    const id = this.props.id;
-    const user = this.props.token;
+    console.log("TEST STUDENT", this.props);
+    const id = this.props.match.params.id;
+    const user = this.props.auth.user.token;
     this.props.studentActions.fetchStudent(id, user);
   }
 
@@ -69,6 +70,7 @@ class TestStudent extends React.Component {
   }
 
   renderTestFunction(student) {
+    console.log("STUDENT", student, this.props.studentTest);
     if (!student) {
       return <div>loading...</div>;
     } else if (this.props.studentTest.testType === "word") {
@@ -81,6 +83,7 @@ class TestStudent extends React.Component {
   }
 
   render() {
+    // return <div />;
     return this.renderTestFunction(this.props.student);
   }
 }
@@ -95,7 +98,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     student: state.student,
-    studentTest: state.studentTest
+    studentTest: state.studentTest,
+    auth: state.auth
   };
 }
 

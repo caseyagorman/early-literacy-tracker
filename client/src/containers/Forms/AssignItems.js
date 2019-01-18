@@ -14,7 +14,7 @@ class AssignItems extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.student[0].student_id;
+    const id = this.props.student.student.student_id;
     const user = this.props.auth.user.token;
     const itemType = this.props.itemType;
     this.props.studentUnassignedItems.fetchUnassignedItems(id, user, itemType);
@@ -23,7 +23,7 @@ class AssignItems extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let newStudentItems = {
-      student: this.props.student[0].student_id,
+      student: this.props.student.student.student_id,
       items: this.state.value,
       itemType: this.props.itemType
     };
@@ -57,7 +57,7 @@ class AssignItems extends Component {
 
     return (
       <AssignItemsForm
-        student={this.props.student[0]}
+        student={this.props.student.student}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         itemList={itemList}

@@ -233,7 +233,7 @@ def student_detail(current_user, student):
         student_id=student, user_id=user_id).first()
     student_items = StudentItem.query.filter_by(
         student_id=student).options(db.joinedload('items')).all()
-    student_object = {
+    student = {
         'student_id': student_object.student_id,
         'fname': student_object.fname,
         'lname': student_object.lname
@@ -244,7 +244,7 @@ def student_detail(current_user, student):
     unlearned_word_list = []
     unlearned_letter_list = []
     unlearned_sound_list = []
-
+    student_object = {}
     for item in student_items:
         if item.item_type == "words":
             if item.Learned == True:
@@ -284,11 +284,18 @@ def student_detail(current_user, student):
                     'item_id': item.items.item_id,
                     'item': item.items.item}
                 unlearned_sound_list.append(unlearned_sound)
-            
+    student_object['student'] = student
+    student_object['wordList'] = word_list
+    student_object['letterList'] = letter_list
+    student_object['soundList'] = sound_list
+    student_object['unlearnedWordList'] = unlearned_word_list
+    student_object['unlearnedLetterList'] = unlearned_letter_list
+    student_object['unlearnedSoundList'] = unlearned_sound_list
+    print("student_object", student_object)
     end = time.time()
     elapsed_time = end - start
     print('getting student detail took', elapsed_time)
-    return jsonify([student_object, word_list, letter_list, sound_list, unlearned_word_list, unlearned_letter_list, unlearned_sound_list])
+    return jsonify(student_object)
 
 
 @app.route("/api/unassigned-items/<student>/<item_type>")
@@ -301,6 +308,7 @@ def get_unassigned_items(current_user, student, item_type):
     items = StudentItem.query.filter_by(
         student_id=student, user_id=user_id, item_type=item_type).options(db.joinedload('items')).all()
     item_ids = []
+    item_object = {}
     for item in items:
         item_ids.append(item.item_id)
 
@@ -314,7 +322,9 @@ def get_unassigned_items(current_user, student, item_type):
             'item': item.item
         }
         item_list.append(item)
-    return jsonify([item_list, item_type])
+    item_object['itemList'] = item_list
+    item_object['itemType'] = item_type
+    return jsonify(item_object)
 
 if __name__ == "__main__":
 

@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import * as studentTestActions from "../../redux/actions/studentTestActions";
 import StudentTestPage from "../../components/TestStudent/StudentTestPage";
 
-class TestStudent extends React.Component {
+class StudentTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,9 +15,8 @@ class TestStudent extends React.Component {
       idx: 0
     };
   }
-
   componentDidMount() {
-    console.log("Test Page Props", this.props);
+    console.log("PRRRROOOOOOOOPPPPS", this.props);
   }
 
   displayLetter(studentTestItems) {
@@ -58,11 +57,12 @@ class TestStudent extends React.Component {
   render() {
     const studentTestItems = this.state.studentTestItems;
     const idx = this.state.idx;
-    return <StudentTestPage idx={idx} studentTestItems={studentTestItems} />;
+    return <div> Hello!</div>;
+    // <StudentTestPage idx={idx} studentTestItems={studentTestItems} />;
   }
 }
 
-const TestStudentPageWrapped = withRouter(TestStudentPage);
+const StudentTestWrapped = withRouter(StudentTest);
 
 function mapStateToProps(state) {
   return {
@@ -79,4 +79,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TestStudentPageWrapped);
+)(StudentTestWrapped);

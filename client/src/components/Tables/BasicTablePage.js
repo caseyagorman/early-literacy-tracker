@@ -8,7 +8,6 @@ const BasicTablePage = props => (
       {props.items.map(function(item) {
         return (
           <tr>
-            {console.log("item", item.item)}
             <td>
               <Link to={`/${props.route}/${props.item_id}`} className="link" />
             </td>{" "}
