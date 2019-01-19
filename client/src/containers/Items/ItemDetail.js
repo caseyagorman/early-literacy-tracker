@@ -14,10 +14,9 @@ class ItemDetail extends Component {
   }
 
   displayItemDetail(item) {
-    if (!item) {
+    if (item.item === null) {
       return <div>loading...</div>;
     }
-    console.log("display item detail", item.item);
     return <ItemDetailPage item={item.item} students={item.studentList} />;
   }
 

@@ -5,22 +5,19 @@ import MainButton from "../Buttons/MainButton";
 import BasicTablePage from "../Tables/BasicTablePage";
 // import DeleteItem from "../../containers/Forms/DeleteItem";
 const ItemDetailPage = props => (
-  <div>{console.log("item detail page", props)}</div>
-  //   <div className="student-detail-page">
-  //     {console.log("item detail page", props)}
-  //     <div className="display-student-name">
-  //       {props.item.item}
-  //       <span />
+  <div>
+    <div>{console.log(props.item.item)}</div>
+    {console.log("item detail page", props)}
 
-  //       {/* <DeleteItem item={props.item} /> */}
-  //     </div>
+    <div> {props.item.item}</div>
 
-  //     <MainButton id="view-student-word-data-button" text={"View Word Data"} />
+    {/* <MainButton
+ id="view-student-word-data-button"
+  text={`View${props.item.itemType}Data`}
+   /> */}
 
-  //     <BasicTablePage
-  //       //   itemType={"words"}
-  //       items={props.item}
-  //     />
+    <BasicTablePage itemType={"students"} items={props.students} />
+  </div>
 
   //     {/* <AssignStudents student={props.student} itemType={"words"} /> */}
   //   </div>
