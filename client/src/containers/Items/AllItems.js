@@ -7,10 +7,11 @@ import AllItemsPage from "../../components/Items/AllItemsPage";
 
 class AllItems extends React.Component {
   componentDidMount() {
+    console.log("this.props all items", this.props);
     this.props.itemsActions.setItemType(this.props.itemType);
     let user = this.props.auth.user.token;
     if (this.props.itemType === "words") {
-      this.props.itemsActions.fetchWords(user);
+      this.props.itemsActions.fetchWords(user, this.props.itemType);
     } else if (this.props.itemType === "letters") {
       this.props.itemsActions.fetchLetters(user);
     } else if (this.props.itemType === "sounds") {
@@ -21,13 +22,13 @@ class AllItems extends React.Component {
     if (!items) {
       return <p>loading...</p>;
     }
-    console.log("what is item type all items???", items.itemType);
+    console.log("item type", items);
     let route = `/add-${this.props.itemType}`;
     let text = `Add ${this.props.itemType}`;
     return (
       <AllItemsPage
         items={items}
-        itemType={items.itemType}
+        itemType={this.props.itemType}
         route={route}
         text={text}
       />

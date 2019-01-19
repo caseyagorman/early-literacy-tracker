@@ -62,6 +62,7 @@ export function fetchLetters(user) {
     })
       .then(response => response.json())
       .then(letters => dispatch(receiveItems(letters)));
+    // .then(itemType =>dispatch(setItemType(itemType)))
   };
 }
 

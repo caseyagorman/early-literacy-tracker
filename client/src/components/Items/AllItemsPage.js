@@ -7,9 +7,7 @@ const AllItemsPage = props => (
     {console.log("all items page props", props)}
     <br />
     <h1 id="display-items">
-      All{" "}
-      {props.items.itemType.charAt(0).toUpperCase() +
-        props.items.itemType.slice(1)}
+      All {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}
     </h1>
     <div id="instructions">
       Click dashboard to test student, view {props.items.itemType} student is
