@@ -128,11 +128,11 @@ def get_sounds(current_user):
         "items": item_list
         })
  
-@app.route("/api/item-detail/<item>")
+@app.route("/api/item-detail/<item_type>/<item>")
 @token_required
-def item_detail(current_user, item):
+def item_detail(current_user, item_type, item):
     """Display item and students who are learning that item"""
-    print("item detail", item)
+    print("item detail", item, item_type)
     user_id = current_user.public_id
     item_object = Item.query.filter_by(item_id=item, user_id=user_id).first()
     student_items = StudentItem.query.filter_by(

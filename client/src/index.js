@@ -107,7 +107,7 @@ const AppRouter = () => (
       />
 
       <Route
-        path="/item-detail/:id"
+        path="/item-detail/:itemType/:id"
         component={userIsAuthenticated(ItemDetail)}
       />
       <Route

@@ -7,6 +7,7 @@ const listElements = el => <li>{el}</li>;
 
 const ItemsTable = (items, onSort, route, itemType) => (
   <table bordered="true" hover="true">
+    {console.log("items table", itemType)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "item")}> Item</th>
@@ -17,8 +18,10 @@ const ItemsTable = (items, onSort, route, itemType) => (
         return (
           <tr key={item.item_id}>
             <td>
-              {console.log("item in table", route, itemType)}
-              <Link to={`/item-detail/${item.item_id}`} className="link">
+              <Link
+                to={`/item-detail/${itemType}/${item.item_id}`}
+                className="link"
+              >
                 <h2 id="item-name-table-header">{item.item}</h2>
               </Link>
             </td>

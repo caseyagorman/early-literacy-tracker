@@ -7,7 +7,6 @@ import AllItemsPage from "../../components/Items/AllItemsPage";
 
 class AllItems extends React.Component {
   componentDidMount() {
-    console.log("this.props all items", this.props);
     this.props.itemsActions.setItemType(this.props.itemType);
     let user = this.props.auth.user.token;
     if (this.props.itemType === "words") {
@@ -22,7 +21,6 @@ class AllItems extends React.Component {
     if (!items) {
       return <p>loading...</p>;
     }
-    console.log("item type", items);
     let route = `/add-${this.props.itemType}`;
     let text = `Add ${this.props.itemType}`;
     return (

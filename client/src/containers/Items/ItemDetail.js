@@ -6,19 +6,19 @@ import * as itemsActions from "../../redux/actions/itemsActions";
 import ItemDetailPage from "../../components/Items/ItemDetailPage";
 class ItemDetail extends Component {
   componentDidMount() {
+    console.log("item detail props", this.props);
+    const itemType = this.props.match.params.itemType;
     const id = this.props.match.params.id;
     const user = this.props.auth.user.token;
-    console.log("id", id, "user", user);
-    this.props.itemsActions.fetchItem(id, user);
+    this.props.itemsActions.fetchItem(id, itemType, user);
   }
 
   displayItemDetail(item) {
-    console.log("ITEM", item);
     if (!item) {
       return <div>loading...</div>;
     }
-
-    return <ItemDetailPage item={item} />;
+    return <div />;
+    // return <ItemDetailPage item={item} />;
   }
 
   render() {

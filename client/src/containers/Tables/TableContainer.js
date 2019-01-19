@@ -46,7 +46,12 @@ class TableContainer extends Component {
       this.state.reverseSort
     );
 
-    return this.props.renderTable(tableElements, this.onSort, route);
+    return this.props.renderTable(
+      tableElements,
+      this.onSort,
+      route,
+      this.props.itemType
+    );
   }
 }
 

@@ -10,8 +10,9 @@ function getLettersApi() {
 function getSoundsApi() {
   return "http://localhost:5000/api/sounds";
 }
-function getItemApi(id) {
-  return `http://localhost:5000/api/item-detail/${id}`;
+function getItemApi(itemType, id) {
+  console.log("id", id, "itemType", itemType);
+  return `http://localhost:5000/api/item-detail/${itemType}/${id}`;
 }
 function addItemApi() {
   return "http://localhost:5000/api/add-item";
@@ -21,7 +22,6 @@ function deleteItemApi() {
 }
 
 export function receiveItem(item) {
-  console.log("receive item action", item);
   return { type: types.RECEIVE_ITEM, item: item };
 }
 
@@ -81,10 +81,10 @@ export function fetchSounds(user) {
       .then(items => dispatch(receiveItems(items)));
   };
 }
-export function fetchItem(id, user) {
-  console.log("fetch item", id, user);
+export function fetchItem(id, itemType, user) {
+  console.log("id", id, "itemType", itemType, "user", user);
   return dispatch => {
-    return fetch(getItemApi(id), {
+    return fetch(getItemApi(itemType, id), {
       method: "GET",
       mode: "cors",
       headers: {

@@ -28,7 +28,6 @@ const StudentTable = (students, onSort) => (
                     {student.lname}
                   </h2>
                 </Link>
-                {console.log("DELETE STUDENT", student)}
                 <DeleteStudent student={student} />
               </td>
               <td>

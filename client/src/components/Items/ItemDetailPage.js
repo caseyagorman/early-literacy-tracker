@@ -6,7 +6,6 @@ import BasicTablePage from "../Tables/BasicTablePage";
 // import DeleteItem from "../../containers/Forms/DeleteItem";
 const ItemDetailPage = props => (
   <div className="student-detail-page">
-    {console.log("Item detail PROPS!", props)}
     <div className="display-student-name">
       {props.item.item}
       <span />

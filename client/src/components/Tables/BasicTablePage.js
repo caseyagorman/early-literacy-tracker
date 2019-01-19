@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 const BasicTablePage = props => (
   <div>
-    {console.log("basic table page", props)}
     <thead id="student-letter-table-head">{props.itemType}</thead>
     <tbody>
       {props.items.map(function(item) {

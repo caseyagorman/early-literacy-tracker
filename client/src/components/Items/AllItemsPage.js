@@ -4,9 +4,9 @@ import TableContainer from "../../containers/Tables/TableContainer";
 import ItemsTable from "../Tables/ItemsTable";
 const AllItemsPage = props => (
   <div className="container">
-    {console.log("all items page props", props)}
     <br />
     <h1 id="display-items">
+      {console.log("All Items Page props", props)}
       All {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}
     </h1>
     <div id="instructions">

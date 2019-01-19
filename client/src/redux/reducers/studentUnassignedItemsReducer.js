@@ -12,7 +12,6 @@ export default function studentItems(
   let newState;
   switch (action.type) {
     case FETCH_STUDENT_UNASSIGNED_ITEMS:
-      console.log("FETCH_ITEMS Action");
       return action;
     case ADD_STUDENT_UNASSIGNED_ITEMS:
       newState = action.studentItems;
