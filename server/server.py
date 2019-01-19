@@ -171,6 +171,32 @@ def item_detail(current_user, item_type, item):
     print("item detail", item_detail)
     return jsonify(item_detail)
 
+@app.route("/api/unassigned-students/<item>")
+@token_required
+def get_unknown_students_letter(current_user, item):
+    """gets students are not assigned to item"""
+    user_id = current_user.public_id
+    students = StudentItem.query.filter_by(
+        item_id=item, user_id=user_id).options(db.joinedload('students')).all()
+    student_ids = []
+    for student in students:
+        student_ids.append(student.student_id)
+
+    unassigned_students = Student.query.filter_by(user_id=user_id).filter(Student.student_id.notin_(student_ids)).all()
+    student_list = []
+
+    for student in unassigned_students:
+        student = {
+            'student_id': student.student_id,
+            'student': student.fname + " " + student.lname
+            
+        }
+
+        student_list.append(student)
+    student_list = sorted(student_list, key=itemgetter('student'))
+    print("student list", student_list)
+    return jsonify(student_list)
+
 @app.route("/api/add-student", methods=['POST'])
 @token_required
 def add_student(current_user):

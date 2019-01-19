@@ -17,7 +17,13 @@ class ItemDetail extends Component {
     if (item.item === null) {
       return <div>loading...</div>;
     }
-    return <ItemDetailPage item={item.item} students={item.studentList} />;
+    return (
+      <ItemDetailPage
+        item={item.item}
+        students={item.studentList}
+        id={this.props.match.params.id}
+      />
+    );
   }
 
   render() {

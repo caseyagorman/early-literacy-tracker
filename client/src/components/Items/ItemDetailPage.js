@@ -1,7 +1,7 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
 // import StudentSnapshot from "./StudentSnapshot";
-import AssignStudents from "../containers/Forms/AssignStudents";
+import AssignStudents from "../../containers/Forms/AssignStudents";
 import BasicTablePage from "../Tables/BasicTablePage";
 // import DeleteItem from "../../containers/Forms/DeleteItem";
 const ItemDetailPage = props => (
@@ -14,7 +14,7 @@ const ItemDetailPage = props => (
   text={`View${props.item.itemType}Data`}
    /> */}
     <BasicTablePage itemType={props.itemType} items={props.students} />
-    <AssignStudents student={props.student} itemType={"words"} /> */}
+    <AssignStudents students={props.students} id={props.id} />
   </div>
 );
 
