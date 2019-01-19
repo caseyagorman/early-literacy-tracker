@@ -1,5 +1,3 @@
-import TestStudentPage from "../../components/TestStudent/StudentTestPage";
-
 import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -20,6 +18,7 @@ class StudentTest extends React.Component {
   }
 
   displayLetter(studentTestItems) {
+    console.log(studentTestItems);
     if (!studentTestItems) {
       return <div className="test-complete-message">test complete</div>;
     }
@@ -55,10 +54,10 @@ class StudentTest extends React.Component {
   }
 
   render() {
-    const studentTestItems = this.state.studentTestItems;
-    const idx = this.state.idx;
-    return <div> Hello!</div>;
-    // <StudentTestPage idx={idx} studentTestItems={studentTestItems} />;
+    return "student test";
+    // const studentTestItems = this.props.studentTestItems;
+    // const idx = this.state.idx;
+    // return <StudentTestPage idx={idx} studentTestItems={studentTestItems} />;
   }
 }
 

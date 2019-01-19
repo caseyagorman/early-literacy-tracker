@@ -132,27 +132,7 @@ const AppRouter = () => (
       />
       <Route
         path="/test-student/:id"
-        component={userIsAuthenticated(
-          AddPropsToRoute(TestStudent, {
-            itemType: "words"
-          })
-        )}
-      />
-      <Route
-        path="/test-student/:id"
-        component={userIsAuthenticated(
-          AddPropsToRoute(TestStudent, {
-            itemType: "letters"
-          })
-        )}
-      />
-      <Route
-        path="/test-student/:id"
-        component={userIsAuthenticated(
-          AddPropsToRoute(TestStudent, {
-            itemType: "sounds"
-          })
-        )}
+        component={userIsAuthenticated(TestStudent)}
       />
     </div>
   </Router>

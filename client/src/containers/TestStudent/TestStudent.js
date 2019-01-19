@@ -6,86 +6,45 @@ import * as studentTestActions from "../../redux/actions/studentTestActions";
 import StudentTest from "./StudentTest";
 class TestStudent extends React.Component {
   componentDidMount() {
-    console.log("TEST STUDENT", this.props);
     const id = this.props.match.params.id;
     const user = this.props.auth.user.token;
     this.props.studentActions.fetchStudent(id, user);
   }
 
-  getWords(student) {
-    if (!student) {
-      return <p> Loading... </p>;
-    }
-
-    let words = this.turnIntoArray(student.unlearnedWordList);
-    return (
-      <StudentTest
-        user={this.props.token}
-        studentTestItems={words}
-        student={student}
-      />
-    );
-  }
-
-  getLetters(student) {
-    if (!student) {
-      return <p> Loading... </p>;
-    }
-    let letters = this.turnIntoArray(student.unlearnedLetterList);
-    return (
-      <StudentTest
-        user={this.props.token}
-        studentTestItems={letters}
-        student={student}
-      />
-    );
-  }
-
-  getSounds(student) {
-    if (!student) {
-      return <p> Loading... </p>;
-    }
-    let sounds = this.turnIntoArray(student.unlearnedSoundList);
-
-    return (
-      <StudentTest
-        user={this.props.token}
-        studentTestItems={sounds}
-        student={student}
-      />
-    );
-  }
-
   turnIntoArray(obj) {
-    console.log("OBJ", obj);
     if (!obj) {
       return <p>Loading...</p>;
     }
     let list = [];
     for (let key in obj) {
       let newObj = obj[key];
-      newObj = newObj[Object.keys(newObj)[0]];
-      list.push(newObj);
+      list.push(newObj.item);
     }
     return list;
   }
 
   renderTestFunction(student) {
-    console.log("testType", this.props.studentTest.testType);
     if (!student) {
       return <div>loading...</div>;
-    } else if (this.props.studentTest.testType === "word") {
-      console.log("HIIIIIIIIII");
-      this.getWords(student);
-    } else if (this.props.testType === "letter") {
-      this.getLetters(student);
-    } else if (this.props.testType === "sound") {
-      this.getSounds(student);
     }
+    const itemsDict = {
+      words: "unlearnedWordList",
+      letters: "unlearnedLetterList",
+      sounds: "unlearnedSoundList"
+    };
+    const itemsKey = itemsDict[this.props.studentTest.testType];
+    const items = this.turnIntoArray(student[itemsKey]);
+    console.log("ITEMS", items);
+    return (
+      <StudentTest
+        user={this.props.token}
+        studentTestItems={items}
+        student={student}
+      />
+    );
   }
 
   render() {
-    // return <div />;
     return this.renderTestFunction(this.props.student);
   }
 }

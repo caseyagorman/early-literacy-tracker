@@ -2,7 +2,7 @@ import React from "react";
 
 const StudentTestPage = props => (
   <div className="container">
-    <div>{this.displayLetter(props.studentTestItems[props.idx])}</div>
+    <div>{props.displayLetter(props.studentTestItems[props.idx])}</div>
     <button
       id="yes-button"
       onClick={e =>
