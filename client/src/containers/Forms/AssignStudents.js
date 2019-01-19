@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as itemUnassignedStudentsActions from "../../redux/actions/itemUnassignedStudentsActions";
-import AssignStudentsForm from "../../components/Forms/AssignItemsForm";
+import AssignStudentsForm from "../../components/Forms/AssignStudentsForm";
 
 class AssignStudents extends Component {
   constructor(props) {
@@ -57,21 +57,19 @@ class AssignStudents extends Component {
       studentList.push(studentObj.student);
     }
     console.log("studentList", studentList);
-    return (
-      <div>
-        {console.log("assign students render", this.props)}
-        <div>you are okay</div>
-      </div>
-    );
     // return (
-    //   <AssignStudentsForm
-    //     student={this.props.item.student}
-    //     handleSubmit={this.handleSubmit}
-    //     handleChange={this.handleChange}
-    //     studentList={studentList}
-    //     itemType={this.props.itemType}
-    //   />
+    //   <div>
+    //     {console.log("assign students render", this.props)}
+    //     <div>you are okay</div>
+    //   </div>
     // );
+    return (
+      <AssignStudentsForm
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        studentList={studentList}
+      />
+    );
   }
 
   render() {
