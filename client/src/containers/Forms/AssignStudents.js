@@ -17,7 +17,7 @@ class AssignStudents extends Component {
     console.log("assign students", this.props);
     const id = this.props.id;
     const user = this.props.auth.user.token;
-    this.props.itemUnassignedStudents.fetchUnassignedStudents(id, user);
+    this.props.itemUnassignedStudentsActions.fetchUnassignedStudents(id, user);
   }
 
   handleSubmit(event) {
@@ -28,7 +28,10 @@ class AssignStudents extends Component {
       itemType: this.props.itemType
     };
     let user = this.props.auth.user.token;
-    this.props.itemUnassignedStudents.assignStudentItems(newStudentItems, user);
+    this.props.itemUnassignedStudentsActions.assignStudentItems(
+      newStudentItems,
+      user
+    );
   }
 
   handleChange(e) {
@@ -42,35 +45,43 @@ class AssignStudents extends Component {
     this.setState({ value: value });
   }
 
-  getOptions(itemStudents) {
-    if (!itemStudents) {
+  getOptions(itemUnassignedStudents) {
+    console.log("AAAAAAAHHHHHH", itemUnassignedStudents);
+    if (!itemUnassignedStudents) {
       return <div>Loading!</div>;
     }
-    let itemList = [];
-    for (let key in itemStudents) {
-      let itemObj = itemStudents[key];
-      itemList.push(itemObj.item);
+    let studentList = [];
+    for (let key in itemUnassignedStudents) {
+      let studentObj = itemUnassignedStudents[key];
+      console.log("studentObj", studentObj);
+      studentList.push(studentObj.student);
     }
-    return <div>you are okay</div>;
+    console.log("studentList", studentList);
+    return (
+      <div>
+        {console.log("assign students render", this.props)}
+        <div>you are okay</div>
+      </div>
+    );
     // return (
     //   <AssignStudentsForm
-    //     student={this.props.student.student}
+    //     student={this.props.item.student}
     //     handleSubmit={this.handleSubmit}
     //     handleChange={this.handleChange}
-    //     itemList={itemList}
+    //     studentList={studentList}
     //     itemType={this.props.itemType}
     //   />
     // );
   }
 
   render() {
-    return <div>{this.getOptions(this.props.unassignedStudents)}</div>;
+    return <div>{this.getOptions(this.props.itemUnassignedStudents)}</div>;
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    itemUnassignedStudents: bindActionCreators(
+    itemUnassignedStudentsActions: bindActionCreators(
       itemUnassignedStudentsActions,
       dispatch
     )
@@ -79,7 +90,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    unassignedStudents: state.itemUnassignedStudents,
+    itemUnassignedStudents: state.itemUnassignedStudents,
     auth: state.auth
   };
 }

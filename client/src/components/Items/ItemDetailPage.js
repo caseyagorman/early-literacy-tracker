@@ -14,7 +14,7 @@ const ItemDetailPage = props => (
   text={`View${props.item.itemType}Data`}
    /> */}
     <BasicTablePage itemType={props.itemType} items={props.students} />
-    <AssignStudents students={props.students} id={props.id} />
+    <AssignStudents id={props.id} />
   </div>
 );
 
