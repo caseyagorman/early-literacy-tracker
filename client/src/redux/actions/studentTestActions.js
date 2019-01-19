@@ -38,7 +38,6 @@ function getStudentApi(id) {
 }
 
 export function submitStudentTest(studentTest, testType, studentId, user) {
-  console.log("StudentTest", studentTest, "test type", testType);
   return dispatch => {
     return fetch(addTestApi(), {
       method: "POST",
@@ -51,17 +50,16 @@ export function submitStudentTest(studentTest, testType, studentId, user) {
       body: JSON.stringify({ studentTest, testType, studentId })
     })
       .then(response => response.json())
-      .then(() => history.push(`/details/${studentId}`))
-      .then(() => dispatch(receiveStudentTest()));
+      .then(() => dispatch(receiveStudentTest()))
+      .then(() => dispatch(fetchStudent(studentId, user)))
+      .then(() => history.push(`/details/${studentId}`));
   };
 }
 export function receiveStudent(student) {
-  console.log("student", student);
   return { type: types.RECEIVE_STUDENT, student: student };
 }
 
 export function fetchStudent(student, user) {
-  console.log("fetching student", student, user);
   return dispatch => {
     return fetch(getStudentApi(student), {
       method: "GET",

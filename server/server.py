@@ -357,34 +357,20 @@ def update_correct_items(student_id, correct_items, test_type, user_id):
     """updates correct items in db, called by create_student_test"""
     student_item_list = StudentItem.query.filter_by(student_id=student_id).filter_by(user_id=user_id).options(db.joinedload('items')).filter(
     Item.item.in_(correct_items)).all()
-    print(student_item_list)
-    # items_to_update = list(set(student_item_list).intersection(incorrect_items))
     for item in student_item_list:
-        print("item", item)
-        print("item correct count", item.correct_count)
         if item.correct_count >= 1:
             item.Learned = True
         item.correct_count = StudentItem.correct_count + 1
         db.session.commit()
-    else:
-        pass
-
-
-
     return "correct items"
 
 def update_incorrect_items(student_id, incorrect_items, test_type, user_id):
     """updates incorrect letters in db, called by create_student_test"""
     student_item_list = StudentItem.query.filter_by(student_id=student_id).filter_by(user_id=user_id).options(db.joinedload('items')).filter(
     Item.item.in_(incorrect_items)).all()
-    # items_to_update = list(set(student_item_list).intersection(incorrect_items))
     for item in student_item_list:
-        print("item", item)
-        print("item.items", item.items.item_id)
         item.incorrect_count = StudentItem.incorrect_count + 1
         db.session.commit()
-    else:
-        pass
     return "incorrect items"
 
 def calculate_score(known_items, unknown_items):
