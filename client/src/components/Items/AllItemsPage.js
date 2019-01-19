@@ -4,6 +4,7 @@ import TableContainer from "../../containers/Tables/TableContainer";
 import ItemsTable from "../Tables/ItemsTable";
 const AllItemsPage = props => (
   <div className="container">
+    {console.log("all items page props", props)}
     <br />
     <h1 id="display-items">
       All{" "}
@@ -22,6 +23,7 @@ const AllItemsPage = props => (
       renderTable={ItemsTable}
       tableElements={props.items.items}
       route={props.route}
+      itemType={props.itemType}
     />
   </div>
 );

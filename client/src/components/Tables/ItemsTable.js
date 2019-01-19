@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const noBulletList = { listStyleType: "none" };
 const listElements = el => <li>{el}</li>;
 
-const ItemsTable = (items, onSort, route) => (
+const ItemsTable = (items, onSort, route, itemType) => (
   <table bordered="true" hover="true">
     <thead>
       <tr>
@@ -17,6 +17,7 @@ const ItemsTable = (items, onSort, route) => (
         return (
           <tr key={item.item_id}>
             <td>
+              {console.log("item in table", route, itemType)}
               <Link to={`/item-detail/${item.item_id}`} className="link">
                 <h2 id="item-name-table-header">{item.item}</h2>
               </Link>

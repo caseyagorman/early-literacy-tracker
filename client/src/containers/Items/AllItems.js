@@ -21,23 +21,21 @@ class AllItems extends React.Component {
     if (!items) {
       return <p>loading...</p>;
     }
-    if (items.itemType === "words") {
-      let route = "/add-words";
-      let text = "Add Words";
-      return <AllItemsPage items={items} route={route} text={text} />;
-    } else if (items.itemType === "letters") {
-      let route = "/add-letters";
-      let text = "Add Letters";
-      return <AllItemsPage items={items} route={route} text={text} />;
-    } else if (items.itemType === "sounds") {
-      let route = "/add-sounds";
-      let text = "Add Sounds";
-      return <AllItemsPage items={items} route={route} text={text} />;
-    }
+    console.log("what is item type all items???", items.itemType);
+    let route = `/add-${this.props.itemType}`;
+    let text = `Add ${this.props.itemType}`;
+    return (
+      <AllItemsPage
+        items={items}
+        itemType={items.itemType}
+        route={route}
+        text={text}
+      />
+    );
   }
 
   render() {
-    return <div>{this.displayItems(this.props.items)}</div>;
+    return this.displayItems(this.props.items);
   }
 }
 

@@ -40,14 +40,13 @@ class TableContainer extends Component {
 
   render() {
     let route = this.props.route;
-    let token = this.props.token;
     let tableElements = this.sortArray(
       this.props.tableElements,
       this.state.sortKey,
       this.state.reverseSort
     );
 
-    return this.props.renderTable(tableElements, this.onSort, token, route);
+    return this.props.renderTable(tableElements, this.onSort, route);
   }
 }
 

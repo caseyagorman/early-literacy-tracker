@@ -34,7 +34,6 @@ class TestStudent extends React.Component {
     };
     const itemsKey = itemsDict[this.props.studentTest.testType];
     const items = this.turnIntoArray(student[itemsKey]);
-    console.log("ITEMS", items);
     return (
       <StudentTest
         user={this.props.auth.user.token}

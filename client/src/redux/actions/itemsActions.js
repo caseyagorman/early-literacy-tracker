@@ -4,20 +4,14 @@ import history from "../../history";
 function getWordsApi() {
   return "http://localhost:5000/api/words";
 }
-function getWordApi(id) {
-  return `http://localhost:5000/api/word-detail/${id}`;
-}
 function getLettersApi() {
   return "http://localhost:5000/api/letters";
-}
-function getLetterApi(id) {
-  return `http://localhost:5000/api/letter-detail/${id}`;
 }
 function getSoundsApi() {
   return "http://localhost:5000/api/sounds";
 }
-function getSoundApi(id) {
-  return `http://localhost:5000/api/sound-detail/${id}`;
+function getItemApi(id) {
+  return `http://localhost:5000/api/item-detail/${id}`;
 }
 function addItemApi() {
   return "http://localhost:5000/api/add-item";
@@ -27,6 +21,7 @@ function deleteItemApi() {
 }
 
 export function receiveItem(item) {
+  console.log("receive item action", item);
   return { type: types.RECEIVE_ITEM, item: item };
 }
 
@@ -35,7 +30,7 @@ export function receiveItems(items) {
 }
 
 export function setItemType(itemType) {
-  return { type: types.SET_ITEM_TYPE, items: itemType };
+  return { type: types.SET_ITEM_TYPE, itemType: itemType };
 }
 
 export function fetchWords(user) {
@@ -54,21 +49,6 @@ export function fetchWords(user) {
   };
 }
 
-export function fetchWord(id, user) {
-  return dispatch => {
-    return fetch(getWordApi(id), {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      }
-    })
-      .then(response => response.json())
-      .then(word => dispatch(receiveItem(word)));
-  };
-}
 export function fetchLetters(user) {
   return dispatch => {
     return fetch(getLettersApi(user), {
@@ -82,21 +62,6 @@ export function fetchLetters(user) {
     })
       .then(response => response.json())
       .then(letters => dispatch(receiveItems(letters)));
-  };
-}
-export function fetchLetter(id, user) {
-  return dispatch => {
-    return fetch(getLetterApi(id), {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      }
-    })
-      .then(response => response.json())
-      .then(sound => dispatch(receiveItem(sound)));
   };
 }
 
@@ -115,9 +80,10 @@ export function fetchSounds(user) {
       .then(items => dispatch(receiveItems(items)));
   };
 }
-export function fetchSound(id, user) {
+export function fetchItem(id, user) {
+  console.log("fetch item", id, user);
   return dispatch => {
-    return fetch(getSoundApi(id), {
+    return fetch(getItemApi(id), {
       method: "GET",
       mode: "cors",
       headers: {
@@ -127,7 +93,8 @@ export function fetchSound(id, user) {
       }
     })
       .then(response => response.json())
-      .then(sound => dispatch(receiveItem(sound)));
+      .then(item => dispatch(receiveItem(item)));
+    // .then(itemType =>dispatch(setItemType(itemType)))
   };
 }
 export function addWord(item, user, itemType) {

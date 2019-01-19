@@ -14,7 +14,7 @@ export default function items(state = initialState.item, action) {
       });
     case RECEIVE_ITEM:
       console.log("RECEIVE_ITEMS", action.item);
-      return Object.assign({}, state, action.items, {
+      return Object.assign({}, state, action.item, {
         fetchingItems: false
       });
 

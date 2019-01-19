@@ -53,7 +53,14 @@ const AppRouter = () => (
       <Route path="//" component={userIsAuthenticated(Home)} />
       <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
-
+      <Route
+        path="/words"
+        component={userIsAuthenticated(
+          AddPropsToRoute(AllItems, {
+            itemType: "words"
+          })
+        )}
+      />
       <Route
         path="/letters"
         component={userIsAuthenticated(
@@ -95,40 +102,13 @@ const AppRouter = () => (
         )}
       />
       <Route
-        path="/words"
-        component={userIsAuthenticated(
-          AddPropsToRoute(AllItems, {
-            itemType: "words"
-          })
-        )}
-      />
-      <Route
         path="/details/:id"
         component={userIsAuthenticated(StudentDetail)}
       />
+
       <Route
-        path="/word-detail/:id"
-        component={userIsAuthenticated(
-          AddPropsToRoute(ItemDetail, {
-            itemType: "words"
-          })
-        )}
-      />
-      <Route
-        path="/letter-detail/:id"
-        component={userIsAuthenticated(
-          AddPropsToRoute(ItemDetail, {
-            itemType: "letters"
-          })
-        )}
-      />
-      <Route
-        path="/sound-detail/:id"
-        component={userIsAuthenticated(
-          AddPropsToRoute(ItemDetail, {
-            itemType: "sounds"
-          })
-        )}
+        path="/item-detail/:id"
+        component={userIsAuthenticated(ItemDetail)}
       />
       <Route
         path="/test-student/:id"

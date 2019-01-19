@@ -128,7 +128,48 @@ def get_sounds(current_user):
         "items": item_list
         })
  
+@app.route("/api/item-detail/<item>")
+@token_required
+def item_detail(current_user, item):
+    """Display item and students who are learning that item"""
+    print("item detail", item)
+    user_id = current_user.public_id
+    item_object = Item.query.filter_by(item_id=item, user_id=user_id).first()
+    student_items = StudentItem.query.filter_by(
+        item_id=item).options(db.joinedload('students')).all()
+    student_list = []
+    item_detail = {}
 
+    for student in student_items:
+        if student.Learned == False:
+            student = {
+                'student_id': student.students.student_id,
+                'fname': student.students.fname,
+                'lname': student.students.lname,
+                'learned': "no"
+
+            }
+            student_list.append(student)
+
+        else:
+             student = {
+                'student_id': student.students.student_id,
+                'fname': student.students.fname,
+                'lname': student.students.lname,
+                'learned': "yes"
+            }
+
+    item_object = {
+        'item_id': item_object.item_id,
+        'item': item_object.item,
+        'date': item_object.date_added,
+        'itemType': item_object.item_type
+    }
+    student_list = sorted(student_list, key=itemgetter('fname')) 
+    item_detail['studentList'] = student_list
+    item_detail['item'] = item_object
+    print("item detail", item_detail)
+    return jsonify(item_detail)
 
 @app.route("/api/add-student", methods=['POST'])
 @token_required
@@ -379,6 +420,8 @@ def calculate_score(known_items, unknown_items):
     score = score * 100
     score = int(round(score))
     return score
+
+
 
 if __name__ == "__main__":
 
