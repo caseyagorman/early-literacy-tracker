@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DeleteStudent from "../../containers/Forms/DeleteStudent";
 
 const StudentTable = (students, onSort) => (
   <div className="student-table">
@@ -27,6 +28,8 @@ const StudentTable = (students, onSort) => (
                     {student.lname}
                   </h2>
                 </Link>
+                {console.log("DELETE STUDENT", student)}
+                <DeleteStudent student={student} />
               </td>
               <td>
                 <Link to={`/details/${student.student_id}`} className="link" />

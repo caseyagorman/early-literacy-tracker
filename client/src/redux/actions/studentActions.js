@@ -16,7 +16,6 @@ export function receiveStudents(students) {
 }
 
 export function receiveStudent(student) {
-  console.log("receive student", student);
   return { type: types.RECEIVE_STUDENT, student: student };
 }
 

@@ -22,8 +22,7 @@ class DeleteStudent extends Component {
 
   handleSubmit() {
     const user = this.props.auth.user.token;
-    const student = this.props.student.student.student_id;
-    console.log("handle submit student", student);
+    const student = this.props.student.student_id;
     this.props.studentActions.deleteStudent(student, user);
   }
 
@@ -46,7 +45,7 @@ class DeleteStudent extends Component {
   };
 
   render() {
-    return <b>{this.getOptions(this.props.student)}</b>;
+    return this.getOptions(this.props.student);
   }
 }
 

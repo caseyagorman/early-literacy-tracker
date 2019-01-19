@@ -10,7 +10,7 @@ const StudentDetailPage = props => (
       {props.student.student.fname}
       <span />
       {props.student.student.lname}
-      <DeleteStudent student={props.student} />
+      <DeleteStudent student={props.student.student} />
     </div>
 
     <MainButton
