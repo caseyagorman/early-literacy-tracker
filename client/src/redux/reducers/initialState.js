@@ -25,7 +25,6 @@ export default {
   },
   item: {
     item: null,
-    itemType: "",
     fetchingItem: false
   },
 
