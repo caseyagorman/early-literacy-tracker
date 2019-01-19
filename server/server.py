@@ -177,7 +177,7 @@ def add_item(current_user):
 
 @app.route('/api/add-item-to-student', methods=['POST'])
 @token_required
-def add_sound_to_student(current_user):
+def add_item_to_student(current_user):
     data = request.get_json()
     print("data", data)
     data = data.get("studentItems")
@@ -196,7 +196,7 @@ def add_sound_to_student(current_user):
         db.session.add(new_student_item)
         db.session.commit()
 
-    return "student sounds added!"
+    return "student items added!"
 @app.route("/api/students")
 @token_required
 def get_students(current_user):
@@ -325,6 +325,74 @@ def get_unassigned_items(current_user, student, item_type):
     item_object['itemList'] = item_list
     item_object['itemType'] = item_type
     return jsonify(item_object)
+
+@app.route("/api/create-student-test", methods=["POST"])
+@token_required
+def create_student_test(current_user):
+    """creates new student  test row in db, calls update_correct_items
+    and update_incorrect_items functions"""
+
+    data = request.get_json()
+    student_test = data.get('studentTest')
+    test_type = data.get('testType')
+    student_id = data.get('studentId')
+    user_id = current_user.public_id
+    correct_items = []
+    incorrect_items = []
+
+    for entry in student_test:
+        if entry['answeredCorrectly']:
+            correct_items.append(entry.get('testItems'))
+        else:
+            incorrect_items.append(entry.get('testItems'))
+    update_correct_items(student_id, correct_items, test_type, user_id)
+    update_incorrect_items(student_id, incorrect_items, test_type, user_id)
+    score = calculate_score(correct_items, incorrect_items)
+    db.session.add(StudentTestResult(student_id=student_id, user_id=user_id, score=score,
+    correct_items=correct_items, incorrect_items=incorrect_items, test_type=test_type))
+    db.session.commit()
+    return jsonify({'response': 'student test added!'})
+
+def update_correct_items(student_id, correct_items, test_type, user_id):
+    """updates correct items in db, called by create_student_test"""
+    student_item_list = StudentItem.query.filter_by(student_id=student_id).filter_by(user_id=user_id).options(db.joinedload('items')).filter(
+    Item.item.in_(correct_items)).all()
+    print(student_item_list)
+    # items_to_update = list(set(student_item_list).intersection(incorrect_items))
+    for item in student_item_list:
+        print("item", item)
+        print("item correct count", item.correct_count)
+        if item.correct_count >= 1:
+            item.Learned = True
+        item.correct_count = StudentItem.correct_count + 1
+        db.session.commit()
+    else:
+        pass
+
+
+
+    return "correct items"
+
+def update_incorrect_items(student_id, incorrect_items, test_type, user_id):
+    """updates incorrect letters in db, called by create_student_test"""
+    student_item_list = StudentItem.query.filter_by(student_id=student_id).filter_by(user_id=user_id).options(db.joinedload('items')).filter(
+    Item.item.in_(incorrect_items)).all()
+    # items_to_update = list(set(student_item_list).intersection(incorrect_items))
+    for item in student_item_list:
+        print("item", item)
+        print("item.items", item.items.item_id)
+        item.incorrect_count = StudentItem.incorrect_count + 1
+        db.session.commit()
+    else:
+        pass
+    return "incorrect items"
+
+def calculate_score(known_items, unknown_items):
+    """calculates student test score, called by create_student_test"""
+    score = len(known_items) / (len(known_items) + len(unknown_items))
+    score = score * 100
+    score = int(round(score))
+    return score
 
 if __name__ == "__main__":
 

@@ -12,13 +12,12 @@ class StudentTest extends React.Component {
       studentTestItems: this.props.studentTestItems,
       idx: 0
     };
-  }
-  componentDidMount() {
-    console.log("PRRRROOOOOOOOPPPPS", this.props);
+    this.incrementIdx = this.incrementIdx.bind(this);
+    this.handleTestClick = this.handleTestClick.bind(this);
+    this.endTest = this.endTest.bind(this);
   }
 
-  displayLetter(studentTestItems) {
-    console.log(studentTestItems);
+  displayItem(studentTestItems) {
     if (!studentTestItems) {
       return <div className="test-complete-message">test complete</div>;
     }
@@ -45,8 +44,8 @@ class StudentTest extends React.Component {
   handleTestClick(e, studentTestItems, idx) {
     e.preventDefault();
     this.incrementIdx(idx);
-
     const answeredCorrectly = e.target.value === "yes";
+
     this.props.studentTestActions.answerQuestion(
       studentTestItems,
       answeredCorrectly
@@ -54,10 +53,18 @@ class StudentTest extends React.Component {
   }
 
   render() {
-    return "student test";
-    // const studentTestItems = this.props.studentTestItems;
-    // const idx = this.state.idx;
-    // return <StudentTestPage idx={idx} studentTestItems={studentTestItems} />;
+    const studentTestItems = this.props.studentTestItems;
+    const idx = this.state.idx;
+    return (
+      <StudentTestPage
+        idx={idx}
+        studentTestItems={studentTestItems}
+        handleTestClick={this.handleTestClick}
+        endTest={this.endTest}
+        incrementIdx={this.incrementIdx}
+        displayItem={this.displayItem}
+      />
+    );
   }
 }
 

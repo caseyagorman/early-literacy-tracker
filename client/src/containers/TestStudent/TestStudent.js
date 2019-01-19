@@ -37,7 +37,7 @@ class TestStudent extends React.Component {
     console.log("ITEMS", items);
     return (
       <StudentTest
-        user={this.props.token}
+        user={this.props.auth.user.token}
         studentTestItems={items}
         student={student}
       />
