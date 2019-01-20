@@ -10,7 +10,7 @@ class AssignStudents extends Component {
     this.state = { value: [] };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.getOptions = this.getOptions.bind(this);
+    this.getList = this.getList.bind(this);
   }
 
   componentDidMount() {
@@ -20,11 +20,25 @@ class AssignStudents extends Component {
     this.props.itemUnassignedStudentsActions.fetchUnassignedStudents(id, user);
   }
 
+  getIds(students) {
+    let allStudents = this.getList(this.props.itemUnassignedStudents);
+    let ids = [];
+    for (let i = 0; i < allStudents.length; i++) {
+      for (let j = 0; j < students.length; j++) {
+        if (allStudents[i].student === students[j]) {
+          ids.push(allStudents[i].student_id);
+        }
+      }
+    }
+    return ids;
+  }
+
   handleSubmit(event) {
     event.preventDefault();
+    let ids = this.getIds(this.state.value);
     let newStudentItems = {
       id: this.props.id,
-      students: this.state.value
+      students: ids
     };
     let user = this.props.auth.user.token;
     this.props.itemUnassignedStudentsActions.assignItemStudents(
@@ -44,7 +58,7 @@ class AssignStudents extends Component {
     this.setState({ value: value });
   }
 
-  getOptions(itemUnassignedStudents) {
+  getList(itemUnassignedStudents) {
     if (!itemUnassignedStudents) {
       return <div>Loading!</div>;
     }
@@ -55,13 +69,12 @@ class AssignStudents extends Component {
         studentList.push(studentObj[student]);
       }
     }
-    console.log("studentList", studentList);
-    // return (
-    //   <div>
-    //     {console.log("assign students render", this.props)}
-    //     <div>you are okay</div>
-    //   </div>
-    // );
+    return studentList;
+  }
+
+  displayForm(unassignedStudents) {
+    let studentList = this.getList(unassignedStudents);
+
     return (
       <AssignStudentsForm
         handleSubmit={this.handleSubmit}
@@ -73,7 +86,7 @@ class AssignStudents extends Component {
   }
 
   render() {
-    return <div>{this.getOptions(this.props.itemUnassignedStudents)}</div>;
+    return this.displayForm(this.props.itemUnassignedStudents);
   }
 }
 

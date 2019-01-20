@@ -173,7 +173,7 @@ def item_detail(current_user, item_type, item):
 
 @app.route("/api/unassigned-students/<item>")
 @token_required
-def get_unknown_students_letter(current_user, item):
+def get_unassigned_students_item(current_user, item):
     """gets students are not assigned to item"""
     user_id = current_user.public_id
     students = StudentItem.query.filter_by(
@@ -274,12 +274,13 @@ def add_student_to_item(current_user):
     item_id = item['id']
     students = item['students']
     print("STUDENTS!", students)
+    print("Item ID!", item_id)
     user_id = current_user.public_id
     for student_id in students:
         existing_item = StudentItem.query.filter_by(student_id = student_id, 
         item_id = item_id, user_id = user_id).first()
         if not existing_item:
-            new_item_student = Studentitem(
+            new_item_student = StudentItem(
                 student_id=student_id, item_id=item_id, user_id=user_id)
             db.session.add(new_item_student)
             db.session.commit()
