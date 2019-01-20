@@ -6,7 +6,6 @@ const AllItemsPage = props => (
   <div className="container">
     <br />
     <h1 id="display-items">
-      {console.log("All Items Page props", props)}
       All {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}
     </h1>
     <div id="instructions">
