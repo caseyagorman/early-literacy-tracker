@@ -23,6 +23,8 @@ class DeleteItem extends Component {
   handleSubmit() {
     const user = this.props.auth.user.token;
     const item = this.props.item.item_id;
+    const itemType = this.props.itemType;
+    console.log("item to delete", item);
     this.props.itemsActions.deleteItem(item, user);
   }
 
@@ -51,7 +53,6 @@ class DeleteItem extends Component {
 
 function mapStateToProps(state) {
   return {
-    item: state.item,
     auth: state.auth
   };
 }

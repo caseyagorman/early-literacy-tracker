@@ -3,7 +3,6 @@ import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 const AssignStudentsForm = props => (
   <form onSubmit={props.handleSubmit} id="assign-items-form">
-    {console.log("assign students form props", props.studentList)}
     <FormGroup controlId="formControlsSelectMultiple">
       <ControlLabel>
         <h3>Assign students to "{props.item}"</h3>

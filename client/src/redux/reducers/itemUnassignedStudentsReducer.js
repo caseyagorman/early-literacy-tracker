@@ -13,10 +13,6 @@ export default function itemUnassignedStudents(
       return action;
 
     case RECEIVE_ITEM_UNASSIGNED_STUDENTS:
-      console.log(
-        "RECEIVE_ITEM_UNASSIGNED_STUDENTS",
-        action.itemUnassignedStudents
-      );
       return Object.assign({}, state, action.itemUnassignedStudents);
     default:
       return state;

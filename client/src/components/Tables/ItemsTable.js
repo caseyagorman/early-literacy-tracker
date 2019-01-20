@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import DeleteItem from "../../containers/Forms/DeleteItem";
 // Display table head of words students are learning
 const noBulletList = { listStyleType: "none" };
 const listElements = el => <li>{el}</li>;
 
 const ItemsTable = (items, onSort, route, itemType) => (
   <table bordered="true" hover="true">
-    {console.log("items table", itemType)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "item")}> Item</th>
@@ -24,6 +23,7 @@ const ItemsTable = (items, onSort, route, itemType) => (
               >
                 <h2 id="item-name-table-header">{item.item}</h2>
               </Link>
+              <DeleteItem item={item} />
             </td>
           </tr>
         );

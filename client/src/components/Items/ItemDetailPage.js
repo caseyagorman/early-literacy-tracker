@@ -6,8 +6,6 @@ import BasicTablePage from "../Tables/BasicTablePage";
 // import DeleteItem from "../../containers/Forms/DeleteItem";
 const ItemDetailPage = props => (
   <div>
-    <div>{console.log(props.item.item)}</div>
-    {console.log("item detail page", props)}
     <div> {props.item.item}</div>
     {/* <MainButton
  id="view-student-word-data-button"

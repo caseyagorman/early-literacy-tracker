@@ -6,7 +6,6 @@ import * as itemsActions from "../../redux/actions/itemsActions";
 import ItemDetailPage from "../../components/Items/ItemDetailPage";
 class ItemDetail extends Component {
   componentDidMount() {
-    console.log("item detail props", this.props);
     const itemType = this.props.match.params.itemType;
     const id = this.props.match.params.id;
     const user = this.props.auth.user.token;

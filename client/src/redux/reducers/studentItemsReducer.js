@@ -24,8 +24,6 @@ export default function studentItems(
       return newState;
 
     case RECEIVE_STUDENT_ITEMS:
-      console.log("receiving student items.\n", state, action);
-
       // const items = action.studentItems[0];
       var itemType = action.studentItems[1];
       const oldStudentItemSets = state.studentItemSets;

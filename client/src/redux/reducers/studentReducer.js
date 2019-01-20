@@ -6,7 +6,6 @@ export default function student(state = initialState.student, action) {
     case FETCH_STUDENT:
       return action;
     case RECEIVE_STUDENT:
-      console.log("RECEIVE STUDENT", action.student);
       return action.student;
     default:
       return state;

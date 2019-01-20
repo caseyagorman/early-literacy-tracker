@@ -11,7 +11,6 @@ function getSoundsApi() {
   return "http://localhost:5000/api/sounds";
 }
 function getItemApi(itemType, id) {
-  console.log("id", id, "itemType", itemType);
   return `http://localhost:5000/api/item-detail/${itemType}/${id}`;
 }
 function addItemApi() {
@@ -82,7 +81,6 @@ export function fetchSounds(user) {
   };
 }
 export function fetchItem(id, itemType, user) {
-  console.log("id", id, "itemType", itemType, "user", user);
   return dispatch => {
     return fetch(getItemApi(itemType, id), {
       method: "GET",
@@ -95,7 +93,6 @@ export function fetchItem(id, itemType, user) {
     })
       .then(response => response.json())
       .then(item => dispatch(receiveItem(item)));
-    // .then(itemType =>dispatch(setItemType(itemType)))
   };
 }
 export function addWord(item, user, itemType) {

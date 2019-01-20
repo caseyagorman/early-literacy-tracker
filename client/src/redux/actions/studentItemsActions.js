@@ -21,7 +21,6 @@ export function receiveStudentUnassignedItems(studentUnassignedItems) {
 }
 
 export function receiveStudentItems(studentItems) {
-  console.log("receive student items", studentItems);
   return {
     type: types.RECEIVE_STUDENT_ITEMS,
     studentItems: studentItems
@@ -59,33 +58,3 @@ export function fetchStudent(student, user) {
       .then(student => dispatch(receiveStudent(student)));
   };
 }
-
-// export function sortItems(unassignedItems, dispatch) {
-//   if (unassignedItems[1] === "words") {
-//     console.log(unassignedItems);
-//     dispatch(receiveUnassignedWords(unassignedItems[0]));
-//   } else if (unassignedItems[1] === "letters") {
-//     receiveUnassignedLetters(unassignedItems[0]);
-//   } else if (unassignedItems[1] === "sounds") {
-//     receiveUnassignedSounds(unassignedItems[0]);
-//   }
-// }
-
-// export function receiveUnassignedWords(studentUnassignedWords) {
-//   return {
-//     type: types.RECEIVE_STUDENT_UNASSIGNED_WORDS,
-//     studentUnassignedWords: studentUnassignedWords
-//   };
-// }
-// export function receiveUnassignedLetters(studentUnassignedLetters) {
-//   return {
-//     type: types.RECEIVE_STUDENT_UNASSIGNED_LETTERS,
-//     studentUnassignedLetters: studentUnassignedLetters
-//   };
-// }
-// export function receiveUnassignedSounds(studentUnassignedSounds) {
-//   return {
-//     type: types.RECEIVE_STUDENT_UNASSIGNED_SOUNDS,
-//     studentUnassignedSounds: studentUnassignedSounds
-//   };
-// }

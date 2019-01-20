@@ -16,17 +16,6 @@ class RegisterUser extends Component {
     this.props.authActions.clearErrors();
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   console.log("new props", newProps);
-  //   if (newProps.register.newUser.registerError) {
-  //     alert(newProps.register.newUser.registerError);
-  //     return;
-  //   }
-  //   if (newProps.register.newUser) {
-  //     this.props.props.history.push("/login");
-  //   }
-  // }
-
   handleSubmit(event) {
     event.preventDefault();
 

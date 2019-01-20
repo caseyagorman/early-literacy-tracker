@@ -41,7 +41,6 @@ export function fetchUnassignedStudents(item, user, itemType) {
 }
 
 export function assignItemStudents(id, students, itemType, user) {
-  console.log(id, students, itemType, user);
   return dispatch => {
     return fetch(addItemStudentsApi(), {
       method: "POST",
@@ -75,6 +74,5 @@ export function fetchItem(id, itemType, user) {
     })
       .then(response => response.json())
       .then(item => dispatch(receiveItem(item)));
-    // .then(itemType =>dispatch(setItemType(itemType)))
   };
 }
