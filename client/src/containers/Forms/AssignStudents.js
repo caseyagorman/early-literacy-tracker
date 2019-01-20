@@ -38,7 +38,8 @@ class AssignStudents extends Component {
     let ids = this.getIds(this.state.value);
     let newStudentItems = {
       id: this.props.id,
-      students: ids
+      students: ids,
+      itemType: this.props.itemType
     };
     let user = this.props.auth.user.token;
     this.props.itemUnassignedStudentsActions.assignItemStudents(

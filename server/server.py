@@ -271,17 +271,22 @@ def add_student_to_item(current_user):
     data = request.get_json()
     
     item = data.get("itemStudents")
+    print("item", item)
     item_id = item['id']
     students = item['students']
+    item_type = item['itemType']
     print("STUDENTS!", students)
     print("Item ID!", item_id)
     user_id = current_user.public_id
     for student_id in students:
         existing_item = StudentItem.query.filter_by(student_id = student_id, 
         item_id = item_id, user_id = user_id).first()
+        if existing_item:
+            print(existing_item)
         if not existing_item:
             new_item_student = StudentItem(
-                student_id=student_id, item_id=item_id, user_id=user_id)
+                student_id=student_id, item_id=item_id, user_id=user_id, item_type=item_type)
+            print("new item student", new_item_student)
             db.session.add(new_item_student)
             db.session.commit()
         else:

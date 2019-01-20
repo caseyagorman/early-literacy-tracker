@@ -22,6 +22,7 @@ class ItemDetail extends Component {
         item={item.item}
         students={item.studentList}
         id={this.props.match.params.id}
+        itemType={this.props.match.params.itemType}
       />
     );
   }
