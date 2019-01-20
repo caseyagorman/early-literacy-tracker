@@ -195,7 +195,7 @@ def get_unknown_students_letter(current_user, item):
         student_list.append(student)
     student_list = sorted(student_list, key=itemgetter('student'))
     print("student list", student_list)
-    return jsonify(student_list)
+    return jsonify([student_list])
 
 @app.route("/api/add-student", methods=['POST'])
 @token_required
@@ -264,6 +264,29 @@ def add_item_to_student(current_user):
         db.session.commit()
 
     return "student items added!"
+
+@app.route('/api/add-student-to-item', methods=['POST'])
+@token_required
+def add_student_to_item(current_user):
+    data = request.get_json()
+    
+    item = data.get("itemStudents")
+    item_id = item['id']
+    students = item['students']
+    print("STUDENTS!", students)
+    user_id = current_user.public_id
+    for student_id in students:
+        existing_item = StudentItem.query.filter_by(student_id = student_id, 
+        item_id = item_id, user_id = user_id).first()
+        if not existing_item:
+            new_item_student = Studentitem(
+                student_id=student_id, item_id=item_id, user_id=user_id)
+            db.session.add(new_item_student)
+            db.session.commit()
+        else:
+            continue
+
+    return "student data added!"
 @app.route("/api/students")
 @token_required
 def get_students(current_user):

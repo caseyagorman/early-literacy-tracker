@@ -23,12 +23,11 @@ class AssignStudents extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let newStudentItems = {
-      student: this.props.student.student.student_id,
-      items: this.state.value,
-      itemType: this.props.itemType
+      id: this.props.id,
+      students: this.state.value
     };
     let user = this.props.auth.user.token;
-    this.props.itemUnassignedStudentsActions.assignStudentItems(
+    this.props.itemUnassignedStudentsActions.assignItemStudents(
       newStudentItems,
       user
     );
@@ -46,15 +45,15 @@ class AssignStudents extends Component {
   }
 
   getOptions(itemUnassignedStudents) {
-    console.log("AAAAAAAHHHHHH", itemUnassignedStudents);
     if (!itemUnassignedStudents) {
       return <div>Loading!</div>;
     }
     let studentList = [];
     for (let key in itemUnassignedStudents) {
       let studentObj = itemUnassignedStudents[key];
-      console.log("studentObj", studentObj);
-      studentList.push(studentObj.student);
+      for (let student in studentObj) {
+        studentList.push(studentObj[student]);
+      }
     }
     console.log("studentList", studentList);
     // return (
@@ -68,6 +67,7 @@ class AssignStudents extends Component {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         studentList={studentList}
+        item={this.props.item}
       />
     );
   }

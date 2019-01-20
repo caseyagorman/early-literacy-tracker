@@ -3,11 +3,11 @@ import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 const AssignStudentsForm = props => (
   <form onSubmit={props.handleSubmit} id="assign-items-form">
-    {console.log("assign students form props", props)}
+    {console.log("assign students form props", props.studentList)}
     <FormGroup controlId="formControlsSelectMultiple">
       <ControlLabel>
-        {/* <h3>Assign students to {props.itemType}</h3>
-        <p>Press shift and click to add multiple {props.itemType} </p>  */}
+        <h3>Assign students to "{props.item}"</h3>
+        <p>Press shift and click to add multiple students </p>
       </ControlLabel>
       <strong>
         <FormControl
@@ -17,7 +17,7 @@ const AssignStudentsForm = props => (
           onChange={props.handleChange}
         >
           {props.studentList.map(student => (
-            <option key={student}>{student}</option>
+            <option>{student.student}</option>
           ))}
         </FormControl>
       </strong>

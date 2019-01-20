@@ -51,11 +51,10 @@ export function assignItemStudents(itemStudents, user) {
         "x-access-token": user
       },
       body: JSON.stringify({ itemStudents })
-    })
-      .then(() => dispatch(fetchItem(itemStudents.student, user)))
-      .then(() =>
-        dispatch(fetchUnassignedStudents(itemStudents.student, user))
-      );
+    }).then(result => console.log(result));
+    //   .then(() => dispatch(fetchItem(itemStudents.student, user)))
+    //   .then(() =>
+    //     dispatch(fetchUnassignedStudents(itemStudents.student, user))
   };
 }
 
