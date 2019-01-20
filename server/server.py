@@ -270,13 +270,9 @@ def add_item_to_student(current_user):
 def add_student_to_item(current_user):
     data = request.get_json()
     
-    item = data.get("itemStudents")
-    print("item", item)
-    item_id = item['id']
-    students = item['students']
-    item_type = item['itemType']
-    print("STUDENTS!", students)
-    print("Item ID!", item_id)
+    students = data.get("students")
+    item_id = data.get("id")
+    item_type = data.get("itemType")
     user_id = current_user.public_id
     for student_id in students:
         existing_item = StudentItem.query.filter_by(student_id = student_id, 
@@ -292,7 +288,7 @@ def add_student_to_item(current_user):
         else:
             continue
 
-    return "student data added!"
+    return jsonify(data)
 @app.route("/api/students")
 @token_required
 def get_students(current_user):

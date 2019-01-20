@@ -40,7 +40,8 @@ export function fetchUnassignedStudents(item, user, itemType) {
   };
 }
 
-export function assignItemStudents(itemStudents, user) {
+export function assignItemStudents(id, students, itemType, user) {
+  console.log(id, students, itemType, user);
   return dispatch => {
     return fetch(addItemStudentsApi(), {
       method: "POST",
@@ -50,11 +51,14 @@ export function assignItemStudents(itemStudents, user) {
         "Content-Type": "application/json",
         "x-access-token": user
       },
-      body: JSON.stringify({ itemStudents })
-    }).then(result => console.log(result));
-    //   .then(() => dispatch(fetchItem(itemStudents.student, user)))
-    //   .then(() =>
-    //     dispatch(fetchUnassignedStudents(itemStudents.student, user))
+      body: JSON.stringify({ id, students, itemType })
+    })
+      .then(response => response.json())
+      .then(() =>
+        dispatch(fetchItem(id, itemType, user)).then(() =>
+          dispatch(fetchUnassignedStudents(id, user))
+        )
+      );
   };
 }
 

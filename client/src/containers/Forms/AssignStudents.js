@@ -35,15 +35,14 @@ class AssignStudents extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let ids = this.getIds(this.state.value);
-    let newStudentItems = {
-      id: this.props.id,
-      students: ids,
-      itemType: this.props.itemType
-    };
+    let students = this.getIds(this.state.value);
+    let id = this.props.id;
+    let itemType = this.props.itemType;
     let user = this.props.auth.user.token;
     this.props.itemUnassignedStudentsActions.assignItemStudents(
-      newStudentItems,
+      id,
+      students,
+      itemType,
       user
     );
   }
