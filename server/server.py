@@ -226,34 +226,17 @@ def delete_student(current_user):
 @app.route("/api/add-item", methods=['POST'])
 @token_required
 def add_item(current_user):
-    print("RRRRRRRRRR")
     data = request.get_json()
-    print("data",data)
     items = data['item']
     item_type = data['itemType']
     user_id = current_user.public_id
     table = str.maketrans({key: None for key in string.punctuation})
     new_string = items.translate(table) 
-
-    # change1:
-    # strip punctuation characters.
-    # exclude = set(string.punctuation)
-    # new_items = [''.join(ch for ch in items if ch not in exclude) for s in new_items]
     new_items = new_string.split()
-    print("new items", new_items)
     user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
     students = StudentItem.query.filter_by(user_id=user_id).all()
-    # user_list = []
-    # for item in user_items:
-    #     user_list.append(item.item)
-
-    # change2:
-    # Get users using a list comprehension
     user_list = [user.item for user in user_items]
     list_to_add = list(set(new_items).difference(user_list))
-
-    # change3:
-    # Do bulk insert
     db.session.bulk_save_objects(
         [
             Item(
@@ -265,13 +248,6 @@ def add_item(current_user):
         ]
     )    
     db.session.commit()
-
-    # for item in list_to_add:
-    #     user_id = user_id
-    #     item = Item(item=item, user_id=user_id, item_type=item_type)
-    #     db.session.add(item)
-    #     db.session.commit()
-    print("data", data)
     return jsonify(data)
 
 @app.route('/api/add-items-to-students', methods=['POST'])
@@ -287,13 +263,7 @@ def add_items_to_students(current_user):
     user_id = current_user.public_id
     item_list = Item.query.filter(Item.item.in_(new_items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
     students = Student.query.filter_by(user_id = user_id).all()
-    # item_ids = []
-    # student_list = []
-    # for item in item_list:
-    #     item_ids.append(item.item_id)
     item_ids = [item.item_id for item in item_list]
-    # for student in students:
-    #     student_list.append(student.student_id)
     student_ids = [student.student_id for student in students]
 
     db.session.bulk_save_objects(
@@ -342,54 +312,81 @@ def add_student_to_item(current_user):
     for student_id in students:
         existing_item = StudentItem.query.filter_by(student_id = student_id, 
         item_id = item_id, user_id = user_id).first()
-        if existing_item:
-            print(existing_item)
         if not existing_item:
             new_item_student = StudentItem(
                 student_id=student_id, item_id=item_id, user_id=user_id, item_type=item_type)
-            print("new item student", new_item_student)
             db.session.add(new_item_student)
             db.session.commit()
         else:
             continue
 
     return jsonify(data)
+
+
 @app.route("/api/students")
 @token_required
 def get_students(current_user):
-    print(current_user)
     start = time.time()
-    public_id = current_user.public_id
-    students = Student.query.filter_by(user_id=public_id).options(
+    user_id = current_user.public_id
+    students = Student.query.filter_by(user_id=user_id).options(
         db.joinedload('studentitems')).all()
     student_list = []
     for student in students:
-
+        last_word_test = get_test_dates(student.student_id, "words")
+        last_letter_test = get_test_dates(student.student_id, "letters")
+        last_sound_test = get_test_dates(student.student_id, "sounds")
+        word_count = get_student_item_counts(student.student_id, "words")[0]
+        unlearned_word_count = get_student_item_counts(student.student_id, "words")[1]
+        letter_count = get_student_item_counts(student.student_id, "letters")[0]
+        unlearned_letter_count = get_student_item_counts(student.student_id, "letters")[1]
+        sound_count = get_student_item_counts(student.student_id, "sounds")[0]
+        unlearned_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
         student = {
             'student_id': student.student_id,
             'fname': student.fname,
             'lname': student.lname,
+            'word_count': word_count,
+            'unlearned_word_count': unlearned_word_count,
+            'last_word_test': last_word_test,
+            'letter_count': letter_count,
+            'unlearned_letter_count': unlearned_letter_count,
+            'last_letter_test': last_letter_test,
+            'sound_count': sound_count,
+            'unlearned_sound_count': unlearned_sound_count,
+            'last_sound_test': last_sound_test
         }
         student_list.append(student)
-    # doubles time, think of other way if possible
-    #  - student_list = sorted(student_list, key=itemgetter('fname', 'lname'),  reverse=False) 
     end = time.time()
     elapsed_time = end - start
+    print(student_list)
     print('getting all students took', elapsed_time)
+
     return jsonify(student_list)
-
-
-@app.route("/api/details/<student>")
 @token_required
-def student_detail(current_user, student):
+def get_student_item_counts(current_user, student_id, item_type):
+    user_id = current_user.public_id
+    items = StudentItem.query.filter_by(user_id = user_id, student_id = student_id, item_type = item_type).all()
+    learned_count = 0
+    unlearned_count = 0
+    for item in items:
+        if item.Learned == True:
+            learned_count +=1
+        else: 
+            unlearned_count += 1 
+    
+    return [learned_count, unlearned_count]
+
+
+@app.route("/api/details/<student_id>")
+@token_required
+def student_detail(current_user, student_id):
     """Show student detail"""
-    print("current user", current_user, "student", student)
     start = time.time()
     user_id = current_user.public_id
     student_object = Student.query.filter_by(
-        student_id=student, user_id=user_id).first()
+        student_id=student_id, user_id=user_id).first()
     student_items = StudentItem.query.filter_by(
-        student_id=student).options(db.joinedload('items')).all()
+        student_id=student_id).options(db.joinedload('items')).all()
     student = {
         'student_id': student_object.student_id,
         'fname': student_object.fname,
@@ -401,6 +398,9 @@ def student_detail(current_user, student):
     unlearned_word_list = []
     unlearned_letter_list = []
     unlearned_sound_list = []
+    word_test = get_test_dates(student_id, "words")
+    letter_test = get_test_dates(student_id, "letters")
+    sound_test = get_test_dates(student_id, "sounds")
     student_object = {}
     for item in student_items:
         if item.item_type == "words":
@@ -441,14 +441,17 @@ def student_detail(current_user, student):
                     'item_id': item.items.item_id,
                     'item': item.items.item}
                 unlearned_sound_list.append(unlearned_sound)
+    
     student_object['student'] = student
     student_object['wordList'] = word_list
-    student_object['letterList'] = letter_list
-    student_object['soundList'] = sound_list
     student_object['unlearnedWordList'] = unlearned_word_list
+    student_object['lastWordTest'] = word_test
+    student_object['letterList'] = letter_list
     student_object['unlearnedLetterList'] = unlearned_letter_list
+    student_object['lastLetterTest'] = letter_test
+    student_object['soundList'] = sound_list
     student_object['unlearnedSoundList'] = unlearned_sound_list
-    print("student_object", student_object)
+    student_object['lastSoundTest'] = sound_test
     end = time.time()
     elapsed_time = end - start
     print('getting student detail took', elapsed_time)
@@ -538,7 +541,20 @@ def calculate_score(known_items, unknown_items):
     return score
 
 
-
+@app.route("/api/get-test-dates")
+@token_required
+def get_test_dates(current_user, student, test_type):
+    user_id = current_user.public_id
+    student_id = student 
+    test_type = test_type
+    test_dates = StudentTestResult.query.filter_by(user_id=user_id, student_id=student_id, test_type=test_type).all()
+    if test_dates != []:
+        most_recent = test_dates[-1].test_date
+        most_recent = most_recent.strftime("%m-%d-%Y")
+    else:
+        most_recent = "no tests yet!"
+    return most_recent
+    
 if __name__ == "__main__":
 
     app.debug = True

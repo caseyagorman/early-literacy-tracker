@@ -1,7 +1,7 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
 import StudentSnapshot from "./StudentSnapshot";
-import AssignItems from "../../containers/Forms/AssignItems";
+// import AssignItems from "../../containers/Forms/AssignItems";
 import BasicTablePage from "../Tables/BasicTablePage";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 const StudentDetailPage = props => (
@@ -49,9 +49,9 @@ const StudentDetailPage = props => (
       items={props.student.unlearnedSoundList}
     />
 
-    <AssignItems student={props.student} itemType={"words"} />
+    {/* <AssignItems student={props.student} itemType={"words"} />
     <AssignItems student={props.student} itemType={"letters"} />
-    <AssignItems student={props.student} itemType={"sounds"} />
+    <AssignItems student={props.student} itemType={"sounds"} /> */}
 
     <MainButton
       id="test-student-button"
