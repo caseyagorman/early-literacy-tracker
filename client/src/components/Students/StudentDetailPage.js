@@ -4,73 +4,97 @@ import StudentSnapshot from "./StudentSnapshot";
 // import AssignItems from "../../containers/Forms/AssignItems";
 import BasicTablePage from "../Tables/BasicTablePage";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
+import StudentDetailTable from "../Tables/StudentDetailTable";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
     <div className="display-student-name">
-      {props.student.student.fname}
-      <span />
-      {props.student.student.lname}
+      <h2>
+        {props.student.student.fname}
+        {"  "}
+        {props.student.student.lname}
+      </h2>
       <DeleteStudent student={props.student.student} />
     </div>
+    <div>
+      <MainButton
+        id="view-student-word-data-button"
+        text={"View Word Charts"}
+        route={`/word-data${props.student.student.student_id}`}
+      />
+      <MainButton
+        id="view-student-word-data-button"
+        text={"View Word Past Test Results"}
+        route={`/word-data${props.student.student.student_id}`}
+      />
+      <MainButton
+        id="view-student-letter-data-button"
+        text={"View Letter Charts"}
+        route={`/letter-data${props.student.student.student_id}`}
+      />
+      <MainButton
+        id="view-student-word-data-button"
+        text={"View Letter Past Test Results"}
+        route={`/word-data${props.student.student.student_id}`}
+      />
+      <MainButton
+        id="view-student-sound-data-button"
+        text={"View Sound Charts"}
+        route={`/sound-data${props.student.student.student_id}`}
+      />
+      <MainButton
+        id="view-student-sound-data-button"
+        text={"View Sound Past Test Results "}
+        route={`/sound-data${props.student.student.student_id}`}
+      />
+    </div>
+    <div>
+      <MainButton
+        id="test-student-button"
+        text={"Test Student Words"}
+        route={`/test-student/${props.student.student.student_id}`}
+        onClick={() => props.studentTestActions.beginTest("words")}
+      />
+      <MainButton
+        id="test-student-button"
+        text={"Test Student sLetters"}
+        route={`/test-student/${props.student.student.student_id}`}
+        onClick={() => props.studentTestActions.beginTest("letters")}
+      />
+      <MainButton
+        id="test-student-button"
+        text={"Test Student Sounds"}
+        route={`/test-student/${props.student.student.student_id}`}
+        onClick={() => props.studentTestActions.beginTest("sounds")}
+      />
+    </div>
 
-    <MainButton
-      id="view-student-word-data-button"
-      text={"View Word Data"}
-      route={`/word-data${props.student.student.student_id}`}
-    />
-    <MainButton
-      id="view-student-letter-data-button"
-      text={"View Letter Data"}
-      route={`/letter-data${props.student.student.student_id}`}
-    />
-    <MainButton
-      id="view-student-sound-data-button"
-      text={"View Sound Data"}
-      route={`/sound-data${props.student.student.student_id}`}
-    />
-    <MainButton
-      id="view-student-data-button"
-      text={"View All Student Data"}
-      route={`/student-data${props.student.student.student_id}`}
-    />
+    <StudentDetailTable
+      // token={props.token}
 
-    <StudentSnapshot />
-
-    <BasicTablePage
-      itemType={"words"}
+      student={props.student}
+    />
+    {/* <BasicTablePage
+      itemType={"unlearned words"}
       items={props.student.unlearnedWordList}
     />
+    <BasicTablePage itemType={"learned words"} items={props.student.wordList} />
     <BasicTablePage
-      itemType={"letters"}
+      itemType={"unlearned letters"}
       items={props.student.unlearnedLetterList}
     />
     <BasicTablePage
-      itemType={"sounds"}
+      itemType={"learned letters"}
+      items={props.student.letterList}
+    />
+    <BasicTablePage
+      itemType={"unlearned sounds"}
       items={props.student.unlearnedSoundList}
     />
-
-    {/* <AssignItems student={props.student} itemType={"words"} />
-    <AssignItems student={props.student} itemType={"letters"} />
-    <AssignItems student={props.student} itemType={"sounds"} /> */}
-
-    <MainButton
-      id="test-student-button"
-      text={"Test Student Words"}
-      route={`/test-student/${props.student.student.student_id}`}
-      onClick={() => props.studentTestActions.beginTest("words")}
-    />
-    <MainButton
-      id="test-student-button"
-      text={"Test Student sLetters"}
-      route={`/test-student/${props.student.student.student_id}`}
-      onClick={() => props.studentTestActions.beginTest("letters")}
-    />
-    <MainButton
-      id="test-student-button"
-      text={"Test Student Sounds"}
-      route={`/test-student/${props.student.student.student_id}`}
-      onClick={() => props.studentTestActions.beginTest("sounds")}
-    />
+    <BasicTablePage
+      itemType={"learned sounds"}
+      items={props.student.soundList}
+    /> */}
+    <StudentSnapshot student={props.student} />
   </div>
 );
 

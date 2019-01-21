@@ -15,6 +15,10 @@ class StudentDetail extends Component {
     this.props.studentActions.fetchStudent(studentId, user);
   }
   displayStudentDetailPage(student) {
+    if (!student) {
+      return <div>loading...</div>;
+    }
+    console.log("student detail", student);
     if (student.student === null) {
       return <div>loading...</div>;
     }

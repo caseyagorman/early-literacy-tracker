@@ -362,6 +362,7 @@ def get_students(current_user):
     print('getting all students took', elapsed_time)
 
     return jsonify(student_list)
+
 @token_required
 def get_student_item_counts(current_user, student_id, item_type):
     user_id = current_user.public_id
@@ -442,14 +443,32 @@ def student_detail(current_user, student_id):
                     'item_id': item.items.item_id,
                     'item': item.items.item}
                 unlearned_sound_list.append(unlearned_sound)
+    word_count = len(word_list)
+    unlearned_word_count = len(unlearned_word_list)
     
+    total_words = word_count + unlearned_word_count
+    letter_count = len(letter_list)
+    unlearned_letter_count = len(unlearned_letter_list)
+    total_letters = letter_count + unlearned_letter_count
+    sound_count = len(sound_list)
+    unlearned_sound_count = len(unlearned_sound_list)
+    total_sounds = sound_count + unlearned_sound_count
     student_object['student'] = student
+    student_object['wordCount'] = word_count
+    student_object['unlearnedWordCount'] = unlearned_word_count
+    student_object['totalWordCount'] = total_words
     student_object['wordList'] = word_list
     student_object['unlearnedWordList'] = unlearned_word_list
     student_object['lastWordTest'] = word_test
+    student_object['letterCount'] = letter_count
+    student_object['unlearnedLetterCount'] = unlearned_letter_count
+    student_object['totalLetterCount'] = total_letters
     student_object['letterList'] = letter_list
     student_object['unlearnedLetterList'] = unlearned_letter_list
     student_object['lastLetterTest'] = letter_test
+    student_object['soundCount'] = sound_count
+    student_object['unlearnedSoundCount'] = unlearned_sound_count
+    student_object['totalSoundCount'] = total_sounds
     student_object['soundList'] = sound_list
     student_object['unlearnedSoundList'] = unlearned_sound_list
     student_object['lastSoundTest'] = sound_test
