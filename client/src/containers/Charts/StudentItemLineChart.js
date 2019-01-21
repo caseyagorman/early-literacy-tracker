@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 
-class SoundLineChart extends Component {
+class ItemLineChart extends Component {
   getChartData(data) {
     if (!data) {
       return <div>loading...</div>;
     }
+
     let dates = [];
     let scores = [];
     for (let i = 0; i < data.length; i++) {
       scores.push(data[i].score);
-      dates.push(data[i].test_date);
+      dates.push(data[i].testDate);
     }
+
     return this.displayChartData(dates, scores);
   }
 
@@ -79,17 +81,12 @@ class SoundLineChart extends Component {
       ]
     };
 
-    return (
-      <div>
-        <h3>Student sound tests over time</h3>
-        <Line options={options} data={data} />
-      </div>
-    );
+    return <Line options={options} data={data} />;
   }
 
   render() {
-    return <div>{this.getChartData(this.props.tests)}</div>;
+    return this.getChartData(this.props.testResults);
   }
 }
 
-export default SoundLineChart;
+export default ItemLineChart;

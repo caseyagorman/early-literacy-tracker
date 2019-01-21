@@ -4,6 +4,8 @@ import * as testResultsActions from "../../redux/actions/testResultsActions";
 import React, { Component } from "react";
 import TestResultsTable from "../../components/Tables/TestResultsTable";
 import TableContainer from "../Tables/TableContainer";
+import StudentItemLineChart from "../Charts/StudentItemLineChart";
+import StudentTestResultsPage from "../../components/TestResults/StudentTestResultsPage";
 class StudentTestResults extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -12,22 +14,27 @@ class StudentTestResults extends Component {
     this.props.testResultsActions.fetchTestResults(user, itemType, id);
   }
 
-  displayTestResults(testResults) {
-    console.log("display test results", testResults);
+  displayTestResultsPage(testResults) {
     if (!testResults.itemCounts) {
       return <div>loading...</div>;
     }
     if (testResults.itemCounts) {
-      return (
+    }
+    const itemType = this.props.match.params.itemType;
+    return (
+      <div className="container">
+        <StudentTestResultsPage itemType={itemType} />
         <TableContainer
           renderTable={TestResultsTable}
           tableElements={testResults.studentTestList}
         />
-      );
-    }
+        <StudentItemLineChart testResults={testResults.studentTestList} />;
+      </div>
+    );
   }
+
   render() {
-    return this.displayTestResults(this.props.testResults);
+    return this.displayTestResultsPage(this.props.testResults);
   }
 }
 

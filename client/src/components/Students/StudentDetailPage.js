@@ -1,8 +1,6 @@
 import React from "react";
 import MainButton from "../Buttons/MainButton";
 import StudentSnapshot from "./StudentSnapshot";
-// import AssignItems from "../../containers/Forms/AssignItems";
-import BasicTablePage from "../Tables/BasicTablePage";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
 const StudentDetailPage = props => (

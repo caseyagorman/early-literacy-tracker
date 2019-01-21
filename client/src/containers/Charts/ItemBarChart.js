@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import "../../../../static/ChartStyle.css";
-class StudentLearnedLetterBarChart extends Component {
+class ItemBarChart extends Component {
   turnIntoArray(obj) {
     if (!obj) {
       return <p>Loading...</p>;
@@ -92,13 +92,8 @@ class StudentLearnedLetterBarChart extends Component {
     return <Bar data={data} options={options} />;
   }
   render() {
-    return (
-      <div id="chart-style">
-        <h2>Letters</h2>
-        <div className="container">{this.displayChart(this.props.data)}</div>
-      </div>
-    );
+    return this.displayChart(this.props.data);
   }
 }
 
-export default StudentLearnedLetterBarChart;
+export default ItemBarChart;
