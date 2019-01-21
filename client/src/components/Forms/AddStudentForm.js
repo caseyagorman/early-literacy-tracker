@@ -1,33 +1,25 @@
 import React from "react";
+import { Form, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 
 const AddStudentForm = props => (
-  <form onSubmit={props.handleSubmit}>
+  <Form onSubmit={props.handleSubmit}>
     <div className="container">
-      <label>
-        <h4>Add New Student</h4>
-      </label>
-
-      <label>First name</label>
-      <input
-        name="fname"
-        type="text"
-        value={props.value}
-        onChange={props.handleChange}
-      />
-
-      <label>Last name</label>
-      <input
-        name="lname"
-        type="text"
-        value={props.value}
-        onChange={props.handleChange}
-      />
+      <FormGroup controlId="formControlsTextarea">
+        <ControlLabel>Add Students</ControlLabel>
+        <FormControl
+          name="names"
+          componentClass="textarea"
+          placeholder="add names"
+          value={props.value}
+          onChange={props.handleChange}
+        />
+      </FormGroup>
     </div>
     <br />
     <div className="container">
-      <button id="add-student-button">Add student</button>
+      <button id="add-student-button">Add students</button>
     </div>
-  </form>
+  </Form>
 );
 
 export default AddStudentForm;

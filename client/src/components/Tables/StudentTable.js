@@ -13,7 +13,7 @@ const StudentTable = (students, onSort) => (
       </thead>
       <thead>
         <tr>
-          <th onClick={e => onSort(e, "fname")}>Name</th>
+          <th onClick={e => onSort(e, "name")}>Name</th>
           <th onClick={e => onSort(e, "links")}>Links</th>
           <th onClick={e => onSort(e, "wordCount")}>Words Learned</th>
           <th onClick={e => onSort(e, "lastWordTest")}>Last Word Test</th>
@@ -29,11 +29,7 @@ const StudentTable = (students, onSort) => (
             <tr key={student.student_id}>
               <td>
                 <Link to={`/details/${student.studentId}`} className="link">
-                  <h2 id="student-name-table-header">
-                    {student.fname}
-                    <span> </span>
-                    {student.lname}
-                  </h2>
+                  <h2 id="student-name-table-header">{student.name}</h2>
                 </Link>
                 <DeleteStudent student={student} />
               </td>

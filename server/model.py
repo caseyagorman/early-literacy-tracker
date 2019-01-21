@@ -40,8 +40,7 @@ class Student(db.Model):
         db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
-    fname = db.Column(db.String(64), nullable=False)
-    lname = db.Column(db.String(64), nullable=False)
+    name = db.Column(db.String(64), nullable=False)
     grade = db.Column(db.String(64), nullable=False)
 
     users = db.relationship(
@@ -51,7 +50,7 @@ class Student(db.Model):
     studenttestresults = db.relationship(
         'StudentTestResult', cascade="save-update, merge, delete")
     def __repr__(self):
-        return f"<Student student_id={self.student_id} first_name={self.fname} last_name={self.lname}>"
+        return f"<Student student_id={self.student_id} first_name={self.name}>"
 
 
 class Item(db.Model):

@@ -19,6 +19,9 @@ const AppNav = () => {
               <LinkContainer to="/students">
                 <MenuItem eventKey={3.1}>View Students</MenuItem>
               </LinkContainer>
+              <LinkContainer to="/add-student">
+                <MenuItem eventKey={3.1}>Add Students</MenuItem>
+              </LinkContainer>
               <LinkContainer to="/students">
                 <MenuItem eventKey={3.1}>Test Students</MenuItem>
               </LinkContainer>
@@ -30,7 +33,6 @@ const AppNav = () => {
                   View Student Letter Charts
                 </MenuItem>
               </LinkContainer>
-
               <LinkContainer to="/student-charts/sounds/">
                 <MenuItem eventKey={3.4} href="/student-charts/sounds/">
                   View Student Sound Charts
@@ -46,6 +48,9 @@ const AppNav = () => {
               <LinkContainer to="/item-charts/words/">
                 <MenuItem eventKey={3.2}>View Word Charts</MenuItem>
               </LinkContainer>
+              <LinkContainer to="/add-items/words/">
+                <MenuItem eventKey={3.2}>Add Words</MenuItem>
+              </LinkContainer>
             </NavDropdown>
           </NavItem>
           <NavItem id="Words" eventKey={2}>
@@ -56,6 +61,9 @@ const AppNav = () => {
               <LinkContainer to="/item-charts/letters/">
                 <MenuItem eventKey={3.2}>View Letter Charts</MenuItem>
               </LinkContainer>
+              <LinkContainer to="/add-items/letters/">
+                <MenuItem eventKey={3.2}>Add Letters</MenuItem>
+              </LinkContainer>
             </NavDropdown>
           </NavItem>
           <NavItem id="Words" eventKey={2}>
@@ -65,6 +73,9 @@ const AppNav = () => {
               </LinkContainer>
               <LinkContainer to="/item-charts/sounds/">
                 <MenuItem eventKey={3.2}>View Sound Charts</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/add-items/sounds/">
+                <MenuItem eventKey={3.2}>Add Sounds</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </NavItem>

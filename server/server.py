@@ -105,10 +105,10 @@ def get_item_student_list(item_object):
     for item in item_object.studentitems:
         if item.Learned == True:
             student = Student.query.filter_by(student_id=item.student_id).first()
-            student_list.append(student.fname + " " + student.lname)
+            student_list.append(student.name)
         else:
             student = Student.query.filter_by(student_id=item.student_id).first()
-            unlearned_student_list.append(student.fname + " " + student.lname)
+            unlearned_student_list.append(student.name)
     return [student_list, unlearned_student_list]
 
 
@@ -141,8 +141,8 @@ def item_detail(current_user, item_type, item):
         if student.Learned == False:
             student = {
                 'student_id': student.students.student_id,
-                'fname': student.students.fname,
-                'lname': student.students.lname,
+                'name': student.students.name,
+   
                 'learned': "no"
 
             }
@@ -151,8 +151,7 @@ def item_detail(current_user, item_type, item):
         else:
              student = {
                 'student_id': student.students.student_id,
-                'fname': student.students.fname,
-                'lname': student.students.lname,
+                'name': student.students.name,
                 'learned': "yes"
             }
 
@@ -162,7 +161,7 @@ def item_detail(current_user, item_type, item):
         'date': item_object.date_added,
         'itemType': item_object.item_type
     }
-    student_list = sorted(student_list, key=itemgetter('fname')) 
+    student_list = sorted(student_list, key=itemgetter('name')) 
     item_detail['studentList'] = student_list
     item_detail['item'] = item_object
     print("item detail", item_detail)
@@ -185,7 +184,7 @@ def get_unassigned_students_item(current_user, item):
     for student in unassigned_students:
         student = {
             'student_id': student.student_id,
-            'student': student.fname + " " + student.lname
+            'student': student.name 
             
         }
 
@@ -197,15 +196,32 @@ def get_unassigned_students_item(current_user, item):
 @app.route("/api/add-student", methods=['POST'])
 @token_required
 def add_student(current_user):
-    print("current user", current_user)
-    data = request.get_json()
-    fname = data.get('fname')
-    lname = data.get('lname')
     user_id = current_user.public_id
-    new_student = Student(user_id=user_id, fname=fname, lname=lname, grade="K")
-    db.session.add(new_student)
+    data = request.get_json()
+
+    names = data.get("names")
+    names = names.splitlines()
+    print(names)
+    print(type(names))
+
+    db.session.bulk_save_objects(
+        [
+            Student(
+                name=name,
+                user_id=user_id,
+                grade = "K"
+            )
+            for name in names
+        ]
+    )    
+
+    # print(db.session.bulk_save_objects)
     db.session.commit()
-    return 'student added!'
+    # user_id = current_user.public_id
+    # new_student = Student(user_id=user_id, name=name,  grade="K")
+    # db.session.add(new_student)
+    # db.session.commit()
+    return jsonify(data)
 
 @app.route("/api/delete-student", methods=['POST'])
 @token_required
@@ -364,8 +380,7 @@ def get_students(current_user):
         unlearned_sound_list = get_student_item_list(student, "sounds")[1]
         student = {
             'studentId': student.student_id,
-            'fname': student.fname,
-            'lname': student.lname,
+            'name': student.name,
             'wordCount': word_count,
             'wordList': word_list,
             'unlearnedWordList': unlearned_word_list,
@@ -436,8 +451,7 @@ def student_detail(current_user, student_id):
         student_id=student_id).options(db.joinedload('items')).all()
     student = {
         'student_id': student_object.student_id,
-        'fname': student_object.fname,
-        'lname': student_object.lname
+        'name': student_object.name
     }
     word_list = []
     letter_list = []

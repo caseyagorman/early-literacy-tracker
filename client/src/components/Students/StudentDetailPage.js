@@ -7,11 +7,7 @@ const StudentDetailPage = props => (
   <div className="student-detail-page">
     <div className="container">
       <div className="display-student-name">
-        <h2>
-          {props.student.student.fname}
-          {"  "}
-          {props.student.student.lname}
-        </h2>
+        <h2>{props.student.student.name}</h2>
         <DeleteStudent student={props.student.student} />
       </div>
       <div>
@@ -46,19 +42,19 @@ const StudentDetailPage = props => (
       <div>
         <MainButton
           id="test-student-button"
-          text={`Test ${props.student.student.fname}'s Words`}
+          text={`Test ${props.student.student.name}'s Words`}
           route={`/test-student/${props.student.student.student_id}`}
           onClick={() => props.studentTestActions.beginTest("words")}
         />
         <MainButton
           id="test-student-button"
-          text={`Test ${props.student.student.fname}'s Letters`}
+          text={`Test ${props.student.student.name}'s Letters`}
           route={`/test-student/${props.student.student.student_id}`}
           onClick={() => props.studentTestActions.beginTest("letters")}
         />
         <MainButton
           id="test-student-button"
-          text={`Test ${props.student.student.fname}'s Sounds`}
+          text={`Test ${props.student.student.name}'s Sounds`}
           route={`/test-student/${props.student.student.student_id}`}
           onClick={() => props.studentTestActions.beginTest("sounds")}
         />

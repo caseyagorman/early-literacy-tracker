@@ -6,7 +6,7 @@ const AssignItemsForm = props => (
     <FormGroup controlId="formControlsSelectMultiple">
       <ControlLabel>
         <h3>
-          Assign {props.itemType} to {props.student.fname}
+          Assign {props.itemType} to {props.student.name}
         </h3>
         <p>Press shift and click to add multiple {props.itemType} </p>
       </ControlLabel>
