@@ -75,24 +75,6 @@ def login():
         return jsonify({'error': 'incorrect password'})
 
 
-@app.route("/api/words")
-@token_required
-def get_words(current_user):
-    user_id = current_user.public_id
-    items = Item.query.filter_by(user_id=user_id).filter_by(item_type="words").options(
-        db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="words").all()
-    item_list =[]
-    for item in items:
-        word = {
-            'item_id': item.item_id,
-            'item': item.item
-            }
-        item_list.append(word)
-    return jsonify({
-        "items": item_list
-        })
-
-
 @app.route("/api/items/<item_type>")
 @token_required
 def get_items(current_user, item_type):
@@ -101,34 +83,47 @@ def get_items(current_user, item_type):
     db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type=item_type).all()
     item_list =[]
     for item in items:
-        letter = {
+        count = get_item_student_counts(item)
+        unlearned_count = get_unlearned_item_student_counts(item)
+        student_list = get_item_student_list(item)[0]
+        unlearned_student_list = get_item_student_list(item)[1]
+        item = {
             'item_id': item.item_id,
-            'item': item.item
+            'item': item.item,
+            'count': count,
+            'unlearned_count': unlearned_count,
+            'students': student_list,
+            'unlearned_students':unlearned_student_list
         }
-        item_list.append(letter)
-    item_type = "letters"
+        item_list.append(item)
     return jsonify({
         "items": item_list
         })
+def get_item_student_list(item_object):
+    student_list = []
+    unlearned_student_list =[]
+    for item in item_object.studentitems:
+        if item.Learned == True:
+            student = Student.query.filter_by(student_id=item.student_id).first()
+            student_list.append(student.fname + " " + student.lname)
+        else:
+            student = Student.query.filter_by(student_id=item.student_id).first()
+            unlearned_student_list.append(student.fname + " " + student.lname)
+    return [student_list, unlearned_student_list]
 
-@app.route("/api/sounds")
-@token_required
-def get_sounds(current_user):
-    user_id = current_user.public_id
-    items = Item.query.filter_by(user_id=user_id).filter_by(item_type="sounds").options(
-        db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="sounds").all()
-    print("items", items)
-    item_list =[]
-    for item in items:
-        sound = {
-            'item_id': item.item_id,
-            'item': item.item
-        }
-        item_list.append(sound)
-    item_type = "sounds"
-    return jsonify({
-        "items": item_list
-        })
+
+def get_item_student_counts(item):
+    item_id = item.item_id
+    items = StudentItem.query.filter(StudentItem.item_id == item_id).filter(
+        StudentItem.Learned == True).all()
+    return len(items)
+
+def get_unlearned_item_student_counts(item):
+    item_id = item.item_id
+    items = StudentItem.query.filter(StudentItem.item_id == item_id).filter(
+        StudentItem.Learned == False).all()
+    return len(items)
+
  
 @app.route("/api/item-detail/<item_type>/<item>")
 @token_required
@@ -333,7 +328,7 @@ def get_students(current_user):
     student_list = []
     for student in students:
         last_word_test = get_test_dates(student.student_id, "words")
-        last_letter_test = get_test_dates(student.student_id, "letters")
+        last_item_test = get_test_dates(student.student_id, "letters")
         last_sound_test = get_test_dates(student.student_id, "sounds")
         word_count = get_student_item_counts(student.student_id, "words")[0]
         total_word_count = get_student_item_counts(student.student_id, "words")[1]

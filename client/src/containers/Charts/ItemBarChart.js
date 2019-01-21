@@ -10,9 +10,9 @@ class ItemBarChart extends Component {
     let studentList = [];
     let itemList = [];
     for (let item in obj) {
-      itemCounts.push(obj[item].letter_count);
+      itemCounts.push(obj[item].item_count);
       studentList.push(obj[item].fname);
-      itemCounts.push(obj[item].letter_list);
+      itemCounts.push(obj[item].item_list);
     }
     return [itemCounts, studentList, itemList];
   }
@@ -32,7 +32,7 @@ class ItemBarChart extends Component {
         callbacks: {
           label: function(tooltipItem, data) {
             const indice = tooltipItem.index;
-            return letterList[indice];
+            return itemList[indice];
           }
         }
       },
@@ -85,7 +85,7 @@ class ItemBarChart extends Component {
           borderWidth: 1,
           hoverBackgroundColor: "#008000",
           hoverBorderColor: "#008000",
-          data: letterCounts
+          data: itemCounts
         }
       ]
     };
