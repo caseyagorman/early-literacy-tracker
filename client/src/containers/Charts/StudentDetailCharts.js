@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentActions from "../../redux/actions/studentActions";
 import StudentItemDoughnutChart from "./StudentItemDoughnutChart";
-import StudentItemLineChart from "./StudentItemLineChart";
 
 class StudentDetailCharts extends Component {
   componentDidMount() {
@@ -31,18 +30,6 @@ class StudentDetailCharts extends Component {
     );
   }
 
-  displayLineChart(student) {
-    if (!student) {
-      return <div>loading...</div>;
-    }
-
-    return (
-      <StudentItemLineChart
-        student={student}
-        itemType={this.props.match.params.itemType}
-      />
-    );
-  }
   render() {
     return this.displayDoughnutChart(this.props.student);
   }

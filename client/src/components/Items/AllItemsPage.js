@@ -14,12 +14,20 @@ const AllItemsPage = props => (
       reports.
     </div>
     <br />
-    <MainButton route={props.route} text={props.text} />
+    <MainButton
+      route={`/add-${props.itemType}`}
+      text={`Add ${props.itemType.charAt(0).toUpperCase() +
+        props.itemType.slice(1)}`}
+    />
+    <MainButton
+      route={`/item-charts/${props.itemType}`}
+      text={`View ${props.itemType.charAt(0).toUpperCase() +
+        props.itemType.slice(1)} Charts`}
+    />
     <TableContainer
-      // token={props.token}
       renderTable={ItemsTable}
       tableElements={props.items.items}
-      route={props.route}
+      route={`/add-${props.itemType}`}
       itemType={props.itemType}
     />
   </div>

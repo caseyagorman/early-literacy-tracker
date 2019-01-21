@@ -18,15 +18,8 @@ class AllItems extends React.Component {
     if (!items) {
       return <p>loading...</p>;
     }
-    let route = `/add-${this.props.match.params.itemType}`;
-    let text = `Add ${this.props.match.params.itemType}`;
     return (
-      <AllItemsPage
-        items={items}
-        itemType={this.props.match.params.itemType}
-        route={route}
-        text={text}
-      />
+      <AllItemsPage items={items} itemType={this.props.match.params.itemType} />
     );
   }
 
