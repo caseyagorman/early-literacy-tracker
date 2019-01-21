@@ -1,38 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as studentActions from "../../redux/actions/studentActions";
-import StudentBarChart from "./StudentBarChart";
+import * as studentsActions from "../../redux/actions/studentsActions";
+import StudentChartPage from "../../components/Charts/StudentChartPage";
 
 class StudentCharts extends Component {
   componentDidMount() {
-    let studentId = this.props.match.params.id;
-    if (!studentId) {
-      return <div>loading...</div>;
-    }
+    console.log("student charts", this.props);
     const user = this.props.auth.user.token;
     this.props.studentsActions.fetchStudents(user);
   }
 
-  displayBarChart(students) {
+  displayStudentChartPage(students) {
+    console.log("display student chart page", students);
     if (!students) {
       return <div>loading...</div>;
     }
-    return (
-      <b>
-        <StudentBarChart students={students} />
-      </b>
-    );
+    let itemType = this.props.match.params.itemType;
+    return <StudentChartPage students={students} itemType={itemType} />;
   }
 
   render() {
-    return this.displayBarChart(this.props.students);
+    return this.displayStudentChartPage(this.props.students);
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentActions: bindActionCreators(studentActions, dispatch)
+    studentsActions: bindActionCreators(studentsActions, dispatch)
   };
 }
 

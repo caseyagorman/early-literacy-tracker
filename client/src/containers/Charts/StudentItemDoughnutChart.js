@@ -12,6 +12,7 @@ class StudentItemDoughnutChart extends Component {
     if (!student) {
       return <div> loading...</div>;
     }
+    console.log("student", student);
 
     const itemsDict = {
       words: {

@@ -50,7 +50,7 @@ const AppNav = () => {
           </NavItem>
           <NavItem id="Words" eventKey={2}>
             <NavDropdown eventKey={3} title="Letters" id="basic-nav-dropdown">
-              <LinkContainer to="/items/words/">
+              <LinkContainer to="/items/letters/">
                 <MenuItem eventKey={3.1}>View Letters</MenuItem>
               </LinkContainer>
               <LinkContainer to="/item-charts/letters/">
@@ -60,7 +60,7 @@ const AppNav = () => {
           </NavItem>
           <NavItem id="Words" eventKey={2}>
             <NavDropdown eventKey={3} title="Sounds" id="basic-nav-dropdown">
-              <LinkContainer to="/items/words/">
+              <LinkContainer to="/items/sounds/">
                 <MenuItem eventKey={3.1}>View Sounds</MenuItem>
               </LinkContainer>
               <LinkContainer to="/item-charts/sounds/">

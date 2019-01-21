@@ -17,7 +17,7 @@ class AddItem extends Component {
     event.target.reset();
     const user = this.props.auth.user.token;
     const item = this.state.newItem;
-    const itemType = this.props.itemType;
+    const itemType = this.props.match.params.itemType;
     this.props.itemsActions.addItem(item, user, itemType);
   }
   handleChange(event) {
@@ -27,6 +27,7 @@ class AddItem extends Component {
   render() {
     return (
       <AddItemsForm
+        itemType={this.props.match.params.itemType}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         type={this.props.itemType}

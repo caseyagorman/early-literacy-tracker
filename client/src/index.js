@@ -63,11 +63,7 @@ const AppRouter = () => (
       />
       <Route
         path="/add-items/:itemType"
-        component={userIsAuthenticated(
-          AddPropsToRoute(AddItems, {
-            itemType: "letters"
-          })
-        )}
+        component={userIsAuthenticated(AddItems)}
       />
       <Route
         path="/details/:id"

@@ -237,8 +237,10 @@ def delete_item(current_user):
 @token_required
 def add_item(current_user):
     data = request.get_json()
+    print("data", data)
     items = data['item']
     item_type = data['itemType']
+
     user_id = current_user.public_id
     table = str.maketrans({key: None for key in string.punctuation})
     new_string = items.translate(table) 
@@ -346,24 +348,42 @@ def get_students(current_user):
         last_letter_test = get_test_dates(student.student_id, "letters")
         last_sound_test = get_test_dates(student.student_id, "sounds")
         word_count = get_student_item_counts(student.student_id, "words")[0]
-        total_word_count = get_student_item_counts(student.student_id, "words")[1]
+        unlearned_word_count = get_student_item_counts(student.student_id, "words")[1]
+        total_word_count = get_student_item_counts(student.student_id, "words")[2]
         letter_count = get_student_item_counts(student.student_id, "letters")[0]
-        total_letter_count = get_student_item_counts(student.student_id, "letters")[1]
+        unlearned_letter_count = get_student_item_counts(student.student_id, "letters")[1]
+        total_letter_count = get_student_item_counts(student.student_id, "letters")[2]
         sound_count = get_student_item_counts(student.student_id, "sounds")[0]
-        total_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
+        unlearned_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
+        total_sound_count = get_student_item_counts(student.student_id, "sounds")[2]
+        word_list = get_student_item_list(student, "words")[0]
+        unlearned_word_list = get_student_item_list(student, "words")[1]
+        letter_list = get_student_item_list(student, "letters")[0]
+        unlearned_letter_list = get_student_item_list(student, "letters")[1]
+        sound_list = get_student_item_list(student, "sounds")[0]
+        unlearned_sound_list = get_student_item_list(student, "sounds")[1]
         student = {
-            'student_id': student.student_id,
+            'studentId': student.student_id,
             'fname': student.fname,
             'lname': student.lname,
-            'word_count': word_count,
-            'total_word_count': total_word_count,
-            'last_word_test': last_word_test,
-            'letter_count': letter_count,
-            'total_letter_count': total_letter_count,
-            'last_letter_test': last_letter_test,
-            'sound_count': sound_count,
-            'total_sound_count': total_sound_count,
-            'last_sound_test': last_sound_test
+            'wordCount': word_count,
+            'wordList': word_list,
+            'unlearnedWordList': unlearned_word_list,
+            'totalWordCount': total_word_count,
+            'unlearnedWordCount': unlearned_word_count,
+            'lastWordTest': last_word_test,
+            'letterCount': letter_count,
+            'unlearnedLetterCount': unlearned_letter_count,
+            'letterList': letter_list,
+            'unlearnedLetterList': unlearned_letter_list,
+            'totalLetterCount': total_letter_count,
+            'lastLetterTest': last_letter_test,
+            'soundCount': sound_count,
+            'unlearnedSoundCount': unlearned_sound_count,
+            'soundList': sound_list,
+            'unlearnedSoundList': unlearned_sound_list,
+            'totalSoundCount': total_sound_count,
+            'lastSoundTest': last_sound_test
         }
         student_list.append(student)
     end = time.time()
@@ -378,15 +398,30 @@ def get_student_item_counts(current_user, student_id, item_type):
     user_id = current_user.public_id
     items = StudentItem.query.filter_by(user_id = user_id, student_id = student_id, item_type = item_type).all()
     learned_count = 0
-    total_count = 1
+    unlearned_count = 0
+    total_count = 0
     for item in items:
         if item.Learned == True:
             learned_count +=1
             total_count += 1
         else: 
+            unlearned_count += 1
             total_count += 1 
     
-    return [learned_count, total_count]
+    return [learned_count, unlearned_count, total_count]
+
+def get_student_item_list(student, item_type):
+    student_id = student.student_id
+    items = StudentItem.query.filter(StudentItem.student_id == student_id).filter_by(item_type=item_type).options(db.joinedload('items')).filter_by(item_type=item_type).all()
+    item_list = []
+    unleared_item_list = []
+    for item in items:
+        if item.Learned == True:
+            item_list.append(item.items.item)
+        else: 
+            unleared_item_list.append(item.items.item)
+
+    return [item_list, unleared_item_list]
 
 
 @app.route("/api/details/<student_id>")

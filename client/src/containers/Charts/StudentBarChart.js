@@ -8,18 +8,60 @@ class StudentBarChart extends Component {
     let itemCounts = [];
     let studentList = [];
     let itemList = [];
-    for (let item in obj) {
-      itemCounts.push(obj[item].item_count);
-      studentList.push(obj[item].fname);
-      itemCounts.push(obj[item].item_list);
+    const itemsDict = {
+      words: {
+        unlearnedItemList: "unlearnedWordList",
+        itemList: "wordList",
+        learnedCount: "wordCount",
+        unlearnedCount: "unlearnedWordCount"
+      },
+      letters: {
+        unlearnedItemList: "unlearnedLetterList",
+        itemList: "letterList",
+        learnedCount: "letterCount",
+        unlearnedCount: "unlearnedLetterCount"
+      },
+      sounds: {
+        unlearnedItemList: "unlearnedSoundList",
+        itemList: "letterList",
+        learnedCount: "soundCount",
+        unlearnedCount: "unlearnedLetterCount"
+      }
+    };
+    let itemType = this.props.itemType;
+    const itemsKey = itemsDict[itemType];
+    for (let student in obj) {
+      if (this.props.chartType === "learned") {
+        let item = obj[student];
+        itemCounts.push(item[itemsKey.learnedCount]);
+        studentList.push(item.fname);
+        itemList.push(item[itemsKey.itemList]);
+      } else if (this.props.chartType === "unlearned") {
+        let item = obj[student];
+        itemCounts.push(item[itemsKey.unlearnedCount]);
+        studentList.push(item.fname);
+        itemList.push(item[itemsKey.unlearnedItemList]);
+      }
+
+      return [itemCounts, studentList, itemList];
     }
-    return [itemCounts, studentList, itemList];
+  }
+
+  getChartColor() {
+    if (this.props.chartType === "learned") {
+      let chartColor = "#008000";
+      return chartColor;
+    } else {
+      let chartColor = "#ff3333";
+      return chartColor;
+    }
   }
 
   displayChart(dataResults) {
     if (!dataResults) {
       return <div> loading...</div>;
     }
+    console.log("dataResults", dataResults);
     let items = this.turnIntoArray(dataResults);
 
     let itemCounts = items[0];
@@ -29,7 +71,7 @@ class StudentBarChart extends Component {
     let options = {
       tooltips: {
         callbacks: {
-          label: function(tooltipItem, data) {
+          label: function(tooltipItem) {
             const indice = tooltipItem.index;
             return itemList[indice];
           }
@@ -38,7 +80,7 @@ class StudentBarChart extends Component {
 
       responsive: true,
 
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
       aspectRatio: 1,
       scales: {
         lable: [
@@ -79,11 +121,11 @@ class StudentBarChart extends Component {
         {
           label: "Students",
 
-          backgroundColor: "#008000",
-          borderColor: "#008000",
+          backgroundColor: this.getChartColor(),
+          borderColor: this.getChartColor(),
           borderWidth: 1,
-          hoverBackgroundColor: "#008000",
-          hoverBorderColor: "#008000",
+          hoverBackgroundColor: this.getChartColor(),
+          hoverBorderColor: this.getChartColor(),
           data: itemCounts
         }
       ]
@@ -91,7 +133,7 @@ class StudentBarChart extends Component {
     return <Bar data={data} options={options} />;
   }
   render() {
-    return this.displayChart(this.props.data);
+    return this.displayChart(this.props.students);
   }
 }
 

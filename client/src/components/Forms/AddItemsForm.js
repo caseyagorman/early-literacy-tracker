@@ -3,7 +3,7 @@ const AddItemsForm = props => (
   <form onSubmit={props.handleSubmit}>
     <div className="container">
       <label>
-        <h4>Add New {props.type.toUpperCase()}:</h4>
+        <h4>Add New {props.itemType.toUpperCase()}:</h4>
         <p>You may add multiple {props.type}s separated by space</p>
       </label>
       <input
@@ -15,7 +15,7 @@ const AddItemsForm = props => (
     </div>
     <br />
     <div className="container">
-      <button id="add-word-button">Add {props.type.toUpperCase()}</button>
+      <button id="add-word-button">Add {props.itemType.toUpperCase()}</button>
     </div>
   </form>
 );

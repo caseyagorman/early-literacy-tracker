@@ -11,8 +11,7 @@ export default {
     loginError: false
   },
   students: {
-    students: [],
-    fetchingStudents: false
+    students: null
   },
   items: {
     items: null

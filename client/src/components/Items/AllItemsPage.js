@@ -15,7 +15,7 @@ const AllItemsPage = props => (
     </div>
     <br />
     <MainButton
-      route={`/add-${props.itemType}`}
+      route={`/add-items/${props.itemType}`}
       text={`Add ${props.itemType.charAt(0).toUpperCase() +
         props.itemType.slice(1)}`}
     />
@@ -27,7 +27,7 @@ const AllItemsPage = props => (
     <TableContainer
       renderTable={ItemsTable}
       tableElements={props.items}
-      route={`/add-${props.itemType}`}
+      route={`/add-items/${props.itemType}`}
       itemType={props.itemType}
     />
   </div>

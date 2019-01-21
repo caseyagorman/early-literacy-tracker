@@ -4,6 +4,7 @@ import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import { Table } from "react-bootstrap";
 const StudentTable = (students, onSort) => (
   <div className="student-table">
+    {console.log("students table", students)}
     <Table>
       <thead>
         <tr>
@@ -14,12 +15,12 @@ const StudentTable = (students, onSort) => (
         <tr>
           <th onClick={e => onSort(e, "fname")}>Name</th>
           <th onClick={e => onSort(e, "links")}>Links</th>
-          <th onClick={e => onSort(e, "word_count")}>Words Learned</th>
-          <th onClick={e => onSort(e, "last_word_test")}>Last Word Test</th>
-          <th onClick={e => onSort(e, "letter_count")}>Letters Learned</th>
-          <th onClick={e => onSort(e, "last_letter_test")}>Last Letter Test</th>
-          <th onClick={e => onSort(e, "sound_count")}>Sounds Learned</th>
-          <th onClick={e => onSort(e, "last_sound_test")}>Last Sound Test</th>
+          <th onClick={e => onSort(e, "wordCount")}>Words Learned</th>
+          <th onClick={e => onSort(e, "lastWordTest")}>Last Word Test</th>
+          <th onClick={e => onSort(e, "letterCount")}>Letters Learned</th>
+          <th onClick={e => onSort(e, "lastLetterTest")}>Last Letter Test</th>
+          <th onClick={e => onSort(e, "soundCount")}>Sounds Learned</th>
+          <th onClick={e => onSort(e, "lastSoundTest")}>Last Sound Test</th>
         </tr>
       </thead>
       <tbody>
@@ -27,7 +28,7 @@ const StudentTable = (students, onSort) => (
           return (
             <tr key={student.student_id}>
               <td>
-                <Link to={`/details/${student.student_id}`} className="link">
+                <Link to={`/details/${student.studentId}`} className="link">
                   <h2 id="student-name-table-header">
                     {student.fname}
                     <span> </span>
@@ -38,17 +39,17 @@ const StudentTable = (students, onSort) => (
               </td>
               <td>Link here</td>
               <td>
-                {student.word_count}/{student.total_word_count}
+                {student.wordCount}/{student.totalWordCount}
               </td>
-              <td> {student.last_word_test}</td>
+              <td> {student.lastWordTest}</td>
               <td>
-                {student.letter_count}/{student.total_letter_count}
+                {student.letterCount}/{student.totalLetterCount}
               </td>
-              <td> {student.last_letter_test}</td>
+              <td> {student.lastLetterTest}</td>
               <td>
-                {student.sound_count}/{student.total_sound_count}
+                {student.soundCount}/{student.totalSoundCount}
               </td>
-              <td> {student.last_sound_test}</td>
+              <td> {student.lastSoundTest}</td>
             </tr>
           );
         })}

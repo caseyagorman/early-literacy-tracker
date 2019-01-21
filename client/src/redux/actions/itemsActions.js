@@ -85,6 +85,7 @@ export function fetchItem(id, itemType, user) {
   };
 }
 export function addItem(item, user, itemType) {
+  console.log(item, user, itemType);
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",

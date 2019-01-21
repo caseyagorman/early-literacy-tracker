@@ -15,6 +15,9 @@ class AllStudents extends Component {
     if (!token || !students) {
       return <div>loading...</div>;
     }
+    if (students.students === null) {
+      return <div>loading...</div>;
+    }
     return <AllStudentsPage token={token} students={students.students} />;
   }
 
