@@ -9,7 +9,7 @@ import item from "./itemReducer";
 import studentTest from "./studentTestReducer";
 import studentUnassignedItems from "./studentUnassignedItemsReducer";
 import itemUnassignedStudents from "./itemUnassignedStudentsReducer";
-
+import testResults from "./testResultsReducers";
 const rootReducer = combineReducers({
   registerUser,
   auth,
@@ -20,7 +20,8 @@ const rootReducer = combineReducers({
   studentItems,
   studentUnassignedItems,
   itemUnassignedStudents,
-  studentTest
+  studentTest,
+  testResults
 });
 
 export default rootReducer;

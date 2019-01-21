@@ -39,5 +39,6 @@ export default {
     testType: "",
     testItems: [],
     submittingTest: false
-  }
+  },
+  testResults: {}
 };

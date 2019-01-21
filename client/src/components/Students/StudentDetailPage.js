@@ -26,27 +26,23 @@ const StudentDetailPage = props => (
         <MainButton
           id="view-student-word-data-button"
           text={"View Word Past Test Results"}
-          route={`/word-data${props.student.student.student_id}`}
+          route={`/student-test-results/words/${
+            props.student.student.student_id
+          }/`}
         />
         <MainButton
           id="view-student-letter-data-button"
           text={"View Letter Charts"}
-          route={`/letter-data${props.student.student.student_id}`}
+          route={`/student-test-results/letters/${
+            props.student.student.student_id
+          }/`}
         />
         <MainButton
           id="view-student-word-data-button"
           text={"View Letter Past Test Results"}
-          route={`/word-data${props.student.student.student_id}`}
-        />
-        <MainButton
-          id="view-student-sound-data-button"
-          text={"View Sound Charts"}
-          route={`/sound-data${props.student.student.student_id}`}
-        />
-        <MainButton
-          id="view-student-sound-data-button"
-          text={"View Sound Past Test Results "}
-          route={`/sound-data${props.student.student.student_id}`}
+          route={`/student-test-results/sounds/${
+            props.student.student.student_id
+          }/`}
         />
       </div>
       <div>

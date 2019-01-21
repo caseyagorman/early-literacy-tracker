@@ -575,6 +575,61 @@ def get_test_dates(current_user, student, test_type):
         most_recent = "no tests yet!"
     return most_recent
 
+@app.route("/api/get-student-item-test/<item_type>/<student>")
+@token_required
+def get_student_item_test(current_user, item_type, student):
+    """get list of student test results, word_counts and chart_data"""
+
+    user_id = current_user.public_id
+    student_id = student
+    student_items = StudentItem.query.filter_by(
+        user_id=user_id, student_id=student_id, item_type=item_type).options(db.joinedload('items')).options(db.joinedload('students')).all()
+    student_tests = StudentTestResult.query.filter_by(
+        student_id=student_id, user_id=user_id, test_type=item_type).all()
+    item_counts = get_item_counts(student_items)
+    student_test_list = get_student_item_test_list(student_tests)
+    learned_items_list = get_learned_items_list(student_items)
+    test_data = {'itemCounts': item_counts, 'studentTestList':student_test_list, 'learnedItemList': learned_item_list
+    }
+    return jsonify()
+
+def get_item_counts(student_items):
+    """is called by get student test, returns word, times read correctly,times read incorrectly """
+    item_counts = []
+    for student_item in student_items:
+        count = {
+            "item": student_item.items.item,
+            "correctCount": student_item.correct_count,
+            "incorrectCount": student_item.incorrect_count
+        }
+        item_counts.append(count)
+
+    return item_counts
+
+def get_learned_items_list(student_items):
+    """is called by get student test, returns list of learned items"""
+    learned_items = []
+    for student_item in student_items:
+        if student_item.Learned == True:
+            learned_items.append(student_item.items.item)
+    return learned_items
+
+
+def get_student_item_test_list(student_test):
+    """is called by get_student_item_test, returns list of student tests"""
+    student_test_list = []
+    for student in student_test:
+        test_date = student.test_date.strftime('%m-%d-%Y')
+        student_test_object = {
+            'studentId': student.student_id,
+            'score': student.score,
+            'testDate': test_date,
+            'correctItems': student.correct_items,
+            'incorrectItems': student.incorrect_items
+        }
+        student_test_list.append(student_test_object)
+    return student_test_list
+
 # @app.route("/api//student-item-charts/<item_type>/<student>")
 # @token_required
 # def get_unknown_words_chart(current_user, item_type, student):

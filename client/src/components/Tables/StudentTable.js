@@ -42,11 +42,11 @@ const StudentTable = (students, onSort) => (
               </td>
               <td> {student.last_word_test}</td>
               <td>
-                {student.letter_count}/{student.letter_word_count}
+                {student.letter_count}/{student.total_letter_count}
               </td>
               <td> {student.last_letter_test}</td>
               <td>
-                {student.sound_count}/{student.sound_word_count}
+                {student.sound_count}/{student.total_sound_count}
               </td>
               <td> {student.last_sound_test}</td>
             </tr>
