@@ -16,7 +16,7 @@ const AllItemsPage = props => (
     <br />
     <MainButton route={props.route} text={props.text} />
     <TableContainer
-      token={props.token}
+      // token={props.token}
       renderTable={ItemsTable}
       tableElements={props.items.items}
       route={props.route}

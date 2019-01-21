@@ -22,12 +22,18 @@ const AllStudentsPage = props => (
       />
       <MainButton
         id="students-button-view-charts"
-        text={"View Charts"}
+        text={"View Student Word Charts"}
         route={`/student-charts`}
       />
       <MainButton
         id="students-button-view-data"
-        text={"View Past Test Results"}
+        text={"View Student Letter Charts"}
+        route={`/student-data`}
+      />
+
+      <MainButton
+        id="students-button-view-data"
+        text={"View Student Sound Charts"}
         route={`/student-data`}
       />
     </div>
