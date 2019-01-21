@@ -1,7 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-const listElements = el => <li>{el}</li>;
-
+import { Link } from "react-router-dom";
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered>
@@ -33,39 +32,67 @@ const StudentDetailTable = student => (
           <td>
             {student.student.wordCount}/{student.student.totalWordCount}
           </td>
-          <td>{student.student.wordList}</td>
-          <td />
           <td>
-            this thingy !
-            {/* <ul>{student.student.wordList.map(listElements)}</ul> */}
-          </td>
-          <td>
-            unlearned words
-            {console.log(student.student.unlearnedWordList)}
             <ul>
-              {student.student.unlearnedWordList.map(item => (
-                <li>{item.item}</li>
+              {student.student.wordList.map(item => (
+                <Link to={`/item-detail/words/${item.item_id}`}>
+                  <li>{item.item}</li>{" "}
+                </Link>
               ))}
             </ul>
           </td>
           <td>
-            {/* {student.student.letterCount}/{student.student.totalLetterCount} */}
+            <ul>
+              {student.student.unlearnedWordList.map(item => (
+                <Link to={`/item-detail/words/${item.item_id}`}>
+                  <li>{item.item}</li>{" "}
+                </Link>
+              ))}
+            </ul>
+          </td>
+          <td>{student.student.lastWordTest}</td>
+          <td>
+            {student.student.letterCount}/{student.student.totalLetterCount}
           </td>
           <td>
-            {/* <ul>{student.student.letterList.map(listElements)}</ul> */}
+            <ul>
+              {student.student.unlearnedLetterList.map(item => (
+                <Link to={`/item-detail/letters/${item.item_id}`}>
+                  <li>{item.item}</li>{" "}
+                </Link>
+              ))}
+            </ul>
           </td>
           <td>
-            {/* <ul>{student.student.unlearnedLetterList.map(listElements)}</ul> */}
+            <ul>
+              {student.student.letterList.map(item => (
+                <Link to={`/item-detail/letters/${item.item_id}`}>
+                  <li>{item.item}</li>{" "}
+                </Link>
+              ))}
+            </ul>
           </td>
           <td>{student.student.lastLetterTest} </td>
           <td>
             {student.student.soundCount}/{student.student.totalSoundCount}
           </td>
           <td>
-            {/* <ul>{student.student.soundList.map(listElements)}</ul> */}
+            <ul>
+              {student.student.unlearnedSoundList.map(item => (
+                <Link to={`/item-detail/sounds/${item.item_id}`}>
+                  <li>{item.item}</li>{" "}
+                </Link>
+              ))}
+            </ul>
           </td>
           <td>
-            {/* <ul>{student.student.unlearnedSoundList.map(listElements)}</ul> */}
+            <ul>
+              {student.student.soundList.map(item => (
+                <Link to={`/item-detail/sounds/${item.item_id}`}>
+                  <li>{item.item}</li>{" "}
+                </Link>
+              ))}
+            </ul>
           </td>
           <td>{student.student.lastSoundTest} </td>
         </tr>

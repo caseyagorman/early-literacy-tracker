@@ -574,7 +574,31 @@ def get_test_dates(current_user, student, test_type):
     else:
         most_recent = "no tests yet!"
     return most_recent
-    
+
+# @app.route("/api//student-item-charts/<item_type>/<student>")
+# @token_required
+# def get_unknown_words_chart(current_user, item_type, student):
+#     """gets words that student does not know and are not in current word list, words can then be added to students word list"""
+#     user_id = current_user.public_id
+#     item_type = item_type
+#     items = StudentItem.query.filter_by(
+#         student_id=student, user_id=user_id, item_type=item_type).options(db.joinedload('items')).all()
+#     item_ids = []
+
+#     for item in items:
+#         item_ids.append(item.item_id)
+
+#     unlearned_items = Item.query.filter_by(user_id=user_id).filter(Item.item_id.notin_(item_ids)).all()
+#     item_list = []
+
+#     for item in unknown_items:
+#         item = {
+#             'item_id': item.item_id,
+#             'item': item.item
+#         }
+
+#         item_list.append(item)
+#     return item_list
 if __name__ == "__main__":
 
     app.debug = True

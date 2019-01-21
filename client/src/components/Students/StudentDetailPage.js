@@ -7,73 +7,77 @@ import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
 const StudentDetailPage = props => (
   <div className="student-detail-page">
-    <div className="display-student-name">
-      <h2>
-        {props.student.student.fname}
-        {"  "}
-        {props.student.student.lname}
-      </h2>
-      <DeleteStudent student={props.student.student} />
-    </div>
-    <div>
-      <MainButton
-        id="view-student-word-data-button"
-        text={"View Word Charts"}
-        route={`/word-data${props.student.student.student_id}`}
-      />
-      <MainButton
-        id="view-student-word-data-button"
-        text={"View Word Past Test Results"}
-        route={`/word-data${props.student.student.student_id}`}
-      />
-      <MainButton
-        id="view-student-letter-data-button"
-        text={"View Letter Charts"}
-        route={`/letter-data${props.student.student.student_id}`}
-      />
-      <MainButton
-        id="view-student-word-data-button"
-        text={"View Letter Past Test Results"}
-        route={`/word-data${props.student.student.student_id}`}
-      />
-      <MainButton
-        id="view-student-sound-data-button"
-        text={"View Sound Charts"}
-        route={`/sound-data${props.student.student.student_id}`}
-      />
-      <MainButton
-        id="view-student-sound-data-button"
-        text={"View Sound Past Test Results "}
-        route={`/sound-data${props.student.student.student_id}`}
-      />
-    </div>
-    <div>
-      <MainButton
-        id="test-student-button"
-        text={"Test Student Words"}
-        route={`/test-student/${props.student.student.student_id}`}
-        onClick={() => props.studentTestActions.beginTest("words")}
-      />
-      <MainButton
-        id="test-student-button"
-        text={"Test Student sLetters"}
-        route={`/test-student/${props.student.student.student_id}`}
-        onClick={() => props.studentTestActions.beginTest("letters")}
-      />
-      <MainButton
-        id="test-student-button"
-        text={"Test Student Sounds"}
-        route={`/test-student/${props.student.student.student_id}`}
-        onClick={() => props.studentTestActions.beginTest("sounds")}
-      />
-    </div>
+    <div className="container">
+      <div className="display-student-name">
+        <h2>
+          {props.student.student.fname}
+          {"  "}
+          {props.student.student.lname}
+        </h2>
+        <DeleteStudent student={props.student.student} />
+      </div>
+      <div>
+        <MainButton
+          id="view-student-word-data-button"
+          text={"View Word Charts"}
+          route={`/student-item-charts/words/${
+            props.student.student.student_id
+          }`}
+          student={props.student}
+        />
+        <MainButton
+          id="view-student-word-data-button"
+          text={"View Word Past Test Results"}
+          route={`/word-data${props.student.student.student_id}`}
+        />
+        <MainButton
+          id="view-student-letter-data-button"
+          text={"View Letter Charts"}
+          route={`/letter-data${props.student.student.student_id}`}
+        />
+        <MainButton
+          id="view-student-word-data-button"
+          text={"View Letter Past Test Results"}
+          route={`/word-data${props.student.student.student_id}`}
+        />
+        <MainButton
+          id="view-student-sound-data-button"
+          text={"View Sound Charts"}
+          route={`/sound-data${props.student.student.student_id}`}
+        />
+        <MainButton
+          id="view-student-sound-data-button"
+          text={"View Sound Past Test Results "}
+          route={`/sound-data${props.student.student.student_id}`}
+        />
+      </div>
+      <div>
+        <MainButton
+          id="test-student-button"
+          text={"Test Student Words"}
+          route={`/test-student/${props.student.student.student_id}`}
+          onClick={() => props.studentTestActions.beginTest("words")}
+        />
+        <MainButton
+          id="test-student-button"
+          text={"Test Student sLetters"}
+          route={`/test-student/${props.student.student.student_id}`}
+          onClick={() => props.studentTestActions.beginTest("letters")}
+        />
+        <MainButton
+          id="test-student-button"
+          text={"Test Student Sounds"}
+          route={`/test-student/${props.student.student.student_id}`}
+          onClick={() => props.studentTestActions.beginTest("sounds")}
+        />
+      </div>
 
-    <StudentDetailTable
-      // token={props.token}
+      <StudentDetailTable
+        // token={props.token}
 
-      student={props.student}
-    />
-    {/* <BasicTablePage
+        student={props.student}
+      />
+      {/* <BasicTablePage
       itemType={"unlearned words"}
       items={props.student.unlearnedWordList}
     />
@@ -94,7 +98,8 @@ const StudentDetailPage = props => (
       itemType={"learned sounds"}
       items={props.student.soundList}
     /> */}
-    <StudentSnapshot student={props.student} />
+      <StudentSnapshot student={props.student} />
+    </div>
   </div>
 );
 

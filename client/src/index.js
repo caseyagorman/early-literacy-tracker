@@ -24,6 +24,7 @@ import ItemDetail from "./containers/Items/ItemDetail";
 import AddPropsToRoute from "./HOC/AddPropsToRoute";
 import AppNav from "./components/Navbar/AppNav";
 import TestStudent from "./containers/TestStudent/TestStudent";
+import StudentItemChart from "./containers/Charts/StudentItemChart";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -113,6 +114,10 @@ const AppRouter = () => (
       <Route
         path="/test-student/:id"
         component={userIsAuthenticated(TestStudent)}
+      />
+      <Route
+        path="/student-item-charts/:itemType/:id"
+        component={userIsAuthenticated(StudentItemChart)}
       />
     </div>
   </Router>
