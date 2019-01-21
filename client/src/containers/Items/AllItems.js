@@ -7,26 +7,23 @@ import AllItemsPage from "../../components/Items/AllItemsPage";
 
 class AllItems extends React.Component {
   componentDidMount() {
-    this.props.itemsActions.setItemType(this.props.itemType);
+    console.log("itemType", this.props.match.params.itemType);
+    let itemType = this.props.match.params.itemType;
+    this.props.itemsActions.setItemType(itemType);
     let user = this.props.auth.user.token;
-    if (this.props.itemType === "words") {
-      this.props.itemsActions.fetchWords(user, this.props.itemType);
-    } else if (this.props.itemType === "letters") {
-      this.props.itemsActions.fetchLetters(user);
-    } else if (this.props.itemType === "sounds") {
-      this.props.itemsActions.fetchSounds(user);
-    }
+    this.props.itemsActions.fetchItems(user, itemType);
   }
+
   displayItems(items) {
     if (!items) {
       return <p>loading...</p>;
     }
-    let route = `/add-${this.props.itemType}`;
-    let text = `Add ${this.props.itemType}`;
+    let route = `/add-${this.props.match.params.itemType}`;
+    let text = `Add ${this.props.match.params.itemType}`;
     return (
       <AllItemsPage
         items={items}
-        itemType={this.props.itemType}
+        itemType={this.props.match.params.itemType}
         route={route}
         text={text}
       />

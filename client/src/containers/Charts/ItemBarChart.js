@@ -6,26 +6,26 @@ class ItemBarChart extends Component {
     if (!obj) {
       return <p>Loading...</p>;
     }
-    let letterCounts = [];
+    let itemCounts = [];
     let studentList = [];
-    let letterList = [];
+    let itemList = [];
     for (let item in obj) {
-      letterCounts.push(obj[item].letter_count);
+      itemCounts.push(obj[item].letter_count);
       studentList.push(obj[item].fname);
-      letterCounts.push(obj[item].letter_list);
+      itemCounts.push(obj[item].letter_list);
     }
-    return [letterCounts, studentList, letterList];
+    return [itemCounts, studentList, itemList];
   }
 
   displayChart(dataResults) {
     if (!dataResults) {
       return <div> loading...</div>;
     }
-    let letters = this.turnIntoArray(dataResults);
+    let items = this.turnIntoArray(dataResults);
 
-    let letterCounts = letters[0];
-    let studentList = letters[1];
-    let letterList = letters[2];
+    let itemCounts = items[0];
+    let studentList = items[1];
+    let itemList = items[2];
 
     let options = {
       tooltips: {

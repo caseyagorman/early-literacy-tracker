@@ -15,18 +15,18 @@ const HomePage = props => (
     <MainButton
       id="main-menu-words-button"
       text={"View Words"}
-      route={`/words`}
+      route={`/items/words`}
     />
     ;
     <MainButton
       id="main-menu-letters-button"
       text={"View Letters"}
-      route={`/letters`}
+      route={`/items/letters`}
     />
     <MainButton
       id="main-menu-sounds-button"
       text={"View Sounds"}
-      route={`/letters`}
+      route={`/items/sounds`}
     />
   </div>
 );

@@ -93,12 +93,12 @@ def get_words(current_user):
         })
 
 
-@app.route("/api/letters")
+@app.route("/api/items/<item_type>")
 @token_required
-def get_letters(current_user):
+def get_items(current_user, item_type):
     user_id = current_user.public_id
-    items = Item.query.filter_by(user_id=user_id).filter_by(item_type="letters").options(
-    db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type="letters").all()
+    items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).options(
+    db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type=item_type).all()
     item_list =[]
     for item in items:
         letter = {
