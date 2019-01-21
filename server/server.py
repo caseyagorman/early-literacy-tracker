@@ -336,23 +336,23 @@ def get_students(current_user):
         last_letter_test = get_test_dates(student.student_id, "letters")
         last_sound_test = get_test_dates(student.student_id, "sounds")
         word_count = get_student_item_counts(student.student_id, "words")[0]
-        unlearned_word_count = get_student_item_counts(student.student_id, "words")[1]
+        total_word_count = get_student_item_counts(student.student_id, "words")[1]
         letter_count = get_student_item_counts(student.student_id, "letters")[0]
-        unlearned_letter_count = get_student_item_counts(student.student_id, "letters")[1]
+        total_letter_count = get_student_item_counts(student.student_id, "letters")[1]
         sound_count = get_student_item_counts(student.student_id, "sounds")[0]
-        unlearned_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
+        total_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
         student = {
             'student_id': student.student_id,
             'fname': student.fname,
             'lname': student.lname,
             'word_count': word_count,
-            'unlearned_word_count': unlearned_word_count,
+            'total_word_count': total_word_count,
             'last_word_test': last_word_test,
             'letter_count': letter_count,
-            'unlearned_letter_count': unlearned_letter_count,
+            'total_letter_count': total_letter_count,
             'last_letter_test': last_letter_test,
             'sound_count': sound_count,
-            'unlearned_sound_count': unlearned_sound_count,
+            'total_sound_count': total_sound_count,
             'last_sound_test': last_sound_test
         }
         student_list.append(student)
@@ -367,14 +367,15 @@ def get_student_item_counts(current_user, student_id, item_type):
     user_id = current_user.public_id
     items = StudentItem.query.filter_by(user_id = user_id, student_id = student_id, item_type = item_type).all()
     learned_count = 0
-    unlearned_count = 0
+    total_count = 1
     for item in items:
         if item.Learned == True:
             learned_count +=1
+            total_count += 1
         else: 
-            unlearned_count += 1 
+            total_count += 1 
     
-    return [learned_count, unlearned_count]
+    return [learned_count, total_count]
 
 
 @app.route("/api/details/<student_id>")

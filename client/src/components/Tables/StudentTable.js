@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
-
+import { Table } from "react-bootstrap";
 const StudentTable = (students, onSort) => (
   <div className="student-table">
-    <table>
+    <Table>
       <thead>
         <tr>
           <td>Students</td>
@@ -14,6 +14,12 @@ const StudentTable = (students, onSort) => (
         <tr>
           <th onClick={e => onSort(e, "fname")}>Name</th>
           <th onClick={e => onSort(e, "links")}>Links</th>
+          <th onClick={e => onSort(e, "word_count")}>Words Learned</th>
+          <th onClick={e => onSort(e, "last_word_test")}>Last Word Test</th>
+          <th onClick={e => onSort(e, "letter_count")}>Letters Learned</th>
+          <th onClick={e => onSort(e, "last_letter_test")}>Last Letter Test</th>
+          <th onClick={e => onSort(e, "sound_count")}>Sounds Learned</th>
+          <th onClick={e => onSort(e, "last_sound_test")}>Last Sound Test</th>
         </tr>
       </thead>
       <tbody>
@@ -30,11 +36,19 @@ const StudentTable = (students, onSort) => (
                 </Link>
                 <DeleteStudent student={student} />
               </td>
+              <td>Link here</td>
               <td>
-                <Link to={`/details/${student.student_id}`} className="link" />
-                <br />
-                <Link to={`/#/${student.student_id}`} className="link" />
+                {student.word_count}/{student.total_word_count}
               </td>
+              <td> {student.last_word_test}</td>
+              <td>
+                {student.letter_count}/{student.letter_word_count}
+              </td>
+              <td> {student.last_letter_test}</td>
+              <td>
+                {student.sound_count}/{student.sound_word_count}
+              </td>
+              <td> {student.last_sound_test}</td>
             </tr>
           );
         })}
@@ -46,7 +60,7 @@ const StudentTable = (students, onSort) => (
           </td>
         </tr>
       </tbody>
-    </table>
+    </Table>
   </div>
 );
 
