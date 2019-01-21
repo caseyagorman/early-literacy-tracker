@@ -589,9 +589,9 @@ def get_student_item_test(current_user, item_type, student):
     item_counts = get_item_counts(student_items)
     student_test_list = get_student_item_test_list(student_tests)
     learned_items_list = get_learned_items_list(student_items)
-    test_data = {'itemCounts': item_counts, 'studentTestList':student_test_list, 'learnedItemList': learned_item_list
+    test_data = {'itemCounts': item_counts, 'studentTestList':student_test_list, 'learnedItemList': learned_items_list
     }
-    return jsonify()
+    return jsonify(test_data)
 
 def get_item_counts(student_items):
     """is called by get student test, returns word, times read correctly,times read incorrectly """

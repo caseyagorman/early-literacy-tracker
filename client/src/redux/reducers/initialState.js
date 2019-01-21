@@ -27,11 +27,11 @@ export default {
     item: null,
     fetchingItem: false
   },
-  itemUnassignedStudents: {},
+  // itemUnassignedStudents: {},
 
-  studentUnassignedItems: {
-    studentItemSets: {}
-  },
+  // studentUnassignedItems: {
+  //   studentItemSets: {}
+  // },
   studentItems: {
     studentItemSets: {}
   },

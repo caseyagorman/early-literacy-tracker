@@ -25,21 +25,21 @@ const StudentDetailPage = props => (
         />
         <MainButton
           id="view-student-word-data-button"
-          text={"View Word Past Test Results"}
+          text={"View Past Word Test Results"}
           route={`/student-test-results/words/${
             props.student.student.student_id
           }/`}
         />
         <MainButton
           id="view-student-letter-data-button"
-          text={"View Letter Charts"}
+          text={"View Past Letter Test Results"}
           route={`/student-test-results/letters/${
             props.student.student.student_id
           }/`}
         />
         <MainButton
           id="view-student-word-data-button"
-          text={"View Letter Past Test Results"}
+          text={"View Past Sound Test Results"}
           route={`/student-test-results/sounds/${
             props.student.student.student_id
           }/`}
@@ -48,67 +48,29 @@ const StudentDetailPage = props => (
       <div>
         <MainButton
           id="test-student-button"
-          text={"Test Student Words"}
+          text={`Test ${props.student.student.fname}'s Words`}
           route={`/test-student/${props.student.student.student_id}`}
           onClick={() => props.studentTestActions.beginTest("words")}
         />
         <MainButton
           id="test-student-button"
-          text={"Test Student sLetters"}
+          text={`Test ${props.student.student.fname}'s Letters`}
           route={`/test-student/${props.student.student.student_id}`}
           onClick={() => props.studentTestActions.beginTest("letters")}
         />
         <MainButton
           id="test-student-button"
-          text={"Test Student Sounds"}
+          text={`Test ${props.student.student.fname}'s Sounds`}
           route={`/test-student/${props.student.student.student_id}`}
           onClick={() => props.studentTestActions.beginTest("sounds")}
         />
       </div>
 
-      <StudentDetailTable
-        // token={props.token}
+      <StudentDetailTable student={props.student} />
 
-        student={props.student}
-      />
-      {/* <BasicTablePage
-      itemType={"unlearned words"}
-      items={props.student.unlearnedWordList}
-    />
-    <BasicTablePage itemType={"learned words"} items={props.student.wordList} />
-    <BasicTablePage
-      itemType={"unlearned letters"}
-      items={props.student.unlearnedLetterList}
-    />
-    <BasicTablePage
-      itemType={"learned letters"}
-      items={props.student.letterList}
-    />
-    <BasicTablePage
-      itemType={"unlearned sounds"}
-      items={props.student.unlearnedSoundList}
-    />
-    <BasicTablePage
-      itemType={"learned sounds"}
-      items={props.student.soundList}
-    /> */}
       <StudentSnapshot student={props.student} />
     </div>
   </div>
 );
-
-// import StudentSnapshot from "./StudentSnapshot";
-// Display student Name
-// Link - word data
-// Link - letter data
-// link - sound data
-// Link -view all data on one page
-
-// Display snapshot of what student is learning
-
-// Just list of words student is learning
-// Assign word, letter, sound to student form
-
-// Test student button
 
 export default StudentDetailPage;
