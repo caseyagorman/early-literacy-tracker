@@ -18,19 +18,7 @@ class AddItem extends Component {
     const user = this.props.auth.user.token;
     const item = this.state.newItem;
     const itemType = this.props.itemType;
-    if (itemType === "words") {
-      this.props.itemsActions.addWord(
-        item,
-        user,
-        itemType,
-        this.props.itemsActions.fetchWords
-      );
-    } else if (itemType === "letters") {
-      this.props.itemsActions.addLetter(item, user, itemType);
-    }
-    if (itemType === "sounds") {
-      this.props.itemsActions.addSound(item, user, itemType);
-    }
+    this.props.itemsActions.addItem(item, user, itemType);
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });

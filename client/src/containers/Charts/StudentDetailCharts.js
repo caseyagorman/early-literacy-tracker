@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentActions from "../../redux/actions/studentActions";
-import StudentItemDoughnutChart from "../Charts/StudentItemDoughnutChart";
-import StudentItemLineChart from "../Charts/StudentItemLineChart";
+import StudentItemDoughnutChart from "./StudentItemDoughnutChart";
+import StudentItemLineChart from "./StudentItemLineChart";
 
-class StudentItemCharts extends Component {
+class StudentDetailCharts extends Component {
   componentDidMount() {
     let studentId = this.props.match.params.id;
     if (!studentId) {
@@ -19,11 +19,15 @@ class StudentItemCharts extends Component {
     if (!student) {
       return <div>loading...</div>;
     }
+    if (student.student === null) {
+      return <div> loading...</div>;
+    }
     return (
-      <StudentItemDoughnutChart
-        student={student}
-        itemType={this.props.match.params.itemType}
-      />
+      <b>
+        <StudentItemDoughnutChart student={student} itemType={"words"} />
+        <StudentItemDoughnutChart student={student} itemType={"letters"} />
+        <StudentItemDoughnutChart student={student} itemType={"sounds"} />
+      </b>
     );
   }
 
@@ -31,6 +35,7 @@ class StudentItemCharts extends Component {
     if (!student) {
       return <div>loading...</div>;
     }
+
     return (
       <StudentItemLineChart
         student={student}
@@ -39,10 +44,7 @@ class StudentItemCharts extends Component {
     );
   }
   render() {
-    return (
-      this.displayDoughnutChart(this.props.student),
-      this.displayLineChart(this.props.student)
-    );
+    return this.displayDoughnutChart(this.props.student);
   }
 }
 
@@ -62,4 +64,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(StudentItemCharts);
+)(StudentDetailCharts);

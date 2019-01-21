@@ -19,10 +19,8 @@ const StudentDetailPage = props => (
       <div>
         <MainButton
           id="view-student-word-data-button"
-          text={"View Word Charts"}
-          route={`/student-item-charts/words/${
-            props.student.student.student_id
-          }`}
+          text={"View Student Data Charts"}
+          route={`/student-item-charts/${props.student.student.student_id}`}
           student={props.student}
         />
         <MainButton

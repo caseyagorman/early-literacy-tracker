@@ -1,5 +1,8 @@
 import * as types from "./actionTypes";
 import history from "../../history";
+function getStudentsApi(user) {
+  return "http://localhost:5000/api/students";
+}
 function getStudentApi(id) {
   return `http://localhost:5000/api/details/${id}`;
 }
@@ -50,6 +53,9 @@ export function receiveStudentUnassignedItems(studentUnassignedItems) {
     type: types.RECEIVE_STUDENT_UNASSIGNED_ITEMS,
     studentUnassignedItems: studentUnassignedItems
   };
+}
+export function receiveStudents(students) {
+  return { type: types.RECEIVE_STUDENTS, students: students };
 }
 
 export function fetchWords(user) {
@@ -115,7 +121,7 @@ export function fetchItem(id, itemType, user) {
       .then(item => dispatch(receiveItem(item)));
   };
 }
-export function addWord(item, user, itemType) {
+export function addItem(item, user, itemType) {
   console.log(item, itemType, user);
   return dispatch => {
     return fetch(addItemApi(), {
@@ -130,45 +136,11 @@ export function addWord(item, user, itemType) {
       body: JSON.stringify({ item, itemType })
     })
       .then(response => response.json())
-      .then(
-        studentItems => dispatch(assignStudentItems(user, studentItems))
-        // .then(() => dispatch(fetchWords(user)))
-        // .then(() => history.push("/words"))
+      .then(studentItems =>
+        dispatch(assignStudentItems(user, studentItems))
+          .then(() => dispatch(fetchStudents(user)))
+          .then(() => history.push("/students"))
       );
-  };
-}
-export function addLetter(item, user, itemType) {
-  return dispatch => {
-    return fetch(addItemApi(), {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-
-        "x-access-token": user
-      },
-      body: JSON.stringify(item, itemType)
-    })
-      .then(() => dispatch(fetchLetters(user)))
-      .then(() => history.push("/letters"));
-  };
-}
-export function addSound(item, user, itemType) {
-  return dispatch => {
-    return fetch(addItemApi(), {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-
-        "x-access-token": user
-      },
-      body: JSON.stringify(item, itemType)
-    })
-      .then(() => dispatch(fetchSounds(user, itemType)))
-      .then(() => history.push("/sounds"));
   };
 }
 
@@ -269,5 +241,20 @@ export function fetchUnassignedItems(student, user, itemType) {
       .then(studentItems =>
         dispatch(receiveStudentUnassignedItems(studentItems))
       );
+  };
+}
+export function fetchStudents(user) {
+  return dispatch => {
+    return fetch(getStudentsApi(user), {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      }
+    })
+      .then(response => response.json())
+      .then(students => dispatch(receiveStudents(students)));
   };
 }
