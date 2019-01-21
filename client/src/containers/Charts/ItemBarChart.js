@@ -2,96 +2,36 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 class ItemBarChart extends Component {
   turnIntoArray(obj) {
+    console.log("obj", obj);
     if (!obj) {
       return <p>Loading...</p>;
     }
     let itemCounts = [];
     let studentList = [];
-    let itemList = [];
+    // let itemList = [];
     for (let item in obj) {
-      itemCounts.push(obj[item].item_count);
-      studentList.push(obj[item].fname);
-      itemCounts.push(obj[item].item_list);
+      itemCounts.push(obj[item].count);
+      // studentList.push(obj[item].unlearned_students);
+      // itemCounts.push(obj[item].item_list);
     }
-    return [itemCounts, studentList, itemList];
+    // console.log("itemCounts", itemCounts, "studentList", studentList);
+    return [itemCounts];
   }
 
   displayChart(dataResults) {
+    console.log("items", dataResults);
     if (!dataResults) {
       return <div> loading...</div>;
     }
-    let items = this.turnIntoArray(dataResults);
+    let items = this.turnIntoArray(dataResults.items);
 
     let itemCounts = items[0];
-    let studentList = items[1];
-    let itemList = items[2];
-
-    let options = {
-      tooltips: {
-        callbacks: {
-          label: function(tooltipItem, data) {
-            const indice = tooltipItem.index;
-            return itemList[indice];
-          }
-        }
-      },
-
-      responsive: true,
-
-      maintainAspectRatio: false,
-      aspectRatio: 1,
-      scales: {
-        lable: [
-          {
-            fontSize: 18,
-            fontColor: "black"
-          }
-        ],
-        yAxes: [
-          {
-            ticks: {
-              fontSize: 14,
-              fontColor: "black",
-              beginAtZero: true,
-              min: 0,
-              userCallback: function(label) {
-                if (Math.floor(label) === label) {
-                  return label;
-                }
-              }
-            }
-          }
-        ],
-        xAxes: [
-          {
-            ticks: {
-              fontSize: 10,
-              fontColor: "black"
-            }
-          }
-        ]
-      }
-    };
-    const data = {
-      labels: studentList,
-
-      datasets: [
-        {
-          label: "Students",
-
-          backgroundColor: "#008000",
-          borderColor: "#008000",
-          borderWidth: 1,
-          hoverBackgroundColor: "#008000",
-          hoverBorderColor: "#008000",
-          data: itemCounts
-        }
-      ]
-    };
-    return <Bar data={data} options={options} />;
+    //
+    return <div />;
   }
   render() {
-    return this.displayChart(this.props.data);
+    return <div />;
+    // return this.displayChart(this.props.items);
   }
 }
 

@@ -328,7 +328,7 @@ def get_students(current_user):
     student_list = []
     for student in students:
         last_word_test = get_test_dates(student.student_id, "words")
-        last_item_test = get_test_dates(student.student_id, "letters")
+        last_letter_test = get_test_dates(student.student_id, "letters")
         last_sound_test = get_test_dates(student.student_id, "sounds")
         word_count = get_student_item_counts(student.student_id, "words")[0]
         total_word_count = get_student_item_counts(student.student_id, "words")[1]

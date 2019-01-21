@@ -26,7 +26,7 @@ const AllItemsPage = props => (
     />
     <TableContainer
       renderTable={ItemsTable}
-      tableElements={props.items.items}
+      tableElements={props.items}
       route={`/add-${props.itemType}`}
       itemType={props.itemType}
     />

@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 
 class TableContainer extends Component {
   constructor(props) {
@@ -11,7 +11,12 @@ class TableContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log("table container", this.props);
+  }
+
   sortArray(array, sortKey, reverseSort) {
+    console.log("array", array);
     array = array.slice();
     if (sortKey) {
       array.sort(function(a, b) {
@@ -39,6 +44,7 @@ class TableContainer extends Component {
   }
 
   render() {
+    // return <div />;
     let route = this.props.route;
     let tableElements = this.sortArray(
       this.props.tableElements,

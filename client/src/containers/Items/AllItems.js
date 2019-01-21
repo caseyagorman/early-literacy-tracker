@@ -7,9 +7,7 @@ import AllItemsPage from "../../components/Items/AllItemsPage";
 
 class AllItems extends React.Component {
   componentDidMount() {
-    console.log("itemType", this.props.match.params.itemType);
     let itemType = this.props.match.params.itemType;
-    this.props.itemsActions.setItemType(itemType);
     let user = this.props.auth.user.token;
     this.props.itemsActions.fetchItems(user, itemType);
   }
@@ -18,8 +16,15 @@ class AllItems extends React.Component {
     if (!items) {
       return <p>loading...</p>;
     }
+    if (items.items === null) {
+      return <p>loading...</p>;
+    }
+
     return (
-      <AllItemsPage items={items} itemType={this.props.match.params.itemType} />
+      <AllItemsPage
+        items={items.items}
+        itemType={this.props.match.params.itemType}
+      />
     );
   }
 
