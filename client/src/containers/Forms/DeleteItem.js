@@ -22,10 +22,10 @@ class DeleteItem extends Component {
 
   handleSubmit() {
     const user = this.props.auth.user.token;
-    const item = this.props.item.item_id;
+    const item = this.props.item;
     const itemType = this.props.itemType;
     console.log("item to delete", item);
-    this.props.itemsActions.deleteItem(item, user);
+    this.props.itemsActions.deleteItem(item, itemType, user);
   }
 
   submit = event => {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as itemsActions from "../../redux/actions/itemsActions";
-import ItemBarChart from "./ItemBarChart";
+import ItemChartPage from "../../components/Charts/ItemChartPage";
 
 class ItemCharts extends Component {
   componentDidMount() {
@@ -12,8 +12,6 @@ class ItemCharts extends Component {
   }
 
   displayItemBarChart(items) {
-    console.log("props", this.props.items);
-    console.log("items", items);
     if (!items) {
       return <div>loading...</div>;
     }
@@ -21,12 +19,14 @@ class ItemCharts extends Component {
       return <div>sploading...</div>;
     }
     return (
-      <ItemBarChart items={items} itemType={this.props.match.params.itemType} />
+      <ItemChartPage
+        items={items}
+        itemType={this.props.match.params.itemType}
+      />
     );
   }
   render() {
-    return <div />;
-    // return this.displayItemBarChart(this.props.items);
+    return this.displayItemBarChart(this.props.items);
   }
 }
 

@@ -18,7 +18,6 @@ class StudentDetail extends Component {
     if (!student) {
       return <div>loading...</div>;
     }
-    console.log("student detail", student);
     if (student.student === null) {
       return <div>loading...</div>;
     }

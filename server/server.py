@@ -218,6 +218,21 @@ def delete_student(current_user):
     db.session.commit()
     return 'student deleted!'
 
+@app.route("/api/delete-item", methods=['POST'])
+@token_required
+def delete_item(current_user):
+    data = request.get_json()
+    print("data", data)
+    item_id = data.get("item")
+    item_type = data.get("itemType")
+    user_id = current_user.public_id
+    item = Item.query.filter_by(
+        item_id=item_id, user_id=user_id).first()
+    db.session.delete(item)
+    db.session.commit()
+    return item_type
+  
+
 @app.route("/api/add-item", methods=['POST'])
 @token_required
 def add_item(current_user):

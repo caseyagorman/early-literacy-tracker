@@ -106,7 +106,8 @@ export function addItem(item, user, itemType) {
   };
 }
 
-export function deleteItem(user, item, itemType) {
+export function deleteItem(item, itemType, user) {
+  console.log(item, itemType, user);
   return dispatch => {
     return fetch(deleteItemApi(), {
       method: "POST",
@@ -116,8 +117,9 @@ export function deleteItem(user, item, itemType) {
         "Content-Type": "application/json",
         "x-access-token": user
       },
-      body: JSON.stringify(item, itemType)
+      body: JSON.stringify({ item, itemType })
     })
+      .then(itemType => console.log(itemType))
       .then(() => dispatch(fetchItems(user, itemType)))
       .then(() => history.push(`/items/${itemType}`));
   };
