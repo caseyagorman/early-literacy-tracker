@@ -678,13 +678,14 @@ def get_student_item_test(current_user, item_type, student):
     return jsonify(test_data)
 
 
-@app.route("/api/get-all-student-tests/<student>")
+@app.route("/api/get-all-student-tests/<student_id>")
 @token_required
-def get_all_student_tests(current_user, item_type, student_id):
+def get_all_student_tests(current_user,  student_id):
     """get list of student test results, word_counts and chart_data"""
-
+    print("current_user", current_user)
     user_id = current_user.public_id
     student_id = student_id
+    print("student_id", student_id)
     student_tests = StudentTestResult.query.filter_by(
         student_id=student_id, user_id=user_id).all()
     word_test_list = []
@@ -692,20 +693,27 @@ def get_all_student_tests(current_user, item_type, student_id):
     sound_test_list = []
 
     for test in student_tests:
-        test_date = student.test_date.strftime('%m-%d-%Y')
+        print("test", test)
+        test_date = test.test_date.strftime('%m-%d-%Y')
         student_test_object = {
-            'studentId': student.student_id,
-            'score': student.score,
-            'testDate': test_date,
-            'correctItems': student.correct_items,
-            'incorrectItems': student.incorrect_items
+            'studentId': test.student_id,
+            'score': test.score,
+            'testDate': test.test_date,
+            'correctItems': test.correct_items,
+            'incorrectItems': test.incorrect_items
         }
         if test.test_type == "words":
-            word_test.append(student_test_object)
+            word_test_list.append(student_test_object)
         elif test.test_type == "letters":
-             letter_test.append(student_test_object)
+             letter_test_list.append(student_test_object)
         elif test.test_type == "sounds":
-             sound_test.append(student_test_object)
+             sound_test_list.append(student_test_object)
+    if word_test_list != []:
+        word_test_list = word_test_list[-1]
+    if letter_test_list != []:
+        letter_test_list = letter_test_list[-1]
+    if sound_test_list != []:
+        sound_test_list = sound_test_list[-1]
 
     test_object = {
         "wordTest":word_test_list,

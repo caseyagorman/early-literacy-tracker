@@ -16,15 +16,24 @@ class StudentDetail extends Component {
     this.props.studentActions.fetchStudent(studentId, user);
     this.props.testResultsActions.fetchAllTestResults(studentId, user);
   }
-  displayStudentDetailPage(student) {
+  displayStudentDetailPage(student, tests) {
     if (!student) {
       return <div>loading...</div>;
     }
     if (student.student === null) {
       return <div>loading...</div>;
     }
+    let testsSentence = "";
+    for (let key in tests) {
+      console.log("tests", tests[key]);
+      if (tests[key].length === 0) {
+        console.log("something");
+        //  testsSentence = testsSentence + this.props.student.student.name
+      }
+    }
     return (
       <StudentDetailPage
+        tests={tests}
         student={student}
         studentTestActions={this.props.studentTestActions}
       />
@@ -32,7 +41,10 @@ class StudentDetail extends Component {
   }
 
   render() {
-    return this.displayStudentDetailPage(this.props.student);
+    return this.displayStudentDetailPage(
+      this.props.student,
+      this.props.testResults
+    );
   }
 }
 

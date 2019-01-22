@@ -30,7 +30,7 @@ export function fetchTestResults(user, itemType, id) {
   };
 }
 
-export function fetchAllTestResults(user, id) {
+export function fetchAllTestResults(id, user) {
   return dispatch => {
     return fetch(getStudentAllTestsResultsApi(id), {
       method: "GET",

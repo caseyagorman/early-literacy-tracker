@@ -43,7 +43,7 @@ const StudentDetailPage = props => (
 
       <StudentDetailHeader student={props.student} />
 
-      <StudentSnapshot student={props.student} />
+      <StudentSnapshot student={props.student} tests={props.tests} />
 
       <StudentDetailTable student={props.student} />
     </div>

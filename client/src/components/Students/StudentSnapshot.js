@@ -10,12 +10,8 @@ const StudentSnapshot = props => (
     {props.student.student.name} knows {props.student.wordCount}/
     {props.student.totalWordCount} words, {props.student.letterCount}/
     {props.student.totalLetterCount} letters, and {props.student.soundCount}/
-    {props.student.totalSoundCount} sounds. {props.student.student.name}'s last
-    word test was {props.student.lastWordTest} and they scored ///.{" "}
-    {props.student.student.name}'s last word test was{" "}
-    {props.student.lastLetterTest} and they scored ///.{" "}
-    {props.student.student.name}'s last word test was{" "}
-    {props.student.lastSoundTest} and they scored ///. <br />
+    {props.student.totalSoundCount} sounds. <br />
+    To view more detailed test data, click the links above.
     <br />
     <br />
     {/* {props.student.student.name} sabe {props.student.wordCount}/
