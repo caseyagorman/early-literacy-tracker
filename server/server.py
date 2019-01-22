@@ -201,9 +201,6 @@ def add_student(current_user):
 
     names = data.get("names")
     names = names.splitlines()
-    print(names)
-    print(type(names))
-
     db.session.bulk_save_objects(
         [
             Student(
@@ -214,13 +211,8 @@ def add_student(current_user):
             for name in names
         ]
     )    
-
-    # print(db.session.bulk_save_objects)
     db.session.commit()
-    # user_id = current_user.public_id
-    # new_student = Student(user_id=user_id, name=name,  grade="K")
-    # db.session.add(new_student)
-    # db.session.commit()
+    print(data)
     return jsonify(data)
 
 @app.route("/api/delete-student", methods=['POST'])
@@ -262,7 +254,6 @@ def add_item(current_user):
     new_string = items.translate(table) 
     new_items = new_string.split()
     user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
-    students = StudentItem.query.filter_by(user_id=user_id).all()
     user_list = [user.item for user in user_items]
     list_to_add = list(set(new_items).difference(user_list))
     db.session.bulk_save_objects(
@@ -290,9 +281,44 @@ def add_items_to_students(current_user):
     item_type = data['studentItems'].get('itemType')
     user_id = current_user.public_id
     item_list = Item.query.filter(Item.item.in_(new_items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
-    students = Student.query.filter_by(user_id = user_id).all()
+    student_list = Student.query.filter_by(user_id = user_id).all()
+    print(student_list)
+    if student_list == []:
+        return "no students"
+    
+    else:
+        item_ids = [item.item_id for item in item_list]
+        student_ids = [student.student_id for student in students]
+
+        db.session.bulk_save_objects(
+            [
+                StudentItem(
+                    item_id=item_id,
+                    student_id=student_id,
+                    item_type=item_type,
+                    user_id=user_id
+                )
+                for item_id, student_id in itertools.product(item_ids, student_ids)
+            ]
+        )
+        db.session.commit()
+        return "items added!"
+
+
+@app.route('/api/add-items-to-new-students', methods=['POST'])
+@token_required
+def add_items_to__new_students(current_user):
+    print("adding new students to items")
+    data = request.get_json()
+    table = str.maketrans({key: None for key in string.punctuation})
+    new_names = names.translate(table)  
+    new_names = new_names.splitlines()
+    user_id = current_user.public_id
+    student_list = Student.query.filter(Student.name.in_(new_names)).filter(Student.user_id == user_id).all()
+    item_list = Item.query.filter_by(user_id = user_id).all()
     item_ids = [item.item_id for item in item_list]
-    student_ids = [student.student_id for student in students]
+    item_types = [item.item_type for item in item_list]
+    student_ids = [student.student_id for student in student_list]
 
     db.session.bulk_save_objects(
         [
@@ -302,7 +328,7 @@ def add_items_to_students(current_user):
                 item_type=item_type,
                 user_id=user_id
             )
-            for item_id, student_id in itertools.product(item_ids, student_ids)
+            for item_id, item_type, student_id in itertools.product(item_ids, item_types, student_ids)
         ]
     )
     db.session.commit()

@@ -19,23 +19,6 @@ export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
 }
 
-export function addStudent(student, user) {
-  return dispatch => {
-    return fetch(addStudentApi(), {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      },
-      body: JSON.stringify(student)
-    })
-      .then(() => dispatch(fetchStudents(user)))
-      .then(() => history.push("/students"));
-  };
-}
-
 export function deleteStudent(student, user) {
   return dispatch => {
     return fetch(deleteStudentApi(), {
