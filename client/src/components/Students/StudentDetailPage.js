@@ -8,7 +8,7 @@ const StudentDetailPage = props => (
     <div className="container">
       <div className="display-student-name">
         <h2>{props.student.student.name}</h2>
-        <DeleteStudent student={props.student.student} />
+        <DeleteStudent student={props.student.student.student_id} />
       </div>
       <div>
         <MainButton

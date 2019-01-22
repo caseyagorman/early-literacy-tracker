@@ -21,7 +21,7 @@ function deleteItemApi() {
 }
 
 function addStudentItemsApi() {
-  return "http://localhost:5000/api/add-items-to-students";
+  return "http://localhost:5000/api/add-new-items-to-students";
 }
 
 function getUnassignedItemsApi(id, itemType) {

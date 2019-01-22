@@ -269,9 +269,9 @@ def add_item(current_user):
     db.session.commit()
     return jsonify(data)
 
-@app.route('/api/add-items-to-students', methods=['POST'])
+@app.route('/api/add-new-items-to-students', methods=['POST'])
 @token_required
-def add_items_to_students(current_user):
+def add_new_items_to_students(current_user):
     print("adding items to students")
     data = request.get_json()
     items = data['studentItems'].get('item')
@@ -288,7 +288,7 @@ def add_items_to_students(current_user):
     
     else:
         item_ids = [item.item_id for item in item_list]
-        student_ids = [student.student_id for student in students]
+        student_ids = [student.student_id for student in student_list]
 
         db.session.bulk_save_objects(
             [
@@ -310,25 +310,24 @@ def add_items_to_students(current_user):
 def add_items_to__new_students(current_user):
     print("adding new students to items")
     data = request.get_json()
+    names = data.get("names")
     table = str.maketrans({key: None for key in string.punctuation})
     new_names = names.translate(table)  
     new_names = new_names.splitlines()
     user_id = current_user.public_id
     student_list = Student.query.filter(Student.name.in_(new_names)).filter(Student.user_id == user_id).all()
     item_list = Item.query.filter_by(user_id = user_id).all()
-    item_ids = [item.item_id for item in item_list]
-    item_types = [item.item_type for item in item_list]
+    items = [(item.item_id, item.item_type)for item in item_list]
     student_ids = [student.student_id for student in student_list]
-
     db.session.bulk_save_objects(
         [
             StudentItem(
-                item_id=item_id,
+                item_id=items[0],
                 student_id=student_id,
-                item_type=item_type,
+                item_type=items[1],
                 user_id=user_id
             )
-            for item_id, item_type, student_id in itertools.product(item_ids, item_types, student_ids)
+            for items, student_id in itertools.product(items, student_ids)
         ]
     )
     db.session.commit()

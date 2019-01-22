@@ -31,7 +31,8 @@ const StudentTable = (students, onSort) => (
                 <Link to={`/details/${student.studentId}`} className="link">
                   <h2 id="student-name-table-header">{student.name}</h2>
                 </Link>
-                <DeleteStudent student={student} />
+                {console.log("delete student", student.studentId)}
+                <DeleteStudent student={student.studentId} />
               </td>
               <td>Link here</td>
               <td>
