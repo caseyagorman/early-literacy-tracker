@@ -11,13 +11,16 @@ class DeleteStudent extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   getOptions(student) {
     if (!student) {
       return <div>loading...</div>;
     }
-    return <DeleteButton submit={this.handleSubmit} />;
+    return (
+      <DeleteButton handleSubmit={this.handleSubmit} submit={this.submit} />
+    );
   }
 
   handleSubmit() {

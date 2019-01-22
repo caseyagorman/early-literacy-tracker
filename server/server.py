@@ -677,6 +677,43 @@ def get_student_item_test(current_user, item_type, student):
     }
     return jsonify(test_data)
 
+
+@app.route("/api/get-all-student-tests/<student>")
+@token_required
+def get_all_student_tests(current_user, item_type, student_id):
+    """get list of student test results, word_counts and chart_data"""
+
+    user_id = current_user.public_id
+    student_id = student_id
+    student_tests = StudentTestResult.query.filter_by(
+        student_id=student_id, user_id=user_id).all()
+    word_test_list = []
+    letter_test_list = []
+    sound_test_list = []
+
+    for test in student_tests:
+        test_date = student.test_date.strftime('%m-%d-%Y')
+        student_test_object = {
+            'studentId': student.student_id,
+            'score': student.score,
+            'testDate': test_date,
+            'correctItems': student.correct_items,
+            'incorrectItems': student.incorrect_items
+        }
+        if test.test_type == "words":
+            word_test.append(student_test_object)
+        elif test.test_type == "letters":
+             letter_test.append(student_test_object)
+        elif test.test_type == "sounds":
+             sound_test.append(student_test_object)
+
+    test_object = {
+        "wordTest":word_test_list,
+        "letterTest": letter_test_list,
+        "soundTest": sound_test_list
+    }
+    return jsonify(test_object)
+
 def get_item_counts(student_items):
     """is called by get student test, returns word, times read correctly,times read incorrectly """
     item_counts = []
