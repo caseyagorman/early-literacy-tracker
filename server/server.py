@@ -331,7 +331,7 @@ def add_items_to__new_students(current_user):
         ]
     )
     db.session.commit()
-
+    return "student items added!"
 # @app.route('/api/add-items-to-student', methods=['POST'])
 # @token_required
 # def add_items_to_student(current_user):
@@ -351,7 +351,7 @@ def add_items_to__new_students(current_user):
 #         db.session.add(new_student_item)
 #         db.session.commit()
 
-    return "student items added!"
+    
 
 @app.route('/api/add-student-to-item', methods=['POST'])
 @token_required
@@ -619,7 +619,7 @@ def create_student_test(current_user):
 
 def update_correct_items(student_id, correct_items, test_type, user_id):
     """updates correct items in db, called by create_student_test"""
-    student_item_list = StudentItem.query.filter_by(student_id=student_id).filter_by(user_id=user_id).options(db.joinedload('items')).filter(
+    student_item_list = StudentItem.query.filter_by(student_id=student_id, user_id=user_id, item_type=test_type).options(db.joinedload('items')).filter(
     Item.item.in_(correct_items)).all()
     for item in student_item_list:
         if item.correct_count >= 1:
@@ -630,7 +630,7 @@ def update_correct_items(student_id, correct_items, test_type, user_id):
 
 def update_incorrect_items(student_id, incorrect_items, test_type, user_id):
     """updates incorrect letters in db, called by create_student_test"""
-    student_item_list = StudentItem.query.filter_by(student_id=student_id).filter_by(user_id=user_id).options(db.joinedload('items')).filter(
+    student_item_list = StudentItem.query.filter_by(student_id=student_id, user_id=user_id, item_type=test_type).options(db.joinedload('items')).filter(
     Item.item.in_(incorrect_items)).all()
     for item in student_item_list:
         item.incorrect_count = StudentItem.incorrect_count + 1

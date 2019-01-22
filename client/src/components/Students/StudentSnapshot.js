@@ -18,7 +18,7 @@ const StudentSnapshot = props => (
     {props.student.lastSoundTest} and they scored ///. <br />
     <br />
     <br />
-    {props.student.student.name} sabe {props.student.wordCount}/
+    {/* {props.student.student.name} sabe {props.student.wordCount}/
     {props.student.totalWordCount} palabras, {props.student.letterCount}/
     {props.student.totalLetterCount} letras, y {props.student.soundCount}/
     {props.student.totalSoundCount} sonidos. La prueba ultima de{" "}
@@ -26,7 +26,7 @@ const StudentSnapshot = props => (
     y el/ella recibio ///. La prueba ultima de {props.student.student.name} fue{" "}
     {props.student.lastLetterTest} y el/ella recibio ///. La prueba ultima de{" "}
     {props.student.student.name} fue {props.student.lastSoundTest} y el/ella
-    recibio ///.{" "}
+    recibio ///.{" "} */}
   </div>
 );
 

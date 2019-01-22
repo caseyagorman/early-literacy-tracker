@@ -13,30 +13,7 @@ const AllStudentsPage = props => (
       student data. Click book to view student reports.
     </div>
     <br />
-    {/* <StudentSnapshot /> */}
-    <div>
-      <MainButton
-        id="students-button-add-student"
-        text={"Add Student"}
-        route={`/add-student`}
-      />
-      <MainButton
-        id="students-button-view-charts"
-        text={"View Student Word Charts"}
-        route={`/student-charts`}
-      />
-      <MainButton
-        id="students-button-view-data"
-        text={"View Student Letter Charts"}
-        route={`/student-data`}
-      />
-
-      <MainButton
-        id="students-button-view-data"
-        text={"View Student Sound Charts"}
-        route={`/student-data`}
-      />
-    </div>
+    <div />
     <div>
       <br />
     </div>

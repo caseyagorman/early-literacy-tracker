@@ -75,7 +75,7 @@ const AppRouter = () => (
         component={userIsAuthenticated(ItemDetail)}
       />
       <Route
-        path="/test-student/:id"
+        path="/test-student/:testType/:id"
         component={userIsAuthenticated(TestStudent)}
       />
       <Route

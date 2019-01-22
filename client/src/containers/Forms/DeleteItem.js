@@ -26,28 +26,27 @@ class DeleteItem extends Component {
     const itemType = this.props.itemType;
     console.log("item to delete", item);
     this.props.itemsActions.deleteItem(item, itemType, user);
+
+    this.submit = event => {
+      event.preventDefault();
+      confirmAlert({
+        title: "Confirm to submit",
+        message: "Are you sure to do this.",
+        buttons: [
+          {
+            label: "Yes",
+            onClick: event => this.handleSubmit()
+          },
+          {
+            label: "No",
+            onClick: () => console.log("no")
+          }
+        ]
+      });
+    };
   }
-
-  submit = event => {
-    event.preventDefault();
-    confirmAlert({
-      title: "Confirm to submit",
-      message: "Are you sure to do this.",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: event => this.handleSubmit()
-        },
-        {
-          label: "No",
-          onClick: () => console.log("no")
-        }
-      ]
-    });
-  };
-
   render() {
-    return <b>{this.getOptions(this.props.item)}</b>;
+    return this.getOptions(this.props.item);
   }
 }
 
