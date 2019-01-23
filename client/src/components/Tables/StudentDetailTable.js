@@ -87,9 +87,15 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.unlearnedLetterList.map(item => (
-                <Link to={`/item-detail/letters/${item.item_id}`}>
-                  <li>{item.item}</li>{" "}
-                </Link>
+                <p>
+                  <StudentItemLearned
+                    item={item}
+                    student={student.student.student.student_id}
+                  />
+                  <Link to={`/item-detail/letters/${item.item_id}`}>
+                    {item.item}
+                  </Link>
+                </p>
               ))}
             </ul>
           </td>
@@ -101,18 +107,30 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.soundList.map(item => (
-                <Link to={`/item-detail/sounds/${item.item_id}`}>
-                  <li>{item.item}</li>{" "}
-                </Link>
+                <p>
+                  <StudentItemUnlearned
+                    item={item}
+                    student={student.student.student.student_id}
+                  />
+                  <Link to={`/item-detail/sounds/${item.item_id}`}>
+                    {item.item}
+                  </Link>
+                </p>
               ))}
             </ul>
           </td>
           <td>
             <ul>
               {student.student.unlearnedSoundList.map(item => (
-                <Link to={`/item-detail/sounds/${item.item_id}`}>
-                  <li>{item.item}</li>{" "}
-                </Link>
+                <p>
+                  <StudentItemLearned
+                    item={item}
+                    student={student.student.student.student_id}
+                  />
+                  <Link to={`/item-detail/sounds/${item.item_id}`}>
+                    {item.item}
+                  </Link>
+                </p>
               ))}
             </ul>
           </td>
