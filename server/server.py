@@ -693,7 +693,6 @@ def get_all_student_tests(current_user,  student_id):
     sound_test_list = []
 
     for test in student_tests:
-        print("test", test)
         test_date = test.test_date.strftime('%m-%d-%Y')
         student_test_object = {
             'studentId': test.student_id,
@@ -784,6 +783,15 @@ def get_student_item_test_list(student_test):
 
 #         item_list.append(item)
 #     return item_list
+@app.route("/api/mark-items-learned/<student_id>")
+@token_required
+def mark_items_learned(current_user, student_id, item):
+    user_id = current_user.public_id
+    student_item = StudentItem.query.filter_by(user_id=user_id, student_id=student_id, item_id=item).first()
+    student_item.Learned = True
+    db.session.commit()
+    return "student item marked learned" 
+
 if __name__ == "__main__":
 
     app.debug = True

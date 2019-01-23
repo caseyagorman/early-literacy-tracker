@@ -2,7 +2,6 @@ import React from "react";
 
 const StudentSnapshot = props => (
   <div>
-    {console.log("props", props)}
     <h3>
       {props.student.student.name}
       <span />
@@ -17,6 +16,7 @@ const StudentSnapshot = props => (
     {props.testSentences[1]}
     <br />
     {props.testSentences[0]}
+    <br />
     <br />
     To view more detailed test data, click the links above.
     <br />
