@@ -14,9 +14,6 @@ class StudentItemLearned extends Component {
     this.submit = this.submit.bind(this);
   }
 
-  componentDidMount() {
-    console.log("student item learned", this.props);
-  }
   getOptions(student) {
     if (!student) {
       return <div>loading...</div>;

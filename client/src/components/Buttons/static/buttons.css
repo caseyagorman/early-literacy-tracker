@@ -1,0 +1,14 @@
+#main-button {
+  display: inline-block;
+  margin: 5px;
+  background-color: #00a6ed;
+  border-radius: 5px;
+  color: white;
+}
+#delete-button {
+  display: inline-block;
+  margin-left: 1%;
+}
+#mark-learned-button {
+  display: inline-block;
+}

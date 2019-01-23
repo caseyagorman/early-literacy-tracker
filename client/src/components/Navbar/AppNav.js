@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, NavItem, Nav, MenuItem, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import "./static/appNav.css";
 const AppNav = () => {
   return (
     <Navbar collapseOnSelect id="navbar">
@@ -14,7 +15,7 @@ const AppNav = () => {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <NavItem id="Students" eventKey={1}>
+          <NavItem id="navItem" eventKey={1}>
             <NavDropdown eventKey={3} title="Students" id="basic-nav-dropdown">
               <LinkContainer to="/students">
                 <MenuItem eventKey={3.1}>View Students</MenuItem>
@@ -40,7 +41,7 @@ const AppNav = () => {
               </LinkContainer>
             </NavDropdown>
           </NavItem>
-          <NavItem id="Words" eventKey={2}>
+          <NavItem id="Item" eventKey={2}>
             <NavDropdown eventKey={3} title="Words" id="basic-nav-dropdown">
               <LinkContainer to="/items/words/">
                 <MenuItem eventKey={3.1}>View Words</MenuItem>

@@ -1,6 +1,16 @@
-.display-student-name {
+#student-name {
   display: inline-block;
+  font-size: 36px;
 }
 #delete-student-detail {
   display: inline-block;
+}
+#test-student-button {
+  display: inline-block;
+  margin: 5px;
+  background-color: blue;
+}
+
+.students {
+  font-family: "Niramit", sans-serif;
 }

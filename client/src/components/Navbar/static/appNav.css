@@ -1,0 +1,19 @@
+#navbar {
+  background-color: #00a6ed;
+  color: white;
+  font-family: "Niramit", sans-serif;
+  font-size: 18px;
+}
+
+#basic-nav-dropdown {
+  background-color: #00a6ed;
+  color: white;
+}
+#Brand {
+  background-color: #00a6ed;
+  color: white;
+}
+#Logout {
+  background-color: #00a6ed;
+  color: white;
+}

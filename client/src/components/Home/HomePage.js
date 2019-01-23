@@ -17,7 +17,6 @@ const HomePage = props => (
       text={"View Words"}
       route={`/items/words`}
     />
-    ;
     <MainButton
       id="main-menu-letters-button"
       text={"View Letters"}

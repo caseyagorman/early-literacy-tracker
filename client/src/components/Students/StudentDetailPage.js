@@ -4,17 +4,16 @@ import StudentSnapshot from "./StudentSnapshot";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
 import StudentDetailHeader from "../Tables/StudentDetailHeader";
-import AssignItems from "../../containers/Forms/AssignItems";
 import "./static/students.css";
 const StudentDetailPage = props => (
-  <div className="student-detail-page">
+  <div className="students">
     <div className="container">
       <div className="display-student-name">
+        <b id="student-name">{props.student.student.name}</b>
         <DeleteStudent
           student={props.student.student.student_id}
           id="delete-student-detail"
         />
-        {props.student.student.name}
       </div>
       <div>
         <MainButton

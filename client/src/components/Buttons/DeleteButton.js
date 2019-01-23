@@ -2,7 +2,7 @@ import React from "react";
 import { Glyphicon } from "react-bootstrap";
 
 const DeleteButton = props => (
-  <form>
+  <form id="delete-button">
     <Glyphicon
       glyph="glyphicon glyphicon-trash"
       onClick={props.submit}
