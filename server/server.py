@@ -783,14 +783,20 @@ def get_student_item_test_list(student_test):
 
 #         item_list.append(item)
 #     return item_list
-@app.route("/api/mark-items-learned/<student_id>")
+@app.route("/api/mark-items-learned", methods=["POST"])
 @token_required
-def mark_items_learned(current_user, student_id, item):
+def mark_items_learned(current_user):
+    data = request.get_json()
+    student_id = data.get('studentId')
+    item = data.get('item')
+    item = item['item_id']
     user_id = current_user.public_id
+    print("student_id", student_id, "item", item, user_id)
     student_item = StudentItem.query.filter_by(user_id=user_id, student_id=student_id, item_id=item).first()
+    print("student_item", student_item)
     student_item.Learned = True
     db.session.commit()
-    return "student item marked learned" 
+    return jsonify(student_id)
 
 if __name__ == "__main__":
 

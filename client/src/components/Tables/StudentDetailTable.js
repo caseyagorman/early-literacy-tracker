@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import StudentItemLearned from "../../containers/Forms/StudentItemLearned";
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered>
@@ -42,11 +43,18 @@ const StudentDetailTable = student => (
             </ul>
           </td>
           <td>
+            {console.log("student", student)}
             <ul>
               {student.student.unlearnedWordList.map(item => (
-                <Link to={`/item-detail/words/${item.item_id}`}>
-                  <li>{item.item}</li>{" "}
-                </Link>
+                <li>
+                  <StudentItemLearned
+                    item={item}
+                    student={student.student.student.student_id}
+                  />
+                  <Link to={`/item-detail/words/${item.item_id}`}>
+                    {item.item}{" "}
+                  </Link>
+                </li>
               ))}
             </ul>
           </td>

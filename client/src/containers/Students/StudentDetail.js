@@ -53,7 +53,7 @@ class StudentDetail extends Component {
     }
 
     let testSentences = this.getTestSentence(tests);
-    console.log("test sentence", testSentences);
+
     return (
       <StudentDetailPage
         tests={tests}
