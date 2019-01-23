@@ -12,6 +12,9 @@ function getUnassignedItemsApi(id, itemType) {
 function getMarkStudentItemLearnedApi() {
   return "http://localhost:5000/api/mark-items-learned";
 }
+function getMarkStudentItemUnLearnedApi() {
+  return "http://localhost:5000/api/mark-items-unlearned";
+}
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
 }
@@ -43,8 +46,24 @@ export function markStudentItemLearned(studentId, item, user) {
       body: JSON.stringify({ studentId, item })
     })
       .then(response => response.json())
-      .then(studentId => dispatch(fetchStudent(studentId, user)))
-      .then(() => history.push(`detail/${studentId}`));
+      .then(studentId => dispatch(fetchStudent(studentId, user)));
+  };
+}
+
+export function markStudentItemUnlearned(studentId, item, user) {
+  return dispatch => {
+    return fetch(getMarkStudentItemUnLearnedApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      },
+      body: JSON.stringify({ studentId, item })
+    })
+      .then(response => response.json())
+      .then(studentId => dispatch(fetchStudent(studentId, user)));
   };
 }
 

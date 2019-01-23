@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import StudentItemLearned from "../../containers/Forms/StudentItemLearned";
+import StudentItemUnlearned from "../../containers/Forms/StudentItemUnlearned";
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered>
@@ -36,9 +37,15 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.wordList.map(item => (
-                <Link to={`/item-detail/words/${item.item_id}`}>
-                  <li>{item.item}</li>{" "}
-                </Link>
+                <p>
+                  <StudentItemUnlearned
+                    item={item}
+                    student={student.student.student.student_id}
+                  />
+                  <Link to={`/item-detail/words/${item.item_id}`}>
+                    {item.item}
+                  </Link>
+                </p>
               ))}
             </ul>
           </td>
@@ -46,7 +53,7 @@ const StudentDetailTable = student => (
             {console.log("student", student)}
             <ul>
               {student.student.unlearnedWordList.map(item => (
-                <li>
+                <p>
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
@@ -54,7 +61,7 @@ const StudentDetailTable = student => (
                   <Link to={`/item-detail/words/${item.item_id}`}>
                     {item.item}{" "}
                   </Link>
-                </li>
+                </p>
               ))}
             </ul>
           </td>
@@ -65,9 +72,15 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.letterList.map(item => (
-                <Link to={`/item-detail/letters/${item.item_id}`}>
-                  <li>{item.item}</li>{" "}
-                </Link>
+                <p>
+                  <StudentItemUnlearned
+                    item={item}
+                    student={student.student.student.student_id}
+                  />
+                  <Link to={`/item-detail/letters/${item.item_id}`}>
+                    {item.item}{" "}
+                  </Link>
+                </p>
               ))}
             </ul>
           </td>

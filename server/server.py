@@ -124,7 +124,7 @@ def get_unlearned_item_student_counts(item):
         StudentItem.Learned == False).all()
     return len(items)
 
- 
+    
 @app.route("/api/item-detail/<item_type>/<item>")
 @token_required
 def item_detail(current_user, item_type, item):
@@ -562,34 +562,6 @@ def student_detail(current_user, student_id):
     return jsonify(student_object)
 
 
-@app.route("/api/unassigned-items/<student>/<item_type>")
-@token_required
-def get_unassigned_items(current_user, student, item_type):
-    """gets items that student does not know and are not in current item list, items can then be added to students item list"""
-    print("item_type", item_type)
-    print("student", student)
-    user_id = current_user.public_id
-    items = StudentItem.query.filter_by(
-        student_id=student, user_id=user_id, item_type=item_type).options(db.joinedload('items')).all()
-    item_ids = []
-    item_object = {}
-    for item in items:
-        item_ids.append(item.item_id)
-
-    unassigned_items = Item.query.filter_by(user_id=user_id, item_type=item_type).filter(
-        Item.item_id.notin_(item_ids)).all()
-    item_list = []
-
-    for item in unassigned_items:
-        item = {
-            'item_id': item.item_id,
-            'item': item.item
-        }
-        item_list.append(item)
-    item_object['itemList'] = item_list
-    item_object['itemType'] = item_type
-    return jsonify(item_object)
-
 @app.route("/api/create-student-test", methods=["POST"])
 @token_required
 def create_student_test(current_user):
@@ -759,30 +731,6 @@ def get_student_item_test_list(student_test):
         student_test_list.append(student_test_object)
     return student_test_list
 
-# @app.route("/api//student-item-charts/<item_type>/<student>")
-# @token_required
-# def get_unknown_words_chart(current_user, item_type, student):
-#     """gets words that student does not know and are not in current word list, words can then be added to students word list"""
-#     user_id = current_user.public_id
-#     item_type = item_type
-#     items = StudentItem.query.filter_by(
-#         student_id=student, user_id=user_id, item_type=item_type).options(db.joinedload('items')).all()
-#     item_ids = []
-
-#     for item in items:
-#         item_ids.append(item.item_id)
-
-#     unlearned_items = Item.query.filter_by(user_id=user_id).filter(Item.item_id.notin_(item_ids)).all()
-#     item_list = []
-
-#     for item in unknown_items:
-#         item = {
-#             'item_id': item.item_id,
-#             'item': item.item
-#         }
-
-#         item_list.append(item)
-#     return item_list
 @app.route("/api/mark-items-learned", methods=["POST"])
 @token_required
 def mark_items_learned(current_user):
@@ -791,10 +739,21 @@ def mark_items_learned(current_user):
     item = data.get('item')
     item = item['item_id']
     user_id = current_user.public_id
-    print("student_id", student_id, "item", item, user_id)
     student_item = StudentItem.query.filter_by(user_id=user_id, student_id=student_id, item_id=item).first()
-    print("student_item", student_item)
     student_item.Learned = True
+    db.session.commit()
+    return jsonify(student_id)
+
+@app.route("/api/mark-items-unlearned", methods=["POST"])
+@token_required
+def mark_items_unlearned(current_user):
+    data = request.get_json()
+    student_id = data.get('studentId')
+    item = data.get('item')
+    item = item['item_id']
+    user_id = current_user.public_id
+    student_item = StudentItem.query.filter_by(user_id=user_id, student_id=student_id, item_id=item).first()
+    student_item.Learned = False
     db.session.commit()
     return jsonify(student_id)
 

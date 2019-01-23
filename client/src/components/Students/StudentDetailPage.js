@@ -4,6 +4,7 @@ import StudentSnapshot from "./StudentSnapshot";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
 import StudentDetailHeader from "../Tables/StudentDetailHeader";
+import AssignItems from "../../containers/Forms/AssignItems";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="student-detail-page">

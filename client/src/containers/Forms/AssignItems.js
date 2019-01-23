@@ -14,6 +14,7 @@ class AssignItems extends Component {
   }
 
   componentDidMount() {
+    console.log("assign items", this.props);
     const id = this.props.student.student.student_id;
     const user = this.props.auth.user.token;
     const itemType = this.props.itemType;
