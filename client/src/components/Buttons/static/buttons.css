@@ -11,4 +11,9 @@
 }
 #mark-learned-button {
   display: inline-block;
+  color: #7fb800;
+}
+#mark-unlearned-button {
+  display: inline-block;
+  color: #bf211e;
 }

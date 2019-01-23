@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import StudentItemLearned from "../../containers/Forms/StudentItemLearned";
 import StudentItemUnlearned from "../../containers/Forms/StudentItemUnlearned";
+import "./static/table.css";
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered>
@@ -34,10 +35,10 @@ const StudentDetailTable = student => (
           <td>
             {student.student.wordCount}/{student.student.totalWordCount}
           </td>
-          <td>
-            <ul>
+          <td style={{ float: "left" }}>
+            <ul style={{ float: "left" }}>
               {student.student.wordList.map(item => (
-                <p>
+                <div style={{ float: "left" }} id="student-detail-item-list">
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
@@ -45,15 +46,14 @@ const StudentDetailTable = student => (
                   <Link to={`/item-detail/words/${item.item_id}`}>
                     {item.item}
                   </Link>
-                </p>
+                </div>
               ))}
             </ul>
           </td>
           <td>
-            {console.log("student", student)}
             <ul>
               {student.student.unlearnedWordList.map(item => (
-                <p>
+                <p id="student-detail-item-list">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
@@ -72,7 +72,7 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.letterList.map(item => (
-                <p>
+                <p id="student-detail-item-list">
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
@@ -87,7 +87,7 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.unlearnedLetterList.map(item => (
-                <p>
+                <p id="student-detail-item-list">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
@@ -107,7 +107,7 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.soundList.map(item => (
-                <p>
+                <p id="student-detail-item-list">
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
@@ -122,7 +122,7 @@ const StudentDetailTable = student => (
           <td>
             <ul>
               {student.student.unlearnedSoundList.map(item => (
-                <p>
+                <p id="student-detail-item-list">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
