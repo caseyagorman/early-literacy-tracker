@@ -700,7 +700,8 @@ def get_all_student_tests(current_user,  student_id):
             'score': test.score,
             'testDate': test.test_date,
             'correctItems': test.correct_items,
-            'incorrectItems': test.incorrect_items
+            'incorrectItems': test.incorrect_items,
+            'testType': test.test_type
         }
         if test.test_type == "words":
             word_test_list.append(student_test_object)

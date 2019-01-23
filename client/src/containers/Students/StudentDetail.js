@@ -16,6 +16,34 @@ class StudentDetail extends Component {
     this.props.studentActions.fetchStudent(studentId, user);
     this.props.testResultsActions.fetchAllTestResults(studentId, user);
   }
+
+  getTestSentence(tests) {
+    let sentenceList = [];
+    for (let key in tests) {
+      let test = tests[key];
+      if (test.length === 0) {
+        let testSentence =
+          this.props.student.student.name +
+          " has no " +
+          key.slice(0, -4) +
+          " tests yet.";
+        sentenceList.push(testSentence);
+      } else {
+        let testSentence =
+          this.props.student.student.name +
+          "'s last " +
+          test.testType +
+          " test was " +
+          test.testDate.slice(0, 17) +
+          "and they scored " +
+          test.score +
+          "%.";
+        sentenceList.push(testSentence);
+      }
+    }
+    return sentenceList;
+  }
+
   displayStudentDetailPage(student, tests) {
     if (!student) {
       return <div>loading...</div>;
@@ -23,18 +51,14 @@ class StudentDetail extends Component {
     if (student.student === null) {
       return <div>loading...</div>;
     }
-    let testsSentence = "";
-    for (let key in tests) {
-      console.log("tests", tests[key]);
-      if (tests[key].length === 0) {
-        console.log("something");
-        //  testsSentence = testsSentence + this.props.student.student.name
-      }
-    }
+
+    let testSentences = this.getTestSentence(tests);
+    console.log("test sentence", testSentences);
     return (
       <StudentDetailPage
         tests={tests}
         student={student}
+        testSentences={testSentences}
         studentTestActions={this.props.studentTestActions}
       />
     );
