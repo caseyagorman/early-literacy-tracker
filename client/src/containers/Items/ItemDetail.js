@@ -13,17 +13,11 @@ class ItemDetail extends Component {
   }
 
   displayItemDetail(item) {
+    console.log("item", item);
     if (item.item === null) {
       return <div>loading...</div>;
     }
-    return (
-      <ItemDetailPage
-        item={item.item}
-        students={item.studentList}
-        id={this.props.match.params.id}
-        itemType={this.props.match.params.itemType}
-      />
-    );
+    return <ItemDetailPage item={item} />;
   }
 
   render() {

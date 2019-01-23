@@ -134,26 +134,24 @@ def item_detail(current_user, item_type, item):
     item_object = Item.query.filter_by(item_id=item, user_id=user_id).first()
     student_items = StudentItem.query.filter_by(
         item_id=item).options(db.joinedload('students')).all()
-    student_list = []
+    learned_student_list = []
+    unlearned_student_list =[]
     item_detail = {}
 
     for student in student_items:
         if student.Learned == False:
             student = {
                 'student_id': student.students.student_id,
-                'name': student.students.name,
-   
-                'learned': "no"
-
-            }
-            student_list.append(student)
+                'name': student.students.name
+                }
+            unlearned_student_list.append(student)
 
         else:
-             student = {
+            student = {
                 'student_id': student.students.student_id,
-                'name': student.students.name,
-                'learned': "yes"
-            }
+                'name': student.students.name
+                }
+            learned_student_list.append(student)
 
     item_object = {
         'item_id': item_object.item_id,
@@ -161,8 +159,9 @@ def item_detail(current_user, item_type, item):
         'date': item_object.date_added,
         'itemType': item_object.item_type
     }
-    student_list = sorted(student_list, key=itemgetter('name')) 
-    item_detail['studentList'] = student_list
+    # student_list = sorted(student_list, key=itemgetter('name')) 
+    item_detail['unlearnedStudentList'] = unlearned_student_list
+    item_detail['learnedStudentList'] = learned_student_list
     item_detail['item'] = item_object
     print("item detail", item_detail)
     return jsonify(item_detail)

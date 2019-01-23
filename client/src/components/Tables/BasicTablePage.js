@@ -1,29 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Table } from "react-bootstrap";
 const BasicTablePage = props => (
-  <div>
-    {console.log("props", props)}
+  <Table bordered>
     <thead id="student-letter-table-head">{props.itemType}</thead>
+    <th>Unlearned</th>
+    <th>Learned</th>
     <tbody>
-      {props.items.map(function(item) {
-        return (
-          <tr>
-            <td>
-              <Link to={`/${props.route}/${props.item_id}`} className="link" />
-            </td>
-            {item.item}
-            <td>
-              <ul>
-                {item.items.map(item => (
-                  <p>{item.name}</p>
-                ))}
-              </ul>
-            </td>
-          </tr>
-        );
-      })}
+      <tr>
+        <td>
+          {props.items.unlearnedStudentList.map(name => (
+            <Link to={`/details/${name.student_id}`}>
+              <li>{name.name}</li>
+            </Link>
+          ))}
+        </td>
+        <td>
+          {props.items.learnedStudentList.map(name => (
+            <Link to={`/details/${name.student_id}`}>
+              <li>{name.name}</li>
+            </Link>
+          ))}
+        </td>
+      </tr>
     </tbody>
-  </div>
+  </Table>
 );
 
 export default BasicTablePage;

@@ -21,8 +21,7 @@ export default {
     fetchingStudent: false
   },
   item: {
-    item: null,
-    fetchingItem: false
+    item: null
   },
   // itemUnassignedStudents: {},
 
