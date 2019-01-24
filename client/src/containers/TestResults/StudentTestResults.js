@@ -6,6 +6,7 @@ import TestResultsTable from "../../components/Tables/TestResultsTable";
 import TableContainer from "../Tables/TableContainer";
 import StudentItemLineChart from "../Charts/StudentItemLineChart";
 import StudentTestResultsPage from "../../components/TestResults/StudentTestResultsPage";
+import CorrectCountsTable from "../../components/Tables/CorrectCountsTable";
 class StudentTestResults extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -15,6 +16,7 @@ class StudentTestResults extends Component {
   }
 
   displayTestResultsPage(testResults) {
+    console.log("test results", testResults);
     if (!testResults.itemCounts) {
       return <div>loading...</div>;
     }
@@ -28,7 +30,15 @@ class StudentTestResults extends Component {
           renderTable={TestResultsTable}
           tableElements={testResults.studentTestList}
         />
-        <StudentItemLineChart testResults={testResults.studentTestList} />;
+        <TableContainer
+          renderTable={CorrectCountsTable}
+          tableElements={testResults.itemCounts}
+        />
+        <StudentItemLineChart
+          testResults={testResults.studentTestList}
+          itemType={itemType}
+        />
+        ;
       </div>
     );
   }

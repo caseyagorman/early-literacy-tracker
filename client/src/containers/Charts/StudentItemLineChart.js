@@ -81,7 +81,12 @@ class ItemLineChart extends Component {
       ]
     };
 
-    return <Line options={options} data={data} />;
+    return (
+      <div>
+        <h3>Tests over time</h3>
+        <Line options={options} data={data} />
+      </div>
+    );
   }
 
   render() {
