@@ -625,9 +625,9 @@ def get_test_dates(current_user, student, test_type):
     test_dates = StudentTestResult.query.filter_by(user_id=user_id, student_id=student_id, test_type=test_type).all()
     if test_dates != []:
         most_recent = test_dates[-1].test_date
-        most_recent = most_recent.strftime("%m-%d-%Y")
+        most_recent = most_recent.strftime("%m-%d")
     else:
-        most_recent = "no tests yet!"
+        most_recent = "N/A"
     return most_recent
 
 @app.route("/api/get-student-item-test/<item_type>/<student>")
@@ -719,7 +719,7 @@ def get_student_item_test_list(student_test):
     """is called by get_student_item_test, returns list of student tests"""
     student_test_list = []
     for student in student_test:
-        test_date = student.test_date.strftime('%m-%d-%Y')
+        test_date = student.test_date.strftime('%m-%d')
         student_test_object = {
             'studentId': student.student_id,
             'score': student.score,

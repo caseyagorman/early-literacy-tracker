@@ -4,7 +4,7 @@ import { Glyphicon } from "react-bootstrap";
 const MarkLearnedButton = props => (
   <form id="mark-unlearned-button">
     <Glyphicon
-      glyph="glyphicon glyphicon-minus-sign"
+      glyph="glyphicon glyphicon-remove"
       onClick={props.submit}
       id="ok"
     />

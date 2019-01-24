@@ -7,4 +7,92 @@
 
 .student-table {
   font-size: 20px;
+  color: #2f2d2e;
+}
+
+.unordered-list {
+  list-style-type: none;
+  color: #2f2d2e;
+}
+
+.student-snapshot {
+  font-size: 20px;
+  color: #2f2d2e;
+}
+
+.student-detail-button-students {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+  color: #1a1b41;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #2cc2e1;
+  color: #2f2d2e;
+}
+.student-detail-button-words {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+  color: #1a1b41;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #9b489a;
+  color: #2f2d2e;
+}
+.student-detail-button-letters {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+  color: #1a1b41;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #f15e5e;
+  color: #2f2d2e;
+}
+.student-detail-button-sounds {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+  color: #1a1b41;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #f79244;
+  color: #2f2d2e;
+}
+.link {
+  color: #1a1b41;
+  background-color: white;
+}
+#words {
+  border: 2px solid #9b489a;
+  text-align: center;
+}
+#letters {
+  border: 2px solid #f15e5e;
+  text-align: center;
+}
+#sounds {
+  border: 2px solid #f79244;
+  text-align: center;
+}
+#test-date {
+  font-size: 18px;
+}
+table,
+th,
+td {
+  border: 2px solid #1a1b41;
 }

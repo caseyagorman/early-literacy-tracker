@@ -1,9 +1,48 @@
-#main-button {
+#student-button {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
   display: inline-block;
   margin: 5px;
-  background-color: #00a6ed;
-  border-radius: 5px;
+  background-color: white;
   color: white;
+  border: 2px solid #2cc2e1;
+}
+#test-student-word-button {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+  color: #1a1b41;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #9b489a;
+}
+#test-student-letter-button {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+  color: #1a1b41;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #f15e5e;
+}
+#test-student-sound-button {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+  color: #1a1b41;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #f79244;
 }
 #delete-button {
   display: inline-block;
@@ -11,13 +50,11 @@
 }
 #mark-learned-button {
   display: inline-block;
-  color: #7fb800;
   margin-right: 3px;
   font-size: 16px;
 }
 #mark-unlearned-button {
   display: inline-block;
-  color: #bf211e;
   margin-right: 3px;
   font-size: 16px;
 }

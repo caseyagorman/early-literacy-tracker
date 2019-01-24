@@ -15,7 +15,7 @@ const AppNav = () => {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <NavItem id="navItem" eventKey={1}>
+          <NavItem id="Students" eventKey={1}>
             <NavDropdown eventKey={3} title="Students" id="basic-nav-dropdown">
               <LinkContainer to="/students">
                 <MenuItem eventKey={3.1}>View Students</MenuItem>
@@ -41,7 +41,7 @@ const AppNav = () => {
               </LinkContainer>
             </NavDropdown>
           </NavItem>
-          <NavItem id="Item" eventKey={2}>
+          <NavItem id="Words" eventKey={2}>
             <NavDropdown eventKey={3} title="Words" id="basic-nav-dropdown">
               <LinkContainer to="/items/words/">
                 <MenuItem eventKey={3.1}>View Words</MenuItem>
@@ -54,7 +54,7 @@ const AppNav = () => {
               </LinkContainer>
             </NavDropdown>
           </NavItem>
-          <NavItem id="Words" eventKey={2}>
+          <NavItem id="Letters" eventKey={2}>
             <NavDropdown eventKey={3} title="Letters" id="basic-nav-dropdown">
               <LinkContainer to="/items/letters/">
                 <MenuItem eventKey={3.1}>View Letters</MenuItem>
@@ -67,7 +67,7 @@ const AppNav = () => {
               </LinkContainer>
             </NavDropdown>
           </NavItem>
-          <NavItem id="Words" eventKey={2}>
+          <NavItem id="Sounds" eventKey={2}>
             <NavDropdown eventKey={3} title="Sounds" id="basic-nav-dropdown">
               <LinkContainer to="/items/sounds/">
                 <MenuItem eventKey={3.1}>View Sounds</MenuItem>

@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentTestActions from "../../redux/actions/studentTestActions";
+import "../../components/TestStudent/static/test.css";
 import StudentTestPage from "../../components/TestStudent/StudentTestPage";
 
 class StudentTest extends React.Component {

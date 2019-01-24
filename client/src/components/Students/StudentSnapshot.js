@@ -1,12 +1,7 @@
 import React from "react";
 
 const StudentSnapshot = props => (
-  <div>
-    <h3>
-      {props.student.student.name}
-      <span />
-      's Snapshot
-    </h3>
+  <div className="student-snapshot">
     {props.student.student.name} knows {props.student.wordCount}/
     {props.student.totalWordCount} words, {props.student.letterCount}/
     {props.student.totalLetterCount} letters, and {props.student.soundCount}/
@@ -18,7 +13,7 @@ const StudentSnapshot = props => (
     {props.testSentences[0]}
     <br />
     <br />
-    To view more detailed test data, click the links above.
+    To view more detailed test data, click the links below.
     <br />
     <br />
     {/* {props.student.student.name} sabe {props.student.wordCount}/

@@ -1,8 +1,11 @@
 import React from "react";
+import "./static/test.css";
 
 const StudentTestPage = props => (
   <div className="container">
-    <div>{props.displayItem(props.studentTestItems[props.idx])}</div>
+    <div className="display-test-item">
+      {props.displayItem(props.studentTestItems[props.idx])}
+    </div>
     <button
       id="yes-button"
       onClick={e =>

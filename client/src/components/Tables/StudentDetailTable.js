@@ -6,135 +6,141 @@ import StudentItemUnlearned from "../../containers/Forms/StudentItemUnlearned";
 import "./static/table.css";
 const StudentDetailTable = student => (
   <div className="student-table">
-    <Table bordered>
+    <Table bordered className="student-detail-table">
       <thead>
         <tr>
-          <th colSpan="4"> Words </th>
-          <th colSpan="4"> Letters </th>
-          <th colSpan="4"> Sounds </th>
+          <th id="words" colSpan="4">
+            Words
+          </th>
+          <th id="letters" colSpan="4">
+            Letters
+          </th>
+          <th id="sounds" colSpan="4">
+            Sounds
+          </th>
         </tr>
       </thead>
       <thead>
         <tr>
+          <th>Last Tested</th>
           <th>Word Count</th>
           <th>Learned Words</th>
           <th>Unlearned Words</th>
-          <th>Last Word Test</th>
+          <th>Last Tested</th>
           <th>Letter Count</th>
           <th>Learned Letters</th>
           <th>Unlearned Letters</th>
-          <th>Last Letter Test</th>
+          <th>Last Tested</th>
           <th>Sound Count</th>
           <th>Learned Sounds</th>
           <th>Unlearned Sounds</th>
-          <th>Last Sound Test</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>
+      <tbody className="student-detail-table">
+        <tr className="student-detail-table">
+          <td id="test-date">{student.student.lastWordTest}</td>
+          <td className="student-detail-table">
             {student.student.wordCount}/{student.student.totalWordCount}
           </td>
-          <td style={{ width: "10%" }}>
-            <ul>
+          <td className="student-detail-table" style={{ width: "10%" }}>
+            <ul className="unordered-list">
               {student.student.wordList.map(item => (
-                <div className="student-detail-table-div">
+                <li className="student-detail-table-div">
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link to={`/item-detail/words/${item.item_id}`}>
+                  <Link id="link" to={`/item-detail/words/${item.item_id}`}>
                     {item.item}
                   </Link>
-                </div>
+                </li>
               ))}
             </ul>
           </td>
-          <td style={{ width: "10%" }}>
-            <ul>
+          <td className="student-detail-table" style={{ width: "10%" }}>
+            <ul className="unordered-list">
               {student.student.unlearnedWordList.map(item => (
-                <div className="student-detail-table-div">
+                <li className="student-detail-table-div">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link to={`/item-detail/words/${item.item_id}`}>
+                  <Link id="link" to={`/item-detail/words/${item.item_id}`}>
                     {item.item}{" "}
                   </Link>
-                </div>
+                </li>
               ))}
             </ul>
           </td>
-          <td>{student.student.lastWordTest}</td>
+          <td id="test-date">{student.student.lastLetterTest} </td>
           <td>
             {student.student.letterCount}/{student.student.totalLetterCount}
           </td>
           <td style={{ width: "10%" }}>
-            <ul>
+            <ul className="unordered-list">
               {student.student.letterList.map(item => (
-                <div className="student-detail-table-div">
+                <li className="student-detail-table-div">
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link to={`/item-detail/letters/${item.item_id}`}>
+                  <Link id="link" to={`/item-detail/letters/${item.item_id}`}>
                     {item.item}{" "}
                   </Link>
-                </div>
+                </li>
               ))}
             </ul>
           </td>
           <td style={{ width: "10%" }}>
-            <ul>
+            <ul className="unordered-list">
               {student.student.unlearnedLetterList.map(item => (
-                <div className="student-detail-table-div">
+                <li className="student-detail-table-div">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link to={`/item-detail/letters/${item.item_id}`}>
+                  <Link id="link" to={`/item-detail/letters/${item.item_id}`}>
                     {item.item}
                   </Link>
-                </div>
+                </li>
               ))}
             </ul>
           </td>
 
-          <td>{student.student.lastLetterTest} </td>
+          <td id="test-date">{student.student.lastSoundTest} </td>
           <td>
             {student.student.soundCount}/{student.student.totalSoundCount}
           </td>
           <td style={{ width: "10%" }}>
-            <ul>
+            <ul className="unordered-list">
               {student.student.soundList.map(item => (
-                <div className="student-detail-table-div">
+                <li className="student-detail-table-div">
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link to={`/item-detail/sounds/${item.item_id}`}>
+                  <Link id="link" to={`/item-detail/sounds/${item.item_id}`}>
                     {item.item}
                   </Link>
-                </div>
+                </li>
               ))}
             </ul>
           </td>
           <td style={{ width: "10%" }}>
-            <ul>
+            <ul className="unordered-list">
               {student.student.unlearnedSoundList.map(item => (
-                <div className="student-detail-table-div">
+                <li className="student-detail-table-div">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link to={`/item-detail/sounds/${item.item_id}`}>
+                  <Link id="link" to={`/item-detail/sounds/${item.item_id}`}>
                     {item.item}
                   </Link>
-                </div>
+                </li>
               ))}
             </ul>
           </td>
-          <td>{student.student.lastSoundTest} </td>
         </tr>
       </tbody>
     </Table>
