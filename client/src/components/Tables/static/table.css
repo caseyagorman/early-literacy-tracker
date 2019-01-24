@@ -1,8 +1,10 @@
-.student-table {
-  font-size: 16px;
+.student-detail-table-div {
+  font-size: 20px;
+  left: -70%;
+  position: relative;
+  float: left;
 }
 
-#student-detail-item-list {
+.student-table {
   font-size: 20px;
-  text-align: left;
 }
