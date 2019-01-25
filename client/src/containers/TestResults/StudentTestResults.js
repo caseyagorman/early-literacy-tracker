@@ -3,42 +3,41 @@ import { bindActionCreators } from "redux";
 import * as testResultsActions from "../../redux/actions/testResultsActions";
 import React, { Component } from "react";
 import TestResultsTable from "../../components/Tables/TestResultsTable";
-import TableContainer from "../Tables/TableContainer";
-import StudentItemLineChart from "../Charts/StudentItemLineChart";
 import StudentTestResultsPage from "../../components/TestResults/StudentTestResultsPage";
 import CorrectCountsTable from "../../components/Tables/CorrectCountsTable";
 class StudentTestResults extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     const user = this.props.auth.user.token;
-    const itemType = this.props.match.params.itemType;
-    this.props.testResultsActions.fetchTestResults(user, itemType, id);
+    this.props.testResultsActions.fetchAllTestResults(id, user);
   }
 
   displayTestResultsPage(testResults) {
     console.log("test results", testResults);
-    if (!testResults.itemCounts) {
+
+    if (!testResults.testData) {
       return <div>loading...</div>;
     }
-    if (testResults.itemCounts) {
+    if (testResults.testData) {
     }
     const itemType = this.props.match.params.itemType;
+    console.log(itemType);
     return (
       <div className="container">
-        <StudentTestResultsPage itemType={itemType} />
-        <TableContainer
-          renderTable={TestResultsTable}
-          tableElements={testResults.studentTestList}
-        />
-        <TableContainer
-          renderTable={CorrectCountsTable}
-          tableElements={testResults.itemCounts}
-        />
-        <StudentItemLineChart
-          testResults={testResults.studentTestList}
+        {console.log(
+          "testResults.testData",
+          testResults.testData[itemType].itemCounts
+        )}
+        <StudentTestResultsPage
           itemType={itemType}
+          CorrectCountsTable={CorrectCountsTable}
+          correctCountsTableElements={testResults.testData[itemType].itemCounts}
+          TestResultsTable={TestResultsTable}
+          testResultsTableElements={
+            testResults.testData[itemType].learnedItemList
+          }
+          testResults={testResults.testData[itemType].studentList}
         />
-        ;
       </div>
     );
   }

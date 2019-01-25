@@ -5,7 +5,6 @@ import * as studentActions from "../../redux/actions/studentActions";
 import * as studentTestActions from "../../redux/actions/studentTestActions";
 import * as testResultsActions from "../../redux/actions/testResultsActions";
 import StudentDetailPage from "../../components/Students/StudentDetailPage";
-import ReactToPrint from "react-to-print";
 class StudentDetail extends Component {
   componentDidMount() {
     let studentId = this.props.match.params.id;
@@ -45,6 +44,7 @@ class StudentDetail extends Component {
   }
 
   displayStudentDetailPage(student, tests) {
+    console.log("tests", tests);
     if (!student) {
       return <div>loading...</div>;
     }

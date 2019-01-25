@@ -647,7 +647,7 @@ def get_student_item_test(current_user, item_type, student):
     item_counts = get_item_counts(student_items)
     test_data = {'itemCounts': item_counts, 'studentTestList':student_test_list, 'learnedItemList': learned_items_list
     }
-    return jsonify(test_data)
+    return test_data
 
 
 @app.route("/api/get-all-student-tests/<student_id>")
@@ -656,10 +656,9 @@ def get_all_student_tests(current_user,  student_id):
     """get list of student test results, word_counts and chart_data"""
     print("current_user", current_user)
     user_id = current_user.public_id
-    student_id = student_id
-    print("student_id", student_id)
     student_tests = StudentTestResult.query.filter_by(
         student_id=student_id, user_id=user_id).all()
+    test_data = {}
     word_test_list = []
     letter_test_list = []
     sound_test_list = []
@@ -676,10 +675,13 @@ def get_all_student_tests(current_user,  student_id):
         }
         if test.test_type == "words":
             word_test_list.append(student_test_object)
+            test_data['words'] = get_student_item_test("words", test.student_id)
         elif test.test_type == "letters":
              letter_test_list.append(student_test_object)
+             test_data['letters'] = get_student_item_test("letters", test.student_id)
         elif test.test_type == "sounds":
              sound_test_list.append(student_test_object)
+             test_data['sounds'] = get_student_item_test("sounds", test.student_id)
     if word_test_list != []:
         word_test_list = word_test_list[-1]
     if letter_test_list != []:
@@ -688,10 +690,12 @@ def get_all_student_tests(current_user,  student_id):
         sound_test_list = sound_test_list[-1]
 
     test_object = {
+        "testData": test_data,
         "wordTest":word_test_list,
         "letterTest": letter_test_list,
-        "soundTest": sound_test_list
+        "soundTest": sound_test_list,
     }
+    print("test object", test_object)
     return jsonify(test_object)
 
 def get_item_counts(student_items):

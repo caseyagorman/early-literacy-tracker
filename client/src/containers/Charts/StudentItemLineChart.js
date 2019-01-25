@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 
-class ItemLineChart extends Component {
+class StudentItemLineChart extends Component {
   getChartData(data) {
     if (!data) {
       return <div>loading...</div>;
@@ -94,4 +94,4 @@ class ItemLineChart extends Component {
   }
 }
 
-export default ItemLineChart;
+export default StudentItemLineChart;

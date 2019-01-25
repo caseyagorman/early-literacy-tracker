@@ -21,7 +21,7 @@ import AddStudent from "./containers/Forms/AddStudent";
 import AddItems from "./containers/Forms/AddItems";
 import AllItems from "./containers/Items/AllItems";
 import ItemDetail from "./containers/Items/ItemDetail";
-import AddPropsToRoute from "./HOC/AddPropsToRoute";
+// import AddPropsToRoute from "./HOC/AddPropsToRoute";
 import AppNav from "./components/Navbar/AppNav";
 import TestStudent from "./containers/TestStudent/TestStudent";
 import StudentDetailCharts from "./containers/Charts/StudentDetailCharts";

@@ -25,10 +25,10 @@ export default function studentItems(
 
     case RECEIVE_STUDENT_ITEMS:
       // const items = action.studentItems[0];
-      var itemType = action.studentItems[1];
+      let itemType = action.studentItems[1];
       const oldStudentItemSets = state.studentItemSets;
-      var newStudentItems = action.studentItems[0];
-      var newStudentItemSets = {};
+      let newStudentItems = action.studentItems[0];
+      let newStudentItemSets = {};
       newStudentItemSets[itemType] = newStudentItems;
       newStudentItemSets = Object.assign(
         {},

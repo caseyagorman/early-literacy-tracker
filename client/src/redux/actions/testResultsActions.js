@@ -10,7 +10,7 @@ function getStudentAllTestsResultsApi(id) {
 }
 
 export function receiveTestResults(testResults) {
-  console.log("action", testResults);
+  console.log("test results", testResults);
   return { type: types.RECEIVE_TEST_RESULTS, testResults: testResults };
 }
 
@@ -31,6 +31,7 @@ export function fetchTestResults(user, itemType, id) {
 }
 
 export function fetchAllTestResults(id, user) {
+  console.log("fetching all student tests", id, user);
   return dispatch => {
     return fetch(getStudentAllTestsResultsApi(id), {
       method: "GET",

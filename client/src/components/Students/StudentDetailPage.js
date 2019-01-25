@@ -3,10 +3,11 @@ import MainButton from "../Buttons/MainButton";
 import StudentSnapshot from "./StudentSnapshot";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
-import StudentDetailHeader from "../Tables/StudentDetailHeader";
+import StudentDetailHeader from "./StudentDetailHeader";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="students">
+    {console.log("student detail props", props)}
     <div className="container">
       <div className="display-student-name">
         <b id="student-name">{props.student.student.name}</b>
