@@ -17,9 +17,11 @@ class StudentDetail extends Component {
   }
 
   getTestSentence(tests) {
+    console.log("test", tests);
     let sentenceList = [];
     for (let key in tests) {
       let test = tests[key];
+      console.log("test key", test);
       if (test.length === 0) {
         let testSentence =
           this.props.student.student.name +
@@ -27,7 +29,8 @@ class StudentDetail extends Component {
           key.slice(0, -4) +
           " tests yet.";
         sentenceList.push(testSentence);
-      } else {
+      }
+      if (test.correctItems) {
         let testSentence =
           this.props.student.student.name +
           "'s last " +
