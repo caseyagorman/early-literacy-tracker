@@ -3,7 +3,12 @@ import { Glyphicon } from "react-bootstrap";
 import "./static/buttons.css";
 const MarkLearnedButton = props => (
   <form id="mark-learned-button">
-    <Glyphicon glyph="glyphicon glyphicon-ok" onClick={props.submit} id="ok" />
+    <Glyphicon
+      title="click to mark as learned"
+      glyph="glyphicon glyphicon-ok"
+      onClick={props.submit}
+      id="ok"
+    />
   </form>
 );
 

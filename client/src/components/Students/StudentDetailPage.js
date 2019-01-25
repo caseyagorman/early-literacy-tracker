@@ -17,16 +17,24 @@ const StudentDetailPage = props => (
         <br />
       </div>
       <StudentSnapshot
+        id="section-to-print"
         student={props.student}
         tests={props.tests}
         testSentences={props.testSentences}
       />
-      {/* <div className="actions-header">Actions</div> */}
       <StudentDetailHeader student={props.student} />
 
       <div>
-        <div id="student-button">filler</div>
         <MainButton
+          title="Click to see all charts and test results on single page"
+          id="student-button"
+          text={`View all data`}
+          route={`/test-student/words/${props.student.student.student_id}`}
+        >
+          View all data on one page
+        </MainButton>
+        <MainButton
+          title="Click to start student word test"
           id="test-student-word-button"
           text={`Test Words`}
           route={`/test-student/words/${props.student.student.student_id}`}
@@ -35,6 +43,7 @@ const StudentDetailPage = props => (
         <span />
         <span />
         <MainButton
+          title="Click to start student letter test"
           id="test-student-letter-button"
           text={`Test Letters`}
           route={`/test-student/letters/${props.student.student.student_id}`}
@@ -43,6 +52,7 @@ const StudentDetailPage = props => (
         <span />
         <span />
         <MainButton
+          title="Click to start student sound test"
           id="test-student-sound-button"
           text={`Test Sounds`}
           route={`/test-student/sounds/${props.student.student.student_id}`}

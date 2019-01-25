@@ -625,7 +625,7 @@ def get_test_dates(current_user, student, test_type):
     test_dates = StudentTestResult.query.filter_by(user_id=user_id, student_id=student_id, test_type=test_type).all()
     if test_dates != []:
         most_recent = test_dates[-1].test_date
-        most_recent = most_recent.strftime("%m-%d")
+        most_recent = most_recent.strftime("%a, %b %d")
     else:
         most_recent = "N/A"
     return most_recent
@@ -665,7 +665,7 @@ def get_all_student_tests(current_user,  student_id):
     sound_test_list = []
 
     for test in student_tests:
-        test_date = test.test_date.strftime('%m-%d-%Y')
+        test_date = test.test_date.strftime("%a, %b %d")
         student_test_object = {
             'studentId': test.student_id,
             'score': test.score,
@@ -720,7 +720,7 @@ def get_student_item_test_list(student_test):
     """is called by get_student_item_test, returns list of student tests"""
     student_test_list = []
     for student in student_test:
-        test_date = student.test_date.strftime('%m-%d')
+        test_date = student.test_date.strftime("%a, %b %d")
         student_test_object = {
             'studentId': student.student_id,
             'score': student.score,

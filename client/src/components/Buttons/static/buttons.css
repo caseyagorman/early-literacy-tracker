@@ -5,7 +5,7 @@
   display: inline-block;
   margin: 5px;
   background-color: white;
-  color: white;
+  color: #1a1b41;
   border: 2px solid #2cc2e1;
 }
 #test-student-word-button {
@@ -52,9 +52,13 @@
   display: inline-block;
   margin-right: 3px;
   font-size: 16px;
+  color: green;
+  cursor: pointer;
 }
 #mark-unlearned-button {
   display: inline-block;
   margin-right: 3px;
   font-size: 16px;
+  color: red;
+  cursor: pointer;
 }

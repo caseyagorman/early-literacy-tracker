@@ -4,7 +4,7 @@ import "./static/buttons.css";
 const MainButton = props => {
   return (
     <Link to={props.route}>
-      <button id={props.id} onClick={props.onClick}>
+      <button title={props.title} id={props.id} onClick={props.onClick}>
         {props.text}
       </button>
     </Link>

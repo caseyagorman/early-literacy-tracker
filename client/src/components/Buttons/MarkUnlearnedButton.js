@@ -4,9 +4,10 @@ import { Glyphicon } from "react-bootstrap";
 const MarkLearnedButton = props => (
   <form id="mark-unlearned-button">
     <Glyphicon
+      title="click to mark as unlearned"
       glyph="glyphicon glyphicon-remove"
       onClick={props.submit}
-      id="ok"
+      data-toggle="tooltip"
     />
   </form>
 );
