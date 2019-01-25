@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 
 class StudentItemLineChart extends Component {
   getChartData(data) {
+    console.log("data", data);
     if (!data) {
       return <div>loading...</div>;
     }

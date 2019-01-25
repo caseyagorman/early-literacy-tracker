@@ -47,7 +47,6 @@ class StudentDetail extends Component {
   }
 
   displayStudentDetailPage(student, tests) {
-    console.log("tests", tests);
     if (!student) {
       return <div>loading...</div>;
     }

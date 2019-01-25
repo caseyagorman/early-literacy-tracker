@@ -17,10 +17,10 @@ const StudentTestResultsPage = props => (
       renderTable={props.TestResultsTable}
       tableElements={props.testResultsTableElements}
     />
-    <StudentItemLineChart
+    {/* <StudentItemLineChart
       testResults={props.testResults}
       itemType={props.itemType}
-    />
+    /> */}
   </div>
 );
 

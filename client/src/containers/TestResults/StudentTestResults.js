@@ -14,27 +14,23 @@ class StudentTestResults extends Component {
 
   displayTestResultsPage(testResults) {
     console.log("test results", testResults);
-
     if (!testResults.testData) {
       return <div>loading...</div>;
     }
     if (testResults.testData) {
     }
     const itemType = this.props.match.params.itemType;
-    console.log(itemType);
+    const itemTestType = itemType.slice(0, -1) + "Test";
     return (
       <div className="container">
-        {console.log(
-          "testResults.testData",
-          testResults.testData[itemType].itemCounts
-        )}
+        {console.log("testResults", testResults[itemTestType])}
         <StudentTestResultsPage
           itemType={itemType}
           CorrectCountsTable={CorrectCountsTable}
           correctCountsTableElements={testResults.testData[itemType].itemCounts}
           TestResultsTable={TestResultsTable}
           testResultsTableElements={
-            testResults.testData[itemType].learnedItemList
+            testResults.testData[itemType].studentTestList
           }
           testResults={testResults.testData[itemType].studentList}
         />
