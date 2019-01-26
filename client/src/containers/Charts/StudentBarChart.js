@@ -9,24 +9,28 @@ class StudentBarChart extends Component {
     let itemCounts = [];
     let studentList = [];
     let itemList = [];
+    let totalItemCount = 0;
     const itemsDict = {
       words: {
         unlearnedItemList: "unlearnedWordList",
         itemList: "wordList",
         learnedCount: "wordCount",
-        unlearnedCount: "unlearnedWordCount"
+        unlearnedCount: "unlearnedWordCount",
+        totalCount: "totalWordCount"
       },
       letters: {
         unlearnedItemList: "unlearnedLetterList",
         itemList: "letterList",
         learnedCount: "letterCount",
-        unlearnedCount: "unlearnedLetterCount"
+        unlearnedCount: "unlearnedLetterCount",
+        totalCount: "totalLetterCount"
       },
       sounds: {
         unlearnedItemList: "unlearnedSoundList",
         itemList: "letterList",
         learnedCount: "soundCount",
-        unlearnedCount: "unlearnedLetterCount"
+        unlearnedCount: "unlearnedLetterCount",
+        totalCount: "totalSoundCount"
       }
     };
     let itemType = this.props.itemType;
@@ -38,15 +42,17 @@ class StudentBarChart extends Component {
         itemCounts.push(item[itemsKey.learnedCount]);
         studentList.push(item.name);
         itemList.push(item[itemsKey.itemList]);
+        totalItemCount = item[itemsKey.totalCount];
       } else if (this.props.chartType === "unlearned") {
         let item = obj[student];
         itemCounts.push(item[itemsKey.unlearnedCount]);
         studentList.push(item.name);
         itemList.push(item[itemsKey.unlearnedItemList]);
+        totalItemCount = item[itemsKey.totalCount];
       }
-      console.log("lists", itemCounts, studentList, itemList);
     }
-    return [itemCounts, studentList, itemList];
+    console.log(totalItemCount);
+    return [itemCounts, studentList, itemList, totalItemCount];
   }
 
   getChartColor() {
@@ -69,6 +75,7 @@ class StudentBarChart extends Component {
     let itemCounts = items[0];
     let studentList = items[1];
     let itemList = items[2];
+    let totalItemCount = items[3];
 
     let options = {
       tooltips: {
@@ -94,6 +101,7 @@ class StudentBarChart extends Component {
         yAxes: [
           {
             ticks: {
+              suggestedMax: totalItemCount,
               fontSize: 14,
               fontColor: "black",
               beginAtZero: true,
