@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 class StudentBarChart extends Component {
   turnIntoArray(obj) {
+    console.log("student chart obj", obj);
     if (!obj) {
       return <p>Loading...</p>;
     }
@@ -31,6 +32,7 @@ class StudentBarChart extends Component {
     let itemType = this.props.itemType;
     const itemsKey = itemsDict[itemType];
     for (let student in obj) {
+      console.log("student", student);
       if (this.props.chartType === "learned") {
         let item = obj[student];
         itemCounts.push(item[itemsKey.learnedCount]);
@@ -42,9 +44,9 @@ class StudentBarChart extends Component {
         studentList.push(item.name);
         itemList.push(item[itemsKey.unlearnedItemList]);
       }
-
-      return [itemCounts, studentList, itemList];
+      console.log("lists", itemCounts, studentList, itemList);
     }
+    return [itemCounts, studentList, itemList];
   }
 
   getChartColor() {

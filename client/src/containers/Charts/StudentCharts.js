@@ -6,13 +6,12 @@ import StudentChartPage from "../../components/Charts/StudentChartPage";
 
 class StudentCharts extends Component {
   componentDidMount() {
-    console.log("student charts", this.props);
     const user = this.props.auth.user.token;
     this.props.studentsActions.fetchStudents(user);
   }
 
   displayStudentChartPage(students) {
-    console.log("display student chart page", students);
+    console.log("students", students);
     if (!students) {
       return <div>loading...</div>;
     }
