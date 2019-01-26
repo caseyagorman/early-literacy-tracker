@@ -5,6 +5,7 @@ const StudentChartPage = props => (
   <div className="container">
     <div className="display-charts">
       {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)} Charts
+      <p>Hover over bar to view students learning each letter.</p>
       <StudentBarChart
         students={props.students.students}
         itemType={props.itemType}

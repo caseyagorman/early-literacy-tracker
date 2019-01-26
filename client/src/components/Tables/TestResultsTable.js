@@ -20,14 +20,18 @@ const TestResultsTable = (testResults, onSort) => (
               <td>{testResults.testDate}</td>
               <td>{testResults.score}</td>
               <td>
-                {testResults.correctItems.map(item => (
-                  <li>{item}</li>
-                ))}
+                <ul>
+                  {testResults.correctItems.map(item => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
               </td>
               <td>
-                {testResults.incorrectItems.map(item => (
-                  <li>{item}</li>
-                ))}
+                <ul>
+                  {testResults.incorrectItems.map(item => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
               </td>
             </tr>
           );

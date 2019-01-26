@@ -2,25 +2,29 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 class ItemBarChart extends Component {
   turnIntoArray(obj) {
+    console.log("item obj", obj);
     if (!obj) {
       return <p>Loading...</p>;
     }
     let itemCounts = [];
     let studentList = [];
     let itemList = [];
+    let totalCount = 0;
     for (let item in obj) {
       if (this.props.chartType === "learned") {
         itemCounts.push(obj[item].count);
         studentList.push(obj[item].students);
         itemList.push(obj[item].item);
+        totalCount = obj[item].totalCount;
       } else if (this.props.chartType === "unlearned") {
-        itemCounts.push(obj[item].unlearned_count);
-        studentList.push(obj[item].unlearned_students);
+        itemCounts.push(obj[item].unlearnedCount);
+        studentList.push(obj[item].unlearnedStudents);
         itemList.push(obj[item].item);
+        totalCount = obj[item].totalCount;
       }
     }
 
-    return [itemCounts, studentList, itemList];
+    return [itemCounts, studentList, itemList, totalCount];
   }
 
   getChartColor() {
@@ -43,6 +47,7 @@ class ItemBarChart extends Component {
     let itemCounts = items[0];
     let studentList = items[1];
     let itemList = items[2];
+    let totalCount = items[3];
     let options = {
       tooltips: {
         callbacks: {
@@ -67,6 +72,7 @@ class ItemBarChart extends Component {
         yAxes: [
           {
             ticks: {
+              suggestedMax: totalCount,
               fontSize: 14,
               fontColor: "black",
               beginAtZero: true,
@@ -82,7 +88,7 @@ class ItemBarChart extends Component {
         xAxes: [
           {
             ticks: {
-              fontSize: 10,
+              fontSize: 12,
               fontColor: "black"
             }
           }

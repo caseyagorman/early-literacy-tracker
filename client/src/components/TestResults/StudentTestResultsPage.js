@@ -12,10 +12,12 @@ const StudentTestResultsPage = props => (
     <TableContainer
       renderTable={props.CorrectCountsTable}
       tableElements={props.correctCountsTableElements}
+      itemType={props.itemType}
     />
     <TableContainer
       renderTable={props.TestResultsTable}
       tableElements={props.testResultsTableElements}
+      itemType={props.itemType}
     />
   </div>
 );

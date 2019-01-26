@@ -88,13 +88,15 @@ def get_items(current_user, item_type):
         unlearned_count = get_unlearned_item_student_counts(item)
         student_list = get_item_student_list(item)[0]
         unlearned_student_list = get_item_student_list(item)[1]
+        total_count = count + unlearned_count
         item = {
-            'item_id': item.item_id,
+            'itemId': item.item_id,
             'item': item.item,
             'count': count,
-            'unlearned_count': unlearned_count,
+            'unlearnedCount': unlearned_count,
             'students': student_list,
-            'unlearned_students':unlearned_student_list
+            'unlearnedStudents':unlearned_student_list,
+            'totalCount': total_count
         }
         item_list.append(item)
     return jsonify({

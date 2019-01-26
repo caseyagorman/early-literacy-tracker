@@ -117,7 +117,7 @@ class StudentBarChart extends Component {
         xAxes: [
           {
             ticks: {
-              fontSize: 10,
+              fontSize: 12,
               fontColor: "black"
             }
           }

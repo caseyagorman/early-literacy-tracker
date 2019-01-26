@@ -21,6 +21,7 @@ const StudentDetailHeader = student => (
       <Link
         to={`/student-test-results/words/${student.student.student.student_id}`}
         className="table-link"
+        student={student.student}
       >
         Word test history
       </Link>
@@ -33,6 +34,7 @@ const StudentDetailHeader = student => (
         to={`/student-test-results/letters/${
           student.student.student.student_id
         }`}
+        student={student.student}
         className="table-link"
       >
         Letter test history
@@ -46,6 +48,7 @@ const StudentDetailHeader = student => (
         to={`/student-test-results/sounds/${
           student.student.student.student_id
         }`}
+        student={student.student}
         className="table-link"
       >
         Sound test history
