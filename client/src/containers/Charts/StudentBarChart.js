@@ -27,9 +27,9 @@ class StudentBarChart extends Component {
       },
       sounds: {
         unlearnedItemList: "unlearnedSoundList",
-        itemList: "letterList",
+        itemList: "soundList",
         learnedCount: "soundCount",
-        unlearnedCount: "unlearnedLetterCount",
+        unlearnedCount: "unlearnedSoundCount",
         totalCount: "totalSoundCount"
       }
     };
