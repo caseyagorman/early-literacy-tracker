@@ -9,18 +9,22 @@ const BasicTablePage = props => (
     <tbody>
       <tr>
         <td>
-          {props.items.unlearnedStudentList.map(name => (
-            <Link to={`/details/${name.student_id}`}>
-              <li>{name.name}</li>
-            </Link>
-          ))}
+          <ul>
+            {props.items.unlearnedStudentList.map(name => (
+              <Link to={`/details/${name.student_id}`}>
+                <li id="item-name-list">{name.name}</li>
+              </Link>
+            ))}
+          </ul>
         </td>
         <td>
-          {props.items.learnedStudentList.map(name => (
-            <Link to={`/details/${name.student_id}`}>
-              <li>{name.name}</li>
-            </Link>
-          ))}
+          <ul>
+            {props.items.learnedStudentList.map(name => (
+              <Link to={`/details/${name.student_id}`}>
+                <li id="item-name-list">{name.name}</li>
+              </Link>
+            ))}
+          </ul>
         </td>
       </tr>
     </tbody>

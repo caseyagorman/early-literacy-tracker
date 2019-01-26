@@ -85,3 +85,10 @@
 #test-date {
   font-size: 18px;
 }
+ul {
+  list-style-type: none;
+}
+
+#item-name-list {
+  color: #0033ff;
+}

@@ -28,9 +28,16 @@ const HomePage = props => (
           text={"Sounds"}
           route={`/items/sounds`}
         /> */}
-        <Link to={`/students`}>
+        <Link to={`/students`} title="click to get started!">
           <img src={image} alt="Logo" />
         </Link>
+      </div>
+      <br />
+      <div id="instructions">
+        <p>
+          Click the book to start testing, tracking, and managing <br /> your
+          students' letters, sounds, and sight words.
+        </p>
       </div>
     </div>
   </div>

@@ -11,18 +11,31 @@
   color: white;
 }
 .students {
+  font-size: 18px;
   font-family: "Niramit", sans-serif;
   color: black;
 }
 #word-data {
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+  width: 150px;
   background-color: #0033ff;
   color: white;
 }
 #letter-data {
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+  width: 150px;
   background-color: #008000;
   color: white;
 }
 #sound-data {
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+  width: 150px;
   background-color: #ff6600;
   color: white;
 }

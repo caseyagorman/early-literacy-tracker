@@ -8,7 +8,7 @@ const AppNav = () => {
       <Navbar.Header>
         <Navbar.Brand>
           <a href="/" id="Brand">
-            Home
+            Trackt
           </a>
         </Navbar.Brand>
         <Navbar.Toggle />
@@ -44,7 +44,9 @@ const AppNav = () => {
           <NavItem id="Words" eventKey={2}>
             <NavDropdown eventKey={3} title="Words" id="basic-nav-dropdown">
               <LinkContainer to="/items/words/">
-                <MenuItem eventKey={3.1}>View Words</MenuItem>
+                <MenuItem eventKey={3.1} onclick={() => alert("bingbong")}>
+                  View Words
+                </MenuItem>
               </LinkContainer>
               <LinkContainer to="/item-charts/words/">
                 <MenuItem eventKey={3.2}>View Word Charts</MenuItem>

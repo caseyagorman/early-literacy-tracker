@@ -12,7 +12,16 @@ class AllItems extends React.Component {
     this.props.itemsActions.fetchItems(user, itemType);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.itemType !== this.props.match.params.itemType) {
+      let user = this.props.auth.user.token;
+      let itemType = this.props.match.params.itemType;
+      this.props.itemsActions.fetchItems(user, itemType);
+    }
+  }
+
   displayItems(items) {
+    console.log("items", items);
     if (!items) {
       return <p>loading...</p>;
     }

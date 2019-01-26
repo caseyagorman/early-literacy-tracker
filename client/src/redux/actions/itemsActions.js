@@ -70,7 +70,6 @@ export function fetchItems(user, itemType) {
 }
 
 export function fetchItem(id, itemType, user) {
-  console.log("fetching item", id, itemType);
   return dispatch => {
     return fetch(getItemApi(itemType, id), {
       method: "GET",
