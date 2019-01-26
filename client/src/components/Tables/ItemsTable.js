@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DeleteItem from "../../containers/Forms/DeleteItem";
 import { Table } from "react-bootstrap";
+import "./static/table.css";
 
 const ItemsTable = (items, onSort, route, itemType) => (
   <Table bordered="true" hover="true">
     <thead>
       <tr>
-        <th onClick={e => onSort(e, "item")}> Item</th>
+        <th onClick={e => onSort(e, "item")}> Sort A-Z</th>
       </tr>
     </thead>
     <tbody>

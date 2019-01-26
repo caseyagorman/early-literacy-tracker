@@ -1,31 +1,35 @@
 #navbar {
-  color: #1a1b41;
+  color: black;
   font-family: "Niramit", sans-serif;
   font-size: 18px;
-  background-color: #ffc15e;
+  background-color: #ff3333;
 }
 
 #basic-nav-dropdown {
-  color: #1a1b41;
+  color: white;
 }
 #Brand {
-  color: #1a1b41;
+  color: white;
 }
 #Logout {
-  color: #1a1b41;
+  color: white;
 }
 #Words {
-  background-color: #9b489a;
+  background-color: #0033ff;
+  color: white;
 }
 #Letters {
-  background-color: #f15e5e;
+  background-color: #008000;
+  color: white;
 }
 #Sounds {
-  background-color: #f79244;
+  background-color: #ff6600;
+  color: white;
 }
 #Logout {
-  background-color: #ffc15e;
+  background-color: #ff3333;
+  color: white;
 }
 #Students {
-  background-color: #2cc2e1;
+  background-color: #663399;
 }

@@ -1,21 +1,28 @@
 #student-name {
   display: inline-block;
   font-size: 36px;
-  color: #2f2d2e;
+  color: black;
 }
 #delete-student-detail {
   display: inline-block;
-  color: #2f2d2e;
+  color: black;
 }
-#test-student-button {
-  display: inline-block;
-  margin: 5px;
-  background-color: #2e4057;
-}
-.Link {
-  color: #0033ff;
+.table-link {
+  color: white;
 }
 .students {
   font-family: "Niramit", sans-serif;
-  color: #2f2d2e;
+  color: black;
+}
+#word-data {
+  background-color: #0033ff;
+  color: white;
+}
+#letter-data {
+  background-color: #008000;
+  color: white;
+}
+#sound-data {
+  background-color: #ff6600;
+  color: white;
 }

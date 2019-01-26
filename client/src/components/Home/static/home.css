@@ -1,0 +1,76 @@
+img {
+  max-width: 500px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#main-menu-students-button {
+  font-family: "Niramit", sans-serif;
+  background-color: #663399;
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+  width: 130px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#main-menu-words-button {
+  font-family: "Niramit", sans-serif;
+  background-color: #0033ff;
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+  width: 130px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#main-menu-letters-button {
+  font-family: "Niramit", sans-serif;
+  background-color: #008000;
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+  width: 130px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#main-menu-sounds-button {
+  font-family: "Niramit", sans-serif;
+  background-color: #ff6600;
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+  width: 130px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#home-page {
+  font-family: "Niramit", sans-serif;
+  text-align: center;
+  font-size: 45px;
+}
+.container {
+  text-align: center;
+}
+#display-name {
+  font-size: 50px;
+}

@@ -1,48 +1,44 @@
 #student-button {
-  font-size: 16px;
+  font-size: 20px;
   padding: 5px;
   width: 200px;
   display: inline-block;
   margin: 5px;
-  background-color: white;
-  color: #1a1b41;
-  border: 2px solid #2cc2e1;
+  background-color: #663399;
+  color: white;
 }
 #test-student-word-button {
-  font-size: 16px;
+  font-size: 20px;
   padding: 5px;
   width: 200px;
-  color: #1a1b41;
+  color: white;
   display: inline-block;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: white;
-  border: 2px solid #9b489a;
+  background-color: #0033ff;
 }
 #test-student-letter-button {
-  font-size: 16px;
+  font-size: 20px;
   padding: 5px;
   width: 200px;
-  color: #1a1b41;
+  color: white;
   display: inline-block;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: white;
-  border: 2px solid #f15e5e;
+  background-color: #008000;
 }
 #test-student-sound-button {
-  font-size: 16px;
+  font-size: 20px;
   padding: 5px;
   width: 200px;
-  color: #1a1b41;
+  color: white;
   display: inline-block;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: white;
-  border: 2px solid #f79244;
+  background-color: #ff6600;
 }
 #delete-button {
   display: inline-block;
@@ -52,13 +48,34 @@
   display: inline-block;
   margin-right: 3px;
   font-size: 16px;
-  color: green;
+  color: #008000;
   cursor: pointer;
 }
 #mark-unlearned-button {
   display: inline-block;
   margin-right: 3px;
   font-size: 16px;
-  color: red;
+  color: #ff3333;
   cursor: pointer;
+}
+
+#add-items {
+  margin: 5px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  height: 50px;
+  width: 175px;
+  border-radius: 5px;
+  background-color: #0033ff;
+  color: white;
+}
+#item-charts {
+  margin-bottom: 20px;
+  margin: 5px;
+  font-size: 20px;
+  height: 50px;
+  width: 175px;
+  border-radius: 5px;
+  background-color: #0033ff;
+  color: white;
 }

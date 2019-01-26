@@ -17,10 +17,6 @@ const StudentTestResultsPage = props => (
       renderTable={props.TestResultsTable}
       tableElements={props.testResultsTableElements}
     />
-    {/* <StudentItemLineChart
-      testResults={props.testResults}
-      itemType={props.itemType}
-    /> */}
   </div>
 );
 

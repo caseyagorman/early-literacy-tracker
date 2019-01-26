@@ -6,7 +6,7 @@
   margin-left: 20%;
   padding: 5px;
   background-color: #2cc2e1;
-  color: #1a1b41;
+  color: black;
 }
 
 #no-button {
@@ -17,7 +17,7 @@
   margin-left: 25%;
   padding: 5px;
   background-color: #f15e5e;
-  color: #1a1b41;
+  color: black;
 }
 
 .display-test-item {
@@ -25,7 +25,7 @@
   margin-left: 30%;
   font-size: 200px;
   font-family: "Niramit", sans-serif;
-  color: #1a1b41;
+  color: black;
 }
 
 #end-test-button {

@@ -2,10 +2,21 @@ import React from "react";
 
 const StudentSnapshot = props => (
   <div className="student-snapshot">
-    {props.student.student.name} knows {props.student.wordCount}/
-    {props.student.totalWordCount} words, {props.student.letterCount}/
-    {props.student.totalLetterCount} letters, and {props.student.soundCount}/
-    {props.student.totalSoundCount} sounds. <br />
+    {props.student.student.name} knows
+    <b>
+      {" "}
+      {props.student.wordCount}/{props.student.totalWordCount}
+    </b>{" "}
+    words,
+    <b>
+      {" "}
+      {props.student.letterCount}/{props.student.totalLetterCount}
+    </b>{" "}
+    letters, and{" "}
+    <b>
+      {props.student.soundCount}/{props.student.totalSoundCount}
+    </b>{" "}
+    sounds. <br />
     {props.testSentences[2]}
     <br />
     {props.testSentences[1]}

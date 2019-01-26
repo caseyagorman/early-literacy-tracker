@@ -7,7 +7,6 @@ import StudentDetailHeader from "./StudentDetailHeader";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="students">
-    {console.log("student detail props", props)}
     <div className="container">
       <div className="display-student-name">
         <b id="student-name">{props.student.student.name}</b>
@@ -15,6 +14,7 @@ const StudentDetailPage = props => (
           student={props.student.student.student_id}
           id="delete-student-detail"
         />
+        <br />
         <br />
       </div>
       <StudentSnapshot

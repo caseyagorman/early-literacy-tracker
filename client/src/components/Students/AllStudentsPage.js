@@ -2,6 +2,7 @@ import React from "react";
 import TableContainer from "../../containers/Tables/TableContainer";
 import StudentTable from "../Tables/StudentTable";
 import "./static/students.css";
+import AllStudentsMenu from "./AllStudentsMenu";
 const AllStudentsPage = props => (
   <div className="container">
     <div className="students">
@@ -14,6 +15,7 @@ const AllStudentsPage = props => (
       <br />
       <div />
       <div>
+        <AllStudentsMenu />
         <br />
       </div>
       <div>

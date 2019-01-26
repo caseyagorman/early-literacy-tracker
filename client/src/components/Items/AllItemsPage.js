@@ -2,27 +2,25 @@ import React from "react";
 import MainButton from "../Buttons/MainButton";
 import TableContainer from "../../containers/Tables/TableContainer";
 import ItemsTable from "../Tables/ItemsTable";
+import "./static/items.css";
 const AllItemsPage = props => (
-  <div className="container">
+  <div className="container" id="items">
     <br />
     <h1 id="display-items">
-      All {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}
+      {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}
     </h1>
-    <div id="instructions">
-      Click dashboard to test student, view {props.items.itemType} student is
-      learning, and view student data. Click book to view {props.items.itemType}{" "}
-      reports.
-    </div>
     <br />
     <MainButton
+      title={`click to view ${props.itemType} charts`}
+      id="add-items"
       route={`/add-items/${props.itemType}`}
       text={`Add ${props.itemType.charAt(0).toUpperCase() +
         props.itemType.slice(1)}`}
     />
     <MainButton
+      id="item-charts"
       route={`/item-charts/${props.itemType}`}
-      text={`View ${props.itemType.charAt(0).toUpperCase() +
-        props.itemType.slice(1)} Charts`}
+      text={`View Charts`}
     />
     <TableContainer
       renderTable={ItemsTable}
