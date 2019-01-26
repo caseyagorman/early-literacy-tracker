@@ -12,11 +12,11 @@ class LoginUser extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
+  componentDidUpdate(newProps) {
     if (!newProps.auth.loginError.error && newProps.auth.isAuthenticated) {
       this.updateInput("token", newProps.auth.user.token);
       this.updateInput("username", newProps.auth.user.username);
-      // this.props.history.push("/students");
+      this.props.history.push("/students");
     } else if (newProps.auth.loginError.error) {
       if (newProps.auth.loginError.error === "incorrect password") {
         alert(newProps.auth.loginError.error);

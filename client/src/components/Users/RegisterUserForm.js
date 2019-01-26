@@ -1,7 +1,7 @@
 import React from "react";
 
 const RegisterUserForm = props => (
-  <div>
+  <div className="container">
     <h1>
       <strong>Register</strong>
     </h1>
