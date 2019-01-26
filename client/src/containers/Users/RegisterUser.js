@@ -16,6 +16,20 @@ class RegisterUser extends Component {
     this.props.authActions.clearErrors();
   }
 
+  componentDidUpdate(prevProps) {
+    if (!this.props.registerUser.newUser) {
+      return <div />;
+    }
+    if (this.props.registerUser.newUser !== null) {
+      this.props.history.push("/login");
+
+      return <div />;
+    }
+    if (prevProps.registerUser.newUser.registerErrorMessage) {
+      alert(prevProps.registerUser.newUser.error);
+      this.props.authActions.clearErrors();
+    }
+  }
   handleSubmit(event) {
     event.preventDefault();
 
@@ -58,7 +72,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    register: state.register,
+    registerUser: state.registerUser,
     auth: state.auth
   };
 }

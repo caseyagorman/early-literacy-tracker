@@ -5,7 +5,6 @@ import {
 } from "../actions/actionTypes";
 
 export default function testResults(state = initialState.testResults, action) {
-  console.log("reducer", action.testResults);
   switch (action.type) {
     case FETCH_TEST_RESULTS:
       return action;

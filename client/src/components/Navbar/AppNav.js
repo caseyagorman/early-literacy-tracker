@@ -7,8 +7,8 @@ const AppNav = () => {
     <Navbar collapseOnSelect id="navbar">
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/" id="Brand">
-            Trackt
+          <a href="/students" id="Brand">
+            TrackIt
           </a>
         </Navbar.Brand>
         <Navbar.Toggle />
