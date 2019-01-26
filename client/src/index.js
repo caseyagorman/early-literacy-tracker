@@ -13,7 +13,6 @@ import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect";
 import RegisterUser from "./containers/Users/RegisterUser";
 import LoginUser from "./containers/Users/LoginUser";
 import LogoutUser from "./containers/Users/LogoutUser";
-import Home from "./containers/Home/Home";
 import history from "./history";
 import AllStudents from "./containers/Students/AllStudents";
 import StudentDetail from "./containers/Students/StudentDetail";
@@ -54,7 +53,6 @@ const AppRouter = () => (
       <Route path="/register" component={RegisterUser} />
       <Route path="/logout" component={userIsAuthenticated(LogoutUser)} />
       <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
-      <Route path="//" component={userIsAuthenticated(Home)} />
       <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
       <Route

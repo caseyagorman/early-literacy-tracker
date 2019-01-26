@@ -1,0 +1,10 @@
+form {
+  font-family: "Niramit", sans-serif;
+}
+
+#add-item-button {
+  background-color: #0033ff;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}

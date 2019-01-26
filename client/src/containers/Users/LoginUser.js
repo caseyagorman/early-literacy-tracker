@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
-import LoginUserForm from "../../components/Users/LoginUserForm";
+import LoginUserPage from "../../components/Users/LoginUserPage";
 
 class LoginUser extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class LoginUser extends Component {
     if (!newProps.auth.loginError.error && newProps.auth.isAuthenticated) {
       this.updateInput("token", newProps.auth.user.token);
       this.updateInput("username", newProps.auth.user.username);
-      this.props.history.push("/");
+      // this.props.history.push("/students");
     } else if (newProps.auth.loginError.error) {
       if (newProps.auth.loginError.error === "incorrect password") {
         alert(newProps.auth.loginError.error);
@@ -49,7 +49,7 @@ class LoginUser extends Component {
 
   render() {
     return (
-      <LoginUserForm
+      <LoginUserPage
         username={this.state.username}
         password={this.state.password}
         handleChange={this.handleChange}

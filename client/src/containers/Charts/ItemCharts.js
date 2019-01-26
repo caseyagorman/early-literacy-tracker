@@ -11,6 +11,14 @@ class ItemCharts extends Component {
     this.props.itemsActions.fetchItems(user, itemType);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.itemType !== this.props.match.params.itemType) {
+      let user = this.props.auth.user.token;
+      let itemType = this.props.match.params.itemType;
+      this.props.itemsActions.fetchItems(user, itemType);
+    }
+  }
+
   displayItemBarChart(items) {
     if (!items) {
       return <div>loading...</div>;

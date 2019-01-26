@@ -1,11 +1,16 @@
 import React from "react";
+import "./static/form.css";
 const AddItemsForm = props => (
   <form onSubmit={props.handleSubmit}>
     <div className="container">
       <label>
-        <h4>Add New {props.itemType.toUpperCase()}:</h4>
+        <h4>
+          Add New{" "}
+          {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}:
+        </h4>
         <p>You may add multiple {props.type}s separated by space</p>
       </label>
+      <br />
       <input
         name="newItem"
         type="text"
@@ -15,7 +20,9 @@ const AddItemsForm = props => (
     </div>
     <br />
     <div className="container">
-      <button id="add-word-button">Add {props.itemType.toUpperCase()}</button>
+      <button id="add-item-button">
+        Add {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}
+      </button>
     </div>
   </form>
 );

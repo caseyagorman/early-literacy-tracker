@@ -2,7 +2,7 @@ import React from "react";
 import StudentBarChart from "../../containers/Charts/StudentBarChart";
 
 const StudentChartPage = props => (
-  <div>
+  <div className="container">
     {props.itemType} Charts
     <StudentBarChart
       students={props.students.students}

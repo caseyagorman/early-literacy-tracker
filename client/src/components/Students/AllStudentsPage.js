@@ -9,8 +9,8 @@ const AllStudentsPage = props => (
       <br />
       <h1 id="display-student">All Students</h1>
       <div id="instructions">
-        Click dashboard to test student, view words student is learning, <br />{" "}
-        and view student data.
+        Click student name to test student, view words student is learning,{" "}
+        <br /> and view student data.
       </div>
       <br />
       <div />

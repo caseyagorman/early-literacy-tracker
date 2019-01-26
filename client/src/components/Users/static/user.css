@@ -1,0 +1,30 @@
+.user {
+  font-family: "Niramit", sans-serif;
+  text-align: center;
+}
+
+#login-link {
+  color: #0033ff;
+}
+.introduction {
+  font-size: 20px;
+}
+img {
+  max-width: 300px;
+}
+#login-button {
+  background-color: white;
+  color: white;
+  border: 1px solid white;
+}
+
+#username {
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}
+#password {
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}

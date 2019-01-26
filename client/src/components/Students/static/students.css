@@ -19,7 +19,7 @@
   border-radius: 3px;
   padding: 5px;
   margin: 5px;
-  width: 150px;
+  width: 200px;
   background-color: #0033ff;
   color: white;
 }
@@ -27,7 +27,7 @@
   border-radius: 3px;
   padding: 5px;
   margin: 5px;
-  width: 150px;
+  width: 200px;
   background-color: #008000;
   color: white;
 }
@@ -35,7 +35,11 @@
   border-radius: 3px;
   padding: 5px;
   margin: 5px;
-  width: 150px;
+  width: 200px;
   background-color: #ff6600;
   color: white;
 }
+
+/* .all-students-buttons {
+  text-align: center;
+} */

@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 const AllStudentsMenu = props => (
   <div className="all-students-buttons">
+    <Link to="/items/words" className="link">
+      <button id="word-data"> Words </button>
+    </Link>
+    <Link to="/items/letters" className="link">
+      <button id="letter-data"> Letters </button>
+    </Link>
+    <Link to="/items/sounds" className="link">
+      <button id="sound-data"> Sounds </button>
+    </Link>
+    <br />
     <Link to="/student-charts/words" className="link">
       <button id="word-data"> View word data </button>
     </Link>
