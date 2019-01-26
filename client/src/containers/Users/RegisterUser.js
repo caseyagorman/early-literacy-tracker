@@ -21,9 +21,10 @@ class RegisterUser extends Component {
       return <div />;
     }
     if (this.props.registerUser.newUser !== null) {
-      this.props.history.push("/login");
-
-      return <div />;
+      alert(
+        `Thanks for registering ${this.props.registerUser.newUser.username}!`
+      );
+      return this.props.history.push("/login");
     }
     if (prevProps.registerUser.newUser.registerErrorMessage) {
       alert(prevProps.registerUser.newUser.error);
