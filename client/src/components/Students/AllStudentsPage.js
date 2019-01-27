@@ -20,6 +20,7 @@ const AllStudentsPage = props => (
       </div>
       <div>
         <TableContainer
+          actions={props.studentTestActions}
           token={props.token}
           renderTable={StudentTable}
           tableElements={props.students}

@@ -13,10 +13,14 @@ class TableContainer extends Component {
 
   componentDidMount() {
     console.log("table container", this.props);
+    if (!this.props.actions) {
+      console.log("no actions");
+      return <div> loading...</div>;
+    }
+    console.log(this.props.actions);
   }
 
   sortArray(array, sortKey, reverseSort) {
-    console.log("array", array);
     array = array.slice();
     if (sortKey) {
       array.sort(function(a, b) {
@@ -44,7 +48,7 @@ class TableContainer extends Component {
   }
 
   render() {
-    // return <div />;
+    let actions = this.props.actions;
     let route = this.props.route;
     let tableElements = this.sortArray(
       this.props.tableElements,
@@ -56,7 +60,8 @@ class TableContainer extends Component {
       tableElements,
       this.onSort,
       route,
-      this.props.itemType
+      this.props.itemType,
+      actions
     );
   }
 }

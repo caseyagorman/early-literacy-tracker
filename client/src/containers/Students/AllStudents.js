@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as studentsActions from "../../redux/actions/studentsActions";
 import * as authActions from "../../redux/actions/authActions";
+import * as studentTestActions from "../../redux/actions/studentTestActions";
 import AllStudentsPage from "../../components/Students/AllStudentsPage";
 import { bindActionCreators } from "redux";
 
@@ -18,7 +19,12 @@ class AllStudents extends Component {
     if (students.students === null) {
       return <div>loading...</div>;
     }
-    return <AllStudentsPage token={token} students={students.students} />;
+    return (
+      <AllStudentsPage
+        studentTestActions={this.props.studentTestActions}
+        students={students.students}
+      />
+    );
   }
 
   render() {
@@ -38,6 +44,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     studentsActions: bindActionCreators(studentsActions, dispatch),
+    studentTestActions: bindActionCreators(studentTestActions, dispatch),
     authActions: authActions
   };
 }

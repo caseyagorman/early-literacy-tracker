@@ -18,7 +18,6 @@ const StudentDetailPage = props => (
         <br />
       </div>
       <StudentSnapshot
-        id="section-to-print"
         student={props.student}
         tests={props.tests}
         testSentences={props.testSentences}

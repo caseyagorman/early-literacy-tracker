@@ -2,8 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import { Table } from "react-bootstrap";
-const StudentTable = (students, onSort) => (
+const StudentTable = (
+  students,
+  onSort,
+  route,
+  itemType,
+  studentTestActions
+) => (
   <Table>
+    {console.log("student test actions", studentTestActions)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "name")}>Name</th>
@@ -38,6 +45,7 @@ const StudentTable = (students, onSort) => (
               <Link
                 to={`/test-student/words/${student.studentId}`}
                 className="link"
+                onClick={() => studentTestActions.beginTest("words")}
               >
                 Test Words
               </Link>
@@ -51,6 +59,7 @@ const StudentTable = (students, onSort) => (
               <br />
               <Link
                 to={`/test-student/letters/${student.studentId}`}
+                onClick={() => studentTestActions.beginTest("letters")}
                 className="link"
               >
                 Test Letters
@@ -66,6 +75,7 @@ const StudentTable = (students, onSort) => (
               <Link
                 to={`/test-student/sounds/${student.studentId}`}
                 className="link"
+                onClick={() => studentTestActions.beginTest("sounds")}
               >
                 Test Sounds
               </Link>

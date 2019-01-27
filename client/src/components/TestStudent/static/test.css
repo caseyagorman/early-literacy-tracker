@@ -1,23 +1,23 @@
 #yes-button {
   width: 100px;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 24px;
   font-family: "Niramit", sans-serif;
   margin-left: 20%;
   padding: 5px;
-  background-color: #2cc2e1;
-  color: black;
+  background-color: #008000;
+  color: white;
 }
 
 #no-button {
   width: 100px;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 24px;
   font-family: "Niramit", sans-serif;
   margin-left: 25%;
   padding: 5px;
-  background-color: #f15e5e;
-  color: black;
+  background-color: #ff3333;
+  color: white;
 }
 
 .display-test-item {
@@ -30,18 +30,18 @@
 
 #end-test-button {
   width: 150px;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 24px;
   margin-left: 35%;
-  background-color: #9b489a;
+  background-color: #0033ff;
   font-family: "Niramit", sans-serif;
-  color: #1a1b41;
+  color: white;
 }
 .test-complete-message {
   margin-left: 2.5%;
   font-size: 36px;
 }
 #link {
-  color: #1a1b41;
+  color: #0033ff;
   font-size: 20px;
 }

@@ -20,7 +20,7 @@ class StudentTest extends React.Component {
 
   displayItem(studentTestItems) {
     if (!studentTestItems) {
-      return <div className="test-complete-message">test complete</div>;
+      return <div className="test-complete-message">test complete!</div>;
     }
 
     return studentTestItems;
