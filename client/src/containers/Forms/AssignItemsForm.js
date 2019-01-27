@@ -14,13 +14,7 @@ class AssignItemsForm extends Component {
   }
 
   componentDidMount() {
-    const user = this.props.auth.user.token;
-    let itemType = this.props.itemType;
-    console.log("user", user, "itemType", itemType);
-    this.props.studentUnassignedItemsActions.fetchUnassignedItems(
-      user,
-      itemType
-    );
+    console.log("assign items form", this.props);
   }
 
   handleSubmit(event) {
@@ -45,9 +39,9 @@ class AssignItemsForm extends Component {
     this.setState({ value: value });
   }
 
-  getOptions(items) {
-    console.log("items", items);
-    if (items.studentItemSets === null) {
+  getOptions(itemList) {
+    console.log("assign items form item list", itemList);
+    if (!itemList) {
       return <div>Loading!</div>;
     }
 
@@ -55,14 +49,14 @@ class AssignItemsForm extends Component {
       <AssignItemsFormPage
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
-        itemList={items}
+        itemList={itemList}
         itemType={this.props.itemType}
       />
     );
   }
 
   render() {
-    return <div>{this.getOptions(this.props.studentUnassignedItems)}</div>;
+    return <div>{this.getOptions(this.props.itemList)}</div>;
   }
 }
 

@@ -24,9 +24,7 @@ export default function studentUnassignedItems(
 
     case RECEIVE_STUDENT_UNASSIGNED_ITEMS:
       let itemType = action.studentUnassignedItems.itemType;
-      console.log("itemType in reducer", itemType);
       const oldStudentItemSets = state.studentItemSets;
-      console.log("old student item sets in reducer", oldStudentItemSets);
       let newStudentItems = action.studentUnassignedItems.items;
       let newStudentItemSets = {};
       newStudentItemSets[itemType] = newStudentItems;
