@@ -14,17 +14,19 @@ export default function studentUnassignedItems(
   switch (action.type) {
     case FETCH_STUDENT_UNASSIGNED_ITEMS:
       return action;
-    case ADD_STUDENT_UNASSIGNED_ITEMS:
-      newState = action.studentItems;
-      const placeholder = {};
-      placeholder[action.itemType] = action.studentItems;
-      let itemSets = state.studentItemSets;
-      itemSets = Object.assign({}, itemSets, placeholder);
-      return newState;
+    // case ADD_STUDENT_UNASSIGNED_ITEMS:
+    //   newState = action.studentItems;
+    //   const placeholder = {};
+    //   placeholder[action.itemType] = action.studentItems;
+    //   let itemSets = state.studentItemSets;
+    //   itemSets = Object.assign({}, itemSets, placeholder);
+    //   return newState;
 
     case RECEIVE_STUDENT_UNASSIGNED_ITEMS:
       let itemType = action.studentUnassignedItems.itemType;
+      console.log("itemType in reducer", itemType);
       const oldStudentItemSets = state.studentItemSets;
+      console.log("old student item sets in reducer", oldStudentItemSets);
       let newStudentItems = action.studentUnassignedItems.items;
       let newStudentItemSets = {};
       newStudentItemSets[itemType] = newStudentItems;

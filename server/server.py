@@ -79,9 +79,9 @@ def login():
 @token_required
 def read_txt_file(current_user, item_type):
     print("item_type", item_type)
-    unassigned_items = {'itemType': item_type, 'items': {}}
+    unassigned_items = {'itemType': item_type, 'items': {} }
     if item_type == "words":
-        fname = ["dolch_primer.txt", "dolch_pre_primer.txt", "dolch_2.txt"]
+        fname = ["dolchPrimer.txt", "dolchPrePrimer.txt", "dolch2.txt"]
     if item_type == "sounds":
         fname=["abc_sounds.txt", "digraphs.txt", "r-controlled.txt", "dipthongs.txt"]
     if item_type == "letters":
@@ -90,7 +90,7 @@ def read_txt_file(current_user, item_type):
             with open(fn) as f:
                 content = f.readlines()
                 content = [x.strip() for x in content] 
-                unassigned_items['items'][fn] = content
+                unassigned_items['items'][fn[0:-4]] = content
                 
     print("unassigned_items", unassigned_items)
     return jsonify(unassigned_items)
