@@ -65,6 +65,10 @@ class StudentItemLineChart extends Component {
       labels: dates,
       datasets: [
         {
+          label:
+            this.props.itemType.charAt(0).toUpperCase() +
+            this.props.itemType.slice(1, -1) +
+            " tests over time",
           fill: false,
           lineTension: 0.1,
           backgroundColor: "rgba(75,192,192,0.4)",
