@@ -15,12 +15,10 @@ class AssignItemsForm extends Component {
 
   componentDidMount() {
     const user = this.props.auth.user.token;
-    let filename = this.props.filename;
     let itemType = this.props.itemType;
-    console.log("user", user, "filename", filename, "itemType", itemType);
-    this.props.studentUnassignedItems.fetchUnassignedItems(
+    console.log("user", user, "itemType", itemType);
+    this.props.studentUnassignedItemsActions.fetchUnassignedItems(
       user,
-      filename,
       itemType
     );
   }
@@ -48,29 +46,29 @@ class AssignItemsForm extends Component {
   }
 
   getOptions(items) {
-    if (!items) {
+    console.log("items", items);
+    if (items.studentItemSets === null) {
       return <div>Loading!</div>;
     }
 
     return (
-      <div />
-      // <AssignItemsFormPage
-      //   handleSubmit={this.handleSubmit}
-      //   handleChange={this.handleChange}
-      //   itemList={items}
-      //   itemType={this.props.itemType}
-      // />
+      <AssignItemsFormPage
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        itemList={items}
+        itemType={this.props.itemType}
+      />
     );
   }
 
   render() {
-    return <div>{this.getOptions(this.props.unassignedItems)}</div>;
+    return <div>{this.getOptions(this.props.studentUnassignedItems)}</div>;
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentUnassignedItems: bindActionCreators(
+    studentUnassignedItemsActions: bindActionCreators(
       studentUnassignedItemsActions,
       dispatch
     )
@@ -79,7 +77,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    unassignedItems: state.studentUnassignedItems,
+    studentUnassignedItems: state.studentUnassignedItems,
     auth: state.auth
   };
 }

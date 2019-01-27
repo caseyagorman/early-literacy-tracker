@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 
-function getUnassignedItemsApi(itemType, filename) {
-  return `http://localhost:5000/api/item_list/${itemType}/${filename}`;
+function getUnassignedItemsApi(itemType) {
+  return `http://localhost:5000/api/item_list/${itemType}`;
 }
 
 function getStudentApi(id) {
@@ -24,10 +24,10 @@ export function receiveStudentUnassignedItems(studentUnassignedItems) {
   };
 }
 
-export function fetchUnassignedItems(user, filename, itemType) {
-  console.log("filename", filename, user);
+export function fetchUnassignedItems(user, itemType) {
+  console.log("filename", user);
   return dispatch => {
-    return fetch(getUnassignedItemsApi(itemType, filename), {
+    return fetch(getUnassignedItemsApi(itemType), {
       method: "GET",
       mode: "cors",
       headers: {

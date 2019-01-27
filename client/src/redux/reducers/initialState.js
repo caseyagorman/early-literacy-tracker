@@ -26,7 +26,7 @@ export default {
   // itemUnassignedStudents: {},
 
   studentUnassignedItems: {
-    studentItemSets: {}
+    studentItemSets: null
   },
   studentItems: {
     studentItemSets: {}
