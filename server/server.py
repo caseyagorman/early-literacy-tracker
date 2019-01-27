@@ -74,6 +74,14 @@ def login():
     else:
         return jsonify({'error': 'incorrect password'})
 
+def read_txt_file(fname):
+    with open(fname) as f:
+        content = f.readlines()
+    content = [x.strip() for x in content] 
+    return content
+
+
+
 
 @app.route("/api/items/<item_type>")
 @token_required
@@ -762,11 +770,11 @@ def mark_items_unlearned(current_user):
     db.session.commit()
     return jsonify(student_id)
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    app.debug = True
-    app.jinja_env.auto_reload = app.debug
-    connect_to_db(app)
-    app.run(port=5000, host='0.0.0.0')
+#     app.debug = True
+#     app.jinja_env.auto_reload = app.debug
+#     connect_to_db(app)
+#     app.run(port=5000, host='0.0.0.0')
 
 

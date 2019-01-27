@@ -3,9 +3,6 @@ import { Doughnut } from "react-chartjs-2";
 import "../../components/Charts/static/charts.css";
 
 class StudentItemDoughnutChart extends Component {
-  componentDidMount() {
-    console.log("student item doughnut chart props", this.props);
-  }
   formatArray(tooltipItem) {
     return " " + tooltipItem;
   }
@@ -13,7 +10,6 @@ class StudentItemDoughnutChart extends Component {
     if (!student) {
       return <div> loading...</div>;
     }
-    console.log("student", student);
 
     const itemsDict = {
       words: {

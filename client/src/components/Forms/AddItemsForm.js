@@ -8,7 +8,7 @@ const AddItemsForm = props => (
           Add New{" "}
           {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}:
         </h4>
-        <p>You may add multiple {props.type}s separated by space</p>
+        <p>You may add multiple {props.itemType} separated by space</p>
       </label>
       <br />
       <input

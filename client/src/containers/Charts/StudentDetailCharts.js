@@ -17,8 +17,6 @@ class StudentDetailCharts extends Component {
   }
 
   displayChartsPage(student, testResults) {
-    console.log("student", student.student);
-    console.log("test results", testResults);
     if (student.student === null) {
       return <div>loading...</div>;
     }

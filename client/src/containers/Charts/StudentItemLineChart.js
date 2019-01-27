@@ -4,18 +4,16 @@ import "../../components/Charts/static/charts.css";
 
 class StudentItemLineChart extends Component {
   getChartData(data) {
-    console.log("data", data);
     if (!data) {
       return <div>loading...</div>;
     }
     let itemType = this.props.itemType;
     data = data.testData[itemType].studentTestList;
-    console.log("new data", data);
+
     let dates = [];
     let scores = [];
 
     for (let i = 0; i < data.length; i++) {
-      console.log(data[i].score);
       scores.push(data[i].score);
       dates.push(data[i].testDate);
     }
@@ -23,16 +21,7 @@ class StudentItemLineChart extends Component {
   }
 
   displayChartData(dates, scores) {
-    let tooltipData = [dates];
     let options = {
-      // tooltips: {
-      //   callbacks: {
-      //     label: function(tooltipItem) {
-      //       const indice = tooltipItem.index;
-      //       return tooltipData[indice];
-      //     }
-      //   }
-      // },
       responsive: true,
 
       maintainAspectRatio: true,

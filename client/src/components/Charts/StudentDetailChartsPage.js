@@ -4,7 +4,12 @@ import StudentItemLineChart from "../../containers/Charts/StudentItemLineChart";
 import { Row, Col } from "react-bootstrap";
 const StudentDetailChartsPage = props => (
   <div className="student-detail-charts-page">
-    <h1>{props.student.student.name}'s Data</h1>
+    <h1>
+      <b>{props.student.student.name}'s Data</b>
+    </h1>
+    <p>
+      Hover over chart to view items {props.student.student.name} is learning.
+    </p>
     <Row>
       <Col lg="4">
         <h3> Words</h3>
@@ -32,6 +37,10 @@ const StudentDetailChartsPage = props => (
       </Col>
     </Row>
     <br />
+    <p>
+      Hover over chart to view {props.student.student.name}'s scores on dates
+      listed.
+    </p>
     <Row>
       <Col lg="4">
         <StudentItemLineChart
