@@ -15,7 +15,6 @@ class DeleteItem extends Component {
   }
 
   getOptions(item) {
-    console.log("delete item", item);
     if (!item) {
       return <div>loading...</div>;
     }
@@ -55,7 +54,6 @@ class DeleteItem extends Component {
 
 function mapStateToProps(state) {
   return {
-    item: state.item,
     auth: state.auth
   };
 }

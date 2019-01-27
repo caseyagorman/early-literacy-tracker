@@ -588,10 +588,11 @@ def update_correct_items(student_id, correct_items, test_type, user_id):
     student_item_list = StudentItem.query.filter_by(student_id=student_id, user_id=user_id, item_type=test_type).options(db.joinedload('items')).filter(
     Item.item.in_(correct_items)).all()
     for item in student_item_list:
-        if item.correct_count >= 1:
-            item.Learned = True
-        item.correct_count = StudentItem.correct_count + 1
-        db.session.commit()
+        if item.items.item in correct_items:
+            if item.correct_count >= 1:
+                item.Learned = True
+            item.correct_count = StudentItem.correct_count + 1
+            db.session.commit()
     return "correct items"
 
 def update_incorrect_items(student_id, incorrect_items, test_type, user_id):
@@ -603,7 +604,9 @@ def update_incorrect_items(student_id, incorrect_items, test_type, user_id):
     for item in student_item_list:
         print("item", item.items.item)
         if item.items.item in incorrect_items:
+            print("incorrect item", item.items.item)
             item.incorrect_count = StudentItem.incorrect_count + 1
+            print("item.incorrect_count ==", item.incorrect_count)
             db.session.commit()
     return "incorrect items"
 
@@ -699,6 +702,7 @@ def get_item_counts(student_items):
     """is called by get student test, returns item, times read correctly,times read incorrectly """
     item_counts = []
     for student_item in student_items:
+        print("correct", student_item.items.item, student_item.correct_count, "incorrect", student_item.incorrect_count)
         count = {
             "item": student_item.items.item,
             "correctCount": student_item.correct_count,

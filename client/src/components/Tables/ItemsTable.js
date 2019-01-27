@@ -6,6 +6,7 @@ import "./static/table.css";
 
 const ItemsTable = (items, onSort, route, itemType) => (
   <Table bordered="true" hover="true">
+    {console.log("items", items)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "item")}> Sort A-Z</th>
@@ -14,15 +15,16 @@ const ItemsTable = (items, onSort, route, itemType) => (
     <tbody>
       {items.map(function(item) {
         return (
-          <tr key={item.item_id}>
+          <tr key={item.itemId}>
             <td>
               <Link
-                to={`/item-detail/${itemType}/${item.item_id}`}
+                to={`/item-detail/${itemType}/${item.itemId}`}
                 className="link"
               >
                 <h2 id="item-name-table-header">{item.item}</h2>
               </Link>
-              <DeleteItem item={item.item_id} itemType={itemType} />
+              {console.log(item.itemId)}
+              <DeleteItem item={item.itemId} itemType={itemType} />
             </td>
           </tr>
         );
