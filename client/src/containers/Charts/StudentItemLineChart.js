@@ -23,7 +23,16 @@ class StudentItemLineChart extends Component {
   }
 
   displayChartData(dates, scores) {
+    let tooltipData = [dates];
     let options = {
+      // tooltips: {
+      //   callbacks: {
+      //     label: function(tooltipItem) {
+      //       const indice = tooltipItem.index;
+      //       return tooltipData[indice];
+      //     }
+      //   }
+      // },
       responsive: true,
 
       maintainAspectRatio: true,
@@ -68,11 +77,12 @@ class StudentItemLineChart extends Component {
           label:
             this.props.itemType.charAt(0).toUpperCase() +
             this.props.itemType.slice(1, -1) +
-            " tests over time",
+            " test" +
+            " score ",
           fill: false,
           lineTension: 0.1,
-          backgroundColor: "rgba(75,192,192,0.4)",
-          borderColor: "rgba(75,192,192,1)",
+          backgroundColor: "#0033ff",
+          borderColor: "#0033ff",
           borderCapStyle: "butt",
           borderDash: [],
           borderDashOffset: 0.0,
@@ -90,7 +100,6 @@ class StudentItemLineChart extends Component {
         }
       ]
     };
-
     return (
       <div className="student-line-chart">
         <Line

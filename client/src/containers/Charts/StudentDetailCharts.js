@@ -16,27 +16,15 @@ class StudentDetailCharts extends Component {
     this.props.testResultsActions.fetchAllTestResults(studentId, user);
   }
 
-  // displayDoughnutChart(student) {
-  //   if (!student) {
-  //     return <div>loading...</div>;
-  //   }
-  //   if (student.student === null) {
-  //     return <div> loading...</div>;
-  //   }
-  //   return (
-  //     <b>
-  //       <StudentItemDoughnutChart student={student} itemType={"words"} />
-  //       <StudentItemDoughnutChart student={student} itemType={"letters"} />
-  //       <StudentItemDoughnutChart student={student} itemType={"sounds"} />
-  //     </b>
-  //   );
-  // }
   displayChartsPage(student, testResults) {
-    console.log("student", student, "test results", testResults);
-    if (!testResults || !student) {
+    console.log("student", student.student);
+    console.log("test results", testResults);
+    if (student.student === null) {
       return <div>loading...</div>;
     }
-
+    if (testResults === null) {
+      return <div>loading...</div>;
+    }
     return (
       <StudentDetailChartsPage student={student} testResults={testResults} />
     );

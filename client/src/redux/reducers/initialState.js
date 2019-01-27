@@ -36,5 +36,5 @@ export default {
     testItems: [],
     submittingTest: false
   },
-  testResults: {}
+  testResults: null
 };

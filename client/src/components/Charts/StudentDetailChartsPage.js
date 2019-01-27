@@ -3,9 +3,11 @@ import StudentItemDoughnutChart from "../../containers/Charts/StudentItemDoughnu
 import StudentItemLineChart from "../../containers/Charts/StudentItemLineChart";
 import { Row, Col } from "react-bootstrap";
 const StudentDetailChartsPage = props => (
-  <div>
+  <div className="student-detail-charts-page">
+    <h1>{props.student.student.name}'s Data</h1>
     <Row>
       <Col lg="4">
+        <h3> Words</h3>
         <StudentItemDoughnutChart
           student={props.student}
           testResults={props.testResults}
@@ -13,6 +15,7 @@ const StudentDetailChartsPage = props => (
         />
       </Col>
       <Col lg="4">
+        <h3> Letters</h3>
         <StudentItemDoughnutChart
           student={props.student}
           testResults={props.testResults}
@@ -20,6 +23,7 @@ const StudentDetailChartsPage = props => (
         />
       </Col>
       <Col lg="4">
+        <h3> Sounds</h3>
         <StudentItemDoughnutChart
           student={props.student}
           testResults={props.testResults}
