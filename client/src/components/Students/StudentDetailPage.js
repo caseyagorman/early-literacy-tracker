@@ -4,6 +4,7 @@ import StudentSnapshot from "./StudentSnapshot";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
 import StudentDetailHeader from "./StudentDetailHeader";
+import StudentDetailMenu from "./StudentDetailMenu";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="students">
@@ -14,18 +15,18 @@ const StudentDetailPage = props => (
           student={props.student.student.student_id}
           id="delete-student-detail"
         />
-        <br />
-        <br />
+        <StudentDetailMenu />
       </div>
       <StudentSnapshot
         student={props.student}
         tests={props.tests}
         testSentences={props.testSentences}
       />
-      <StudentDetailHeader student={props.student} />
+
+      {/* <StudentDetailHeader student={props.student} /> */}
 
       <div>
-        <MainButton
+        {/* <MainButton
           title="Click to see all charts and test results on single page"
           id="student-button"
           text={`View all data`}
@@ -57,7 +58,7 @@ const StudentDetailPage = props => (
           text={`Test Sounds`}
           route={`/test-student/sounds/${props.student.student.student_id}`}
           onClick={() => props.studentTestActions.beginTest("sounds")}
-        />
+        /> */}
       </div>
       <br />
       <br />

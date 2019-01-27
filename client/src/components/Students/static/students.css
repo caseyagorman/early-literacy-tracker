@@ -43,3 +43,17 @@
 /* .all-students-buttons {
   text-align: center;
 } */
+
+.student-detail-menu {
+  background-color: red;
+  float: right;
+  height: 250px;
+  width: 650px;
+}
+
+.student-snapshot {
+  float: left;
+}
+#student-detail-sentences {
+  font-size: 14px;
+}

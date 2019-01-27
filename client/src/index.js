@@ -61,10 +61,6 @@ const AppRouter = () => (
         component={userIsAuthenticated(AllItems)}
       />
       <Route
-        path="/add-items/:itemType"
-        component={userIsAuthenticated(AddItems)}
-      />
-      <Route
         path="/details/:id"
         component={userIsAuthenticated(StudentDetail)}
       />
@@ -90,7 +86,7 @@ const AppRouter = () => (
         component={userIsAuthenticated(ItemCharts)}
       />
       <Route
-        path="/assign-items/:itemType/"
+        path="/add-items/:itemType/"
         component={userIsAuthenticated(AssignItems)}
       />
       <Route

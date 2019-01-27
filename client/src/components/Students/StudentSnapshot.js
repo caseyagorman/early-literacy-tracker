@@ -2,7 +2,7 @@ import React from "react";
 
 const StudentSnapshot = props => (
   <div className="student-snapshot">
-    {props.student.student.name} knows
+    {props.student.student.name.split(" ")[0]} knows
     <b>
       {" "}
       {props.student.wordCount}/{props.student.totalWordCount}
@@ -17,16 +17,18 @@ const StudentSnapshot = props => (
       {props.student.soundCount}/{props.student.totalSoundCount}
     </b>{" "}
     sounds. <br />
-    {props.testSentences[2]}
-    <br />
-    {props.testSentences[1]}
-    <br />
-    {props.testSentences[0]}
-    <br />
-    <br />
-    To view more detailed test data, click the links below.
-    <br />
-    <br />
+    <div id="student-detail-sentences">
+      {props.testSentences[2]}
+      <br />
+      {props.testSentences[1]}
+      <br />
+      {props.testSentences[0]}
+      <br />
+      <br />
+      To view more detailed test data, click the links to the right.
+      <br />
+      <br />
+    </div>
   </div>
 );
 
