@@ -75,14 +75,15 @@ def login():
         return jsonify({'error': 'incorrect password'})
 
 
-@app.route("/api/item_list/item_type/<fname>")
+@app.route("/api/item_list/<item_type>/<fname>")
 @token_required
 def read_txt_file(current_user, item_type, fname):
     print("item_type", item_type)
     with open(fname) as f:
         content = f.readlines()
     content = [x.strip() for x in content] 
-    return jsonify([content], itemType)
+    unassigned_items = {'items': content, 'itemType': item_type}
+    return jsonify(unassigned_items)
 
 
 

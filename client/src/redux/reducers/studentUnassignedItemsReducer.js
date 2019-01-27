@@ -5,11 +5,12 @@ import {
   ADD_STUDENT_UNASSIGNED_ITEMS
 } from "../actions/actionTypes";
 
-export default function studentItems(
-  state = initialState.studentItems,
+export default function studentUnassignedItems(
+  state = initialState.studentUnassignedItems,
   action
 ) {
   let newState;
+  console.log("top of unassigned", action);
   switch (action.type) {
     case FETCH_STUDENT_UNASSIGNED_ITEMS:
       return action;
@@ -23,9 +24,8 @@ export default function studentItems(
 
     case RECEIVE_STUDENT_UNASSIGNED_ITEMS:
       let itemType = action.studentUnassignedItems.itemType;
-      console.log("reducer itemType", itemType);
       const oldStudentItemSets = state.studentItemSets;
-      let newStudentItems = action.studentUnassignedItems.itemList;
+      let newStudentItems = action.studentUnassignedItems.items;
       let newStudentItemSets = {};
       newStudentItemSets[itemType] = newStudentItems;
       newStudentItemSets = Object.assign(
