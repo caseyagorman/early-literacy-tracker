@@ -81,7 +81,7 @@ def read_txt_file(current_user, item_type):
     print("item_type", item_type)
     unassigned_items = {'itemType': item_type, 'items': {} }
     if item_type == "words":
-        fname = ["dolchPrimer.txt", "dolchPrePrimer.txt", "dolch2.txt"]
+        fname = ["dolch primer.txt", "dolch pre primer.txt", "dolch 2.txt"]
     if item_type == "sounds":
         fname=["abc_sounds.txt", "digraphs.txt", "r-controlled.txt", "dipthongs.txt"]
     if item_type == "letters":

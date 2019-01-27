@@ -8,3 +8,22 @@ form {
   font-size: 20px;
   padding: 10px;
 }
+
+.assign-items-form {
+  float: left;
+  width: 300px;
+}
+
+#form-label {
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+
+.assign-items-select {
+  vertical-align: bottom;
+  width: 200px;
+}
+.add-to-student-button {
+  margin: 2%;
+  background-color: #0033ff;
+}

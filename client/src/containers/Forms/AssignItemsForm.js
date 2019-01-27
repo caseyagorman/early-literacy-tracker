@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentUnassignedItemsActions from "../../redux/actions/studentUnassignedItemsActions";
 import AssignItemsFormPage from "../../components/Forms/AssignItemsFormPage";
-
+import "../../components/Forms/static/form.css";
 class AssignItemsForm extends Component {
   constructor(props) {
     super(props);
@@ -11,10 +11,6 @@ class AssignItemsForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getOptions = this.getOptions.bind(this);
-  }
-
-  componentDidMount() {
-    console.log("assign items form", this.props);
   }
 
   handleSubmit(event) {
@@ -40,23 +36,24 @@ class AssignItemsForm extends Component {
   }
 
   getOptions(itemList) {
-    console.log("assign items form item list", itemList);
     if (!itemList) {
       return <div>Loading!</div>;
     }
 
     return (
       <AssignItemsFormPage
+        className="assign-items-form"
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         itemList={itemList}
+        listTitle={this.props.listTitle}
         itemType={this.props.itemType}
       />
     );
   }
 
   render() {
-    return <div>{this.getOptions(this.props.itemList)}</div>;
+    return this.getOptions(this.props.itemList);
   }
 }
 

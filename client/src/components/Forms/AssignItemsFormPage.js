@@ -1,26 +1,21 @@
 import React from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import "./static/form.css";
 
 const AssignItemsFormPage = props => (
-  <form onSubmit={props.handleSubmit} id="assign-items-form">
-    <FormGroup controlId="formControlsSelectMultiple">
-      {console.log("assign items form page", props)}
-      <ControlLabel>
-        <p>Press shift and click to add multiple {props.itemType} </p>
-      </ControlLabel>
-      <strong>
-        <FormControl
-          componentClass="select"
-          multiple
-          value={props.value}
-          onChange={props.handleChange}
-        >
-          {props.itemList.map(item => (
-            <option key={item}>{item}</option>
-          ))}
-        </FormControl>
-      </strong>
-    </FormGroup>
+  <form onSubmit={props.handleSubmit} className="assign-items-form">
+    <label id="form-label">{props.listTitle}</label>
+    <br />
+    <select
+      className="assign-items-select"
+      onChange={props.handleChange}
+      multiple="true "
+      value={props.value}
+    >
+      {props.itemList.map(item => (
+        <option key={item}>{item}</option>
+      ))}
+    </select>
+    <br />
     <button id="add-to-student-button" type="submit">
       Submit
     </button>

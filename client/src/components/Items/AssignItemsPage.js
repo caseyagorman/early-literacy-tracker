@@ -1,9 +1,10 @@
 import React from "react";
-import AssignItemsForm from "../../containers/Forms/AssignItemsForm";
+
 const AssignItemsPage = props => (
   <div>
-    {console.log("assign items page", props)}
-    <AssignItemsForm itemType={props.itemType} />
+    Assign {props.itemType} to all students.
+    <br />
+    <br />
   </div>
 );
 

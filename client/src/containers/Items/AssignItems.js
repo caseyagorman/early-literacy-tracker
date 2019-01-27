@@ -1,9 +1,10 @@
 import React from "react";
 import AssignItemsForm from "../Forms/AssignItemsForm";
+import AssignItemsPage from "../../components/Items/AssignItemsPage";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentUnassignedItemsActions from "../../redux/actions/studentUnassignedItemsActions";
-
+import "../../components/Forms/static/form.css";
 class AssignItems extends React.Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
@@ -16,36 +17,21 @@ class AssignItems extends React.Component {
   }
 
   displayAssignItemsForm(items) {
-    console.log("display assign items page items", items);
     let itemType = this.props.match.params.itemType;
+
     if (items.studentItemSets === null) {
       return <p>loading...</p>;
     }
-    if (items.studentItemSets["words"]) {
-      console.log("item list props", items.studentItemSets[itemType]["dolch2"]);
-      return (
-        <div>
-          <AssignItemsForm
-            itemList={items.studentItemSets[itemType]["dolchPrePrimer"]}
-          />
-          <AssignItemsForm
-            itemList={items.studentItemSets[itemType]["dolchPrimer"]}
-          />
-          <AssignItemsForm
-            itemList={items.studentItemSets[itemType]["dolch2"]}
-          />
-        </div>
-      );
-    }
-    if (items.studentItemSets["letters"]) {
-      console.log("got letters");
-    }
-    if (items.studentItemSets["sounds"]) {
-      console.log("got wounds");
-    }
 
-    return <div />;
-    // return <AssignItemsPage itemType={itemType} />
+    return (
+      <div className="container">
+        <AssignItemsPage itemType={itemType} />
+
+        {Object.entries(items.studentItemSets[itemType]).map(itemSet => (
+          <AssignItemsForm listTitle={itemSet[0]} itemList={itemSet[1]} />
+        ))}
+      </div>
+    );
   }
 
   render() {
