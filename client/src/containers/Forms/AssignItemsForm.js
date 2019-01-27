@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentUnassignedItemsActions from "../../redux/actions/studentUnassignedItemsActions";
-import AssignItemsForm from "../../components/Forms/AssignItemsForm";
+import AssignItemsFormPage from "../../components/Forms/AssignItemsFormPage";
 
-class AssignItems extends Component {
+class AssignItemsForm extends Component {
   constructor(props) {
     super(props);
     this.state = { value: [] };
@@ -14,10 +14,15 @@ class AssignItems extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.student.student.student_id;
     const user = this.props.auth.user.token;
-    const itemType = this.props.itemType;
-    this.props.studentUnassignedItems.fetchUnassignedItems(id, user, itemType);
+    let filename = this.props.filename;
+    let itemType = this.props.itemType;
+    console.log("user", user, "filename", filename, "itemType", itemType);
+    this.props.studentUnassignedItems.fetchUnassignedItems(
+      user,
+      filename,
+      itemType
+    );
   }
 
   handleSubmit(event) {
@@ -42,27 +47,19 @@ class AssignItems extends Component {
     this.setState({ value: value });
   }
 
-  getOptions(studentItems) {
-    let itemType = this.props.itemType;
-    if (!studentItems) {
+  getOptions(items) {
+    if (!items) {
       return <div>Loading!</div>;
-    }
-    studentItems = studentItems.studentItemSets;
-    let items = studentItems[itemType];
-    let itemList = [];
-    for (let key in items) {
-      let itemObj = items[key];
-      itemList.push(itemObj.item);
     }
 
     return (
-      <AssignItemsForm
-        student={this.props.student.student}
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        itemList={itemList}
-        itemType={this.props.itemType}
-      />
+      <div />
+      // <AssignItemsFormPage
+      //   handleSubmit={this.handleSubmit}
+      //   handleChange={this.handleChange}
+      //   itemList={items}
+      //   itemType={this.props.itemType}
+      // />
     );
   }
 
@@ -90,4 +87,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AssignItems);
+)(AssignItemsForm);

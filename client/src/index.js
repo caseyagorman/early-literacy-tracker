@@ -27,6 +27,7 @@ import StudentDetailCharts from "./containers/Charts/StudentDetailCharts";
 import StudentCharts from "./containers/Charts/StudentCharts";
 import ItemCharts from "./containers/Charts/ItemCharts";
 import StudentTestResults from "./containers/TestResults/StudentTestResults";
+import AssignItems from "./containers/Items/AssignItems";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -87,6 +88,10 @@ const AppRouter = () => (
       <Route
         path="/item-charts/:itemType/"
         component={userIsAuthenticated(ItemCharts)}
+      />
+      <Route
+        path="/assign-items/:itemType/"
+        component={userIsAuthenticated(AssignItems)}
       />
       <Route
         path="/student-test-results/:itemType/:id/"

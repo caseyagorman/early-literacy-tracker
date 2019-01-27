@@ -1,13 +1,11 @@
 import React from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
-const AssignItemsForm = props => (
+const AssignItemsFormPage = props => (
   <form onSubmit={props.handleSubmit} id="assign-items-form">
     <FormGroup controlId="formControlsSelectMultiple">
+      {console.log("assign items form page", props)}
       <ControlLabel>
-        <h3>
-          Assign {props.itemType} to {props.student.name}
-        </h3>
         <p>Press shift and click to add multiple {props.itemType} </p>
       </ControlLabel>
       <strong>
@@ -29,4 +27,4 @@ const AssignItemsForm = props => (
   </form>
 );
 
-export default AssignItemsForm;
+export default AssignItemsFormPage;

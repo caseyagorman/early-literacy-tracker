@@ -25,9 +25,9 @@ export default {
   },
   // itemUnassignedStudents: {},
 
-  // studentUnassignedItems: {
-  //   studentItemSets: {}
-  // },
+  studentUnassignedItems: {
+    studentItemSets: {}
+  },
   studentItems: {
     studentItemSets: {}
   },

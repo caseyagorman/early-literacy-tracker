@@ -23,6 +23,7 @@ export default function studentItems(
 
     case RECEIVE_STUDENT_UNASSIGNED_ITEMS:
       let itemType = action.studentUnassignedItems.itemType;
+      console.log("reducer itemType", itemType);
       const oldStudentItemSets = state.studentItemSets;
       let newStudentItems = action.studentUnassignedItems.itemList;
       let newStudentItemSets = {};
@@ -35,7 +36,7 @@ export default function studentItems(
       const newState = Object.assign({}, state, {
         studentItemSets: newStudentItemSets
       });
-
+      console.log("newState", newState);
       return newState;
 
     default:

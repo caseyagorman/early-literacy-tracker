@@ -74,11 +74,15 @@ def login():
     else:
         return jsonify({'error': 'incorrect password'})
 
-def read_txt_file(fname):
+
+@app.route("/api/item_list/item_type/<fname>")
+@token_required
+def read_txt_file(current_user, item_type, fname):
+    print("item_type", item_type)
     with open(fname) as f:
         content = f.readlines()
     content = [x.strip() for x in content] 
-    return content
+    return jsonify([content], itemType)
 
 
 
@@ -247,11 +251,10 @@ def delete_item(current_user):
 
 @app.route("/api/add-item", methods=['POST'])
 @token_required
-def add_item(current_user):
+def add_item(current_user, ):
     data = request.get_json()
     items = data['item']
     item_type = data['itemType']
-
     user_id = current_user.public_id
     table = str.maketrans({key: None for key in string.punctuation})
     new_string = items.translate(table) 
@@ -353,27 +356,27 @@ def add_items_to__new_students(current_user):
 
     
 
-@app.route('/api/add-student-to-item', methods=['POST'])
-@token_required
-def add_student_to_item(current_user):
-    data = request.get_json()
+# @app.route('/api/add-student-to-item', methods=['POST'])
+# @token_required
+# def add_student_to_item(current_user):
+#     data = request.get_json()
     
-    students = data.get("students")
-    item_id = data.get("id")
-    item_type = data.get("itemType")
-    user_id = current_user.public_id
-    for student_id in students:
-        existing_item = StudentItem.query.filter_by(student_id = student_id, 
-        item_id = item_id, user_id = user_id).first()
-        if not existing_item:
-            new_item_student = StudentItem(
-                student_id=student_id, item_id=item_id, user_id=user_id, item_type=item_type)
-            db.session.add(new_item_student)
-            db.session.commit()
-        else:
-            continue
+#     students = data.get("students")
+#     item_id = data.get("id")
+#     item_type = data.get("itemType")
+#     user_id = current_user.public_id
+#     for student_id in students:
+#         existing_item = StudentItem.query.filter_by(student_id = student_id, 
+#         item_id = item_id, user_id = user_id).first()
+#         if not existing_item:
+#             new_item_student = StudentItem(
+#                 student_id=student_id, item_id=item_id, user_id=user_id, item_type=item_type)
+#             db.session.add(new_item_student)
+#             db.session.commit()
+#         else:
+#             continue
 
-    return jsonify(data)
+#     return jsonify(data)
 
 
 @app.route("/api/students")
@@ -770,11 +773,11 @@ def mark_items_unlearned(current_user):
     db.session.commit()
     return jsonify(student_id)
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     app.debug = True
-#     app.jinja_env.auto_reload = app.debug
-#     connect_to_db(app)
-#     app.run(port=5000, host='0.0.0.0')
+    app.debug = True
+    app.jinja_env.auto_reload = app.debug
+    connect_to_db(app)
+    app.run(port=5000, host='0.0.0.0')
 
 
