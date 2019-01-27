@@ -37,6 +37,7 @@ export function fetchUnassignedItems(user, itemType) {
       }
     })
       .then(response => response.json())
+
       .then(studentItems =>
         dispatch(receiveStudentUnassignedItems(studentItems))
       );

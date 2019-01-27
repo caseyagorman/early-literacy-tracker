@@ -3,7 +3,9 @@ import "./static/form.css";
 
 const AssignItemsFormPage = props => (
   <form onSubmit={props.handleSubmit} className="assign-items-form">
-    <label id="form-label">{props.listTitle}</label>
+    <label id="form-label">
+      <b>{props.listTitle}</b>
+    </label>
     <br />
     <select
       className="assign-items-select"

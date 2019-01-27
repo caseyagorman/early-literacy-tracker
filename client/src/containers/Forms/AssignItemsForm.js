@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as studentUnassignedItemsActions from "../../redux/actions/studentUnassignedItemsActions";
+import * as itemsActions from "../../redux/actions/itemsActions";
 import AssignItemsFormPage from "../../components/Forms/AssignItemsFormPage";
 import "../../components/Forms/static/form.css";
 class AssignItemsForm extends Component {
@@ -15,13 +15,10 @@ class AssignItemsForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let newStudentItems = {
-      student: this.props.student.student.student_id,
-      items: this.state.value,
-      itemType: this.props.itemType
-    };
-    let user = this.props.auth.user.token;
-    this.props.studentUnassignedItems.assignStudentItems(newStudentItems, user);
+    let itemType = this.props.itemType;
+    let items = this.state.value;
+    const user = this.props.auth.user.token;
+    this.props.itemsActions.addItem(items, user, itemType);
   }
 
   handleChange(e) {
@@ -42,7 +39,6 @@ class AssignItemsForm extends Component {
 
     return (
       <AssignItemsFormPage
-        className="assign-items-form"
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         itemList={itemList}
@@ -59,16 +55,12 @@ class AssignItemsForm extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentUnassignedItemsActions: bindActionCreators(
-      studentUnassignedItemsActions,
-      dispatch
-    )
+    itemsActions: bindActionCreators(itemsActions, dispatch)
   };
 }
 
 function mapStateToProps(state) {
   return {
-    studentUnassignedItems: state.studentUnassignedItems,
     auth: state.auth
   };
 }
