@@ -38,6 +38,7 @@ function getStudentApi(id) {
 }
 
 export function submitStudentTest(studentTest, testType, studentId, user) {
+  console.log("STUDENT TEST", studentTest);
   return dispatch => {
     return fetch(addTestApi(), {
       method: "POST",

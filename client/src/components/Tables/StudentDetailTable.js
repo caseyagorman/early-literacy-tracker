@@ -59,6 +59,10 @@ const StudentDetailTable = student => (
           </td>
           <td className="student-detail-table" style={{ width: "10%" }}>
             <ul className="unordered-list">
+              {console.log(
+                "unlearned word list",
+                student.student.unlearnedWordList
+              )}
               {student.student.unlearnedWordList.map(item => (
                 <li className="student-detail-table-div">
                   <StudentItemLearned
@@ -78,6 +82,7 @@ const StudentDetailTable = student => (
           </td>
           <td style={{ width: "10%" }}>
             <ul className="unordered-list">
+              {console.log("learned letter list", student.student.letterList)}
               {student.student.letterList.map(item => (
                 <li className="student-detail-table-div">
                   <StudentItemUnlearned
@@ -93,6 +98,10 @@ const StudentDetailTable = student => (
           </td>
           <td style={{ width: "10%" }}>
             <ul className="unordered-list">
+              {console.log(
+                "unlearned letter list",
+                student.student.unlearnedLetterList
+              )}
               {student.student.unlearnedLetterList.map(item => (
                 <li className="student-detail-table-div">
                   <StudentItemLearned

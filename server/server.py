@@ -78,7 +78,6 @@ def login():
 @app.route("/api/items/<item_type>")
 @token_required
 def get_items(current_user, item_type):
-    print("item type", item_type)
     user_id = current_user.public_id
     items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).options(
     db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type=item_type).all()
@@ -132,7 +131,6 @@ def get_unlearned_item_student_counts(item):
 @token_required
 def item_detail(current_user, item_type, item):
     """Display item and students who are learning that item"""
-    print("item detail", item, item_type)
     user_id = current_user.public_id
     item_object = Item.query.filter_by(item_id=item, user_id=user_id).first()
     student_items = StudentItem.query.filter_by(
@@ -166,7 +164,6 @@ def item_detail(current_user, item_type, item):
     item_detail['unlearnedStudentList'] = unlearned_student_list
     item_detail['learnedStudentList'] = learned_student_list
     item_detail['item'] = item_object
-    print("item detail", item_detail)
     return jsonify(item_detail)
 
 @app.route("/api/unassigned-students/<item>")
@@ -192,7 +189,6 @@ def get_unassigned_students_item(current_user, item):
 
         student_list.append(student)
     student_list = sorted(student_list, key=itemgetter('student'))
-    print("student list", student_list)
     return jsonify([student_list])
 
 @app.route("/api/add-student", methods=['POST'])
@@ -214,7 +210,6 @@ def add_student(current_user):
         ]
     )    
     db.session.commit()
-    print(data)
     return jsonify(data)
 
 @app.route("/api/delete-student", methods=['POST'])
@@ -232,7 +227,6 @@ def delete_student(current_user):
 @token_required
 def delete_item(current_user):
     data = request.get_json()
-    print("data", data)
     item_id = data.get("item")
     item_type = data.get("itemType")
     user_id = current_user.public_id
@@ -247,7 +241,6 @@ def delete_item(current_user):
 @token_required
 def add_item(current_user):
     data = request.get_json()
-    print("data", data)
     items = data['item']
     item_type = data['itemType']
 
@@ -274,7 +267,6 @@ def add_item(current_user):
 @app.route('/api/add-new-items-to-students', methods=['POST'])
 @token_required
 def add_new_items_to_students(current_user):
-    print("adding items to students")
     data = request.get_json()
     items = data['studentItems'].get('item')
     table = str.maketrans({key: None for key in string.punctuation})
@@ -284,7 +276,6 @@ def add_new_items_to_students(current_user):
     user_id = current_user.public_id
     item_list = Item.query.filter(Item.item.in_(new_items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
     student_list = Student.query.filter_by(user_id = user_id).all()
-    print(student_list)
     if student_list == []:
         return "no students"
     
@@ -310,7 +301,6 @@ def add_new_items_to_students(current_user):
 @app.route('/api/add-items-to-new-students', methods=['POST'])
 @token_required
 def add_items_to__new_students(current_user):
-    print("adding new students to items")
     data = request.get_json()
     names = data.get("names")
     table = str.maketrans({key: None for key in string.punctuation})
@@ -430,7 +420,6 @@ def get_students(current_user):
         student_list.append(student)
     end = time.time()
     elapsed_time = end - start
-    print(student_list)
     print('getting all students took', elapsed_time)
 
     return jsonify(student_list)
@@ -538,6 +527,8 @@ def student_detail(current_user, student_id):
     total_letters = letter_count + unlearned_letter_count
     sound_count = len(sound_list)
     unlearned_sound_count = len(unlearned_sound_list)
+
+    print("unlearned word list", unlearned_word_list, "unlearned letter list", unlearned_letter_list, "unlearned sound list", unlearned_sound_list)
     total_sounds = sound_count + unlearned_sound_count
     student_object['student'] = student
     student_object['wordCount'] = word_count
@@ -579,9 +570,10 @@ def create_student_test(current_user):
     incorrect_items = []
 
     for entry in student_test:
+
         if entry['answeredCorrectly']:
             correct_items.append(entry.get('testItems'))
-        else:
+        if entry['answeredCorrectly'] == False:
             incorrect_items.append(entry.get('testItems'))
     update_correct_items(student_id, correct_items, test_type, user_id)
     update_incorrect_items(student_id, incorrect_items, test_type, user_id)
@@ -604,11 +596,15 @@ def update_correct_items(student_id, correct_items, test_type, user_id):
 
 def update_incorrect_items(student_id, incorrect_items, test_type, user_id):
     """updates incorrect letters in db, called by create_student_test"""
+    print("INCORRECT ITEMS", incorrect_items)
     student_item_list = StudentItem.query.filter_by(student_id=student_id, user_id=user_id, item_type=test_type).options(db.joinedload('items')).filter(
     Item.item.in_(incorrect_items)).all()
+    print("STUDENT ITEM LIST", student_item_list)
     for item in student_item_list:
-        item.incorrect_count = StudentItem.incorrect_count + 1
-        db.session.commit()
+        print("item", item.items.item)
+        if item.items.item in incorrect_items:
+            item.incorrect_count = StudentItem.incorrect_count + 1
+            db.session.commit()
     return "incorrect items"
 
 def calculate_score(known_items, unknown_items):
@@ -657,7 +653,6 @@ def get_student_item_test(current_user, item_type, student):
 @token_required
 def get_all_student_tests(current_user,  student_id):
     """get list of student test results, word_counts and chart_data"""
-    print("current_user", current_user)
     user_id = current_user.public_id
     student_tests = StudentTestResult.query.filter_by(
         student_id=student_id, user_id=user_id).all()
@@ -698,7 +693,6 @@ def get_all_student_tests(current_user,  student_id):
         "letterTest": letter_test_list,
         "soundTest": sound_test_list,
     }
-    print("test object", test_object)
     return jsonify(test_object)
 
 def get_item_counts(student_items):

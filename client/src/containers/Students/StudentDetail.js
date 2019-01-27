@@ -17,6 +17,7 @@ class StudentDetail extends Component {
   }
 
   getTestSentence(tests) {
+    console.log("student data", this.props.student);
     console.log("test", tests);
     let sentenceList = [];
     for (let key in tests) {
