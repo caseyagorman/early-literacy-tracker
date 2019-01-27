@@ -3,7 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 
 class StudentItemDoughnutChart extends Component {
   componentDidMount() {
-    console.log("props", this.props);
+    console.log("student item doughnut chart props", this.props);
   }
   formatArray(tooltipItem) {
     return " " + tooltipItem;
@@ -29,9 +29,9 @@ class StudentItemDoughnutChart extends Component {
       },
       sounds: {
         unlearnedItemList: "unlearnedSoundList",
-        itemList: "letterList",
-        learnedCount: "letterCount",
-        unlearnedCount: "unlearnedLetterCount"
+        itemList: "soundList",
+        learnedCount: "soundCount",
+        unlearnedCount: "unlearnedSoundCount"
       }
     };
     let itemType = this.props.itemType;
