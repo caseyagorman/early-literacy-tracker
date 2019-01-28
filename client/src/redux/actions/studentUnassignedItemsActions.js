@@ -1,4 +1,5 @@
 import * as types from "./actionTypes";
+import history from "../../history";
 
 function getUnassignedItemsApi(itemType) {
   return `http://localhost:5000/api/item_list/${itemType}`;
@@ -37,10 +38,14 @@ export function fetchUnassignedItems(user, itemType) {
       }
     })
       .then(response => response.json())
-
       .then(studentItems =>
         dispatch(receiveStudentUnassignedItems(studentItems))
       );
+    // .then(studentItems =>
+    //   history.push(
+    //     `add-items/${studentItems.studentUnassignedItems.itemType}`
+    //   )
+    // );
   };
 }
 

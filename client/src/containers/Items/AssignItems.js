@@ -9,24 +9,34 @@ class AssignItems extends React.Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
     let itemType = this.props.match.params.itemType;
-    console.log("user", user, "itemType", itemType);
     this.props.studentUnassignedItemsActions.fetchUnassignedItems(
       user,
       itemType
     );
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.itemType !== this.props.match.params.itemType) {
+      let user = this.props.auth.user.token;
+      let itemType = this.props.match.params.itemType;
+      this.props.studentUnassignedItemsActions.fetchUnassignedItems(
+        user,
+        itemType
+      );
+    }
+  }
 
   displayAssignItemsForm(items) {
-    let itemType = this.props.match.params.itemType;
-
-    if (items.studentItemSets === null) {
+    const itemType = this.props.match.params.itemType;
+    if (
+      items.studentItemSets === null ||
+      !itemType ||
+      !items.studentItemSets[itemType]
+    ) {
       return <p>loading...</p>;
     }
-
     return (
       <div className="container">
         <AssignItemsPage itemType={itemType} />
-
         {Object.entries(items.studentItemSets[itemType]).map(itemSet => (
           <AssignItemsForm
             listTitle={itemSet[0]}
