@@ -65,7 +65,7 @@ class Item(db.Model):
                            default=datetime.today)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
-
+    custom = db.Column(db.Boolean, unique=False, default=False)
     studentitems = db.relationship(
         'StudentItem', cascade="save-update, merge, delete")
     users = db.relationship(

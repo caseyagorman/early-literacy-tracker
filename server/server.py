@@ -316,66 +316,57 @@ def add_new_items_to_students(current_user):
         return "items added!"
 
 
-# @app.route("/api/add-item", methods=['POST'])
-# @token_required
-# def add_item(current_user, ):
-#     data = request.get_json()
-#     items = data['item']
-#     item_type = data['itemType']
-#     user_id = current_user.public_id
-#     table = str.maketrans({key: None for key in string.punctuation})
-#     new_string = items.translate(table) 
-#     new_items = new_string.split()
-#     user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
-#     user_list = [user.item for user in user_items]
-#     list_to_add = list(set(new_items).difference(user_list))
-#     db.session.bulk_save_objects(
-#         [
-#             Item(
-#                 item=item,
-#                 user_id=user_id,
-#                 item_type=item_type
-#             )
-#             for item in list_to_add
-#         ]
-#     )    
-#     db.session.commit()
-#     return jsonify(data)
-
-# @app.route('/api/add-new-items-to-students', methods=['POST'])
-# @token_required
-# def add_new_items_to_students(current_user):
-#     data = request.get_json()
-#     items = data['studentItems'].get('item')
-#     table = str.maketrans({key: None for key in string.punctuation})
-#     new_string = items.translate(table) 
-#     new_items = new_string.split()
-#     item_type = data['studentItems'].get('itemType')
-#     user_id = current_user.public_id
-#     item_list = Item.query.filter(Item.item.in_(new_items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
-#     student_list = Student.query.filter_by(user_id = user_id).all()
-#     if student_list == []:
-#         return "no students"
-    
-#     else:
-#         item_ids = [item.item_id for item in item_list]
-#         student_ids = [student.student_id for student in student_list]
-
-#         db.session.bulk_save_objects(
-#             [
-#                 StudentItem(
-#                     item_id=item_id,
-#                     student_id=student_id,
-#                     item_type=item_type,
-#                     user_id=user_id
-#                 )
-#                 for item_id, student_id in itertools.product(item_ids, student_ids)
-#             ]
-#         )
-#         db.session.commit()
-#         return "items added!"
+@app.route("/api/add-custom-item", methods=['POST'])
+@token_required
+def add_custom_item(current_user, ):
+    data = request.get_json()
+    items = data['item']
+    item_type = data['itemType']
+    user_id = current_user.public_id
+    table = str.maketrans({key: None for key in string.punctuation})
+    new_string = items.translate(table) 
+    new_items = new_string.split()
+    user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
+    user_list = [user.item for user in user_items]
+    list_to_add = list(set(new_items).difference(user_list))
+    db.session.bulk_save_objects(
+        [
+            Item(
+                item=item,
+                user_id=user_id,
+                item_type=item_type,
+                custom= True
+            )
+            for item in list_to_add
+        ]
+    )    
+    db.session.commit()
+    return jsonify(data)
 
 
+@app.route('/api/add-custom-items-to-student', methods=['POST'])
+@token_required
+def add_custom_items_to_student(current_user):
+    user_id = current_user.public_id
+    data = request.get_json()
+    items = data['studentItems'].get('item')
+    item_type = data['studentItems'].get('itemType')
+    student_id = data.get('studentId')
+    item_list = Item.query.filter(Item.item.in_(items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
+    item_ids = [item.item_id for item in item_list]
+    db.session.bulk_save_objects(
+            [
+                StudentItem(
+                    item_id=item_id,
+                    student_id=student_id,
+                    item_type=item_type,
+                    user_id=user_id
+                )
+                for item_id in item_ids
+            ]
+        )
+    db.session.commit()
+    return "items added!"
 
 
 
@@ -389,7 +380,7 @@ def add_items_to__new_students(current_user):
     new_names = new_names.splitlines()
     user_id = current_user.public_id
     student_list = Student.query.filter(Student.name.in_(new_names)).filter(Student.user_id == user_id).all()
-    item_list = Item.query.filter_by(user_id = user_id).all()
+    item_list = Item.query.filter_by(user_id = user_id).filter_by(custom = False ).all()
     items = [(item.item_id, item.item_type)for item in item_list]
     student_ids = [student.student_id for student in student_list]
     db.session.bulk_save_objects(

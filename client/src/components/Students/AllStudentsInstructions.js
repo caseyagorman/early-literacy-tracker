@@ -5,11 +5,9 @@ const AllStudentsInstructions = props => (
   <div className="container">
     <h1 className="display-student">Students</h1>
     <div className="instructions">
-      Click links to test student, view <br />
-      words, letters, and sounds student
-      <br />
-      is learning, and view student data. <br /> Click table headers to sort
-      table information. Hover over links for <br />more information.
+      Click links to test student, view words, letters, and sounds student is
+      learning, and view student data. Click table headers to sort table
+      information. Hover over links for more information.
     </div>
   </div>
 );

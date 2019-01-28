@@ -2,6 +2,15 @@ form {
   font-family: "Niramit", sans-serif;
 }
 
+.add-students-instructions {
+  margin-left: 17px;
+}
+.add-students-instructions-paragraph {
+  font-size: 16px;
+}
+#add-students {
+  font-family: "Niramit", sans-serif;
+}
 #add-item-button {
   background-color: #0033ff;
   color: white;
@@ -9,6 +18,14 @@ form {
   padding: 10px;
 }
 
+#add-student-button {
+  background-color: #0033ff;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 4px;
+}
 .assign-items-form {
   float: left;
   width: 250px;

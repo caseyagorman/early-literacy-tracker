@@ -18,12 +18,11 @@ class AddStudent extends Component {
     let newStudents = {
       names: this.state.names
     };
-    console.log("newStudents", newStudents);
+
     this.props.studentsActions.addStudent(newStudents, user);
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state.names);
   }
 
   render() {

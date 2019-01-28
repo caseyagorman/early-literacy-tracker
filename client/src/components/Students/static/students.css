@@ -5,7 +5,7 @@
 }
 .display-student {
   font-size: 45px;
-  width: 400px;
+  width: 500px;
 }
 #delete-student-detail {
   display: inline-block;
@@ -30,9 +30,9 @@
   width: 500px;
 }
 .all-students-menu {
-  margin-right: 150px;
+  margin-right: 100px;
   margin-top: -240px;
-  margin-left: -200px;
+  margin-left: -100px;
   margin-bottom: 50px;
   color: white;
   float: right;
@@ -49,7 +49,7 @@
 }
 .instructions {
   font-size: 24px;
-  width: 400px;
+  width: 500px;
 }
 .balloon {
   border-radius: 50%;
