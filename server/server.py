@@ -45,6 +45,7 @@ def add_user():
     data = request.get_json()
     username = data.get('username')
     email = data.get('email')
+    print("email", email)
     password = data.get('password')
     hashed_password = generate_password_hash(password)
     existing_user_name = User.query.filter_by(username=username).first()
@@ -66,6 +67,7 @@ def login():
     username = data.get('username')
     password = data.get('password')
     auth_user = User.query.filter_by(username=username).first()
+    print("auth user", auth_user.email)
     if not auth_user:
         return jsonify({'error': 'user does not exist'})
     if auth_user and check_password_hash(auth_user.password, password.encode('utf-8')):
@@ -76,14 +78,15 @@ def login():
         return jsonify({'error': 'incorrect password'})
 
 @app.route("/api/retrieve-password", methods=["POST"])
-def retrieve_password():
+def reset_password():
     email = request.get_json()
     print("email", email)
     user_id = User.query.filter_by(email=email).first()
     print("user id", user_id)
-    password = user_id.password + datetime.datetime.now()
+    password = user_id.password + str(datetime.datetime.now())
     print("password", password)
     return password
+    # return "hooray!"
 
 @app.route("/api/item_list/<item_type>")
 @token_required
