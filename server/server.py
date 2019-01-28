@@ -75,6 +75,15 @@ def login():
     else:
         return jsonify({'error': 'incorrect password'})
 
+@app.route("/api/retrieve-password", methods=["POST"])
+def retrieve_password():
+    email = request.get_json()
+    print("email", email)
+    user_id = User.query.filter_by(email=email).first()
+    print("user id", user_id)
+    password = user_id.password + datetime.datetime.now()
+    print("password", password)
+    return password
 
 @app.route("/api/item_list/<item_type>")
 @token_required

@@ -4,6 +4,9 @@ function getUserApi() {
   return "http://localhost:5000/api/login";
 }
 
+function retrievePasswordApi() {
+  return "http://localhost:5000/api/retrieve-password";
+}
 export function checkUser(auth) {
   if (!auth.error) {
     return { type: types.SET_USER, auth: auth };
@@ -33,5 +36,21 @@ export function loginUser(user) {
       .then(response => response.json())
       .then(user => dispatch(checkUser(user)))
       .catch(err => console.error(err));
+  };
+}
+
+export function retrievePassword(user) {
+  return dispatch => {
+    return fetch(retrievePasswordApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    }).then(response => response.json());
+    // .then(user => dispatch(checkUser(user)))
+    // .catch(err => console.error(err));
   };
 }
