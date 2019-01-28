@@ -318,9 +318,11 @@ def add_new_items_to_students(current_user):
 
 @app.route("/api/add-custom-item", methods=['POST'])
 @token_required
-def add_custom_item(current_user, ):
+def add_custom_item(current_user):
     data = request.get_json()
     items = data['item']
+    print("items", items)
+    print("item type", type(items))
     item_type = data['itemType']
     user_id = current_user.public_id
     table = str.maketrans({key: None for key in string.punctuation})
@@ -329,6 +331,7 @@ def add_custom_item(current_user, ):
     user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
     user_list = [user.item for user in user_items]
     list_to_add = list(set(new_items).difference(user_list))
+    print("list to add", list_to_add)
     db.session.bulk_save_objects(
         [
             Item(
@@ -343,17 +346,20 @@ def add_custom_item(current_user, ):
     db.session.commit()
     return jsonify(data)
 
-
 @app.route('/api/add-custom-items-to-student', methods=['POST'])
 @token_required
 def add_custom_items_to_student(current_user):
     user_id = current_user.public_id
     data = request.get_json()
-    items = data['studentItems'].get('item')
+    items = (data['studentItems'].get('item'))
     item_type = data['studentItems'].get('itemType')
     student_id = data.get('studentId')
+    items = items.split()
+    print("items", items, "type", type(items), "item_type", item_type, "student_id", student_id)
     item_list = Item.query.filter(Item.item.in_(items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
     item_ids = [item.item_id for item in item_list]
+    print("item_list", item_list)
+    print("ITEM IDS!", item_ids)
     db.session.bulk_save_objects(
             [
                 StudentItem(
@@ -396,48 +402,6 @@ def add_items_to__new_students(current_user):
     )
     db.session.commit()
     return "student items added!"
-# @app.route('/api/add-items-to-student', methods=['POST'])
-# @token_required
-# def add_items_to_student(current_user):
-#     data = request.get_json()
-#     data = data.get("studentItems")
-#     items = data.get("items")
-#     item_type = data.get("itemType")
-#     student_id = data.get("student")
-#     user_id = current_user.public_id
-#     item_list = Item.query.filter(Item.item.in_(items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
-#     item_ids = []
-#     for item in item_list:
-#         item_ids.append(item.item_id)
-#     for item_id in item_ids:
-#         new_student_item = StudentItem(
-#             item_id=item_id, item_type=item_type,student_id=student_id, user_id=user_id)
-#         db.session.add(new_student_item)
-#         db.session.commit()
-
-    
-
-# @app.route('/api/add-student-to-item', methods=['POST'])
-# @token_required
-# def add_student_to_item(current_user):
-#     data = request.get_json()
-    
-#     students = data.get("students")
-#     item_id = data.get("id")
-#     item_type = data.get("itemType")
-#     user_id = current_user.public_id
-#     for student_id in students:
-#         existing_item = StudentItem.query.filter_by(student_id = student_id, 
-#         item_id = item_id, user_id = user_id).first()
-#         if not existing_item:
-#             new_item_student = StudentItem(
-#                 student_id=student_id, item_id=item_id, user_id=user_id, item_type=item_type)
-#             db.session.add(new_item_student)
-#             db.session.commit()
-#         else:
-#             continue
-
-#     return jsonify(data)
 
 
 @app.route("/api/students")

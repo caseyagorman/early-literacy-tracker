@@ -19,6 +19,9 @@ function addItemApi() {
 function deleteItemApi() {
   return "http://localhost:5000/api/delete-item";
 }
+function addCustomStudentItemsApi() {
+  return "http://localhost:5000/api/add-custom-item";
+}
 
 function addStudentItemsApi() {
   return "http://localhost:5000/api/add-new-items-to-students";
@@ -26,6 +29,9 @@ function addStudentItemsApi() {
 
 function getUnassignedItemsApi(id, itemType) {
   return `http://localhost:5000/api/unassigned-items/${id}/${itemType}`;
+}
+function assignCustomStudentItemsApi() {
+  return "http://localhost:5000/api/add-custom-items-to-student";
 }
 
 export function receiveItem(item) {
@@ -85,7 +91,7 @@ export function fetchItem(id, itemType, user) {
   };
 }
 export function addItem(item, user, itemType) {
-  console.log(item, user, itemType);
+  console.log("add item");
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -104,6 +110,44 @@ export function addItem(item, user, itemType) {
           .then(() => dispatch(fetchStudents(user)))
           .then(() => history.push("/students"))
       );
+  };
+}
+
+export function addCustomItem(item, user, studentId, itemType) {
+  console.log("add custom item");
+  return dispatch => {
+    return fetch(addCustomStudentItemsApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+
+        "x-access-token": user
+      },
+      body: JSON.stringify({ item, itemType, studentId })
+    })
+      .then(response => response.json())
+      .then(studentItems =>
+        dispatch(assignCustomStudentItems(user, studentItems, studentId))
+          .then(() => dispatch(fetchStudents(user)))
+          .then(() => history.push("/students"))
+      );
+  };
+}
+
+export function assignCustomStudentItems(user, studentItems, studentId) {
+  return dispatch => {
+    return fetch(assignCustomStudentItemsApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      },
+      body: JSON.stringify({ studentItems, studentId })
+    });
   };
 }
 
@@ -139,8 +183,6 @@ export function assignStudentItems(user, studentItems) {
       },
       body: JSON.stringify({ studentItems })
     });
-    // .then(() => dispatch(fetchStudent(studentItems.student, user)))
-    // .then(() => dispatch(fetchUnassignedItems(studentItems.student, user)));
   };
 }
 

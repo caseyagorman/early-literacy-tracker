@@ -25,7 +25,7 @@ class AddItem extends Component {
     const user = this.props.auth.user.token;
     const item = this.state.newItem;
     const itemType = this.props.match.params.itemType;
-    this.props.itemsActions.addItem(item, user, student, itemType);
+    this.props.itemsActions.addCustomItem(item, user, student, itemType);
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
