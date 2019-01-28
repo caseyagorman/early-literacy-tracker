@@ -15,7 +15,10 @@ const StudentDetailPage = props => (
           student={props.student.student.student_id}
           id="delete-student-detail"
         />
-        <StudentDetailMenu />
+        <StudentDetailMenu
+          student={props.student}
+          studentTestActions={props.studentTestActions}
+        />
       </div>
       <StudentSnapshot
         student={props.student}
