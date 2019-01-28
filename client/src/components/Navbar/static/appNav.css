@@ -17,19 +17,30 @@
 #Words {
   background-color: #0033ff;
   color: white;
+  font-size: 20px;
 }
 #Letters {
   background-color: #008000;
   color: white;
+  font-size: 20px;
 }
 #Sounds {
   background-color: #ff6600;
   color: white;
+  font-size: 20px;
 }
 #Logout {
   background-color: #ff3333;
   color: white;
+  font-size: 20px;
 }
 #Students {
   background-color: #663399;
+  color: white;
+  font-size: 20px;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  background-color: inherit;
 }

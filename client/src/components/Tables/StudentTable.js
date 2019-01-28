@@ -10,7 +10,6 @@ const StudentTable = (
   studentTestActions
 ) => (
   <Table>
-    {console.log("student test actions", studentTestActions)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "name")}>Name</th>
@@ -31,7 +30,7 @@ const StudentTable = (
           <tr key={student.student_id}>
             <td>
               <Link to={`/details/${student.studentId}`} className="link">
-                <h4 id="student-name-table-header">{student.name}</h4>
+                <h3 id="student-name-table-header">{student.name}</h3>
               </Link>
               <DeleteStudent student={student.studentId} />
             </td>

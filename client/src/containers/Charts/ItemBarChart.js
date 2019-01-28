@@ -66,6 +66,7 @@ class ItemBarChart extends Component {
         lable: [
           {
             fontSize: 18,
+            fontFamily: "Niramit",
             fontColor: "black"
           }
         ],
@@ -73,6 +74,7 @@ class ItemBarChart extends Component {
           {
             ticks: {
               suggestedMax: totalCount,
+              fontFamily: "Niramit",
               fontSize: 14,
               fontColor: "black",
               beginAtZero: true,
@@ -88,7 +90,8 @@ class ItemBarChart extends Component {
         xAxes: [
           {
             ticks: {
-              fontSize: 12,
+              fontFamily: "Niramit",
+              fontSize: 14,
               fontColor: "black"
             }
           }
@@ -111,7 +114,15 @@ class ItemBarChart extends Component {
         }
       ]
     };
-    return <Bar data={data} options={options} />;
+    return (
+      <Bar
+        id="bar-chart"
+        height="500px"
+        width="700px"
+        data={data}
+        options={options}
+      />
+    );
   }
   render() {
     return this.displayChart(this.props.items);
