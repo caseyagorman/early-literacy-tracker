@@ -3,15 +3,11 @@ import TableContainer from "../../containers/Tables/TableContainer";
 import StudentTable from "../Tables/StudentTable";
 import "./static/students.css";
 import AllStudentsMenu from "./AllStudentsMenu";
+import AllStudentsInstructions from "./AllStudentsInstructions";
 const AllStudentsPage = props => (
   <div className="container">
     <div className="students">
-      <br />
-      <h1 className="display-student">All Students</h1>
-      <div className="instructions">
-        Click student name to test student, <br />view words student is
-        learning, and view student data.
-      </div>
+      <AllStudentsInstructions student={props.student} />
       <AllStudentsMenu />
       <div>
         <TableContainer

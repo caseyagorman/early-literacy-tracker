@@ -3,7 +3,10 @@
   font-size: 36px;
   color: black;
 }
-
+.display-student {
+  font-size: 45px;
+  width: 400px;
+}
 #delete-student-detail {
   display: inline-block;
   color: black;
@@ -27,16 +30,15 @@
   width: 500px;
 }
 .all-students-menu {
-  margin-right: 50px;
-  margin-top: -120px;
-  margin-left: -50px;
+  margin-right: 150px;
+  margin-top: -240px;
+  margin-left: -200px;
   margin-bottom: 30px;
   color: white;
   float: right;
   height: 250px;
   width: 500px;
 }
-
 .student-snapshot {
   float: left;
   font-size: 24px;
@@ -45,7 +47,10 @@
   float: left;
   font-size: 19px;
 }
-
+.instructions {
+  font-size: 24px;
+  width: 400px;
+}
 .balloon {
   border-radius: 50%;
   box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
@@ -210,6 +215,72 @@
   text-align: center;
 }
 
+.all-students-balloon {
+  border-radius: 50%;
+  box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
+  border: 0.3px solid black;
+  content: "";
+  height: 110px;
+  left: 10px;
+  width: 100px;
+  display: inline-block;
+  vertical-align: bottom;
+  color: white;
+}
+
+#all-students-center-left {
+  font-size: 24px;
+  line-height: 1;
+  background-color: #0033ff;
+  color: white;
+  text-align: center;
+}
+
+#all-students-center-center {
+  font-size: 24px;
+  line-height: 1;
+  margin-left: 11%;
+  background-color: #008000;
+  color: white;
+  text-align: center;
+}
+
+#all-students-center-right {
+  font-size: 24px;
+  line-height: 1;
+  margin-left: 11%;
+  background-color: #ff6600;
+  color: white;
+  text-align: center;
+}
+
+#all-students-bottom-left {
+  font-size: 26px;
+  margin-left: 15%;
+  line-height: 1;
+  background-color: #0033ff;
+  color: white;
+  text-align: center;
+}
+
+#all-students-bottom-center {
+  font-size: 26px;
+  line-height: 1;
+  margin-left: 11%;
+  background-color: #008000;
+  color: white;
+  text-align: center;
+}
+
+#all-students-bottom-right {
+  font-size: 26px;
+  line-height: 1;
+  margin-left: 11%;
+  background-color: #ff6600;
+  color: white;
+  text-align: center;
+}
+
 .word-balloons-top {
   margin-top: -15px;
 }
@@ -222,4 +293,48 @@
 .student-detail-menu-link {
   font-size: 20px;
   color: white;
+}
+
+#all-students-center-left-img {
+  transform: rotate(90deg);
+  height: 30px;
+  margin-left: 3px;
+  margin-top: 62px;
+  opacity: 0.6;
+}
+#all-students-center-center-img {
+  transform: rotate(90deg);
+  height: 30px;
+  margin-left: 3px;
+  margin-top: 62px;
+  opacity: 0.6;
+}
+#all-students-center-right-img {
+  transform: rotate(90deg);
+  height: 30px;
+  margin-left: 3px;
+  margin-top: 62px;
+  opacity: 0.6;
+}
+
+#all-students-bottom-left-img {
+  transform: rotate(90deg);
+  height: 30px;
+  margin-left: 3px;
+  margin-top: 56px;
+  opacity: 0.6;
+}
+#all-students-bottom-center-img {
+  transform: rotate(90deg);
+  height: 30px;
+  margin-left: 3px;
+  margin-top: 56px;
+  opacity: 0.6;
+}
+#all-students-bottom-right-img {
+  transform: rotate(90deg);
+  height: 30px;
+  margin-left: 3px;
+  margin-top: 56px;
+  opacity: 0.6;
 }

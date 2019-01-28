@@ -83,20 +83,33 @@ const StudentDetailMenu = props => (
     </div>
     <div className="word-balloons-bottom">
       <div className="balloon" id="bottom-left">
-        <Link className="student-detail-menu-link" to={"/students"}>
-          View Word Data
+        <Link
+          className="student-detail-menu-link"
+          to={`/student-test-results/words/${props.student.student.student_id}`}
+        >
+          Word Test Results
         </Link>
         <img id="bottom-left-img" src={image} alt="squiggly-line" />
       </div>
       <div className="balloon" id="bottom-center">
-        <Link className="student-detail-menu-link" to={"/students"}>
-          View Letter Data
+        <Link
+          className="student-detail-menu-link"
+          to={`/student-test-results/letters/${
+            props.student.student.student_id
+          }`}
+        >
+          Letter Test Results
         </Link>
         <img id="bottom-center-img" src={image} alt="squiggly-line" />
       </div>
       <div className="balloon" id="bottom-right">
-        <Link className="student-detail-menu-link" to={"/students"}>
-          View Sound Data
+        <Link
+          className="student-detail-menu-link"
+          to={`/student-test-results/sounds/${
+            props.student.student.student_id
+          }`}
+        >
+          Sound Test Results
         </Link>
         <img id="bottom-right-img" src={image} alt="squiggly-line" />
       </div>

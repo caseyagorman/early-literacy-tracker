@@ -5,69 +5,75 @@ import image from "./static/squiggly-line.png";
 const AllStudentsMenu = props => (
   <div className="all-students-menu">
     {" "}
-    <div className="word-balloons-top">
-      <div className="balloon" id="top-left">
-        <br />
-        <Link className="student-detail-menu-link" to={"/students"}>
-          Test Words
-        </Link>
-        <img id="top-left-img" src={image} alt="squiggly-line" />
-      </div>
-
-      <div className="balloon" id="top-center">
-        <br />
-        <Link className="student-detail-menu-link" to={"/students"}>
-          Test Letters
-        </Link>
-        <img id="top-center-img" src={image} alt="squiggly-line" />
-      </div>
-
-      <div className="balloon" id="top-right">
-        <br />
-        <Link className="student-detail-menu-link" to={"/students"}>
-          Test Sounds
-        </Link>
-        <img id="top-right-img" src={image} alt="squiggly-line" />
-      </div>
-    </div>
     <div className="word-balloons-center">
-      <div className="balloon" id="center-left">
+      <div className="all-students-balloon" id="all-students-center-left">
         <Link className="student-detail-menu-link" to={"/students"}>
-          Add Custom Words
+          <br />
+          Add New Words
         </Link>
-        <img id="center-left-img" src={image} alt="squiggly-line" />
+        <img
+          id="all-students-center-left-img"
+          src={image}
+          alt="squiggly-line"
+        />
       </div>
-      <div className="balloon" id="center-center">
+      <div className="all-students-balloon" id="all-students-center-center">
         <Link className="student-detail-menu-link" to={"/students"}>
-          Add Custom Letters
+          <br />
+          Add New Letters
         </Link>
-        <img id="center-center-img" src={image} alt="squiggly-line" />
+        <img
+          id="all-students-center-center-img"
+          src={image}
+          alt="squiggly-line"
+        />
       </div>
-      <div className="balloon" id="center-right">
+      <div className="all-students-balloon" id="all-students-center-right">
         <Link className="student-detail-menu-link" to={"/students"}>
-          Add Custom Sounds
+          <br />
+          Add New Sounds
         </Link>
-        <img id="center-right-img" src={image} alt="squiggly-line" />
+        <img
+          id="all-students-center-right-img"
+          src={image}
+          alt="squiggly-line"
+        />
       </div>
     </div>
     <div className="word-balloons-bottom">
-      <div className="balloon" id="bottom-left">
+      <div className="all-students-balloon" id="all-students-bottom-left">
         <Link className="student-detail-menu-link" to={"/students"}>
-          View Word Data
+          View
+          <br /> Word
+          <br /> Data
         </Link>
-        <img id="bottom-left-img" src={image} alt="squiggly-line" />
+        <img
+          id="all-students-bottom-left-img"
+          src={image}
+          alt="squiggly-line"
+        />
       </div>
-      <div className="balloon" id="bottom-center">
+      <div className="all-students-balloon" id="all-students-bottom-center">
         <Link className="student-detail-menu-link" to={"/students"}>
-          View Letter Data
+          View <br />
+          Letter
+          <br /> Data
         </Link>
-        <img id="bottom-center-img" src={image} alt="squiggly-line" />
+        <img
+          id="all-students-bottom-center-img"
+          src={image}
+          alt="squiggly-line"
+        />
       </div>
-      <div className="balloon" id="bottom-right">
+      <div className="all-students-balloon" id="all-students-bottom-right">
         <Link className="student-detail-menu-link" to={"/students"}>
           View Sound Data
         </Link>
-        <img id="bottom-right-img" src={image} alt="squiggly-line" />
+        <img
+          id="all-students-bottom-right-img"
+          src={image}
+          alt="squiggly-line"
+        />
       </div>
     </div>
   </div>
