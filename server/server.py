@@ -84,9 +84,9 @@ def read_txt_file(current_user, item_type):
     if item_type == "words":
         fname = [ "Dolch 2.txt", "Dolch primer.txt",  "Dolch pre primer.txt"]
     if item_type == "sounds":
-        fname=["abc_sounds.txt", "digraphs.txt", "r-controlled.txt", "dipthongs.txt"]
+        fname=["sounds.txt", "digraphs.txt", "r controlled.txt", "vowel patterns.txt"]
     if item_type == "letters":
-        fname = ["alphabet.txt"]
+        fname = ["capital alphabet.txt", "lowercase alphabet.txt"]
     for fn in fname:
             with open(fn) as f:
                 content = f.readlines()

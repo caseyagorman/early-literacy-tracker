@@ -7,7 +7,7 @@ const AllStudentsMenu = props => (
     {" "}
     <div className="word-balloons-center">
       <div className="all-students-balloon" id="all-students-center-left">
-        <Link className="student-detail-menu-link" to={"/students"}>
+        <Link className="student-detail-menu-link" to={"/add-items/words/"}>
           <br />
           Add New Words
         </Link>
@@ -18,7 +18,7 @@ const AllStudentsMenu = props => (
         />
       </div>
       <div className="all-students-balloon" id="all-students-center-center">
-        <Link className="student-detail-menu-link" to={"/students"}>
+        <Link className="student-detail-menu-link" to={"/add-items/letters/"}>
           <br />
           Add New Letters
         </Link>
@@ -29,7 +29,7 @@ const AllStudentsMenu = props => (
         />
       </div>
       <div className="all-students-balloon" id="all-students-center-right">
-        <Link className="student-detail-menu-link" to={"/students"}>
+        <Link className="student-detail-menu-link" to={"/add-items/sounds/"}>
           <br />
           Add New Sounds
         </Link>

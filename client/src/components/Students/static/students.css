@@ -15,15 +15,15 @@
   color: white;
 }
 .students {
-  font-size: 18px;
+  font-size: 22px;
   font-family: "Niramit", sans-serif;
   color: black;
 }
 
 .student-detail-menu {
-  margin-top: 8px;
+  margin-top: 20px;
   margin-left: -50px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   color: white;
   float: right;
   height: 250px;
@@ -33,7 +33,7 @@
   margin-right: 150px;
   margin-top: -240px;
   margin-left: -200px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   color: white;
   float: right;
   height: 250px;
@@ -65,72 +65,72 @@
 }
 #all-data-img {
   transform: rotate(90deg);
-  height: 18px;
-  margin-top: 32px;
+  height: 20px;
+  margin-top: 34px;
   opacity: 0.6;
 }
 
 #top-left-img {
   transform: rotate(90deg);
-  height: 18px;
-  margin-top: 46px;
+  height: 22px;
+  margin-top: 40px;
   opacity: 0.6;
 }
 #top-center-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 46px;
+  margin-top: 40px;
   opacity: 0.6;
 }
 #top-right-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 46px;
+  margin-top: 40px;
   opacity: 0.6;
 }
 #center-left-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 32px;
+  margin-top: 35px;
   opacity: 0.6;
 }
 #center-center-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 32px;
+  margin-top: 35px;
   opacity: 0.6;
 }
 #center-right-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 32px;
+  margin-top: 35px;
   opacity: 0.6;
 }
 #bottom-left-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 32px;
+  margin-top: 35px;
   opacity: 0.6;
 }
 
 #bottom-center-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 32px;
+  margin-top: 35px;
   opacity: 0.6;
 }
 #bottom-right-img {
   transform: rotate(90deg);
-  height: 18px;
+  height: 22px;
   margin-left: 3px;
-  margin-top: 32px;
+  margin-top: 35px;
   opacity: 0.6;
 }
 

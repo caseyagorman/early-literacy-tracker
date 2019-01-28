@@ -5,7 +5,7 @@
   float: left;
 }
 .student-table {
-  font-size: 20px;
+  font-size: 22px;
   color: black;
 }
 
@@ -19,50 +19,6 @@
   color: black;
 }
 
-.student-detail-button-students {
-  font-size: 20px;
-  padding: 5px;
-  width: 200px;
-  color: white;
-  display: inline-block;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #663399;
-}
-.student-detail-button-words {
-  font-size: 20px;
-  padding: 5px;
-  width: 200px;
-  color: white;
-  display: inline-block;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #0033ff;
-}
-.student-detail-button-letters {
-  font-size: 20px;
-  padding: 5px;
-  width: 200px;
-  display: inline-block;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #008000;
-  color: white;
-}
-.student-detail-button-sounds {
-  font-size: 20px;
-  padding: 5px;
-  width: 200px;
-  display: inline-block;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #ff6600;
-  color: black;
-}
 .link {
   color: #0033ff;
   background-color: white;
