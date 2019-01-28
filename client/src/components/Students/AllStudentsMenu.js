@@ -1,42 +1,75 @@
 import React from "react";
+import "./static/students.css";
 import { Link } from "react-router-dom";
+import image from "./static/squiggly-line.png";
 const AllStudentsMenu = props => (
-  <div className="all-students-buttons">
-    <Link to="/items/words" className="link">
-      <button id="word-data"> Words </button>
-    </Link>
-    <Link to="/items/letters" className="link">
-      <button id="letter-data"> Letters </button>
-    </Link>
-    <Link to="/items/sounds" className="link">
-      <button id="sound-data"> Sounds </button>
-    </Link>
-    <br />
-    <Link to="/student-charts/words" className="link">
-      <button id="word-data"> View word data </button>
-    </Link>
+  <div className="all-students-menu">
+    {" "}
+    <div className="word-balloons-top">
+      <div className="balloon" id="top-left">
+        <br />
+        <Link className="student-detail-menu-link" to={"/students"}>
+          Test Words
+        </Link>
+        <img id="top-left-img" src={image} alt="squiggly-line" />
+      </div>
 
-    <Link to="/student-charts/letters" className="link">
-      <button id="letter-data">View letter data </button>
-    </Link>
+      <div className="balloon" id="top-center">
+        <br />
+        <Link className="student-detail-menu-link" to={"/students"}>
+          Test Letters
+        </Link>
+        <img id="top-center-img" src={image} alt="squiggly-line" />
+      </div>
 
-    <Link to="/student-charts/sounds" className="link">
-      <button id="sound-data">View sound data</button>
-    </Link>
-    <br />
-
-    <Link to="/add-items/words" className="link">
-      <button id="word-data">Add new words</button>
-    </Link>
-
-    <Link to="/add-items/letters" className="link">
-      <button id="letter-data">Add new letters</button>
-    </Link>
-
-    <Link to="/add-items/sounds" className="link">
-      <button id="sound-data">Add new sounds</button>
-    </Link>
+      <div className="balloon" id="top-right">
+        <br />
+        <Link className="student-detail-menu-link" to={"/students"}>
+          Test Sounds
+        </Link>
+        <img id="top-right-img" src={image} alt="squiggly-line" />
+      </div>
+    </div>
+    <div className="word-balloons-center">
+      <div className="balloon" id="center-left">
+        <Link className="student-detail-menu-link" to={"/students"}>
+          Add Custom Words
+        </Link>
+        <img id="center-left-img" src={image} alt="squiggly-line" />
+      </div>
+      <div className="balloon" id="center-center">
+        <Link className="student-detail-menu-link" to={"/students"}>
+          Add Custom Letters
+        </Link>
+        <img id="center-center-img" src={image} alt="squiggly-line" />
+      </div>
+      <div className="balloon" id="center-right">
+        <Link className="student-detail-menu-link" to={"/students"}>
+          Add Custom Sounds
+        </Link>
+        <img id="center-right-img" src={image} alt="squiggly-line" />
+      </div>
+    </div>
+    <div className="word-balloons-bottom">
+      <div className="balloon" id="bottom-left">
+        <Link className="student-detail-menu-link" to={"/students"}>
+          View Word Data
+        </Link>
+        <img id="bottom-left-img" src={image} alt="squiggly-line" />
+      </div>
+      <div className="balloon" id="bottom-center">
+        <Link className="student-detail-menu-link" to={"/students"}>
+          View Letter Data
+        </Link>
+        <img id="bottom-center-img" src={image} alt="squiggly-line" />
+      </div>
+      <div className="balloon" id="bottom-right">
+        <Link className="student-detail-menu-link" to={"/students"}>
+          View Sound Data
+        </Link>
+        <img id="bottom-right-img" src={image} alt="squiggly-line" />
+      </div>
+    </div>
   </div>
 );
-
 export default AllStudentsMenu;

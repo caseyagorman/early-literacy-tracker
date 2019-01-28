@@ -7,17 +7,12 @@ const AllStudentsPage = props => (
   <div className="container">
     <div className="students">
       <br />
-      <h1 id="display-student">All Students</h1>
-      <div id="instructions">
-        Click student name to test student, view words student is learning,{" "}
-        <br /> and view student data.
+      <h1 className="display-student">All Students</h1>
+      <div className="instructions">
+        Click student name to test student, <br />view words student is
+        learning, and view student data.
       </div>
-      <br />
-      <div />
-      <div>
-        <AllStudentsMenu />
-        <br />
-      </div>
+      <AllStudentsMenu />
       <div>
         <TableContainer
           actions={props.studentTestActions}

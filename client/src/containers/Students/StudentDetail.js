@@ -17,13 +17,10 @@ class StudentDetail extends Component {
   }
 
   getTestSentence(tests) {
-    console.log("student data", this.props.student);
-
     let name = this.props.student.student.name.split(" ")[0];
     let sentenceList = [];
     for (let key in tests) {
       let test = tests[key];
-      console.log("test key", test);
       if (test.length === 0) {
         let testSentence = name + " has no " + key.slice(0, -4) + " tests yet.";
         sentenceList.push(testSentence);
