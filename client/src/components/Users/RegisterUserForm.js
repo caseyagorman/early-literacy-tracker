@@ -1,7 +1,7 @@
 import React from "react";
 
 const RegisterUserForm = props => (
-  <div className="container">
+  <div className="container" id="register-page">
     <h1>
       <strong>Register</strong>
     </h1>

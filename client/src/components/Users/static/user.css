@@ -28,3 +28,13 @@ img {
   height: 40px;
   margin: 5px;
 }
+#register-page {
+  font-family: "Niramit", sans-serif;
+}
+
+#register-user-button {
+  background-color: #0033ff;
+  font-size: 22px;
+  color: white;
+  border-radius: 4px;
+}
