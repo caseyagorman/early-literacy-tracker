@@ -1,5 +1,6 @@
 import datetime
-
+from flask_mail import Message
+from flask_mail import Mail
 import time
 import itertools
 import string
@@ -13,11 +14,31 @@ import uuid
 import jwt
 from functools import wraps
 from model import Student, Item, StudentItem, StudentTestResult, connect_to_db, db, User
+mail = None
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
+app.config.update(
+    #EMAIL SETTINGS
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_SSL=False,
+    MAIL_USERNAME = 'caseyagorman@gmail.com',
+    MAIL_PASSWORD = '',
+    MAIL_SUPPRESS_SEND = False,
+    MAIL_DEFAULT_SENDER = 'caseyagorman@gmail.com',
+    MAIL_USE_TLS = True,
+    TESTING = False,
+    MAIL_DEBUG = True,
+    MAIL_FAIL_SILENTLY=False,
+
+)
+mail = Mail(app)
+
+app.config.from_object(__name__)
+
 
 
 def token_required(f):
@@ -80,13 +101,13 @@ def login():
 @app.route("/api/retrieve-password", methods=["POST"])
 def reset_password():
     email = request.get_json()
-    print("email", email)
     user_id = User.query.filter_by(email=email).first()
-    print("user id", user_id)
     password = user_id.password + str(datetime.datetime.now())
-    print("password", password)
-    return password
-    # return "hooray!"
+    msg = Message("New password link",
+                  sender="caseyagorman@gmail.com",
+                  recipients=[email])
+    return mail.send(msg)
+
 
 @app.route("/api/item_list/<item_type>")
 @token_required
