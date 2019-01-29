@@ -4,8 +4,11 @@ function getUserApi() {
   return "http://localhost:5000/api/login";
 }
 
-function retrievePasswordApi() {
-  return "http://localhost:5000/api/retrieve-password";
+function requestResetPasswordApi() {
+  return "http://localhost:5000/api/request-reset-password";
+}
+function resetPasswordApi() {
+  return "http://localhost:5000/api/reset-password";
 }
 export function checkUser(auth) {
   if (!auth.error) {
@@ -39,9 +42,26 @@ export function loginUser(user) {
   };
 }
 
-export function retrievePassword(user) {
+export function resetPassword(user) {
+  console.log("user", user);
   return dispatch => {
-    return fetch(retrievePasswordApi(), {
+    return fetch(resetPasswordApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    });
+    // .then(user => dispatch(checkUser(user)))
+    // .catch(err => console.error(err));
+  };
+}
+
+export function requestResetPassword(user) {
+  return dispatch => {
+    return fetch(requestResetPasswordApi(), {
       method: "POST",
       mode: "cors",
       headers: {

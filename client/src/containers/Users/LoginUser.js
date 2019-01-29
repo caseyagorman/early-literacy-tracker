@@ -19,7 +19,7 @@ class LoginUser extends Component {
       this.props.history.push("/students");
     } else if (newProps.auth.loginError.error) {
       if (newProps.auth.loginError.error === "incorrect password") {
-        alert(newProps.auth.loginError.error);
+        // alert(newProps.auth.loginError.error);
         return;
       }
       if (newProps.auth.loginError.error === "user does not exist") {

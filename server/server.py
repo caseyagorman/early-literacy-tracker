@@ -26,7 +26,7 @@ app.config.update(
     MAIL_PORT=587,
     MAIL_USE_SSL=False,
     MAIL_USERNAME = 'caseyagorman@gmail.com',
-    MAIL_PASSWORD = '',
+    MAIL_PASSWORD = "",
     MAIL_SUPPRESS_SEND = False,
     MAIL_DEFAULT_SENDER = 'caseyagorman@gmail.com',
     MAIL_USE_TLS = True,
@@ -98,15 +98,33 @@ def login():
     else:
         return jsonify({'error': 'incorrect password'})
 
-@app.route("/api/retrieve-password", methods=["POST"])
-def reset_password():
+@app.route("/api/request-reset-password", methods=["POST"])
+def request_reset_password():
     email = request.get_json()
-    user_id = User.query.filter_by(email=email).first()
-    password = user_id.password + str(datetime.datetime.now())
+    user = User.query.filter_by(email=email).first()
+    user_created = str(user.created)
+    user_created = user_created.replace(" ", "-")
+    password_link = user.password + "-" + user_created
     msg = Message("New password link",
+                body=f"http://localhost:3000/reset-password/{password_link}/",
                   sender="caseyagorman@gmail.com",
                   recipients=[email])
     return mail.send(msg)
+
+    # Send password link
+    # OK
+
+@app.route("/api/reset-password", methods=["POST"])
+def reset_password():
+    data = request.get_json()
+    new_password = data.get("password")
+    user = data.get("user")
+    old_password = user[0:-27]
+    user = User.query.filter_by(password=old_password).first()
+    hashed_password = generate_password_hash(new_password)
+    user.password = hashed_password
+    db.session.commit()
+    return "good job!"
 
 
 @app.route("/api/item_list/<item_type>")

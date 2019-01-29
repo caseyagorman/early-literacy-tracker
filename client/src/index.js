@@ -12,7 +12,7 @@ import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect";
 
 import RegisterUser from "./containers/Users/RegisterUser";
 import LoginUser from "./containers/Users/LoginUser";
-import RetrievePassword from "./containers/Users/RetrievePassword";
+import RequestResetPassword from "./containers/Users/RequestResetPassword";
 import LogoutUser from "./containers/Users/LogoutUser";
 import history from "./history";
 import AllStudents from "./containers/Students/AllStudents";
@@ -28,6 +28,7 @@ import StudentCharts from "./containers/Charts/StudentCharts";
 import ItemCharts from "./containers/Charts/ItemCharts";
 import StudentTestResults from "./containers/TestResults/StudentTestResults";
 import AssignItems from "./containers/Items/AssignItems";
+import ResetPassword from "./containers/Users/ResetPassword";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -54,9 +55,15 @@ const AppRouter = () => (
       <Route path="/register" component={RegisterUser} />
       <Route path="/logout" component={userIsAuthenticated(LogoutUser)} />
       <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
+      <Route path="//" component={userIsNotAuthenticated(LoginUser)} />
+      <Route path="//" component={userIsAuthenticated(AllStudents)} />
       <Route
         path="/forgot-password"
-        component={userIsNotAuthenticated(RetrievePassword)}
+        component={userIsNotAuthenticated(RequestResetPassword)}
+      />
+      <Route
+        path="/reset-password/:resetToken"
+        component={userIsNotAuthenticated(ResetPassword)}
       />
       <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
@@ -102,7 +109,7 @@ const AppRouter = () => (
         component={userIsAuthenticated(StudentTestResults)}
       />
       <Route
-        path="/dd-custom-items/:id/:itemType/"
+        path="/add-custom-items/:id/:itemType/"
         component={userIsAuthenticated(AddItems)}
       />
     </div>

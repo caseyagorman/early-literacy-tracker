@@ -17,6 +17,8 @@ class User(db.Model):
     username = db.Column(db.String(64), nullable=False, unique=True)
     email = db.Column(db.String(64), nullable=False, unique=True)
     password = db.Column(db.String(128))
+    created = db.Column(db.DateTime, nullable=False,
+                           default=datetime.now)
 
     students = db.relationship(
         'Student', cascade="save-update, merge, delete")
