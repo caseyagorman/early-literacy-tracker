@@ -108,7 +108,8 @@ export function addItem(item, user, itemType) {
       .then(studentItems =>
         dispatch(assignStudentItems(user, studentItems))
           .then(() => dispatch(fetchStudents(user)))
-          .then(() => history.push("/students"))
+          .then(() => alert("added!"))
+          .then(() => history.push(`/add-items/${itemType}`))
       );
   };
 }

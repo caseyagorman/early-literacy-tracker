@@ -1,5 +1,4 @@
 import React from "react";
-import image from "./static/Literacy9.png";
 import "./static/user.css";
 
 const RequestResetPasswordForm = props => (
