@@ -2,6 +2,10 @@ import * as types from "./actionTypes";
 function registerUserApi() {
   return "http://localhost:5000/api/register";
 }
+
+export function clearUser(register) {
+  return { type: types.CLEAR_USER, register: register };
+}
 export function checkNewUser(register) {
   console.log("check new user", register);
   if (!register.error) {

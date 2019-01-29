@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
-import ResetPasswordPage from "../../components/Users/ResetPasswordPage";
-
+import ResetPasswordForm from "../../components/Users/ResetPasswordForm";
 class ResetPassword extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +13,28 @@ class ResetPassword extends Component {
 
   updateInput(key, value) {
     localStorage.setItem(key, value);
+  }
+
+  componentDidMount() {
+    this.props.authActions.clearErrors();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!this.props.registerUser.newUser) {
+      return <div />;
+    }
+    if (this.props.registerUser.newUser !== null) {
+      alert(
+        `Your password has been updated ${
+          this.props.registerUser.newUser.username
+        }!`
+      );
+      return this.props.history.push("/login");
+    }
+    if (prevProps.registerUser.newUser.registerErrorMessage) {
+      alert(prevProps.registerUser.newUser.error);
+      this.props.authActions.clearErrors();
+    }
   }
 
   handleSubmit(event) {
@@ -33,7 +54,7 @@ class ResetPassword extends Component {
 
   render() {
     return (
-      <ResetPasswordPage
+      <ResetPasswordForm
         password={this.state.password}
         confirmPassword={this.state.confirmPassword}
         handleChange={this.handleChange}
@@ -45,6 +66,7 @@ class ResetPassword extends Component {
 
 function mapStateToProps(state) {
   return {
+    registerUser: state.registerUser,
     auth: state.auth
   };
 }

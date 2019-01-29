@@ -17,6 +17,13 @@ export function checkUser(auth) {
   return { type: types.LOGIN_ERROR, auth: auth };
 }
 
+export function checkNewUser(register) {
+  if (!register.error) {
+    return { type: types.REGISTER_USER, register: register };
+  } else if (register.error) {
+    return { type: types.REGISTER_USER, register: register };
+  }
+}
 export function logoutUser(auth) {
   return { type: types.LOGOUT_USER, auth: auth };
 }
@@ -53,8 +60,7 @@ export function resetPassword(user) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
-    });
-    // .then(user => dispatch(checkUser(user)))
+    }).then(newUser => dispatch(checkNewUser(newUser)));
     // .catch(err => console.error(err));
   };
 }

@@ -4,10 +4,7 @@ import "./static/user.css";
 
 const RequestResetPasswordPage = props => (
   <div className="container">
-    <h3 id="reset-password">
-      {" "}
-      <b>Reset password </b>
-    </h3>
+    <h3 id="reset-password"> Reset password</h3>
     <p id="instructions">
       <br />
       Enter your email address to receive an email with

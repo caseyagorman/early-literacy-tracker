@@ -119,10 +119,13 @@ def reset_password():
     user = data.get("user")
     old_password = user[0:-27]
     user = User.query.filter_by(password=old_password).first()
+    if not user:
+        return jsonify({'error': 'try again'})
     hashed_password = generate_password_hash(new_password)
     user.password = hashed_password
     db.session.commit()
-    return "good job!"
+    return jsonify({'username': user.username})
+    
 
 
 @app.route("/api/item_list/<item_type>")

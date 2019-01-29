@@ -2,9 +2,7 @@ import React from "react";
 
 const ResetPasswordForm = props => (
   <div className="container" id="register-page">
-    <h1>
-      <strong>Reset Password</strong>
-    </h1>
+    <h1 id="reset-password-h1">Reset Password</h1>
     <div className="form-group" />
     <form onSubmit={props.handleSubmit}>
       <label className="login-form">Enter new password</label>

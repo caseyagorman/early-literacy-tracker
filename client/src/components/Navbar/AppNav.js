@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, NavItem, Nav, MenuItem, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./static/appNav.css";
-const AppNav = () => {
+const AppNav = props => {
   return (
     <Navbar collapseOnSelect id="navbar">
       <Navbar.Header>
@@ -82,8 +82,8 @@ const AppNav = () => {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem id="Logout" eventKey={5} href="/logout/">
-            Logout
+          <NavItem id="Logout" eventKey={5} href={props.route}>
+            {props.navText}
           </NavItem>
         </Nav>
       </Navbar.Collapse>

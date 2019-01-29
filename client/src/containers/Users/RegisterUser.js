@@ -20,15 +20,17 @@ class RegisterUser extends Component {
     if (!this.props.registerUser.newUser) {
       return <div />;
     }
-    if (this.props.registerUser.newUser !== null) {
+    if (
+      this.props.registerUser.newUser !== null &&
+      !this.props.registerUser.newUser.error
+    ) {
       alert(
         `Thanks for registering ${this.props.registerUser.newUser.username}!`
       );
+      this.props.registrationActions.clearUser();
       return this.props.history.push("/login");
-    }
-    if (prevProps.registerUser.newUser.registerErrorMessage) {
-      alert(prevProps.registerUser.newUser.error);
-      this.props.authActions.clearErrors();
+    } else {
+      let errorMessage = this.props.registerUser.newUser.error;
     }
   }
   handleSubmit(event) {
@@ -36,7 +38,7 @@ class RegisterUser extends Component {
 
     if (this.state.password !== this.state.confirmPassword) {
       alert("passwords do not match");
-      this.props.authActions.clearErrors();
+      this.props.authActions.clearErrors(this.props.registerUser);
       event.target.reset();
       return;
     } else {
