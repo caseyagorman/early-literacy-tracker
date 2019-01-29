@@ -101,10 +101,6 @@ const AppRouter = () => (
         component={userIsAuthenticated(AssignItems)}
       />
       <Route
-        path="/add-custom-items/:id/:itemType/"
-        component={userIsAuthenticated(AddItems)}
-      />
-      <Route
         path="/student-test-results/:itemType/:id/"
         component={userIsAuthenticated(StudentTestResults)}
       />

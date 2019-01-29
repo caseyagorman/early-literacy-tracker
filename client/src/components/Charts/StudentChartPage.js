@@ -13,12 +13,14 @@ const StudentChartPage = props => (
         {props.itemType.slice(0, -1)}.
       </p>
       <StudentBarChart
+        className="bar-chart-div"
         students={props.students.students}
         itemType={props.itemType}
         chartType={"learned"}
       />
       <div />
       <StudentBarChart
+        className="bar-chart-div"
         students={props.students.students}
         itemType={props.itemType}
         chartType={"unlearned"}
