@@ -33,13 +33,20 @@ class ResetPassword extends Component {
     }
     if (prevProps.registerUser.newUser.registerErrorMessage) {
       alert(prevProps.registerUser.newUser.error);
-      this.props.authActions.clearErrors();
+      this.props.registrationActions.clearUser();
+      return this.props.history.push("/login");
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
+    if (this.state.password !== this.state.confirmPassword) {
+      alert("passwords do not match");
+      this.props.registrationActions.clearUser();
+      event.target.reset();
+      return;
+    }
     let user = {
       user: this.props.match.params.resetToken,
       password: this.state.password,

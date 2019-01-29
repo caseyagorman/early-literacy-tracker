@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as registrationActions from "../../redux/actions/registerActions";
 import * as authActions from "../../redux/actions/authActions";
 import { bindActionCreators } from "redux";
+import "../../components/Users/static/user.css";
 class RegisterUser extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +34,6 @@ class RegisterUser extends Component {
       let errorMessage = this.props.registerUser.newUser.error;
       alert(errorMessage);
       this.props.registrationActions.clearUser();
-      //
-      // event.target.reset();
-      // TODO add toast message
     }
   }
   handleSubmit(event) {

@@ -17,15 +17,15 @@ class LoginUser extends Component {
       this.updateInput("token", newProps.auth.user.token);
       this.updateInput("username", newProps.auth.user.username);
       this.props.history.push("/students");
-    } else if (newProps.auth.loginError.error) {
-      if (newProps.auth.loginError.error === "incorrect password") {
-        // alert(newProps.auth.loginError.error);
-        return;
-      }
-      if (newProps.auth.loginError.error === "user does not exist") {
-        alert(newProps.auth.loginError.error);
-        newProps.history.push("/register/");
-      }
+      // } else if (newProps.auth.loginError.error) {
+      //   if (newProps.auth.loginError.error === "incorrect password") {
+      //     alert(newProps.auth.loginError.error);
+      //     this.props.authActions.clearErrors();
+      //   }
+      // if (newProps.auth.loginError.error === "user does not exist") {
+      //   alert(newProps.auth.loginError.error);
+      //   newProps.history.push("/register/");
+      // }
     }
   }
   updateInput(key, value) {
