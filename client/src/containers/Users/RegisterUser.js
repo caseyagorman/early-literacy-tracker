@@ -29,8 +29,13 @@ class RegisterUser extends Component {
       );
       this.props.registrationActions.clearUser();
       return this.props.history.push("/login");
-    } else {
+    } else if (this.props.registerUser.newUser.error) {
       let errorMessage = this.props.registerUser.newUser.error;
+      alert(errorMessage);
+      this.props.registrationActions.clearUser();
+      //
+      // event.target.reset();
+      // TODO add toast message
     }
   }
   handleSubmit(event) {
