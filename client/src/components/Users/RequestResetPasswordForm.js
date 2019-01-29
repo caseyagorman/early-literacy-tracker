@@ -4,11 +4,11 @@ import "./static/user.css";
 
 const RequestResetPasswordForm = props => (
   <form onSubmit={props.handleSubmit} className="form-container">
-    <label className="login-form">Email</label>
+    <label className="reguest-form">Email</label>
     <input
       id="email"
       name="email"
-      type="text"
+      type="email"
       value={props.email}
       onChange={props.handleChange}
     />

@@ -111,8 +111,6 @@ def request_reset_password():
                   recipients=[email])
     return mail.send(msg)
 
-    # Send password link
-    # OK
 
 @app.route("/api/reset-password", methods=["POST"])
 def reset_password():

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import image from "./static/squiggly-line.png";
 const StudentDetailMenu = props => (
   <div className="student-detail-menu">
-    {console.log("student detail menu props", props)}{" "}
     <div className="word-balloons-top">
       <div className="balloon" id="top-left">
         <br />

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
-import ResetPasswordForm from "../../components/Users/ResetPasswordForm";
+import ResetPasswordPage from "../../components/Users/ResetPasswordPage";
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class ResetPassword extends Component {
 
   render() {
     return (
-      <ResetPasswordForm
+      <ResetPasswordPage
         password={this.state.password}
         confirmPassword={this.state.confirmPassword}
         handleChange={this.handleChange}
