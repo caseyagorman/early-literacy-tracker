@@ -13,9 +13,24 @@ img {
   max-width: 300px;
 }
 #login-button {
-  background-color: white;
+  background-color: solid white;
   color: white;
   border: 1px solid white;
+}
+
+#request-password-button {
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-left: -30px;
+  padding: 5px;
+  background-color: #0033ff;
+  color: white;
+  height: 40px;
+  width: 130px;
+}
+#login-form-username {
+  margin-left: -5px;
 }
 
 #username {
@@ -45,20 +60,33 @@ img {
 }
 
 #reset-password {
+  margin-right: 20px;
   text-align: center;
   font-family: "Niramit", sans-serif;
 }
 .reguest-form {
   font-size: 18px;
+  margin-left: -50px;
+  margin-right: 20px;
 }
 
 #email {
   width: 250px;
   height: 40px;
+  margin-left: -10px;
 }
 
 #reset-password-h1 {
   text-align: center;
   font-family: "Niramit", sans-serif;
   font-size: 30px;
+}
+
+#forgot-password {
+  font-family: "Niramit", sans-serif;
+  text-align: center;
+}
+#forgot-password-link {
+  font-family: "Niramit", sans-serif;
+  color: #0033ff;
 }

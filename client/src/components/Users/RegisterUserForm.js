@@ -2,9 +2,7 @@ import React from "react";
 
 const RegisterUserForm = props => (
   <div className="container" id="register-page">
-    <h1>
-      <strong>Register</strong>
-    </h1>
+    <h1>Register</h1>
     <div className="form-group" />
     <form onSubmit={props.handleSubmit}>
       <label className="login-form">Username</label>

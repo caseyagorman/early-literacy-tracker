@@ -28,6 +28,15 @@ const LoginUserPage = props => (
         handleSubmit={props.handleSubmit}
       />
     </div>
+    <br />
+    <p className="introduction" id="forgot-password">
+      {" "}
+      Forgot your password? Click{" "}
+      <Link id="forgot-password-link" to={"/forgot-password"}>
+        {" "}
+        here{" "}
+      </Link>{" "}
+    </p>
   </div>
 );
 

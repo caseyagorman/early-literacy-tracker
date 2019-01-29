@@ -4,7 +4,9 @@ import "./static/user.css";
 
 const LoginUserForm = props => (
   <form onSubmit={props.handleSubmit} className="form-container">
-    <label className="login-form">Username</label>
+    <label className="login-form" id="login-form-username">
+      Username
+    </label>
     <input
       id="username"
       name="username"
