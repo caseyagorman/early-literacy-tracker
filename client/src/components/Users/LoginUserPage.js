@@ -26,6 +26,7 @@ const LoginUserPage = props => (
         password={props.password}
         handleChange={props.handleChange}
         handleSubmit={props.handleSubmit}
+        loginError={props.loginError}
       />
     </div>
     <br />

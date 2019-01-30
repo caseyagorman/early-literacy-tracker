@@ -23,6 +23,7 @@ const LoginUserForm = props => (
       value={props.password}
       onChange={props.handleChange}
     />
+    {props.loginError ? "login error!" : null}
     <br />
 
     <button id="login-button" type="submit">

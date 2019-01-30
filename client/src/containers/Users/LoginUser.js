@@ -17,11 +17,11 @@ class LoginUser extends Component {
       this.updateInput("token", newProps.auth.user.token);
       this.updateInput("username", newProps.auth.user.username);
       this.props.history.push("/students");
-    } else if (newProps.auth.loginError.error === "incorrect password") {
+    } /* else if (newProps.auth.loginError.error === "incorrect password") {
       this.props.authActions.clearErrors();
       let errorMessage = "incorrect password";
       return this.displayToast(errorMessage);
-    }
+    }*/
   }
 
   displayToast(error) {
@@ -59,6 +59,7 @@ class LoginUser extends Component {
           password={this.state.password}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          loginError={this.props.auth.loginError.error}
         />
         <ToastContainer store={ToastStore} />
       </div>
