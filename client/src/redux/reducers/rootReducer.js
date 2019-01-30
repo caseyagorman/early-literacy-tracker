@@ -8,6 +8,7 @@ import studentItems from "./studentItemsReducer";
 import item from "./itemReducer";
 import studentTest from "./studentTestReducer";
 import studentUnassignedItems from "./studentUnassignedItemsReducer";
+import toast from "./toastReducer";
 // import itemUnassignedStudents from "./itemUnassignedStudentsReducer";
 import testResults from "./testResultsReducers";
 const rootReducer = combineReducers({
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   studentUnassignedItems,
   // itemUnassignedStudents,
   studentTest,
-  testResults
+  testResults,
+  toast
 });
 
 export default rootReducer;

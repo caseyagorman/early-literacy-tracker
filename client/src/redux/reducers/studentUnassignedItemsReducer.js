@@ -10,7 +10,6 @@ export default function studentUnassignedItems(
   action
 ) {
   let newState;
-  console.log("top of unassigned", action);
   switch (action.type) {
     case FETCH_STUDENT_UNASSIGNED_ITEMS:
       return action;

@@ -5,6 +5,7 @@ import * as registrationActions from "../../redux/actions/registerActions";
 import * as authActions from "../../redux/actions/authActions";
 import { bindActionCreators } from "redux";
 import "../../components/Users/static/user.css";
+import "react-toastify/dist/ReactToastify.css";
 class RegisterUser extends Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,6 @@ class RegisterUser extends Component {
       this.props.registerUser.newUser !== null &&
       !this.props.registerUser.newUser.error
     ) {
-      alert(
-        `Thanks for registering ${this.props.registerUser.newUser.username}!`
-      );
       this.props.registrationActions.clearUser();
       return this.props.history.push("/login");
     } else if (this.props.registerUser.newUser.error) {
@@ -40,7 +38,6 @@ class RegisterUser extends Component {
     event.preventDefault();
 
     if (this.state.password !== this.state.confirmPassword) {
-      alert("passwords do not match");
       this.props.authActions.clearErrors(this.props.registerUser);
       event.target.reset();
       return;
@@ -61,11 +58,14 @@ class RegisterUser extends Component {
 
   render() {
     return (
-      <RegisterUserForm
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        value={this.state.value}
-      />
+      <div>
+        <RegisterUserForm
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          value={this.state.value}
+        />
+        {/* <ToastContainer /> */}
+      </div>
     );
   }
 }

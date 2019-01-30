@@ -10,7 +10,6 @@ function getStudentAllTestsResultsApi(id) {
 }
 
 export function receiveTestResults(testResults) {
-  console.log("test results", testResults);
   return { type: types.RECEIVE_TEST_RESULTS, testResults: testResults };
 }
 
@@ -29,6 +28,9 @@ export function fetchTestResults(user, itemType, id) {
       .then(testResults => dispatch(receiveTestResults(testResults)));
   };
 }
+// return {
+//     type: ADD_TOAST, toast: createToast()
+//   };
 
 export function fetchAllTestResults(id, user) {
   console.log("fetching all student tests", id, user);

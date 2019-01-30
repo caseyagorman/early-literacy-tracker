@@ -36,5 +36,6 @@ export default {
     testItems: [],
     submittingTest: false
   },
-  testResults: null
+  testResults: null,
+  toast: null
 };

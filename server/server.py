@@ -96,6 +96,7 @@ def login():
         ) + datetime.timedelta(hours=24)}, app.config['SECRET_KEY'])
         return jsonify({'token': token.decode('utf-8'), 'username': auth_user.username})
     else:
+        print("error", "incorrect password")
         return jsonify({'error': 'incorrect password'})
 
 @app.route("/api/request-reset-password", methods=["POST"])

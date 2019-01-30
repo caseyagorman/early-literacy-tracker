@@ -29,6 +29,7 @@ import ItemCharts from "./containers/Charts/ItemCharts";
 import StudentTestResults from "./containers/TestResults/StudentTestResults";
 import AssignItems from "./containers/Items/AssignItems";
 import ResetPassword from "./containers/Users/ResetPassword";
+import ToastTest from "./containers/Toast/ToastTest";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -75,6 +76,7 @@ const AppRouter = () => (
         path="/details/:id"
         component={userIsAuthenticated(StudentDetail)}
       />
+      <Route path="/toast/" component={userIsAuthenticated(ToastTest)} />
 
       <Route
         path="/item-detail/:itemType/:id"
