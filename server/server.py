@@ -88,7 +88,6 @@ def login():
     username = data.get('username')
     password = data.get('password')
     auth_user = User.query.filter_by(username=username).first()
-    print("auth user", auth_user.email)
     if not auth_user:
         return jsonify({'error': 'user does not exist'})
     if auth_user and check_password_hash(auth_user.password, password.encode('utf-8')):

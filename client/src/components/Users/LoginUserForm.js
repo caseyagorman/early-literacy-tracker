@@ -23,11 +23,12 @@ const LoginUserForm = props => (
       value={props.password}
       onChange={props.handleChange}
     />
-    {props.loginError ? "login error!" : null}
+    <p id="login-error">{props.loginError ? props.loginError : null}</p>
     <br />
-
+    <br />
     <button id="login-button" type="submit">
-      <img src={image} alt="Logo" />
+      Sign in
+      {/* <img src={image} alt="Logo" /> */}
     </button>
   </form>
 );
