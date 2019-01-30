@@ -39,6 +39,7 @@ class RegisterUser extends Component {
   }
 
   displayToast(error) {
+    this.props.registrationActions.clearUser();
     return (
       <div>
         {ToastStore.error(error)}
