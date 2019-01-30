@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import * as studentTestActions from "../../redux/actions/studentTestActions";
 import "../../components/TestStudent/static/test.css";
 import StudentTestPage from "../../components/TestStudent/StudentTestPage";
-
+import image from "../../components/TestStudent/static/giphy.gif";
 class StudentTest extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +20,12 @@ class StudentTest extends React.Component {
 
   displayItem(studentTestItems) {
     if (!studentTestItems) {
-      return <div className="test-complete-message">test complete!</div>;
+      return (
+        <div className="test-complete-message">
+          {" "}
+          <img src={image} alt="Logo" />
+        </div>
+      );
     }
 
     return studentTestItems;
