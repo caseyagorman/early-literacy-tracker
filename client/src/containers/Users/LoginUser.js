@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import LoginUserPage from "../../components/Users/LoginUserPage";
-
+import { ToastContainer, ToastStore } from "react-toasts";
 class LoginUser extends Component {
   constructor(props) {
     super(props);
@@ -17,16 +17,20 @@ class LoginUser extends Component {
       this.updateInput("token", newProps.auth.user.token);
       this.updateInput("username", newProps.auth.user.username);
       this.props.history.push("/students");
-      // } else if (newProps.auth.loginError.error) {
-      //   if (newProps.auth.loginError.error === "incorrect password") {
-      //     alert(newProps.auth.loginError.error);
-      //     this.props.authActions.clearErrors();
-      //   }
-      // if (newProps.auth.loginError.error === "user does not exist") {
-      //   alert(newProps.auth.loginError.error);
-      //   newProps.history.push("/register/");
-      // }
+    } else if (newProps.auth.loginError.error === "incorrect password") {
+      this.props.authActions.clearErrors();
+      let errorMessage = "incorrect password";
+      return this.displayToast(errorMessage);
     }
+  }
+
+  displayToast(error) {
+    return (
+      <div>
+        {ToastStore.error(error)}
+        <ToastContainer store={ToastStore} />
+      </div>
+    );
   }
   updateInput(key, value) {
     localStorage.setItem(key, value);
@@ -49,12 +53,15 @@ class LoginUser extends Component {
 
   render() {
     return (
-      <LoginUserPage
-        username={this.state.username}
-        password={this.state.password}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <div>
+        <LoginUserPage
+          username={this.state.username}
+          password={this.state.password}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+        <ToastContainer store={ToastStore} />
+      </div>
     );
   }
 }

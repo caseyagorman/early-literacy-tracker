@@ -32,9 +32,6 @@ class RegisterUser extends Component {
     } else if (this.props.registerUser.newUser.error) {
       let errorMessage = this.props.registerUser.newUser.error;
       return this.displayToast(errorMessage);
-
-      // alert(errorMessage);
-      // this.props.registrationActions.clearUser();
     }
   }
 

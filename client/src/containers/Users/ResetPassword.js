@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import ResetPasswordForm from "../../components/Users/ResetPasswordForm";
+import { ToastContainer, ToastStore } from "react-toasts";
 class ResetPassword extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,7 @@ class ResetPassword extends Component {
       return <div />;
     }
     if (this.props.registerUser.newUser !== null) {
-      alert(
+      this.displaySuccessToast(
         `Your password has been updated ${
           this.props.registerUser.newUser.username
         }!`
@@ -38,11 +39,27 @@ class ResetPassword extends Component {
     }
   }
 
+  displaySuccessToast(message) {
+    return (
+      <div>
+        {ToastStore.success(message)}
+        <ToastContainer store={ToastStore} />
+      </div>
+    );
+  }
+  displayErrorToast(message) {
+    return (
+      <div>
+        {ToastStore.error(message)}
+        <ToastContainer store={ToastStore} />
+      </div>
+    );
+  }
   handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
     if (this.state.password !== this.state.confirmPassword) {
-      alert("passwords do not match");
+      this.displayErrorToast("Your passwords do not match");
       this.props.registrationActions.clearUser();
       event.target.reset();
       return;

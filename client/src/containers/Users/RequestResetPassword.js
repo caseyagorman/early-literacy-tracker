@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import RequestResetPasswordPage from "../../components/Users/RequestResetPasswordPage";
-
+import { ToastContainer, ToastStore } from "react-toasts";
 class RequestResetPassword extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +22,19 @@ class RequestResetPassword extends Component {
     let user = this.state.email;
 
     this.props.authActions.requestResetPassword(user);
+    return this.displayToast("password link sent!");
+  }
+
+  displayToast(message) {
+    return (
+      <div>
+        {ToastStore.success(message)}
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
+    );
   }
 
   handleChange(event) {
@@ -30,11 +43,17 @@ class RequestResetPassword extends Component {
 
   render() {
     return (
-      <RequestResetPasswordPage
-        email={this.state.email}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <div>
+        <RequestResetPasswordPage
+          email={this.state.email}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
     );
   }
 }
