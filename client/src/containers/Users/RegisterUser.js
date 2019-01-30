@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RegisterUserForm from "../../components/Users/RegisterUserForm";
 import { connect } from "react-redux";
+import { ToastContainer, ToastStore } from "react-toasts";
 import * as registrationActions from "../../redux/actions/registerActions";
 import * as authActions from "../../redux/actions/authActions";
 import { bindActionCreators } from "redux";
@@ -30,9 +31,20 @@ class RegisterUser extends Component {
       return this.props.history.push("/login");
     } else if (this.props.registerUser.newUser.error) {
       let errorMessage = this.props.registerUser.newUser.error;
-      alert(errorMessage);
-      this.props.registrationActions.clearUser();
+      return this.displayToast(errorMessage);
+
+      // alert(errorMessage);
+      // this.props.registrationActions.clearUser();
     }
+  }
+
+  displayToast(error) {
+    return (
+      <div>
+        {ToastStore.error(error)}
+        <ToastContainer store={ToastStore} />
+      </div>
+    );
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -64,7 +76,7 @@ class RegisterUser extends Component {
           handleSubmit={this.handleSubmit}
           value={this.state.value}
         />
-        {/* <ToastContainer /> */}
+        <ToastContainer store={ToastStore} />
       </div>
     );
   }

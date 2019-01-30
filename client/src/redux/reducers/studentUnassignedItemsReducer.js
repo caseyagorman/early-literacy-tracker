@@ -35,7 +35,6 @@ export default function studentUnassignedItems(
       const newState = Object.assign({}, state, {
         studentItemSets: newStudentItemSets
       });
-      console.log("newState", newState);
       return newState;
 
     default:
