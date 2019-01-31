@@ -10,6 +10,7 @@
 }
 th {
   font-size: 14px;
+  text-align: center;
 }
 .unordered-list {
   list-style-type: none;
@@ -29,13 +30,6 @@ th {
   text-decoration-color: #44857d;
   text-decoration: underline;
   background-color: white;
-}
-
-#table-header {
-  background-color: #003d59;
-  text-align: center;
-  color: white;
-  font-size: 16px;
 }
 
 ul {

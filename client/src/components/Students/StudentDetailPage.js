@@ -3,6 +3,7 @@ import StudentSnapshot from "./StudentSnapshot";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
 import StudentDetailMenu from "./StudentDetailMenu";
+import DropdownBar from "./DropdownBar";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="students">
@@ -18,12 +19,16 @@ const StudentDetailPage = props => (
         // studentTestActions={props.studentTestActions}
         /> */}
       </div>
+
       <StudentSnapshot
         student={props.student}
         tests={props.tests}
         testSentences={props.testSentences}
       />
       <br />
+      <div>
+        <DropdownBar />
+      </div>
       <br />
 
       <StudentDetailTable student={props.student} />
