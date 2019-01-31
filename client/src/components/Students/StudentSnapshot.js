@@ -25,9 +25,6 @@ const StudentSnapshot = props => (
       {props.testSentences[0]}
       <br />
       <br />
-      To view more detailed test data, click the balloons to the right.
-      <br />
-      <br />
     </div>
   </div>
 );

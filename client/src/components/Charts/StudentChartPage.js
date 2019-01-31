@@ -2,8 +2,9 @@ import React from "react";
 import StudentBarChart from "../../containers/Charts/StudentBarChart";
 
 const StudentChartPage = props => (
-  <div className="container">
-    <div className="display-charts">
+  // <div className="container">
+  <div className="display-charts">
+    <div>
       <h1>
         {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1, -1)}{" "}
         Charts

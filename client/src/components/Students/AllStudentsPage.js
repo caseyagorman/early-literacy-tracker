@@ -8,7 +8,8 @@ const AllStudentsPage = props => (
   <div className="container">
     <div className="students">
       <AllStudentsInstructions student={props.student} />
-      <AllStudentsMenu />
+      {/* <AllStudentsMenu /> */}
+      <br />
       <div>
         <TableContainer
           actions={props.studentTestActions}

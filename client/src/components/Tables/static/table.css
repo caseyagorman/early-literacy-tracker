@@ -1,56 +1,47 @@
 .student-detail-table-div {
-  font-size: 20px;
+  font-size: 14px;
   left: -70%;
   position: relative;
   float: left;
 }
-.student-table {
-  font-size: 22px;
-  color: black;
-}
 
+.students-table {
+  font-size: 14px;
+}
+th {
+  font-size: 14px;
+}
 .unordered-list {
   list-style-type: none;
   color: black;
 }
 
 .student-snapshot {
-  font-size: 20px;
+  font-size: 18px;
   color: black;
 }
 
 .link {
-  color: #0033ff;
+  color: #44857d;
+}
+.underline-link {
+  color: #44857d;
+  text-decoration-color: #44857d;
+  text-decoration: underline;
   background-color: white;
 }
-#words {
-  background-color: #0033ff;
+
+#table-header {
+  background-color: #003d59;
   text-align: center;
   color: white;
+  font-size: 16px;
 }
-#letters {
-  background-color: #008000;
-  text-align: center;
-  color: white;
-}
-#sounds {
-  background-color: #ff6600;
-  text-align: center;
-  color: white;
-}
-#test-date {
-  font-size: 18px;
-}
+
 ul {
   list-style-type: none;
 }
 
 #item-name-list {
-  color: #0033ff;
-}
-
-#student-name-table-header {
-  font-size: 26px;
-  display: inline-block;
-  margin-right: 5px;
+  color: #44857d;
 }

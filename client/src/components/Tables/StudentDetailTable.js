@@ -9,13 +9,13 @@ const StudentDetailTable = student => (
     <Table bordered className="student-detail-table">
       <thead>
         <tr>
-          <th id="words" colSpan="4">
+          <th id="table-header" colSpan="4">
             Words
           </th>
-          <th id="letters" colSpan="4">
+          <th id="table-header" colSpan="4">
             Letters
           </th>
-          <th id="sounds" colSpan="4">
+          <th id="table-header" colSpan="4">
             Sounds
           </th>
         </tr>
@@ -50,7 +50,10 @@ const StudentDetailTable = student => (
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link id="link" to={`/item-detail/words/${item.item_id}`}>
+                  <Link
+                    className="link"
+                    to={`/item-detail/words/${item.item_id}`}
+                  >
                     {item.item}
                   </Link>
                 </li>
@@ -59,17 +62,16 @@ const StudentDetailTable = student => (
           </td>
           <td className="student-detail-table" style={{ width: "10%" }}>
             <ul className="unordered-list">
-              {console.log(
-                "unlearned word list",
-                student.student.unlearnedWordList
-              )}
               {student.student.unlearnedWordList.map(item => (
                 <li className="student-detail-table-div">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link id="link" to={`/item-detail/words/${item.item_id}`}>
+                  <Link
+                    className="link"
+                    to={`/item-detail/words/${item.item_id}`}
+                  >
                     {item.item}{" "}
                   </Link>
                 </li>
@@ -82,14 +84,16 @@ const StudentDetailTable = student => (
           </td>
           <td style={{ width: "10%" }}>
             <ul className="unordered-list">
-              {console.log("learned letter list", student.student.letterList)}
               {student.student.letterList.map(item => (
                 <li className="student-detail-table-div">
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link id="link" to={`/item-detail/letters/${item.item_id}`}>
+                  <Link
+                    className="link"
+                    to={`/item-detail/letters/${item.item_id}`}
+                  >
                     {item.item}{" "}
                   </Link>
                 </li>
@@ -98,17 +102,16 @@ const StudentDetailTable = student => (
           </td>
           <td style={{ width: "10%" }}>
             <ul className="unordered-list">
-              {console.log(
-                "unlearned letter list",
-                student.student.unlearnedLetterList
-              )}
               {student.student.unlearnedLetterList.map(item => (
                 <li className="student-detail-table-div">
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link id="link" to={`/item-detail/letters/${item.item_id}`}>
+                  <Link
+                    className="link"
+                    to={`/item-detail/letters/${item.item_id}`}
+                  >
                     {item.item}
                   </Link>
                 </li>
@@ -128,7 +131,10 @@ const StudentDetailTable = student => (
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link id="link" to={`/item-detail/sounds/${item.item_id}`}>
+                  <Link
+                    className="link"
+                    to={`/item-detail/sounds/${item.item_id}`}
+                  >
                     {item.item}
                   </Link>
                 </li>
@@ -143,7 +149,10 @@ const StudentDetailTable = student => (
                     item={item}
                     student={student.student.student.student_id}
                   />
-                  <Link id="link" to={`/item-detail/sounds/${item.item_id}`}>
+                  <Link
+                    className="link"
+                    to={`/item-detail/sounds/${item.item_id}`}
+                  >
                     {item.item}
                   </Link>
                 </li>

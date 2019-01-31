@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
-import { Table } from "react-bootstrap";
+import {
+  Table,
+  Glyphicon,
+  OverlayTrigger,
+  Tooltip,
+  ProgressBar
+} from "react-bootstrap";
 const StudentTable = (
   students,
   onSort,
@@ -9,75 +15,184 @@ const StudentTable = (
   itemType,
   studentTestActions
 ) => (
-  <Table>
+  <Table bordered>
     <thead>
       <tr>
-        <th onClick={e => onSort(e, "name")}>Name</th>
+        <th onClick={e => onSort(e, "name")}>
+          Name{" "}
+          <Glyphicon
+            glyph="glyphicon glyphicon-sort-by-alphabet"
+            id="sort-abc"
+          />
+        </th>
         <th onClick={e => onSort(e, "wordCount")}>
-          Words Learned <br />
+          Words Learned{" "}
+          <Glyphicon
+            glyph="glyphicon glyphicon-sort-by-alphabet"
+            id="sort-abc"
+          />
+          <br />
           <td />
         </th>
-        <th onClick={e => onSort(e, "lastWordTest")}>Last Word Test</th>
-        <th onClick={e => onSort(e, "letterCount")}>Letters Learned</th>
-        <th onClick={e => onSort(e, "lastLetterTest")}>Last Letter Test</th>
-        <th onClick={e => onSort(e, "soundCount")}>Sounds Learned</th>
-        <th onClick={e => onSort(e, "lastSoundTest")}>Last Sound Test</th>
+        <th onClick={e => onSort(e, "lastWordTest")}>
+          Last Word Test{" "}
+          <Glyphicon
+            glyph="glyphicon glyphicon-sort-by-alphabet"
+            id="sort-abc"
+          />
+        </th>
+        <th onClick={e => onSort(e, "letterCount")}>
+          Letters Learned{" "}
+          <Glyphicon
+            glyph="glyphicon glyphicon-sort-by-alphabet"
+            id="sort-abc"
+          />
+        </th>
+        <th onClick={e => onSort(e, "lastLetterTest")}>
+          Last Letter Test{" "}
+          <Glyphicon
+            glyph="glyphicon glyphicon-sort-by-alphabet"
+            id="sort-abc"
+          />
+        </th>
+        <th onClick={e => onSort(e, "soundCount")}>
+          Sounds Learned{" "}
+          <Glyphicon
+            glyph="glyphicon glyphicon-sort-by-alphabet"
+            id="sort-abc"
+          />
+        </th>
+        <th onClick={e => onSort(e, "lastSoundTest")}>
+          Last Sound Test{" "}
+          <Glyphicon
+            glyph="glyphicon glyphicon-sort-by-alphabet"
+            id="sort-abc"
+          />
+        </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className="students-table">
       {students.map(function(student) {
         return (
           <tr key={student.student_id}>
             <td>
-              <Link to={`/details/${student.studentId}`} className="link">
-                <h3 id="student-name-table-header">{student.name}</h3>
-              </Link>
+              <OverlayTrigger
+                placement={"top"}
+                overlay={<Tooltip>view {student.name}'s data</Tooltip>}
+              >
+                <Link to={`/details/${student.studentId}`} className="link">
+                  <h3 id="student-name-table-header">{student.name}</h3>
+                </Link>
+              </OverlayTrigger>
               <DeleteStudent student={student.studentId} />
             </td>
             <td>
-              {student.wordCount}/{student.totalWordCount}
+              <br />
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    {student.name} knows {student.wordCount}/
+                    {student.totalWordCount} words
+                  </Tooltip>
+                }
+              >
+                <ProgressBar
+                  animated
+                  now={(student.wordCount / student.totalWordCount) * 100}
+                />
+              </OverlayTrigger>
             </td>
             <td>
               {" "}
               {student.lastWordTest}
               <br />
-              <Link
-                to={`/test-student/words/${student.studentId}`}
-                className="link"
-                onClick={() => studentTestActions.beginTest("words")}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>Click to test {student.name}'s words</Tooltip>
+                }
               >
-                Test Words
-              </Link>
+                <Link
+                  to={`/test-student/words/${student.studentId}`}
+                  className="underline-link"
+                  onClick={() => studentTestActions.beginTest("words")}
+                >
+                  Test Words
+                </Link>
+              </OverlayTrigger>
             </td>
             <td>
-              {student.letterCount}/{student.totalLetterCount}
+              {/* {student.letterCount}/{student.totalLetterCount} */}
+              <br />
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    {student.name} knows {student.letterCount}/
+                    {student.totalLetterCount} letters
+                  </Tooltip>
+                }
+              >
+                <ProgressBar
+                  animated
+                  now={(student.letterCount / student.totalLetterCount) * 100}
+                />
+              </OverlayTrigger>
             </td>
             <td>
               {" "}
               {student.lastLetterTest}
               <br />
-              <Link
-                to={`/test-student/letters/${student.studentId}`}
-                onClick={() => studentTestActions.beginTest("letters")}
-                className="link"
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>Click to test {student.name}'s letters</Tooltip>
+                }
               >
-                Test Letters
-              </Link>
+                <Link
+                  to={`/test-student/letters/${student.studentId}`}
+                  className="underline-link"
+                  onClick={() => studentTestActions.beginTest("letters")}
+                >
+                  Test Letters
+                </Link>
+              </OverlayTrigger>
             </td>
             <td>
-              {student.soundCount}/{student.totalSoundCount}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    {student.name} knows {student.soundCount}/
+                    {student.totalSoundCount} sounds
+                  </Tooltip>
+                }
+              >
+                <ProgressBar
+                  animated
+                  now={(student.soundCount / student.totalSoundCount) * 100}
+                />
+              </OverlayTrigger>
             </td>
             <td>
               {" "}
               {student.lastSoundTest}
               <br />
-              <Link
-                to={`/test-student/sounds/${student.studentId}`}
-                className="link"
-                onClick={() => studentTestActions.beginTest("sounds")}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>Click to test {student.name}'s sounds</Tooltip>
+                }
               >
-                Test Sounds
-              </Link>
+                <Link
+                  to={`/test-student/sounds/${student.studentId}`}
+                  className="underline-link"
+                  onClick={() => studentTestActions.beginTest("sounds")}
+                >
+                  Test Sounds
+                </Link>
+              </OverlayTrigger>
             </td>
           </tr>
         );

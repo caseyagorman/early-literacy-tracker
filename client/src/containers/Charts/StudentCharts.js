@@ -11,7 +11,6 @@ class StudentCharts extends Component {
   }
 
   displayStudentChartPage(students) {
-    console.log("students", students);
     if (!students) {
       return <div>loading...</div>;
     }

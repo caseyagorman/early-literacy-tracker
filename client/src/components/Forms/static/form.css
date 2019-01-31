@@ -1,5 +1,5 @@
 form {
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
 }
 
 .add-students-instructions {
@@ -9,17 +9,17 @@ form {
   font-size: 16px;
 }
 #add-students {
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
 }
 #add-item-button {
-  background-color: #0033ff;
+  background-color: #018f75;
   color: white;
-  font-size: 20px;
+  font-size: 14px;
   padding: 10px;
 }
 
 #add-student-button {
-  background-color: #0033ff;
+  background-color: #018f75;
   color: white;
   font-size: 18px;
   padding: 10px;
@@ -48,7 +48,7 @@ form {
   font-size: 18px;
   margin-left: 25%;
   margin-top: 5%;
-  background-color: #0033ff;
+  background-color: #018f75;
   color: white;
   border-radius: 3px;
   padding: 5px;

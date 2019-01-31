@@ -1,41 +1,41 @@
 .display-charts {
   margin-left: 50px;
   font-size: 20px;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
 }
 .student-line-chart {
   font-size: 20px;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   width: auto;
   display: inline-block;
 }
 
 .student-doughnut-chart {
   font-size: 20px;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   width: auto;
   display: inline-block;
 }
 
 #student-line-chart {
   font-size: 20px;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   display: inline-block;
 }
 
 #student-doughnut-chart {
   font-size: 20px;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   display: inline-block;
 }
 .student-detail-charts-page {
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   text-align: center;
 }
 
 .bar-chart-div {
   display: inline-block;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   max-height: 1000px;
   max-width: 1200px;
   margin-left: 70px;
@@ -43,5 +43,5 @@
 
 #bar-chart {
   font-size: 20px;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
 }

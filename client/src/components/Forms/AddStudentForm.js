@@ -8,7 +8,6 @@ const AddStudentForm = props => (
       <p className="add-students-instructions-paragraph">
         You may add multiple students at once. <br /> Enter each student name on
         new line.
-        <br /> Press submit when finished entering student names.
       </p>
     </div>
     <Form onSubmit={props.handleSubmit}>

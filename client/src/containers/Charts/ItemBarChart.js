@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 class ItemBarChart extends Component {
   turnIntoArray(obj) {
-    console.log("item obj", obj);
     if (!obj) {
       return <p>Loading...</p>;
     }
@@ -29,10 +28,10 @@ class ItemBarChart extends Component {
 
   getChartColor() {
     if (this.props.chartType === "learned") {
-      let chartColor = "#008000";
+      let chartColor = "#44857D";
       return chartColor;
     } else {
-      let chartColor = "#ff3333";
+      let chartColor = "#FE6625";
       return chartColor;
     }
   }
@@ -66,7 +65,7 @@ class ItemBarChart extends Component {
         lable: [
           {
             fontSize: 18,
-            fontFamily: "Niramit",
+            fontFamily: "Krub",
             fontColor: "black"
           }
         ],
@@ -74,7 +73,7 @@ class ItemBarChart extends Component {
           {
             ticks: {
               suggestedMax: totalCount,
-              fontFamily: "Niramit",
+              fontFamily: "Krub",
               fontSize: 14,
               fontColor: "black",
               beginAtZero: true,
@@ -90,8 +89,8 @@ class ItemBarChart extends Component {
         xAxes: [
           {
             ticks: {
-              fontFamily: "Niramit",
-              fontSize: 14,
+              fontFamily: "Krub",
+              fontSize: 12,
               fontColor: "black"
             }
           }

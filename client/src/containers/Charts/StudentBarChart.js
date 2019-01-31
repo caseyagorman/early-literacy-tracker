@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 class StudentBarChart extends Component {
   turnIntoArray(obj) {
-    console.log("student chart obj", obj);
     if (!obj) {
       return <p>Loading...</p>;
     }
@@ -36,7 +35,6 @@ class StudentBarChart extends Component {
     let itemType = this.props.itemType;
     const itemsKey = itemsDict[itemType];
     for (let student in obj) {
-      console.log("student", student);
       if (this.props.chartType === "learned") {
         let item = obj[student];
         itemCounts.push(item[itemsKey.learnedCount]);
@@ -51,16 +49,16 @@ class StudentBarChart extends Component {
         totalItemCount = item[itemsKey.totalCount];
       }
     }
-    console.log(totalItemCount);
+
     return [itemCounts, studentList, itemList, totalItemCount];
   }
 
   getChartColor() {
     if (this.props.chartType === "learned") {
-      let chartColor = "#008000";
+      let chartColor = "#44857D";
       return chartColor;
     } else {
-      let chartColor = "#ff3333";
+      let chartColor = "#FE6625";
       return chartColor;
     }
   }
@@ -69,7 +67,7 @@ class StudentBarChart extends Component {
     if (!dataResults) {
       return <div> loading...</div>;
     }
-    console.log("dataResults", dataResults);
+
     let items = this.turnIntoArray(dataResults);
 
     let itemCounts = items[0];
@@ -140,7 +138,15 @@ class StudentBarChart extends Component {
         }
       ]
     };
-    return <Bar data={data} options={options} />;
+    return (
+      <Bar
+        id="bar-chart"
+        height="500px"
+        width="700px"
+        data={data}
+        options={options}
+      />
+    );
   }
   render() {
     return this.displayChart(this.props.students);

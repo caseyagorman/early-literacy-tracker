@@ -1,45 +1,43 @@
 #navbar {
-  color: black;
-  font-family: "Niramit", sans-serif;
+  color: white;
+  font-family: "Krub", sans-serif;
   font-size: 18px;
-  background-color: #ff3333;
+  background-color: #003d59;
 }
 
 #basic-nav-dropdown {
+  background-color: #003d59;
   color: white;
 }
 #Brand {
+  background-color: #003d59;
   color: white;
 }
-#Logout {
+#drop-down {
   color: white;
 }
 #Words {
-  background-color: #0033ff;
+  background-color: #003d59;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
 }
 #Letters {
-  background-color: #008000;
+  background-color: #003d59;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
 }
 #Sounds {
-  background-color: #ff6600;
+  background-color: #003d59;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
 }
 #Logout {
-  background-color: #ff3333;
+  background-color: #003d59;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
 }
 #Students {
-  background-color: #663399;
+  background-color: #003d59;
   color: white;
-  font-size: 20px;
-}
-
-.dropdown-menu {
-  border-radius: 10px;
+  font-size: 16px;
 }

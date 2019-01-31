@@ -1,5 +1,5 @@
 .user {
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   text-align: center;
 }
 
@@ -9,7 +9,9 @@
   display: inline-block;
 }
 #login-link {
-  color: #0033ff;
+  color: #44857d;
+  text-decoration: underline;
+  text-decoration-color: #44857d;
 }
 .introduction {
   font-size: 20px;
@@ -20,7 +22,7 @@ img {
 #login-button {
   height: 40px;
   width: 70px;
-  background-color: #0033ff;
+  background-color: #018f75;
   color: white;
   border: 1px solid white;
 }
@@ -51,7 +53,7 @@ img {
   margin: 5px;
 }
 #register-page {
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
 }
 
 #register-user-button {
@@ -62,13 +64,13 @@ img {
 }
 #instructions {
   font-size: 20px;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
 }
 
 #reset-password {
   margin-right: 20px;
   text-align: center;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
 }
 .reguest-form {
   font-size: 18px;
@@ -84,17 +86,18 @@ img {
 
 #reset-password-h1 {
   text-align: center;
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   font-size: 30px;
 }
 
 #forgot-password {
-  font-family: "Niramit", sans-serif;
+  font-family: "Krub", sans-serif;
   text-align: center;
 }
 #forgot-password-link {
-  font-family: "Niramit", sans-serif;
-  color: #0033ff;
+  color: #44857d;
+  text-decoration: underline;
+  text-decoration-color: #44857d;
 }
 
 #huge {

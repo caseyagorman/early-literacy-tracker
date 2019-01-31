@@ -1,5 +1,12 @@
 import React from "react";
-import { Navbar, NavItem, Nav, MenuItem, NavDropdown } from "react-bootstrap";
+import {
+  Navbar,
+  NavItem,
+  Nav,
+  MenuItem,
+  NavDropdown,
+  Glyphicon
+} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./static/appNav.css";
 const AppNavPage = props => {
@@ -16,7 +23,7 @@ const AppNavPage = props => {
       <Navbar.Collapse>
         <Nav>
           <NavItem id="Students" eventKey={1}>
-            <NavDropdown eventKey={3} title="Students" id="Students">
+            <NavDropdown eventKey={3} title="Students" id="drop-down">
               <LinkContainer to="/students" id="Students">
                 <MenuItem id="Students">View Students</MenuItem>
               </LinkContainer>
@@ -42,7 +49,7 @@ const AppNavPage = props => {
             </NavDropdown>
           </NavItem>
           <NavItem id="Words" eventKey={2}>
-            <NavDropdown title="Words" id="Words">
+            <NavDropdown title="Words" id="drop-down">
               <LinkContainer id="Words" to="/items/words/">
                 <MenuItem id="Words">View Words</MenuItem>
               </LinkContainer>
@@ -55,7 +62,7 @@ const AppNavPage = props => {
             </NavDropdown>
           </NavItem>
           <NavItem id="Letters" eventKey={2}>
-            <NavDropdown eventKey={3} title="Letters" id="Letters">
+            <NavDropdown eventKey={3} title="Letters" id="drop-down">
               <LinkContainer to="/items/letters/" id="Letters">
                 <MenuItem id="Letters">View Letters</MenuItem>
               </LinkContainer>
@@ -68,7 +75,7 @@ const AppNavPage = props => {
             </NavDropdown>
           </NavItem>
           <NavItem id="Sounds">
-            <NavDropdown title="Sounds" id="Sounds">
+            <NavDropdown title="Sounds" id="drop-down">
               <LinkContainer to="/items/sounds/" id="Sounds">
                 <MenuItem id="Sounds">View Sounds</MenuItem>
               </LinkContainer>
@@ -83,7 +90,12 @@ const AppNavPage = props => {
         </Nav>
         <Nav pullRight>
           <NavItem id="Logout" eventKey={5} href={props.route}>
-            {props.navText}
+            {props.navText} <span />
+            <Glyphicon
+              glyph="glyphicon glyphicon-off"
+              onClick={props.submit}
+              id="trash-can"
+            />
           </NavItem>
         </Nav>
       </Navbar.Collapse>
