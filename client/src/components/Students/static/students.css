@@ -339,3 +339,11 @@
   margin-top: 56px;
   opacity: 0.6;
 }
+
+.student-detail-dropdown {
+  background-color: #018f75;
+  color: white;
+  margin: 5px;
+  width: 70px;
+  margin-top: -100px;
+}

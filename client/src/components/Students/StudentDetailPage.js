@@ -28,6 +28,10 @@ const StudentDetailPage = props => (
       <br />
       <div>
         <DropdownBar />
+
+        <DropdownBar />
+
+        <DropdownBar />
       </div>
       <br />
 
