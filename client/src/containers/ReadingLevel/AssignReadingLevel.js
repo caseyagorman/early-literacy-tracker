@@ -7,30 +7,17 @@ import "../../components/Forms/static/form.css";
 class AssignReadingLevel extends React.Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
-    let itemType = this.props.match.params.itemType;
-    this.props.studentUnassignedItemsActions.fetchUnassignedItems(
-      user,
-      itemType
-    );
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.match.params.itemType !== this.props.match.params.itemType) {
-      let user = this.props.auth.user.token;
-      let itemType = this.props.match.params.itemType;
-      this.props.studentUnassignedItemsActions.fetchUnassignedItems(
-        user,
-        itemType
-      );
-    }
+    this.props.readingLevelActions.fetchReadingLevels(user);
   }
 
-  displayAssignReadingLevelPage(readingLevels) {
+  displayAssignReadingLevelForm(readingLevels) {
     if (readingLevels === null) {
       return <p>loading...</p>;
     }
     return (
       <div className="container">
-        <AssignReadingLevelPage listTitle={readingLevels} />
+        {console.log("reading levels", readingLevels)}
+        {/* <AssignReadingLevelPage listTitle={readingLevels} /> */}
       </div>
     );
   }
