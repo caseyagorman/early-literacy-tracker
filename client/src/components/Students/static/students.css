@@ -344,6 +344,34 @@
   background-color: #018f75;
   color: white;
   margin: 5px;
-  width: 70px;
+  width: 150px;
+  font-family: "Krub", sans-serif;
   margin-top: -100px;
+}
+
+div.dropdown-menu.show {
+  font-size: 18px;
+  background-color: #018f75;
+  font-family: "Krub", sans-serif;
+  color: white;
+}
+
+h6.dropdown-menu.dropdown-header {
+  font-size: 18px;
+  background-color: #018f75;
+  font-family: "Krub", sans-serif;
+  color: white;
+}
+
+button.dropdown-item {
+  font-size: 18px;
+  background-color: #018f75;
+  font-family: "Krub", sans-serif;
+  color: white;
+  border: none;
+}
+
+a {
+  color: white;
+  font-family: "Krub", sans-serif;
 }

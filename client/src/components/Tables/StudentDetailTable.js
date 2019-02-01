@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, OverlayTrigger, ProgressBar, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import StudentItemLearned from "../../containers/Forms/StudentItemLearned";
 import StudentItemUnlearned from "../../containers/Forms/StudentItemUnlearned";
@@ -80,7 +80,26 @@ const StudentDetailTable = student => (
           </td>
           <td id="test-date">{student.student.lastLetterTest} </td>
           <td>
-            {student.student.letterCount}/{student.student.totalLetterCount}
+            <td>
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    {student.student.name} knows {student.student.letterCount}/
+                    {student.student.totalLetterCount} letters
+                  </Tooltip>
+                }
+              >
+                <ProgressBar
+                  animated
+                  now={
+                    (student.student.letterCount /
+                      student.student.totalLetterCount) *
+                    100
+                  }
+                />
+              </OverlayTrigger>
+            </td>
           </td>
           <td style={{ width: "10%" }}>
             <ul className="unordered-list">
@@ -121,6 +140,24 @@ const StudentDetailTable = student => (
 
           <td id="test-date">{student.student.lastSoundTest} </td>
           <td>
+            <OverlayTrigger
+              placement={"top"}
+              overlay={
+                <Tooltip>
+                  {student.student.name} knows {student.student.soundCount}/
+                  {student.student.totalSoundCount} sounds
+                </Tooltip>
+              }
+            >
+              <ProgressBar
+                animated
+                now={
+                  (student.student.soundCount /
+                    student.student.totalSoundCount) *
+                  100
+                }
+              />
+            </OverlayTrigger>
             {student.student.soundCount}/{student.student.totalSoundCount}
           </td>
           <td style={{ width: "10%" }}>

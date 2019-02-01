@@ -123,7 +123,6 @@ const StudentTable = (
               </OverlayTrigger>
             </td>
             <td>
-              {/* {student.letterCount}/{student.totalLetterCount} */}
               <br />
               <OverlayTrigger
                 placement={"top"}
