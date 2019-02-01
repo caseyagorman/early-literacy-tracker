@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentActions from "../../redux/actions/studentActions";
+import * as studentsActions from "../../redux/actions/studentsActions";
 import * as studentTestActions from "../../redux/actions/studentTestActions";
 import * as testResultsActions from "../../redux/actions/testResultsActions";
 import StudentDetailPage from "../../components/Students/StudentDetailPage";
@@ -14,6 +15,7 @@ class StudentDetail extends Component {
     const user = this.props.auth.user.token;
     this.props.studentActions.fetchStudent(studentId, user);
     this.props.testResultsActions.fetchAllTestResults(studentId, user);
+    this.props.studentsActions.fetchStudents(user);
   }
 
   getTestSentence(tests) {
@@ -41,18 +43,19 @@ class StudentDetail extends Component {
     return sentenceList;
   }
 
-  displayStudentDetailPage(student, tests) {
-    if (!student) {
+  displayStudentDetailPage(student, tests, students) {
+    if (!student || !students || !tests) {
       return <div>loading...</div>;
     }
-    if (student.student === null) {
+    if (student.student === null || students.students === null) {
       return <div>loading...</div>;
     }
-
+    console.log("display student detail page", students);
     let testSentences = this.getTestSentence(tests);
 
     return (
       <StudentDetailPage
+        students={students}
         tests={tests}
         student={student}
         testSentences={testSentences}
@@ -64,7 +67,8 @@ class StudentDetail extends Component {
   render() {
     return this.displayStudentDetailPage(
       this.props.student,
-      this.props.testResults
+      this.props.testResults,
+      this.props.students
     );
   }
 }
@@ -72,6 +76,7 @@ class StudentDetail extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     studentActions: bindActionCreators(studentActions, dispatch),
+    studentsActions: bindActionCreators(studentsActions, dispatch),
     studentTestActions: bindActionCreators(studentTestActions, dispatch),
     testResultsActions: bindActionCreators(testResultsActions, dispatch)
   };
@@ -80,6 +85,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     student: state.student,
+    students: state.students,
     studentTest: state.studentTest,
     testResults: state.testResults,
     auth: state.auth

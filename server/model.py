@@ -43,7 +43,6 @@ class Student(db.Model):
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
     name = db.Column(db.String(64), nullable=False)
-    grade = db.Column(db.String(64), nullable=False)
 
     users = db.relationship(
         'User')
@@ -54,6 +53,19 @@ class Student(db.Model):
     def __repr__(self):
         return f"<Student student_id={self.student_id} first_name={self.name}>"
 
+class ReadingLevel(db.Model):
+    __tablename__ = "readinglevels"
+    reading_level_id = db.Column(
+        db.Integer, autoincrement=True, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey(
+        'students.student_id'), nullable=False)
+    user_id = db.Column(db.String(50), db.ForeignKey(
+        'users.public_id'), nullable=False)
+    reading_level = db.Column(db.String(25), nullable=False)
+    students = db.relationship(
+        'Student')
+    users = db.relationship(
+        'User')
 
 class Item(db.Model):
     """table of items"""
@@ -136,6 +148,10 @@ class StudentTestResult(db.Model):
 
     def __repr__(self):
         return f"<StudentTestResults student_test_id={self.student_test_id}>"
+
+
+    # def __repr__(self):
+    #     return f"<StudentTestResults student_test_id={self.student_test_id}>"
 
 
 def connect_to_db(app):

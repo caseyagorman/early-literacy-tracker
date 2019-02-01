@@ -13,7 +13,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
 from functools import wraps
-from model import Student, Item, StudentItem, StudentTestResult, connect_to_db, db, User
+from model import Student, Item, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
 mail = None
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -264,7 +264,7 @@ def get_unassigned_students_item(current_user, item):
         }
 
         student_list.append(student)
-    student_list = sorted(student_list, key=itemgetter('student'))
+    # student_list = sorted(student_list, key=itemgetter('student'))
     return jsonify([student_list])
 
 @app.route("/api/add-student", methods=['POST'])
@@ -280,7 +280,7 @@ def add_student(current_user):
             Student(
                 name=name,
                 user_id=user_id,
-                grade = "K"
+              
             )
             for name in names
         ]
@@ -464,17 +464,23 @@ def get_students(current_user):
     students = Student.query.filter_by(user_id=user_id).options(
         db.joinedload('studentitems')).all()
     student_list = []
+    all_student_word_counts = []
+    all_student_letter_counts = []
+    all_student_sound_counts = []
     for student in students:
         last_word_test = get_test_dates(student.student_id, "words")
         last_letter_test = get_test_dates(student.student_id, "letters")
         last_sound_test = get_test_dates(student.student_id, "sounds")
         word_count = get_student_item_counts(student.student_id, "words")[0]
+        all_student_word_counts.append(word_count)
         unlearned_word_count = get_student_item_counts(student.student_id, "words")[1]
         total_word_count = get_student_item_counts(student.student_id, "words")[2]
         letter_count = get_student_item_counts(student.student_id, "letters")[0]
+        all_student_letter_counts.append(letter_count)
         unlearned_letter_count = get_student_item_counts(student.student_id, "letters")[1]
         total_letter_count = get_student_item_counts(student.student_id, "letters")[2]
         sound_count = get_student_item_counts(student.student_id, "sounds")[0]
+        all_student_sound_counts.append(sound_count)
         unlearned_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
         total_sound_count = get_student_item_counts(student.student_id, "sounds")[2]
         word_list = get_student_item_list(student, "words")[0]
@@ -503,7 +509,10 @@ def get_students(current_user):
             'soundList': sound_list,
             'unlearnedSoundList': unlearned_sound_list,
             'totalSoundCount': total_sound_count,
-            'lastSoundTest': last_sound_test
+            'lastSoundTest': last_sound_test,
+            'allStudentWordCounts': all_student_word_counts,
+            'allStudentLetterCounts': all_student_letter_counts,
+            'allStudentSoundCounts': all_student_sound_counts,
         }
         student_list.append(student)
     end = time.time()

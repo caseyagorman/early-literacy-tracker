@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
-import {
-  Table,
-  Glyphicon,
-  OverlayTrigger,
-  Tooltip,
-  ProgressBar
-} from "react-bootstrap";
+import { Table, OverlayTrigger, Tooltip, ProgressBar } from "react-bootstrap";
 const StudentTable = (
   students,
   onSort,
@@ -16,59 +10,19 @@ const StudentTable = (
   studentTestActions
 ) => (
   <Table bordered>
+    {console.log("students", students)}
     <thead>
       <tr>
-        <th onClick={e => onSort(e, "name")}>
-          Name{" "}
-          <Glyphicon
-            glyph="glyphicon glyphicon-sort-by-alphabet"
-            id="sort-abc"
-          />
-        </th>
+        <th onClick={e => onSort(e, "name")}>Name </th>
         <th onClick={e => onSort(e, "wordCount")}>
-          Words Learned{" "}
-          <Glyphicon
-            glyph="glyphicon glyphicon-sort-by-alphabet"
-            id="sort-abc"
-          />
-          <br />
+          Words Learned <br />
           <td />
         </th>
-        <th onClick={e => onSort(e, "lastWordTest")}>
-          Last Word Test{" "}
-          <Glyphicon
-            glyph="glyphicon glyphicon-sort-by-alphabet"
-            id="sort-abc"
-          />
-        </th>
-        <th onClick={e => onSort(e, "letterCount")}>
-          Letters Learned{" "}
-          <Glyphicon
-            glyph="glyphicon glyphicon-sort-by-alphabet"
-            id="sort-abc"
-          />
-        </th>
-        <th onClick={e => onSort(e, "lastLetterTest")}>
-          Last Letter Test{" "}
-          <Glyphicon
-            glyph="glyphicon glyphicon-sort-by-alphabet"
-            id="sort-abc"
-          />
-        </th>
-        <th onClick={e => onSort(e, "soundCount")}>
-          Sounds Learned{" "}
-          <Glyphicon
-            glyph="glyphicon glyphicon-sort-by-alphabet"
-            id="sort-abc"
-          />
-        </th>
-        <th onClick={e => onSort(e, "lastSoundTest")}>
-          Last Sound Test{" "}
-          <Glyphicon
-            glyph="glyphicon glyphicon-sort-by-alphabet"
-            id="sort-abc"
-          />
-        </th>
+        <th onClick={e => onSort(e, "lastWordTest")}>Last Word Test </th>
+        <th onClick={e => onSort(e, "letterCount")}>Letters Learned </th>
+        <th onClick={e => onSort(e, "lastLetterTest")}>Last Letter Test </th>
+        <th onClick={e => onSort(e, "soundCount")}>Sounds Learned </th>
+        <th onClick={e => onSort(e, "lastSoundTest")}>Last Sound Test </th>
       </tr>
     </thead>
     <tbody className="students-table">

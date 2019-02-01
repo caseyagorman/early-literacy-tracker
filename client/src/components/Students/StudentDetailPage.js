@@ -2,12 +2,13 @@ import React from "react";
 import StudentSnapshot from "./StudentSnapshot";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
-import StudentDetailMenu from "./StudentDetailMenu";
+import ClassAverageChart from "../../containers/Charts/ClassAverageChart";
 import { Link } from "react-router-dom";
 import DropdownBar from "./DropdownBar";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="students">
+    {console.log("student props", props)}
     <div className="container">
       <div className="display-student-name">
         <b id="student-name">{props.student.student.name}</b>
@@ -15,19 +16,16 @@ const StudentDetailPage = props => (
           student={props.student.student.student_id}
           id="delete-student-detail"
         />
-        {/* <StudentDetailMenu
-        // student={props.student}
-        // studentTestActions={props.studentTestActions}
-        /> */}
       </div>
-
       <StudentSnapshot
         student={props.student}
         tests={props.tests}
         testSentences={props.testSentences}
       />
       <br />
-      <div>
+
+      <ClassAverageChart student={props.student} students={props.students} />
+      <div className="dropdown-bar-div">
         <DropdownBar
           actionType={"Test Student"}
           wordAction={
@@ -116,6 +114,7 @@ const StudentDetailPage = props => (
           }
         />
       </div>
+      <br />
       <br />
 
       <StudentDetailTable student={props.student} />
