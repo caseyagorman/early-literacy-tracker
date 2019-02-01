@@ -27,7 +27,8 @@ import StudentDetailCharts from "./containers/Charts/StudentDetailCharts";
 import StudentCharts from "./containers/Charts/StudentCharts";
 import ItemCharts from "./containers/Charts/ItemCharts";
 import StudentTestResults from "./containers/TestResults/StudentTestResults";
-import AssignItems from "./containers/Items/AssignItems";
+import AssignItems from "./containers/Items/AssignReadingLevel";
+import AssignReadingLevel from "./containers/Items/AssignItems";
 import ResetPassword from "./containers/Users/ResetPassword";
 import ToastTest from "./containers/Toast/ToastTest";
 const initialState = {};
@@ -109,6 +110,10 @@ const AppRouter = () => (
       <Route
         path="/add-custom-items/:id/:itemType/"
         component={userIsAuthenticated(AddItems)}
+      />
+      <Route
+        path="/assign-reading-level/:id/"
+        component={userIsAuthenticated(AssignReadingLevel)}
       />
     </div>
   </Router>
