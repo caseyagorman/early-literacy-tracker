@@ -7,6 +7,7 @@ import "./static/table.css";
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered className="student-detail-table">
+      {console.log("student detail table")}
       <thead>
         <tr>
           <th id="table-header" colSpan="4">
@@ -39,8 +40,26 @@ const StudentDetailTable = student => (
       <tbody className="student-detail-table">
         <tr className="student-detail-table">
           <td id="test-date">{student.student.lastWordTest}</td>
-          <td className="student-detail-table">
-            {student.student.wordCount}/{student.student.totalWordCount}
+          <td>
+            <OverlayTrigger
+              placement={"top"}
+              overlay={
+                <Tooltip>
+                  {student.student.student.name} knows{" "}
+                  {student.student.letterCount}/
+                  {student.student.totalLetterCount} letters
+                </Tooltip>
+              }
+            >
+              <ProgressBar
+                animated
+                now={
+                  (student.student.letterCount /
+                    student.student.totalLetterCount) *
+                  100
+                }
+              />
+            </OverlayTrigger>
           </td>
           <td className="student-detail-table" style={{ width: "10%" }}>
             <ul className="unordered-list">
@@ -80,26 +99,25 @@ const StudentDetailTable = student => (
           </td>
           <td id="test-date">{student.student.lastLetterTest} </td>
           <td>
-            <td>
-              <OverlayTrigger
-                placement={"top"}
-                overlay={
-                  <Tooltip>
-                    {student.student.name} knows {student.student.letterCount}/
-                    {student.student.totalLetterCount} letters
-                  </Tooltip>
+            <OverlayTrigger
+              placement={"top"}
+              overlay={
+                <Tooltip>
+                  {student.student.student.name} knows{" "}
+                  {student.student.letterCount}/
+                  {student.student.totalLetterCount} letters
+                </Tooltip>
+              }
+            >
+              <ProgressBar
+                animated
+                now={
+                  (student.student.letterCount /
+                    student.student.totalLetterCount) *
+                  100
                 }
-              >
-                <ProgressBar
-                  animated
-                  now={
-                    (student.student.letterCount /
-                      student.student.totalLetterCount) *
-                    100
-                  }
-                />
-              </OverlayTrigger>
-            </td>
+              />
+            </OverlayTrigger>
           </td>
           <td style={{ width: "10%" }}>
             <ul className="unordered-list">
@@ -144,8 +162,9 @@ const StudentDetailTable = student => (
               placement={"top"}
               overlay={
                 <Tooltip>
-                  {student.student.name} knows {student.student.soundCount}/
-                  {student.student.totalSoundCount} sounds
+                  {student.student.student.name} knows{" "}
+                  {student.student.soundCount}/{student.student.totalSoundCount}{" "}
+                  sounds
                 </Tooltip>
               }
             >
@@ -158,7 +177,6 @@ const StudentDetailTable = student => (
                 }
               />
             </OverlayTrigger>
-            {student.student.soundCount}/{student.student.totalSoundCount}
           </td>
           <td style={{ width: "10%" }}>
             <ul className="unordered-list">

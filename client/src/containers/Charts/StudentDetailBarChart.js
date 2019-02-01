@@ -4,16 +4,6 @@ class StudentBarChart extends Component {
   componentDidMount() {
     console.log("student detail bar chart", this.props.allStudentLetterCounts);
   }
-  getChartColor() {
-    if (this.props.chartType === "learned") {
-      let chartColor = "#44857D";
-      return chartColor;
-    } else {
-      let chartColor = "#FE6625";
-      return chartColor;
-    }
-  }
-
   displayChart(wordCounts, letterCounts, soundCounts, student) {
     if (!student) {
       return <div> loading...</div>;
@@ -28,31 +18,28 @@ class StudentBarChart extends Component {
     let letterTotal = student.totalLetterCount;
     let soundTotal = student.totalSoundCount;
     let total = Math.max(wordTotal, letterTotal, soundTotal);
-    let stuff = [
-      studentWordCounts,
-      classAverageWords,
-      studentLetterCounts,
-      classAverageLetters,
-      studentSoundCounts,
-      classAverageSounds
-    ];
-    console.log("data", stuff);
+    let studentData = {
+      label: student.student.name.split(" ")[0],
+      data: [studentWordCounts, studentLetterCounts, studentSoundCounts],
+      backgroundColor: "rgb(1, 143, 117, 0.8)"
+    };
+
+    let classAverage = {
+      label: "Class Average",
+      data: [classAverageWords, classAverageLetters, classAverageSounds],
+      backgroundColor: "rgb(0, 61, 89, 0.8)"
+    };
+
+    let chartData = {
+      labels: ["Words", "Letters", "Sounds"],
+      datasets: [studentData, classAverage]
+    };
     let options = {
-      //       //   tooltips: {
-      //       //     callbacks: {
-      //       //       label: function(tooltipItem) {
-      //       //         const indice = tooltipItem.index;
-      //       //         return itemList[indice];
-      //       //       }
-      //       //     }
-      //       //   },
-
       responsive: true,
-
       maintainAspectRatio: true,
       aspectRatio: 1,
       scales: {
-        lable: [
+        label: [
           {
             fontSize: 18,
             fontColor: "black"
@@ -79,44 +66,24 @@ class StudentBarChart extends Component {
             ticks: {
               fontSize: 12,
               fontColor: "black"
-            }
+            },
+            categoryPercentage: 0.6
           }
         ]
       }
     };
-    const data = {
-      labels: "",
 
-      datasets: [
-        {
-          label: [
-            "Student Words",
-            "Class Average Words",
-            "Student Letters",
-            "Class Average Letters",
-            "Student Sounds",
-            "Class Average Sounds"
-          ],
-
-          backgroundColor: ["red", "blue", "green", "blue", "red", "blue"],
-          //   borderColor: this.getChartColor(),
-          //   borderWidth: 1,
-          //   hoverBackgroundColor: this.getChartColor(),
-          //   hoverBorderColor: this.getChartColor(),
-          data: stuff
-        }
-      ]
-    };
     return (
       <Bar
         id="bar-chart"
-        height="500px"
-        width="700px"
-        data={data}
+        height="300px"
+        width="600px"
+        data={chartData}
         options={options}
       />
     );
   }
+
   render() {
     return this.displayChart(
       this.props.allStudentWordCounts,

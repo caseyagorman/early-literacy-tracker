@@ -17,15 +17,15 @@ const StudentSnapshot = props => (
       {props.student.soundCount}/{props.student.totalSoundCount}
     </b>{" "}
     sounds. <br />
-    <div id="student-detail-sentences">
-      {props.testSentences[2]}
-      <br />
-      {props.testSentences[1]}
-      <br />
-      {props.testSentences[0]}
-      <br />
-      <br />
-    </div>
+    {/* <div id="student-detail-sentences"> */}
+    {props.testSentences[2]}
+    <br />
+    {props.testSentences[1]}
+    <br />
+    {props.testSentences[0]}
+    <br />
+    <br />
+    {/* </div> */}
   </div>
 );
 
