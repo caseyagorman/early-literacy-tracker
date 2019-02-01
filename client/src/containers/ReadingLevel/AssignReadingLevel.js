@@ -1,9 +1,8 @@
 import React from "react";
-import AssignReadingLevelForm from "../Forms/AssignItemsForm";
 import AssignReadingLevelPage from "../../components/Items/AssignItemsPage";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as studentUnassignedItemsActions from "../../redux/actions/studentUnassignedItemsActions";
+import * as readingLevelActions from "../../redux/actions/readingLevelActions";
 import "../../components/Forms/static/form.css";
 class AssignReadingLevel extends React.Component {
   componentDidMount() {
@@ -25,48 +24,31 @@ class AssignReadingLevel extends React.Component {
     }
   }
 
-  displayAssignReadingLevelForm(items) {
-    const itemType = this.props.match.params.itemType;
-    if (
-      items.studentItemSets === null ||
-      !itemType ||
-      !items.studentItemSets[itemType]
-    ) {
+  displayAssignReadingLevelPage(readingLevels) {
+    if (readingLevels === null) {
       return <p>loading...</p>;
     }
     return (
       <div className="container">
-        <AssignReadingLevelForm itemType={itemType} />
-        {Object.entries(items.studentItemSets[itemType]).map(itemSet => (
-          <AssignReadingLevelForm
-            listTitle={itemSet[0]}
-            itemList={itemSet[1]}
-            itemType={itemType}
-          />
-        ))}
+        <AssignReadingLevelPage listTitle={readingLevels} />
       </div>
     );
   }
 
   render() {
-    return this.displayAssignReadingLevelForm(
-      this.props.studentUnassignedItems
-    );
+    return this.displayAssignReadingLevelForm(this.props.readingLevels);
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    studentUnassignedItemsActions: bindActionCreators(
-      studentUnassignedItemsActions,
-      dispatch
-    )
+    readingLevelActions: bindActionCreators(readingLevelActions, dispatch)
   };
 }
 
 function mapStateToProps(state) {
   return {
-    studentUnassignedItems: state.studentUnassignedItems,
+    readingLevels: state.readingLevels,
     auth: state.auth
   };
 }
