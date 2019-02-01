@@ -87,6 +87,13 @@ const AppNavPage = props => {
               </LinkContainer>
             </NavDropdown>
           </NavItem>
+          <NavItem id="Students">
+            <NavDropdown title="Reading Level" id="drop-down">
+              <LinkContainer to="/item-charts/reading-level/" id="Students">
+                <MenuItem id="Students">View Reading Level Charts</MenuItem>
+              </LinkContainer>
+            </NavDropdown>
+          </NavItem>
         </Nav>
         <Nav pullRight>
           <NavItem id="Logout" eventKey={5} href={props.route}>

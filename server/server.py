@@ -149,6 +149,15 @@ def read_txt_file(current_user, item_type):
     return jsonify(unassigned_items)
 
 
+@app.route("/api/assign-reading-level")
+@token_required
+def read_txt_file(current_user):
+    fname = ["Reading Levels.txt"]
+    with open(fname) as fn:
+        reading_levels = fn.readlines()
+        reading_levels = [x.strip() for x in reading_levels] 
+    return jsonify(reading_levels)
+
 
 
 @app.route("/api/items/<item_type>")
