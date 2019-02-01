@@ -1,5 +1,5 @@
 import React from "react";
-import AssignReadingLevelPage from "../../components/Items/AssignItemsPage";
+import AssignReadingLevelForm from "../Forms/AssignReadingLevelForm";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as readingLevelActions from "../../redux/actions/readingLevelActions";
@@ -17,7 +17,7 @@ class AssignReadingLevel extends React.Component {
     return (
       <div className="container">
         {console.log("reading levels", readingLevels)}
-        {/* <AssignReadingLevelPage listTitle={readingLevels} /> */}
+        <AssignReadingLevelForm itemList={readingLevels} />
       </div>
     );
   }

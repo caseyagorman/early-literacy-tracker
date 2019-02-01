@@ -152,7 +152,7 @@ def read_txt_file(current_user, item_type):
 @app.route("/api/get-reading-levels")
 @token_required
 def get_reading_levels(current_user):
-    fname = ["Reading Levels.txt"]
+    fname = "Reading Levels.txt"
     with open(fname) as fn:
         reading_levels = fn.readlines()
         reading_levels = [x.strip() for x in reading_levels] 
