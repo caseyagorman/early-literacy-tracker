@@ -8,17 +8,18 @@ import DropdownBar from "./DropdownBar";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="students">
-    {console.log("student props", props)}
-    <div className="display-student-name">
-      <br />
-      <h1 id="student-name">{props.student.student.name}</h1>
-      <DeleteStudent
-        student={props.student.student.student_id}
-        id="delete-student-detail"
-      />
-      <br />
-    </div>
     <div className="student-snapshot">
+      {console.log("student props", props)}
+      <div className="display-student-name">
+        <br />
+        <h1 id="student-name">{props.student.student.name}</h1>
+        <DeleteStudent
+          student={props.student.student.student_id}
+          id="delete-student-detail"
+        />
+        <br />
+      </div>
+
       <StudentSnapshot
         student={props.student}
         tests={props.tests}
@@ -82,6 +83,36 @@ const StudentDetailPage = props => (
         }
       />
 
+      <DropdownBar
+        actionType={"Test Results"}
+        wordAction={
+          <Link
+            to={`/student-test-results/words/${
+              props.student.student.student_id
+            }`}
+          >
+            Word Test Results
+          </Link>
+        }
+        letterAction={
+          <Link
+            to={`/student-test-results/letters/${
+              props.student.student.student_id
+            }`}
+          >
+            Letter Test Results
+          </Link>
+        }
+        soundAction={
+          <Link
+            to={`/student-test-results/sounds/${
+              props.student.student.student_id
+            }`}
+          >
+            Sound Test Results
+          </Link>
+        }
+      />
       <DropdownBar
         actionType={"Test Results"}
         wordAction={
