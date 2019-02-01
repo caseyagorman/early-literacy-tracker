@@ -9,16 +9,18 @@ const AssignReadingLevelFormPage = props => (
       <b>{props.listTitle}</b>
     </label>
     <br />
-    <select
-      className="assign-items-select"
-      onChange={props.handleChange}
-      multiple="true "
-      value={props.value}
-    >
-      {props.itemList.map(item => (
-        <option key={item}>{item}</option>
-      ))}
-    </select>
+    {props.itemList.map(item => (
+      <input
+        className="assign-reading-level"
+        onChange={props.handleChange}
+        value={props.value}
+        type="radio"
+      >
+        {" "}
+        {item}{" "}
+      </input>
+    ))}
+
     <br />
     <button id="add-to-student-button" type="submit">
       Submit
