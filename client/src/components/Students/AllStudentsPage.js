@@ -2,13 +2,12 @@ import React from "react";
 import TableContainer from "../../containers/Tables/TableContainer";
 import StudentTable from "../Tables/StudentTable";
 import "./static/students.css";
-import AllStudentsMenu from "./AllStudentsMenu";
+// import AllStudentsMenu from "./AllStudentsMenu";
 import AllStudentsInstructions from "./AllStudentsInstructions";
 const AllStudentsPage = props => (
   <div className="container">
     <div className="students">
       <AllStudentsInstructions student={props.student} />
-      {/* <AllStudentsMenu /> */}
       <br />
       <div>
         <TableContainer

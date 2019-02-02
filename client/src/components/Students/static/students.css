@@ -6,7 +6,6 @@
 .display-student {
   font-family: "Krub", sans-serif;
   font-size: 70px;
-  width: 500px;
 }
 #delete-student-detail {
   display: inline-block;
@@ -23,15 +22,6 @@
   color: black;
 }
 
-.student-snapshot {
-  float: left;
-  margin-left: 51px;
-  font-size: 22px;
-}
-#student-detail-sentences {
-  float: left;
-  font-size: 18px;
-}
 .instructions {
   margin-left: 100px;
   font-size: 16px;
@@ -80,21 +70,18 @@ a {
   font-family: "Krub", sans-serif;
 }
 
-.dropdown-bar-div {
+/* .dropdown-bar-div {
   float: left;
   margin-left: -700px;
   margin-top: 220px;
-}
+} */
 
 .class-average-chart {
   float: right;
-  margin-top: 100px;
-  margin-right: 200px;
+  margin-top: -100px;
   margin-bottom: 50px;
-  margin-left: -200px;
 }
 .reading-level-button {
-  margin-top: 5px;
   height: 32px;
   border-radius: 3px;
   font-size: 14px;
@@ -102,4 +89,9 @@ a {
   font-family: "Krub", sans-serif;
   color: white;
   border: none;
+  vertical-align: middle;
+}
+
+#bar-chart {
+  margin-top: -100px;
 }
