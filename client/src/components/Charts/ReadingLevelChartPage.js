@@ -11,11 +11,8 @@ const ReadingLevelChartPage = props => (
     </Row>
     <Row>
       <Col>
-        <div style={{ float: "left" }}>
-          <ReadingBarChart
-            readingLevels={props.readingLevels}
-            chartType={"learned"}
-          />
+        <div>
+          <ReadingBarChart readingLevels={props.readingLevels} />
         </div>
       </Col>
     </Row>

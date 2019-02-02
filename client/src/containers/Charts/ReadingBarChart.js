@@ -1,110 +1,84 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 class ReadingLevelBarChart extends Component {
-  turnIntoArray(obj) {
-    if (!obj) {
-      return <p>Loading...</p>;
-    }
-    let itemCounts = [];
-    let studentList = [];
-    let itemList = [];
-    let totalCount = 0;
-    for (let item in obj) {
-      if (this.props.chartType === "learned") {
-        itemCounts.push(obj[item].count);
-        studentList.push(obj[item].students);
-        itemList.push(obj[item].item);
-        totalCount = obj[item].totalCount;
-      } else if (this.props.chartType === "unlearned") {
-        itemCounts.push(obj[item].unlearnedCount);
-        studentList.push(obj[item].unlearnedStudents);
-        itemList.push(obj[item].item);
-        totalCount = obj[item].totalCount;
-      }
-    }
-
-    return [itemCounts, studentList, itemList, totalCount];
-  }
-
   displayChart(dataResults) {
     if (!dataResults) {
       return <div> loading...</div>;
     }
-    console.log("data Results", dataResults);
-    // let items = this.turnIntoArray(dataResults.items);
+    let reading_levels = Object.keys(dataResults);
+    let students = Object.values(dataResults);
+    let studentCounts = [];
+    for (let i = 0; i < students.length; i++) {
+      studentCounts.push(students[i].length);
+    }
 
-    // let itemCounts = items[0];
-    // let studentList = items[1];
-    // let itemList = items[2];
-    // let totalCount = items[3];
-    // let options = {
-    //   tooltips: {
-    //     callbacks: {
-    //       label: function(tooltipItem) {
-    //         const indice = tooltipItem.index;
-    //         return studentList[indice];
-    //       }
-    //     }
-    //   },
+    let options = {
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem) {
+            const indice = tooltipItem.index;
+            return students[indice];
+          }
+        }
+      },
 
-    //   responsive: true,
+      responsive: true,
 
-    //   maintainAspectRatio: true,
-    //   aspectRatio: 1,
-    //   scales: {
-    //     lable: [
-    //       {
-    //         fontSize: 18,
-    //         fontFamily: "Krub",
-    //         fontColor: "black"
-    //       }
-    //     ],
-    //     yAxes: [
-    //       {
-    //         ticks: {
-    //           suggestedMax: totalCount,
-    //           fontFamily: "Krub",
-    //           fontSize: 14,
-    //           fontColor: "black",
-    //           beginAtZero: true,
-    //           min: 0,
-    //           userCallback: function(label) {
-    //             if (Math.floor(label) === label) {
-    //               return label;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     ],
-    //     xAxes: [
-    //       {
-    //         ticks: {
-    //           fontFamily: "Krub",
-    //           fontSize: 12,
-    //           fontColor: "black"
-    //         }
-    //       }
-    //     ]
-    //   }
-    // };
-    // const data = {
-    //   labels: itemList,
+      maintainAspectRatio: true,
+      aspectRatio: 1,
+      scales: {
+        lable: [
+          {
+            fontSize: 18,
+            fontFamily: "Krub",
+            fontColor: "black"
+          }
+        ],
+        yAxes: [
+          {
+            ticks: {
+              fontFamily: "Krub",
+              fontSize: 14,
+              fontColor: "black",
+              beginAtZero: true,
+              min: 0,
+              userCallback: function(label) {
+                if (Math.floor(label) === label) {
+                  return label;
+                }
+              }
+            }
+          }
+        ],
+        xAxes: [
+          {
+            ticks: {
+              fontFamily: "Krub",
+              fontSize: 18,
+              fontColor: "black"
+            }
+          }
+        ]
+      }
+    };
+    const data = {
+      labels: reading_levels,
 
-    //   datasets: [
-    //     {
-    //       label: "Students",
+      datasets: [
+        {
+          label: "Students",
 
-    //       backgroundColor: "#44857D",
-    //       borderColor: "#44857D",
-    //       borderWidth: 1,
-    //       hoverBackgroundColor: "#44857D",
-    //       hoverBorderColor: "#44857D",
-    //       data: itemCounts
-    //     }
-    //   ]
-    // };
-    return <div />;
-    //  <Bar height={400} width={550} data={data} options={options} />;
+          backgroundColor: "#44857D",
+          borderColor: "#44857D",
+          borderWidth: 1,
+          hoverBackgroundColor: "#44857D",
+          hoverBorderColor: "#44857D",
+          data: studentCounts
+        }
+      ]
+    };
+
+    return <Bar height={200} width={400} data={data} options={options} />;
   }
   render() {
     return this.displayChart(this.props.readingLevels);
