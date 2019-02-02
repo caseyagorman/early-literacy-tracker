@@ -113,15 +113,7 @@ class ItemBarChart extends Component {
         }
       ]
     };
-    return (
-      <Bar
-        id="bar-chart"
-        height="500px"
-        width="700px"
-        data={data}
-        options={options}
-      />
-    );
+    return <Bar height={400} width={550} data={data} options={options} />;
   }
   render() {
     return this.displayChart(this.props.items);
