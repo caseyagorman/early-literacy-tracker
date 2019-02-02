@@ -14,10 +14,9 @@ const StudentTable = (
     <thead>
       <tr>
         <th onClick={e => onSort(e, "name")}>Name </th>
-        <th onClick={e => onSort(e, "wordCount")}>
-          Words Learned <br />
-          <td />
-        </th>
+        <th onClick={e => onSort(e, "readingLevel")}>Reading Level</th>
+        <th onClick={e => onSort(e, "lastWordTest")}>Last Reading Update</th>
+        <th onClick={e => onSort(e, "wordCount")}>Words Learned</th>
         <th onClick={e => onSort(e, "lastWordTest")}>Last Word Test </th>
         <th onClick={e => onSort(e, "letterCount")}>Letters Learned </th>
         <th onClick={e => onSort(e, "lastLetterTest")}>Last Letter Test </th>
@@ -39,6 +38,27 @@ const StudentTable = (
                 </Link>
               </OverlayTrigger>
               <DeleteStudent student={student.studentId} />
+            </td>
+            <td>{student.readingLevel}</td>
+            <td>
+              {" "}
+              {student.lastReadingLevelUpdate}
+              <br />
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    Click to update {student.name}'s reading level
+                  </Tooltip>
+                }
+              >
+                <Link
+                  to={`/assign-reading-level/${student.studentId}`}
+                  className="underline-link"
+                >
+                  Update
+                </Link>
+              </OverlayTrigger>
             </td>
             <td>
               <br />
@@ -72,7 +92,7 @@ const StudentTable = (
                   className="underline-link"
                   onClick={() => studentTestActions.beginTest("words")}
                 >
-                  Test Words
+                  Test
                 </Link>
               </OverlayTrigger>
             </td>
@@ -108,7 +128,7 @@ const StudentTable = (
                   className="underline-link"
                   onClick={() => studentTestActions.beginTest("letters")}
                 >
-                  Test Letters
+                  Test
                 </Link>
               </OverlayTrigger>
             </td>
@@ -143,7 +163,7 @@ const StudentTable = (
                   className="underline-link"
                   onClick={() => studentTestActions.beginTest("sounds")}
                 >
-                  Test Sounds
+                  Test
                 </Link>
               </OverlayTrigger>
             </td>
@@ -151,7 +171,7 @@ const StudentTable = (
         );
       })}
       <tr>
-        <td colSpan="7">
+        <td colSpan="9">
           <a href="/add-student" className="link">
             + Click to add new student
           </a>

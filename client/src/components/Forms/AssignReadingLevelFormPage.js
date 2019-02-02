@@ -1,25 +1,20 @@
 import React from "react";
 import "./static/form.css";
-
-// TODO TURN INTO SINGLE SELECT CHECK BOX,
-// THIS SHOULD NOT BE MULTI SELECT
 const AssignReadingLevelFormPage = props => (
   <form onSubmit={props.handleSubmit} className="assign-items-form">
     <label id="form-label">
       <b>{props.listTitle}</b>
     </label>
     <br />
-    {props.itemList.map(item => (
-      <input
-        className="assign-reading-level"
-        onChange={props.handleChange}
-        value={props.value}
-        type="radio"
-      >
-        {" "}
-        {item}{" "}
-      </input>
-    ))}
+    <select
+      className="assign-reading-level"
+      onChange={props.handleChange}
+      value={props.value}
+    >
+      {props.itemList.map(item => (
+        <option key={item}>{item}</option>
+      ))}
+    </select>
 
     <br />
     <button id="add-to-student-button" type="submit">

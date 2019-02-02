@@ -24,6 +24,7 @@ const StudentDetailPage = props => (
         student={props.student}
         tests={props.tests}
         testSentences={props.testSentences}
+        readingSentence={props.readingSentence}
       />
     </div>
 
@@ -113,36 +114,9 @@ const StudentDetailPage = props => (
           </Link>
         }
       />
-      <DropdownBar
-        actionType={"Test Results"}
-        wordAction={
-          <Link
-            to={`/student-test-results/words/${
-              props.student.student.student_id
-            }`}
-          >
-            Word Test Results
-          </Link>
-        }
-        letterAction={
-          <Link
-            to={`/student-test-results/letters/${
-              props.student.student.student_id
-            }`}
-          >
-            Letter Test Results
-          </Link>
-        }
-        soundAction={
-          <Link
-            to={`/student-test-results/sounds/${
-              props.student.student.student_id
-            }`}
-          >
-            Sound Test Results
-          </Link>
-        }
-      />
+      <Link to={`/assign-reading-level/${props.student.student.student_id}`}>
+        <button className="reading-level-button">Reading Level</button>
+      </Link>
     </div>
     <div className="class-average-chart">
       <ClassAverageChart student={props.student} students={props.students} />

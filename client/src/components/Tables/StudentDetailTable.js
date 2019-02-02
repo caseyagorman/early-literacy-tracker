@@ -7,9 +7,12 @@ import "./static/table.css";
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered className="student-detail-table">
-      {console.log("student detail table")}
+      {console.log("student detail table", student)}
       <thead>
         <tr>
+          <th id="table-header" colSpan="2">
+            Reading Level
+          </th>
           <th id="table-header" colSpan="4">
             Words
           </th>
@@ -23,6 +26,8 @@ const StudentDetailTable = student => (
       </thead>
       <thead>
         <tr>
+          <th>Last Updated</th>
+          <th>Reading Level</th>
           <th>Last Tested</th>
           <th>Word Count</th>
           <th>Learned Words</th>
@@ -39,6 +44,9 @@ const StudentDetailTable = student => (
       </thead>
       <tbody className="student-detail-table">
         <tr className="student-detail-table">
+          <td id="test-date">{student.student.lastReadingUpdate}</td>
+          <td id="reading-level">{student.student.readingLevel}</td>
+
           <td id="test-date">{student.student.lastWordTest}</td>
           <td>
             <OverlayTrigger

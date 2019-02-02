@@ -1,4 +1,5 @@
 import datetime
+from datetime import date
 from flask_mail import Message
 from flask_mail import Mail
 import time
@@ -66,7 +67,6 @@ def add_user():
     data = request.get_json()
     username = data.get('username')
     email = data.get('email')
-    print("email", email)
     password = data.get('password')
     hashed_password = generate_password_hash(password)
     existing_user_name = User.query.filter_by(username=username).first()
@@ -95,7 +95,6 @@ def login():
         ) + datetime.timedelta(hours=24)}, app.config['SECRET_KEY'])
         return jsonify({'token': token.decode('utf-8'), 'username': auth_user.username})
     else:
-        print("error", "incorrect password")
         return jsonify({'error': 'incorrect password'})
 
 @app.route("/api/request-reset-password", methods=["POST"])
@@ -131,7 +130,6 @@ def reset_password():
 @app.route("/api/item_list/<item_type>")
 @token_required
 def read_txt_file(current_user, item_type):
-    print("item_type", item_type)
     unassigned_items = {'itemType': item_type, 'items': {} }
     if item_type == "words":
         fname = [ "Dolch 2.txt", "Dolch primer.txt",  "Dolch pre primer.txt"]
@@ -144,8 +142,7 @@ def read_txt_file(current_user, item_type):
                 content = f.readlines()
                 content = [x.strip() for x in content] 
                 unassigned_items['items'][fn[0:-4]] = content
-                
-    print("unassigned_items", unassigned_items)
+
     return jsonify(unassigned_items)
 
 
@@ -158,7 +155,24 @@ def get_reading_levels(current_user):
         reading_levels = [x.strip() for x in reading_levels] 
     return jsonify(reading_levels)
 
+@app.route("/api/assign-reading-level", methods=['POST'])
+@token_required
+def add_reading_level(current_user):
+    user_id = current_user.public_id
+    data = request.get_json()
+    student_id = data.get('student')
+    reading_level = data.get('readingLevel')
 
+    student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student_id).first()
+    if student_reading_level:
+        student_reading_level.reading_level = reading_level
+        student_reading_level.update_date = date.today()
+        db.session.commit()
+    else:
+        db.session.add(ReadingLevel(student_id=student_id, user_id=user_id, reading_level=reading_level, update_date=date.today()))
+        db.session.commit()
+
+    return jsonify(data)
 
 @app.route("/api/items/<item_type>")
 @token_required
@@ -332,7 +346,6 @@ def add_item(current_user, ):
     user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
     user_list = [user.item for user in user_items]
     list_to_add = list(set(items).difference(user_list))
-    print("list to add", list_to_add)
     db.session.bulk_save_objects(
         [
             Item(
@@ -352,7 +365,6 @@ def add_item(current_user, ):
 def add_new_items_to_students(current_user):
     user_id = current_user.public_id
     data = request.get_json()
-    print("data", data)
     items = data['studentItems'].get('items')
     item_type = data['studentItems'].get('itemType')
     item_list = Item.query.filter(Item.item.in_(items)).filter(Item.user_id == user_id).filter(Item.item_type==item_type).all()
@@ -384,8 +396,6 @@ def add_new_items_to_students(current_user):
 def add_custom_item(current_user):
     data = request.get_json()
     items = data['item']
-    print("items", items)
-    print("item type", type(items))
     item_type = data['itemType']
     user_id = current_user.public_id
     table = str.maketrans({key: None for key in string.punctuation})
@@ -394,7 +404,6 @@ def add_custom_item(current_user):
     user_items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).all()
     user_list = [user.item for user in user_items]
     list_to_add = list(set(new_items).difference(user_list))
-    print("list to add", list_to_add)
     db.session.bulk_save_objects(
         [
             Item(
@@ -471,12 +480,22 @@ def get_students(current_user):
     start = time.time()
     user_id = current_user.public_id
     students = Student.query.filter_by(user_id=user_id).options(
-        db.joinedload('studentitems')).all()
+        db.joinedload('studentitems')).options(db.joinedload('readinglevels')).all()
     student_list = []
     all_student_word_counts = []
     all_student_letter_counts = []
     all_student_sound_counts = []
     for student in students:
+        if student.readinglevels == []: 
+                reading_level = ""
+                last_reading_update = "N/A"
+                print("no reading level yet")
+        else:
+            reading_level = student.readinglevels[0].reading_level
+            last_reading_update = student.readinglevels[0].update_date.strftime("%a, %b %d")
+            print("yes reading level ", reading_level)
+    
+ 
         last_word_test = get_test_dates(student.student_id, "words")
         last_letter_test = get_test_dates(student.student_id, "letters")
         last_sound_test = get_test_dates(student.student_id, "sounds")
@@ -522,6 +541,8 @@ def get_students(current_user):
             'allStudentWordCounts': all_student_word_counts,
             'allStudentLetterCounts': all_student_letter_counts,
             'allStudentSoundCounts': all_student_sound_counts,
+            'readingLevel': reading_level,
+            'lastReadingLevelUpdate': last_reading_update
         }
         student_list.append(student)
     end = time.time()
@@ -569,12 +590,22 @@ def student_detail(current_user, student_id):
     user_id = current_user.public_id
     student_object = Student.query.filter_by(
         student_id=student_id, user_id=user_id).first()
+    reading_level = ReadingLevel.query.filter_by(student_id=student_id, user_id=user_id).first()
     student_items = StudentItem.query.filter_by(
         student_id=student_id).options(db.joinedload('items')).all()
     student = {
         'student_id': student_object.student_id,
         'name': student_object.name
     }
+    if reading_level == []:
+        new_reading_level = ""
+        last_reading_update = "N/A"
+    if not reading_level: 
+        new_reading_level = ""
+        last_reading_update = "N/A"
+    else:
+        new_reading_level = reading_level.reading_level
+        last_reading_update = reading_level.update_date.strftime("%a, %b %d")
     word_list = []
     letter_list = []
     sound_list = []
@@ -633,8 +664,6 @@ def student_detail(current_user, student_id):
     total_letters = letter_count + unlearned_letter_count
     sound_count = len(sound_list)
     unlearned_sound_count = len(unlearned_sound_list)
-
-    print("unlearned word list", unlearned_word_list, "unlearned letter list", unlearned_letter_list, "unlearned sound list", unlearned_sound_list)
     total_sounds = sound_count + unlearned_sound_count
     student_object['student'] = student
     student_object['wordCount'] = word_count
@@ -655,6 +684,8 @@ def student_detail(current_user, student_id):
     student_object['soundList'] = sound_list
     student_object['unlearnedSoundList'] = unlearned_sound_list
     student_object['lastSoundTest'] = sound_test
+    student_object['readingLevel'] = new_reading_level
+    student_object['lastReadingUpdate'] = last_reading_update
     end = time.time()
     elapsed_time = end - start
     print('getting student detail took', elapsed_time)
@@ -703,16 +734,11 @@ def update_correct_items(student_id, correct_items, test_type, user_id):
 
 def update_incorrect_items(student_id, incorrect_items, test_type, user_id):
     """updates incorrect letters in db, called by create_student_test"""
-    print("INCORRECT ITEMS", incorrect_items)
     student_item_list = StudentItem.query.filter_by(student_id=student_id, user_id=user_id, item_type=test_type).options(db.joinedload('items')).filter(
     Item.item.in_(incorrect_items)).all()
-    print("STUDENT ITEM LIST", student_item_list)
     for item in student_item_list:
-        print("item", item.items.item)
         if item.items.item in incorrect_items:
-            print("incorrect item", item.items.item)
             item.incorrect_count = StudentItem.incorrect_count + 1
-            print("item.incorrect_count ==", item.incorrect_count)
             db.session.commit()
     return "incorrect items"
 
@@ -809,7 +835,6 @@ def get_item_counts(student_items):
     """is called by get student test, returns item, times read correctly,times read incorrectly """
     item_counts = []
     for student_item in student_items:
-        print("correct", student_item.items.item, student_item.correct_count, "incorrect", student_item.incorrect_count)
         count = {
             "item": student_item.items.item,
             "correctCount": student_item.correct_count,

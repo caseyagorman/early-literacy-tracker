@@ -17,7 +17,20 @@ class StudentDetail extends Component {
     this.props.testResultsActions.fetchAllTestResults(studentId, user);
     this.props.studentsActions.fetchStudents(user);
   }
-
+  getReadingSentence(student) {
+    let readingSentence;
+    if (student.readingLevel) {
+      readingSentence =
+        student.student.name.split(" ")[0] +
+        " is reading at a level " +
+        student.readingLevel +
+        ".";
+    } else if (student.readingLevel === "") {
+      readingSentence =
+        student.student.name.split(" ")[0] + " has no reading level yet.";
+    }
+    return readingSentence;
+  }
   getTestSentence(tests) {
     let name = this.props.student.student.name.split(" ")[0];
     let sentenceList = [];
@@ -52,6 +65,7 @@ class StudentDetail extends Component {
     }
     console.log("display student detail page", students);
     let testSentences = this.getTestSentence(tests);
+    let readingSentence = this.getReadingSentence(student);
 
     return (
       <StudentDetailPage
@@ -60,6 +74,7 @@ class StudentDetail extends Component {
         student={student}
         testSentences={testSentences}
         studentTestActions={this.props.studentTestActions}
+        readingSentence={readingSentence}
       />
     );
   }

@@ -67,8 +67,6 @@ const StudentDetailChartsPage = props => (
         />
       </Col>
     </Row>
-
-    {console.log("student detail charts page props", props)}
   </div>
 );
 

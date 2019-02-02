@@ -48,6 +48,8 @@ class Student(db.Model):
         'User')
     studentitems = db.relationship(
         'StudentItem', cascade="save-update, merge, delete")
+    readinglevels = db.relationship(
+        'ReadingLevel', cascade="save-update, merge, delete")
     studenttestresults = db.relationship(
         'StudentTestResult', cascade="save-update, merge, delete")
     def __repr__(self):
@@ -58,10 +60,12 @@ class ReadingLevel(db.Model):
     reading_level_id = db.Column(
         db.Integer, autoincrement=True, primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey(
-        'students.student_id'), nullable=False)
+        'students.student_id'), nullable=False, unique=True)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
     reading_level = db.Column(db.String(25), nullable=False)
+    update_date = db.Column(db.DateTime, nullable=True,
+                          default=datetime.today)
     students = db.relationship(
         'Student')
     users = db.relationship(

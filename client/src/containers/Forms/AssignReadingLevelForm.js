@@ -7,37 +7,35 @@ import "../../components/Forms/static/form.css";
 class AssignReadingLevelForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: [] };
+    this.state = { value: "" };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getOptions = this.getOptions.bind(this);
   }
 
-  componentDidMount() {
-    console.log("assign reading level", this.props);
-  }
-
   handleSubmit(event) {
     event.preventDefault();
-    const student = this.props.match.params.id;
+    console.log("event", event);
+    console.log("state", this.state.value);
+    let student = this.props.student;
     let readingLevel = this.state.value;
     const user = this.props.auth.user.token;
-    this.props.readingActions.assignReadingLevel(readingLevel, user, student);
+    this.props.readingLevelActions.assignReadingLevel(
+      readingLevel,
+      user,
+      student
+    );
   }
 
   handleChange(e) {
     const options = e.target.options;
-    let value = [];
-    for (let i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
+    let value = options[options.selectedIndex].value;
+    console.log("value", value);
     this.setState({ value: value });
+    console.log(this.state.value);
   }
-
   getOptions(itemList) {
-    console.log("itemList", itemList);
     if (!itemList) {
       return <div>Loading!</div>;
     }
