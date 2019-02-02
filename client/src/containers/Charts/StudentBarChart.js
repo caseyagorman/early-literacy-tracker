@@ -50,7 +50,7 @@ class StudentBarChart extends Component {
       }
     }
 
-    return [itemCounts, studentList, itemList, totalItemCount];
+    return [itemCounts, studentList, itemList, totalItemCount, itemType];
   }
 
   getChartColor() {
@@ -67,13 +67,14 @@ class StudentBarChart extends Component {
     if (!dataResults) {
       return <div> loading...</div>;
     }
-
+    console.log("dataResults", dataResults);
     let items = this.turnIntoArray(dataResults);
 
     let itemCounts = items[0];
     let studentList = items[1];
     let itemList = items[2];
     let totalItemCount = items[3];
+    let itemType = items[4];
 
     let options = {
       tooltips: {
@@ -127,7 +128,7 @@ class StudentBarChart extends Component {
 
       datasets: [
         {
-          label: "Students",
+          label: this.props.chartType + " " + itemType,
 
           backgroundColor: this.getChartColor(),
           borderColor: this.getChartColor(),
@@ -138,15 +139,7 @@ class StudentBarChart extends Component {
         }
       ]
     };
-    return (
-      <Bar
-        id="bar-chart"
-        height="500px"
-        width="700px"
-        data={data}
-        options={options}
-      />
-    );
+    return <Bar height={400} width={550} data={data} options={options} />;
   }
   render() {
     return this.displayChart(this.props.students);

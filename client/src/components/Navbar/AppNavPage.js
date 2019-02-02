@@ -27,12 +27,6 @@ const AppNavPage = props => {
               <LinkContainer to="/students" id="Students">
                 <MenuItem id="Students">View Students</MenuItem>
               </LinkContainer>
-              <LinkContainer to="/add-student" id="Students">
-                <MenuItem id="Students">Add Students</MenuItem>
-              </LinkContainer>
-              <LinkContainer id="Students" to="/students">
-                <MenuItem id="Students">Test Students</MenuItem>
-              </LinkContainer>
               <LinkContainer id="Students" to="/student-charts/words/">
                 <MenuItem id="Students">View Student Word Charts</MenuItem>
               </LinkContainer>
@@ -71,6 +65,9 @@ const AppNavPage = props => {
               </LinkContainer>
               <LinkContainer to="/add-items/letters/">
                 <MenuItem id="Letters">Add Letters</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/add-student" id="Students">
+                <MenuItem id="Students">Add Students</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </NavItem>

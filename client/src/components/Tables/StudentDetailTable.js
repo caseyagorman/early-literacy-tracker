@@ -4,12 +4,29 @@ import { Link } from "react-router-dom";
 import StudentItemLearned from "../../containers/Forms/StudentItemLearned";
 import StudentItemUnlearned from "../../containers/Forms/StudentItemUnlearned";
 import "./static/table.css";
+
+const columnGroupingColor = "teal";
+const columnGroupingWidth = "1px";
+const thStyle = {
+  border: columnGroupingWidth + " solid " + columnGroupingColor,
+  borderBottom: 0
+};
+const borderLeftStyle = {
+  borderLeft: columnGroupingWidth + " solid " + columnGroupingColor
+};
+const borderRightStyle = {
+  borderRight: columnGroupingWidth + " solid " + columnGroupingColor
+};
+const borderBottomStyle = {
+  borderBottom: columnGroupingWidth + " solid " + columnGroupingColor
+};
+
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered className="student-detail-table">
       <thead>
         <tr>
-          <th id="table-header" colSpan="2">
+          <th id="table-header" colSpan="2" style={thStyle}>
             Words
             <br />
             <OverlayTrigger
@@ -31,7 +48,7 @@ const StudentDetailTable = student => (
               />
             </OverlayTrigger>
           </th>
-          <th id="table-header" colSpan="2">
+          <th id="table-header" colSpan="2" style={thStyle}>
             Letters
             <br />
             <OverlayTrigger
@@ -54,7 +71,7 @@ const StudentDetailTable = student => (
               />
             </OverlayTrigger>
           </th>
-          <th id="table-header" colSpan="2">
+          <th id="table-header" colSpan="2" style={thStyle}>
             Sounds
             <br />
             <OverlayTrigger
@@ -81,22 +98,29 @@ const StudentDetailTable = student => (
       </thead>
       <thead>
         <tr>
-          <th>Learned Words</th>
-          <th>Unlearned Words</th>
+          <th style={borderLeftStyle}>Learned Words</th>
+          <th style={borderRightStyle}>Unlearned Words</th>
 
-          <th>Learned Letters</th>
-          <th>Unlearned Letters</th>
+          <th style={borderLeftStyle}>Learned Letters</th>
+          <th style={borderRightStyle}>Unlearned Letters</th>
 
-          <th>Learned Sounds</th>
-          <th>Unlearned Sounds</th>
+          <th style={borderLeftStyle}>Learned Sounds</th>
+          <th style={borderRightStyle}>Unlearned Sounds</th>
         </tr>
       </thead>
       <tbody className="student-detail-table">
         <tr className="student-detail-table">
-          <td className="student-detail-table" style={{ width: "10%" }}>
+          <td
+            className="student-detail-table"
+            style={Object.assign(
+              { width: "10%" },
+              borderLeftStyle,
+              borderBottomStyle
+            )}
+          >
             <ul className="unordered-list">
               {student.student.wordList.map(item => (
-                <li className="student-detail-table-div">
+                <li>
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
@@ -111,10 +135,17 @@ const StudentDetailTable = student => (
               ))}
             </ul>
           </td>
-          <td className="student-detail-table" style={{ width: "10%" }}>
+          <td
+            className="student-detail-table"
+            style={Object.assign(
+              { width: "10%" },
+              borderRightStyle,
+              borderBottomStyle
+            )}
+          >
             <ul className="unordered-list">
               {student.student.unlearnedWordList.map(item => (
-                <li className="student-detail-table-div">
+                <li>
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
@@ -129,11 +160,18 @@ const StudentDetailTable = student => (
               ))}
             </ul>
           </td>
+          {/* <td id="test-date">{student.student.lastLetterTest} </td> */}
 
-          <td style={{ width: "10%" }}>
+          <td
+            style={Object.assign(
+              { width: "10%" },
+              borderLeftStyle,
+              borderBottomStyle
+            )}
+          >
             <ul className="unordered-list">
               {student.student.letterList.map(item => (
-                <li className="student-detail-table-div">
+                <li>
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
@@ -148,10 +186,16 @@ const StudentDetailTable = student => (
               ))}
             </ul>
           </td>
-          <td style={{ width: "10%" }}>
+          <td
+            style={Object.assign(
+              { width: "10%" },
+              borderRightStyle,
+              borderBottomStyle
+            )}
+          >
             <ul className="unordered-list">
               {student.student.unlearnedLetterList.map(item => (
-                <li className="student-detail-table-div">
+                <li>
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}
@@ -166,10 +210,16 @@ const StudentDetailTable = student => (
               ))}
             </ul>
           </td>
-          <td style={{ width: "10%" }}>
+          <td
+            style={Object.assign(
+              { width: "10%" },
+              borderLeftStyle,
+              borderBottomStyle
+            )}
+          >
             <ul className="unordered-list">
               {student.student.soundList.map(item => (
-                <li className="student-detail-table-div">
+                <li>
                   <StudentItemUnlearned
                     item={item}
                     student={student.student.student.student_id}
@@ -184,10 +234,16 @@ const StudentDetailTable = student => (
               ))}
             </ul>
           </td>
-          <td style={{ width: "10%" }}>
+          <td
+            style={Object.assign(
+              { width: "10%" },
+              borderRightStyle,
+              borderBottomStyle
+            )}
+          >
             <ul className="unordered-list">
               {student.student.unlearnedSoundList.map(item => (
-                <li className="student-detail-table-div">
+                <li>
                   <StudentItemLearned
                     item={item}
                     student={student.student.student.student_id}

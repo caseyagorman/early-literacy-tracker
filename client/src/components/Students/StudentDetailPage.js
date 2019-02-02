@@ -42,7 +42,7 @@ const StudentDetailPage = props => (
                 to={`/test-student/letters/${props.student.student.student_id}`}
                 onClick={() => props.studentTestActions.beginTest("letters")}
               >
-                Test Words
+                Test Letters
               </Link>
             }
             soundAction={
@@ -50,41 +50,11 @@ const StudentDetailPage = props => (
                 to={`/test-student/sounds/${props.student.student.student_id}`}
                 onClick={() => props.studentTestActions.beginTest("sounds")}
               >
-                Test Words
+                Test Sounds
               </Link>
             }
           />
 
-          <DropdownBar
-            actionType={"Add"}
-            wordAction={
-              <Link
-                to={`/add-custom-items/${
-                  props.student.student.student_id
-                }/words`}
-              >
-                Add Words
-              </Link>
-            }
-            letterAction={
-              <Link
-                to={`/add-custom-items/${
-                  props.student.student.student_id
-                }/letters`}
-              >
-                Add Letters
-              </Link>
-            }
-            soundAction={
-              <Link
-                to={`/add-custom-items/${
-                  props.student.student.student_id
-                }/sounds`}
-              >
-                Add Sounds
-              </Link>
-            }
-          />
           <DropdownBar
             actionType={"Test Results"}
             wordAction={
@@ -121,6 +91,41 @@ const StudentDetailPage = props => (
           >
             <button className="reading-level-button">Reading Level</button>
           </Link>
+          <Link to={`/student-item-charts/${props.student.student.student_id}`}>
+            <button style={{ marginLeft: 1 }} className="reading-level-button">
+              Charts
+            </button>
+          </Link>
+          <DropdownBar
+            actionType={"Add"}
+            wordAction={
+              <Link
+                to={`/add-custom-items/${
+                  props.student.student.student_id
+                }/words`}
+              >
+                Add Words
+              </Link>
+            }
+            letterAction={
+              <Link
+                to={`/add-custom-items/${
+                  props.student.student.student_id
+                }/letters`}
+              >
+                Add Letters
+              </Link>
+            }
+            soundAction={
+              <Link
+                to={`/add-custom-items/${
+                  props.student.student.student_id
+                }/sounds`}
+              >
+                Add Sounds
+              </Link>
+            }
+          />
         </Col>
         <Col>
           <div className="class-average-chart">

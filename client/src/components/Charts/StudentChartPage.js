@@ -1,32 +1,28 @@
 import React from "react";
 import StudentBarChart from "../../containers/Charts/StudentBarChart";
-
+import { Grid, Col, Row } from "react-bootstrap";
 const StudentChartPage = props => (
-  // <div className="container">
-  <div className="display-charts">
-    <div>
-      <h1>
-        {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1, -1)}{" "}
-        Charts
-      </h1>
-      <p>
-        Hover over bar to view students learning each{" "}
-        {props.itemType.slice(0, -1)}.
-      </p>
-      <StudentBarChart
-        className="bar-chart-div"
-        students={props.students.students}
-        itemType={props.itemType}
-        chartType={"learned"}
-      />
-      <div />
-      <StudentBarChart
-        className="bar-chart-div"
-        students={props.students.students}
-        itemType={props.itemType}
-        chartType={"unlearned"}
-      />
-    </div>
-  </div>
+  <Grid>
+    <Row>
+      <Col>
+        <div style={{ float: "left" }}>
+          <StudentBarChart
+            students={props.students.students}
+            itemType={props.itemType}
+            chartType={"learned"}
+          />
+        </div>
+      </Col>
+      <Col>
+        <div style={{ float: "right" }}>
+          <StudentBarChart
+            students={props.students.students}
+            itemType={props.itemType}
+            chartType={"unlearned"}
+          />
+        </div>
+      </Col>
+    </Row>
+  </Grid>
 );
 export default StudentChartPage;

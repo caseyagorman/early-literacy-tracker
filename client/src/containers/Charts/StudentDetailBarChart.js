@@ -74,7 +74,7 @@ class StudentBarChart extends Component {
       <Bar
         id="bar-chart"
         height="300px"
-        width="600px"
+        width="570px"
         data={chartData}
         options={options}
       />
