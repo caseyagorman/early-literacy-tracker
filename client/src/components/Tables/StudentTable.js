@@ -10,7 +10,6 @@ const StudentTable = (
   studentTestActions
 ) => (
   <Table bordered>
-    {console.log("students", students)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "name")}>Name </th>

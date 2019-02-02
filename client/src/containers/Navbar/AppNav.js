@@ -4,8 +4,6 @@ import AppNavPage from "../../components/Navbar/AppNavPage";
 
 class AppNav extends Component {
   displayNavbar(user) {
-    console.log("user", user);
-
     if (!user || user.user === null) {
       let route = "/login";
       let navText = "Login";

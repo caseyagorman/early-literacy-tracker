@@ -12,12 +12,9 @@ class TableContainer extends Component {
   }
 
   componentDidMount() {
-    console.log("table container", this.props);
     if (!this.props.actions) {
-      console.log("no actions");
       return <div> loading...</div>;
     }
-    console.log(this.props.actions);
   }
 
   sortArray(array, sortKey, reverseSort) {

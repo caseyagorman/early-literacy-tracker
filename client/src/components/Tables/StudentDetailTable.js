@@ -7,36 +7,29 @@ import "./static/table.css";
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered className="student-detail-table">
-      {console.log("student detail table", student)}
       <thead>
         <tr>
-          <th id="table-header" colSpan="2">
-            Reading Level
-          </th>
-          <th id="table-header" colSpan="4">
+          <th id="table-header" colSpan="3">
             Words
           </th>
-          <th id="table-header" colSpan="4">
+          <th id="table-header" colSpan="3">
             Letters
           </th>
-          <th id="table-header" colSpan="4">
+          <th id="table-header" colSpan="3">
             Sounds
           </th>
         </tr>
       </thead>
       <thead>
         <tr>
-          <th>Last Updated</th>
-          <th>Reading Level</th>
-          <th>Last Tested</th>
           <th>Word Count</th>
           <th>Learned Words</th>
           <th>Unlearned Words</th>
-          <th>Last Tested</th>
+
           <th>Letter Count</th>
           <th>Learned Letters</th>
           <th>Unlearned Letters</th>
-          <th>Last Tested</th>
+
           <th>Sound Count</th>
           <th>Learned Sounds</th>
           <th>Unlearned Sounds</th>
@@ -44,10 +37,10 @@ const StudentDetailTable = student => (
       </thead>
       <tbody className="student-detail-table">
         <tr className="student-detail-table">
-          <td id="test-date">{student.student.lastReadingUpdate}</td>
+          {/* <td id="test-date">{student.student.lastReadingUpdate}</td>
           <td id="reading-level">{student.student.readingLevel}</td>
 
-          <td id="test-date">{student.student.lastWordTest}</td>
+          <td id="test-date">{student.student.lastWordTest}</td> */}
           <td>
             <OverlayTrigger
               placement={"top"}
@@ -105,7 +98,7 @@ const StudentDetailTable = student => (
               ))}
             </ul>
           </td>
-          <td id="test-date">{student.student.lastLetterTest} </td>
+          {/* <td id="test-date">{student.student.lastLetterTest} </td> */}
           <td>
             <OverlayTrigger
               placement={"top"}
@@ -164,7 +157,7 @@ const StudentDetailTable = student => (
             </ul>
           </td>
 
-          <td id="test-date">{student.student.lastSoundTest} </td>
+          {/* <td id="test-date">{student.student.lastSoundTest} </td> */}
           <td>
             <OverlayTrigger
               placement={"top"}

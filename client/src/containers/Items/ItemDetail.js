@@ -13,7 +13,6 @@ class ItemDetail extends Component {
   }
 
   displayItemDetail(item) {
-    console.log("item", item);
     if (item.item === null) {
       return <div>loading...</div>;
     }

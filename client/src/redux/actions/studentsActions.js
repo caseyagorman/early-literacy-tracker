@@ -78,7 +78,6 @@ export function addStudent(students, user) {
 }
 
 export function addItemsToNewStudents(user, students) {
-  console.log("add items to new students", "user", user, "students", students);
   return fetch(addItemToNewStudentApi(), {
     method: "POST",
     mode: "cors",

@@ -21,7 +21,6 @@ class AllItems extends React.Component {
   }
 
   displayItems(items) {
-    console.log("items", items);
     if (!items) {
       return <p>loading...</p>;
     }

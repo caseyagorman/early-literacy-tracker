@@ -9,7 +9,6 @@ import "./static/students.css";
 const StudentDetailPage = props => (
   <div className="students">
     <div className="student-snapshot">
-      {console.log("student props", props)}
       <div className="display-student-name">
         <br />
         <h1 id="student-name">{props.student.student.name}</h1>

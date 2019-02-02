@@ -13,7 +13,6 @@ export default function studentItems(
   let newState;
   switch (action.type) {
     case FETCH_STUDENT_ITEMS:
-      console.log("FETCH_ITEMS Action");
       return action;
     case ADD_STUDENT_ITEMS:
       newState = action.studentItems;

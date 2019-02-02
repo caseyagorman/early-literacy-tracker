@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as studentsActions from "../../redux/actions/studentsActions";
 import StudentDetailBarChart from "./StudentDetailBarChart";
 
 class ClassAverageChart extends Component {
   displayClassAverageBarChart(students, student) {
-    console.log("class average bar chart", students, student);
     if (!students) {
       return <div>loading...</div>;
     }

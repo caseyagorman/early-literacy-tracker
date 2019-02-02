@@ -6,7 +6,6 @@ import "./static/table.css";
 
 const ItemsTable = (items, onSort, route, itemType) => (
   <Table bordered="true" hover="true">
-    {console.log("items", items)}
     <thead>
       <tr>
         <th onClick={e => onSort(e, "item")}> Sort A-Z</th>
@@ -23,7 +22,6 @@ const ItemsTable = (items, onSort, route, itemType) => (
               >
                 <h2 id="item-name-table-header">{item.item}</h2>
               </Link>
-              {console.log(item.itemId)}
               <DeleteItem item={item.itemId} itemType={itemType} />
             </td>
           </tr>

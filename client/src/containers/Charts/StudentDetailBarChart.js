@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 class StudentBarChart extends Component {
-  componentDidMount() {
-    console.log("student detail bar chart", this.props.allStudentLetterCounts);
-  }
   displayChart(wordCounts, letterCounts, soundCounts, student) {
     if (!student) {
       return <div> loading...</div>;

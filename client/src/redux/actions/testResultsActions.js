@@ -33,7 +33,6 @@ export function fetchTestResults(user, itemType, id) {
 //   };
 
 export function fetchAllTestResults(id, user) {
-  console.log("fetching all student tests", id, user);
   return dispatch => {
     return fetch(getStudentAllTestsResultsApi(id), {
       method: "GET",

@@ -7,7 +7,6 @@ export function clearUser(register) {
   return { type: types.CLEAR_USER, register: register };
 }
 export function checkNewUser(register) {
-  console.log("check new user", register);
   if (!register.error) {
     return { type: types.REGISTER_USER, register: register };
   } else if (register.error) {

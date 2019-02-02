@@ -12,13 +12,11 @@ class AssignReadingLevel extends React.Component {
 
   displayAssignReadingLevelForm(readingLevels) {
     let student = this.props.match.params.id;
-    console.log("student", student);
     if (readingLevels === null) {
       return <p>loading...</p>;
     }
     return (
       <div className="container">
-        {console.log("reading levels", readingLevels)}
         <AssignReadingLevelForm itemList={readingLevels} student={student} />
       </div>
     );

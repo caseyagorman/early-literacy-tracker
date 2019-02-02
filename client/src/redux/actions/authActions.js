@@ -50,7 +50,6 @@ export function loginUser(user) {
 }
 
 export function resetPassword(user) {
-  console.log("user", user);
   return dispatch => {
     return fetch(resetPasswordApi(), {
       method: "POST",

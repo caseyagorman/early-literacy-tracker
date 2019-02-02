@@ -2,7 +2,6 @@ import React from "react";
 import { Table } from "react-bootstrap";
 const TestResultsTable = (testResults, onSort) => (
   <div>
-    {console.log("test results table", testResults)}
     <h3>Past test results</h3>
     <Table striped bordered condensed hover>
       <thead>

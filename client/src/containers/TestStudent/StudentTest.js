@@ -38,7 +38,6 @@ class StudentTest extends React.Component {
 
   endTest(e) {
     e.preventDefault();
-    console.log("test items", this.props.studentTest.testItems);
     this.props.studentTestActions.submitStudentTest(
       this.props.studentTest.testItems,
       this.props.studentTest.testType,

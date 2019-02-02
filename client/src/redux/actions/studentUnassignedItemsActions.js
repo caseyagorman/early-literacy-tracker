@@ -18,7 +18,6 @@ export function receiveStudent(student) {
 }
 
 export function receiveStudentUnassignedItems(studentUnassignedItems) {
-  console.log("student unassigned items", studentUnassignedItems);
   return {
     type: types.RECEIVE_STUDENT_UNASSIGNED_ITEMS,
     studentUnassignedItems: studentUnassignedItems
@@ -26,7 +25,6 @@ export function receiveStudentUnassignedItems(studentUnassignedItems) {
 }
 
 export function fetchUnassignedItems(user, itemType) {
-  console.log("filename", user);
   return dispatch => {
     return fetch(getUnassignedItemsApi(itemType), {
       method: "GET",

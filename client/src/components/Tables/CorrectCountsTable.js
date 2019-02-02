@@ -5,7 +5,6 @@ const CorrectCountsTable = (items, onSort, route, itemType) => (
     <h3>Times read correctly</h3>
     <Table striped bordered condensed hover>
       <thead>
-        {console.log("correct counts table", itemType)}
         <tr>
           <th onClick={e => onSort(e, "testDate")}>
             {" "}

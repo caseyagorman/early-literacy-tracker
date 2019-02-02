@@ -16,8 +16,6 @@ class AssignReadingLevelForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("event", event);
-    console.log("state", this.state.value);
     let student = this.props.student;
     let readingLevel = this.state.value;
     const user = this.props.auth.user.token;
@@ -31,9 +29,7 @@ class AssignReadingLevelForm extends Component {
   handleChange(e) {
     const options = e.target.options;
     let value = options[options.selectedIndex].value;
-    console.log("value", value);
     this.setState({ value: value });
-    console.log(this.state.value);
   }
   getOptions(itemList) {
     if (!itemList) {

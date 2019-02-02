@@ -91,7 +91,6 @@ export function fetchItem(id, itemType, user) {
   };
 }
 export function addItem(item, user, itemType) {
-  console.log("add item");
   return dispatch => {
     return fetch(addItemApi(), {
       method: "POST",
@@ -115,7 +114,6 @@ export function addItem(item, user, itemType) {
 }
 
 export function addCustomItem(item, user, studentId, itemType) {
-  console.log("add custom item");
   return dispatch => {
     return fetch(addCustomStudentItemsApi(), {
       method: "POST",
@@ -153,7 +151,6 @@ export function assignCustomStudentItems(user, studentItems, studentId) {
 }
 
 export function deleteItem(item, itemType, user) {
-  console.log(item, itemType, user);
   return dispatch => {
     return fetch(deleteItemApi(), {
       method: "POST",
@@ -172,7 +169,6 @@ export function deleteItem(item, itemType, user) {
 }
 
 export function assignStudentItems(user, studentItems) {
-  console.log("assignStudentItems", studentItems, "user", user);
   return dispatch => {
     return fetch(addStudentItemsApi(), {
       method: "POST",

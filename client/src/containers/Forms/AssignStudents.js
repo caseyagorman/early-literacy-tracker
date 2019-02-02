@@ -14,7 +14,6 @@ class AssignStudents extends Component {
   }
 
   componentDidMount() {
-    console.log("assign students", this.props);
     const id = this.props.id;
     const user = this.props.auth.user.token;
     this.props.itemUnassignedStudentsActions.fetchUnassignedStudents(id, user);
