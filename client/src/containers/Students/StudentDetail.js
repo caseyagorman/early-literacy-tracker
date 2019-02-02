@@ -63,6 +63,7 @@ class StudentDetail extends Component {
     if (student.student === null || students.students === null) {
       return <div>loading...</div>;
     }
+    console.log("TESTS", tests);
     let testSentences = this.getTestSentence(tests);
     let readingSentence = this.getReadingSentence(student);
 

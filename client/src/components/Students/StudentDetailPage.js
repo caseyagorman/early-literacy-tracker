@@ -8,19 +8,21 @@ import DropdownBar from "./DropdownBar";
 import { Grid, Col, Row } from "react-bootstrap";
 import "./static/students.css";
 const StudentDetailPage = props => (
-  <div className="students">
-    <Grid>
-      <Row>
-        <Col>
-          <h1 id="student-name">{props.student.student.name}</h1>
-          <DeleteStudent
-            student={props.student.student.student_id}
-            id="delete-student-detail"
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+  <Grid style={{ fontFamily: "Krub" }}>
+    <Row>
+      <Col>
+        <h1 style={{ display: "inline-block" }}>
+          {props.student.student.name}
+        </h1>
+        <DeleteStudent
+          student={props.student.student.student_id}
+          style={{ display: "inline-block" }}
+        />
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <div style={{ float: "left", marginBottom: 100 }}>
           <StudentSnapshot
             student={props.student}
             tests={props.tests}
@@ -126,32 +128,21 @@ const StudentDetailPage = props => (
               </Link>
             }
           />
-        </Col>
-        <Col>
-          <div className="class-average-chart">
-            <ClassAverageChart
-              student={props.student}
-              students={props.students}
-            />
-          </div>
-        </Col>
-      </Row>
-    </Grid>
-
-    <div
-      style={{
-        float: "left",
-        marginLeft: "-700",
-        marginTop: "220"
-      }}
-    />
-
-    <br />
-    <br />
-    <div className="container">
+        </div>
+      </Col>
+      <Col>
+        <div style={{ float: "right", marginTop: 30 }}>
+          <ClassAverageChart
+            student={props.student}
+            students={props.students}
+          />
+        </div>
+      </Col>
+    </Row>
+    <Row>
       <StudentDetailTable student={props.student} />
-    </div>
-  </div>
+    </Row>
+  </Grid>
 );
 
 export default StudentDetailPage;

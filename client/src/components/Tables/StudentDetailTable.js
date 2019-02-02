@@ -5,7 +5,7 @@ import StudentItemLearned from "../../containers/Forms/StudentItemLearned";
 import StudentItemUnlearned from "../../containers/Forms/StudentItemUnlearned";
 import "./static/table.css";
 
-const columnGroupingColor = "teal";
+const columnGroupingColor = "#003d59";
 const columnGroupingWidth = "1px";
 const thStyle = {
   border: columnGroupingWidth + " solid " + columnGroupingColor,

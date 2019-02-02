@@ -1,7 +1,7 @@
 import React from "react";
 
 const StudentSnapshot = props => (
-  <div className="student-snapshot" style={{ fontSize: 18 }}>
+  <div style={{ fontSize: 18 }}>
     {props.readingSentence}
     <br />
     {props.student.student.name.split(" ")[0]} knows
@@ -19,7 +19,6 @@ const StudentSnapshot = props => (
       {props.student.soundCount}/{props.student.totalSoundCount}
     </b>{" "}
     sounds. <br />
-    {/* <div id="student-detail-sentences"> */}
     {props.testSentences[2]}
     <br />
     {props.testSentences[1]}
@@ -27,7 +26,6 @@ const StudentSnapshot = props => (
     {props.testSentences[0]}
     <br />
     <br />
-    {/* </div> */}
   </div>
 );
 

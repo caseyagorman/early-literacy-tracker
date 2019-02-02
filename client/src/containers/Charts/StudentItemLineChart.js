@@ -4,18 +4,21 @@ import "../../components/Charts/static/charts.css";
 
 class StudentItemLineChart extends Component {
   getChartData(data) {
+    console.log("data", data);
     if (!data) {
       return <div>loading...</div>;
     }
-    let itemType = this.props.itemType;
-    data = data.testData[itemType].studentTestList;
-
     let dates = [];
     let scores = [];
 
-    for (let i = 0; i < data.length; i++) {
-      scores.push(data[i].score);
-      dates.push(data[i].testDate);
+    let itemType = this.props.itemType;
+
+    if (data.testData[itemType]) {
+      data = data.testData[itemType].studentTestList;
+      for (let i = 0; i < data.length; i++) {
+        scores.push(data[i].score);
+        dates.push(data[i].testDate);
+      }
     }
     return this.displayChartData(dates, scores);
   }
@@ -70,18 +73,18 @@ class StudentItemLineChart extends Component {
             " score ",
           fill: false,
           lineTension: 0.1,
-          backgroundColor: "#0033ff",
-          borderColor: "#0033ff",
+          backgroundColor: "rgb(0, 61, 89, 0.7)",
+          borderColor: "rgb(0, 61, 89, 0.7)",
           borderCapStyle: "butt",
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: "miter",
-          pointBorderColor: "rgba(75,192,192,1)",
+          pointBorderColor: "rgb(0, 61, 89, 0.7)",
           pointBackgroundColor: "#fff",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgba(75,192,192,1)",
-          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBackgroundColor: "rgb(0, 61, 89, 0.7)",
+          pointHoverBorderColor: "rgb(0, 61, 89, 0.7)",
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,

@@ -699,6 +699,7 @@ def create_student_test(current_user):
     and update_incorrect_items functions"""
 
     data = request.get_json()
+    print("data", data)
     student_test = data.get('studentTest')
     test_type = data.get('testType')
     student_id = data.get('studentId')
@@ -789,9 +790,11 @@ def get_student_item_test(current_user, item_type, student):
 @token_required
 def get_all_student_tests(current_user,  student_id):
     """get list of student test results, word_counts and chart_data"""
+    print("GETTING STUDENT TESTS")
     user_id = current_user.public_id
     student_tests = StudentTestResult.query.filter_by(
         student_id=student_id, user_id=user_id).all()
+    print("student_tests", student_tests)
     test_data = {}
     word_test_list = []
     letter_test_list = []
@@ -829,6 +832,7 @@ def get_all_student_tests(current_user,  student_id):
         "letterTest": letter_test_list,
         "soundTest": sound_test_list,
     }
+    print("TEST OBJECT", test_object)
     return jsonify(test_object)
 
 def get_item_counts(student_items):

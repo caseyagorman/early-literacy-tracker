@@ -9,7 +9,8 @@ export default function testResults(state = initialState.testResults, action) {
     case FETCH_TEST_RESULTS:
       return action;
     case RECEIVE_TEST_RESULTS:
-      return action.testResults;
+      console.log("IN TEST RESULTS REDUCER", action.testResults);
+      return Object.assign({}, state, action.testResults);
     default:
       return state;
   }

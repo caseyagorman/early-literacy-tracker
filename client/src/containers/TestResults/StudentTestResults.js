@@ -13,28 +13,44 @@ class StudentTestResults extends Component {
   }
 
   displayTestResultsPage(testResults) {
+    console.log("test results page!", testResults);
     const itemType = this.props.match.params.itemType;
-    if (!testResults.testData) {
+    if (!testResults) {
       return <div>loading...</div>;
     }
     if (testResults.testData) {
+      const itemTestType = itemType.slice(0, -1) + "Test";
+      if (!testResults.testData[itemType]) {
+        return (
+          <div
+            style={{
+              fontFamily: "Krub",
+              textAlign: "center",
+              fontSize: 24,
+              marginTop: 100
+            }}
+          >
+            No {itemType.slice(0, -1)} tests yet!
+          </div>
+        );
+      }
+      return (
+        <div className="container">
+          <StudentTestResultsPage
+            itemType={itemType}
+            CorrectCountsTable={CorrectCountsTable}
+            correctCountsTableElements={
+              testResults.testData[itemType].itemCounts
+            }
+            TestResultsTable={TestResultsTable}
+            testResultsTableElements={
+              testResults.testData[itemType].studentTestList
+            }
+            testResults={testResults.testData[itemType].studentList}
+          />
+        </div>
+      );
     }
-
-    const itemTestType = itemType.slice(0, -1) + "Test";
-    return (
-      <div className="container">
-        <StudentTestResultsPage
-          itemType={itemType}
-          CorrectCountsTable={CorrectCountsTable}
-          correctCountsTableElements={testResults.testData[itemType].itemCounts}
-          TestResultsTable={TestResultsTable}
-          testResultsTableElements={
-            testResults.testData[itemType].studentTestList
-          }
-          testResults={testResults.testData[itemType].studentList}
-        />
-      </div>
-    );
   }
 
   render() {
