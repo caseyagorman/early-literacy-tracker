@@ -8,21 +8,29 @@ const ItemsTable = (items, onSort, route, itemType) => (
   <Table bordered="true" hover="true">
     <thead>
       <tr>
-        <th onClick={e => onSort(e, "item")}> Sort A-Z</th>
+        <th onClick={e => onSort(e, "item")}> {itemType}</th>
+        <th onClick={e => onSort(e, "unlearnedCount")}> Unlearned Count</th>
+        <th onClick={e => onSort(e, "learnedCount")}> Learned Count</th>
       </tr>
     </thead>
     <tbody>
       {items.map(function(item) {
         return (
           <tr key={item.itemId}>
-            <td>
+            <td style={{ width: "30%" }}>
               <Link
                 to={`/item-detail/${itemType}/${item.itemId}`}
                 className="link"
               >
-                <h2 id="item-name-table-header">{item.item}</h2>
+                <h2>{item.item}</h2>
               </Link>
               <DeleteItem item={item.itemId} itemType={itemType} />
+            </td>
+            <td style={{ width: "15%", textAlign: "center", fontSize: 24 }}>
+              {item.unlearnedCount}
+            </td>
+            <td style={{ width: "15%", textAlign: "center", fontSize: 24 }}>
+              {item.learnedCount}
             </td>
           </tr>
         );

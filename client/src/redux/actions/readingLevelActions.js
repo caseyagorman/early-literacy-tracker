@@ -3,6 +3,9 @@ import * as types from "./actionTypes";
 function getReadingLevelApi() {
   return "http://localhost:5000/api/get-reading-levels";
 }
+function getStudentReadingLevelsApi() {
+  return "http://localhost:5000/api/student-reading-levels";
+}
 function assignReadingLevelApi() {
   return "http://localhost:5000/api/assign-reading-level";
 }
@@ -15,6 +18,23 @@ export function receiveReadingLevels(readingLevels) {
 }
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
+}
+
+export function fetchStudentReadingLevels(user) {
+  return dispatch => {
+    return fetch(getStudentReadingLevelsApi(), {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+
+        "x-access-token": user
+      }
+    })
+      .then(response => response.json())
+      .then(readingLevels => dispatch(receiveReadingLevels(readingLevels)));
+  };
 }
 
 export function fetchReadingLevels(user) {

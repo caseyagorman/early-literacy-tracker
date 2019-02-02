@@ -87,9 +87,12 @@ const AppNavPage = props => {
             </NavDropdown>
           </NavItem>
           <NavItem id="Students">
-            <NavDropdown title="Reading Level" id="drop-down">
-              <LinkContainer to="/item-charts/reading-level/" id="Students">
+            <NavDropdown title="Reading" id="drop-down">
+              <LinkContainer to="/reading-level-charts/" id="Students">
                 <MenuItem id="Students">View Reading Level Charts</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/item-charts/reading-level/" id="Students">
+                <MenuItem id="Students">Reading Strategies</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </NavItem>

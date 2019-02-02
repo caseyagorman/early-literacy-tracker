@@ -174,6 +174,35 @@ def add_reading_level(current_user):
 
     return jsonify(data)
 
+@app.route("/api/student-reading-levels")
+@token_required
+def get_student_reading_leels(current_user):
+    user_id = current_user.public_id
+    reading_levels = ReadingLevel.query.filter_by(user_id=user_id).options(
+    db.joinedload('students')).filter_by(user_id=user_id).all()
+    print("reading_levels", reading_levels)
+    reading_level_dict = {}
+    for entry in reading_levels:
+        if entry.reading_level not in reading_level_dict:
+            reading_level_dict[entry.reading_level] = [entry.students.name]
+        else:
+            reading_level_dict[entry.reading_level].append(entry.students.name)
+
+    return jsonify(reading_level_dict)
+
+
+def get_item_student_list(item_object):
+    student_list = []
+    unlearned_student_list =[]
+    for item in item_object.studentitems:
+        if item.Learned == True:
+            student = Student.query.filter_by(student_id=item.student_id).first()
+            student_list.append(student.name)
+        else:
+            student = Student.query.filter_by(student_id=item.student_id).first()
+            unlearned_student_list.append(student.name)
+    return [student_list, unlearned_student_list]
+
 @app.route("/api/items/<item_type>")
 @token_required
 def get_items(current_user, item_type):

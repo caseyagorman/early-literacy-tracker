@@ -1,8 +1,8 @@
-form {
+/* form {
   font-family: "Krub", sans-serif;
-}
+} */
 
-.add-students-instructions {
+/* .add-students-instructions {
   margin-left: 17px;
 }
 .add-students-instructions-paragraph {
@@ -16,20 +16,20 @@ form {
   color: white;
   font-size: 14px;
   padding: 10px;
-}
+} */
 
-#add-student-button {
+/* #add-student-button {
   background-color: #018f75;
   color: white;
   font-size: 18px;
   padding: 10px;
   margin-left: 10px;
   border-radius: 4px;
-}
-.assign-items-form {
+} */
+/* .assign-items-form {
   float: left;
   width: 250px;
-}
+} */
 
 #form-label {
   margin-bottom: 10px;
@@ -37,12 +37,12 @@ form {
   font-size: 26px;
 }
 
-.assign-items-select {
+/* .assign-items-select {
   font-size: 18px;
   vertical-align: bottom;
   width: 200px;
   min-height: 500px;
-}
+} */
 #add-to-student-button {
   width: 80px;
   font-size: 18px;

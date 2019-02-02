@@ -13,7 +13,6 @@ class StudentTestResults extends Component {
   }
 
   displayTestResultsPage(testResults) {
-    console.log("test results page!", testResults);
     const itemType = this.props.match.params.itemType;
     if (!testResults) {
       return <div>loading...</div>;

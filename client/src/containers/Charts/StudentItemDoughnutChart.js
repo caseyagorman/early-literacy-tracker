@@ -49,8 +49,8 @@ class StudentItemDoughnutChart extends Component {
       datasets: [
         {
           data: [learnedCount, unlearnedCount],
-          backgroundColor: ["#008000", "#ff3333"],
-          hoverBackgroundColor: ["#008000", "#ff3333"]
+          backgroundColor: ["#018f75", "#FE6625"],
+          hoverBackgroundColor: ["#018f75", "#FE6625"]
         }
       ]
     };

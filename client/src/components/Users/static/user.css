@@ -33,7 +33,7 @@ img {
   margin-top: 20px;
   margin-left: -30px;
   padding: 5px;
-  background-color: #0033ff;
+  background-color: #018f75;
   color: white;
   height: 40px;
   width: 130px;
@@ -57,7 +57,7 @@ img {
 }
 
 #register-user-button {
-  background-color: #0033ff;
+  background-color: #018f75;
   font-size: 22px;
   color: white;
   border-radius: 4px;

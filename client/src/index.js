@@ -26,6 +26,7 @@ import TestStudent from "./containers/TestStudent/TestStudent";
 import StudentDetailCharts from "./containers/Charts/StudentDetailCharts";
 import StudentCharts from "./containers/Charts/StudentCharts";
 import ItemCharts from "./containers/Charts/ItemCharts";
+import ReadingCharts from "./containers/Charts/ReadingCharts";
 import StudentTestResults from "./containers/TestResults/StudentTestResults";
 import AssignItems from "./containers/Items/AssignItems";
 import AssignReadingLevel from "./containers/ReadingLevel/AssignReadingLevel";
@@ -98,6 +99,10 @@ const AppRouter = () => (
       <Route
         path="/item-charts/:itemType/"
         component={userIsAuthenticated(ItemCharts)}
+      />
+      <Route
+        path="/reading-level-charts/"
+        component={userIsAuthenticated(ReadingCharts)}
       />
       <Route
         path="/add-items/:itemType/"
