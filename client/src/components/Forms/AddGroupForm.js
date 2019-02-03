@@ -11,7 +11,7 @@ const AddGroupForm = props => (
           name="group"
           componentClass="text"
           placeholder="enter new group name"
-          value={props.value}
+          value={props.group}
           onChange={props.handleChange}
         />
       </div>

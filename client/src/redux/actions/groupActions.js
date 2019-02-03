@@ -1,5 +1,4 @@
 import * as types from "./actionTypes";
-import history from "../../history";
 
 function assignGroupApi() {
   return "http://localhost:5000/api/assign-group";
@@ -29,6 +28,7 @@ export function assignGroup(students, groupName, user) {
 }
 
 export function addGroup(groupName, user) {
+  console.log("groupName", groupName);
   return fetch(addGroupApi(), {
     method: "POST",
     mode: "cors",

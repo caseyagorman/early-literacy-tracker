@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
 from functools import wraps
-from model import Student, Item, Group, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
+from model import Student, StudentGroup, Item, Group, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
 mail = None
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -65,6 +65,7 @@ def token_required(f):
 @cross_origin()
 def add_user():
     data = request.get_json()
+    print("data", data)
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
@@ -507,7 +508,7 @@ def get_students(current_user):
     start = time.time()
     user_id = current_user.public_id
     students = Student.query.filter_by(user_id=user_id).options(
-        db.joinedload('studentitems')).options(db.joinedload('groups')).options(db.joinedload('readinglevels')).all()
+        db.joinedload('studentitems')).options(db.joinedload('studentgroups')).options(db.joinedload('readinglevels')).all()
     student_list = []
     all_student_word_counts = []
     all_student_letter_counts = []
@@ -521,10 +522,10 @@ def get_students(current_user):
             reading_level = student.readinglevels[0].reading_level
             last_reading_update = student.readinglevels[0].update_date.strftime("%a, %b %d")
             print("yes reading level ", reading_level)
-        if student.groups == []: 
+        if student.studentgroups == []: 
                 group = ""
         else:
-            group = student.groups[0].group_name
+            group = student.studentgroups[0].group_name
     
  
         last_word_test = get_test_dates(student.student_id, "words")
@@ -965,18 +966,20 @@ def make_student_groups(current_user):
 
 @app.route("/api/add-group", methods=['POST'])
 @token_required
-def add_group(current_user, ):
-    data = request.get_json()
+def add_group(current_user):
+    group_name = request.get_json()
     user_id = current_user.public_id
-    return "added group!"
+    new_group = Group(user_id=user_id, group_name=group_name)
+    db.session.add(new_group)
+    db.session.commit()
+    return jsonify(group_name)
 
-    
+
 @app.route("/api/all-groups")
 def get_all_groups():
     start = time.time()
     groups = Group.query.all()
     for entry in groups:
-        print(entry.student_id)
         print(entry.group_name)
     end = time.time()
     elapsed_time = end - start

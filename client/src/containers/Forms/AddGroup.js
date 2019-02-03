@@ -6,7 +6,7 @@ import AddGroupForm from "../../components/Forms/AddGroupForm";
 class AddGroup extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { group: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -15,10 +15,7 @@ class AddGroup extends Component {
     event.preventDefault();
     event.target.reset();
     let user = this.props.auth.user.token;
-    let newGroup = {
-      group: this.state.value
-    };
-
+    let newGroup = this.state.group;
     this.props.groupActions.addGroup(newGroup, user);
   }
   handleChange(event) {
@@ -30,7 +27,7 @@ class AddGroup extends Component {
       <AddGroupForm
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
-        value={this.state.group}
+        group={this.state.group}
       />
     );
   }
