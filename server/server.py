@@ -943,8 +943,10 @@ def make_student_groups(current_user):
     group = Group.query.filter_by(group_name=group_name, user_id=user_id).first()
     existing_student_ids =[]
     student_list = Student.query.filter(Student.name.in_(students)).filter(Student.user_id == user_id).all()
+
     student_ids = [student.student_id for student in student_list]
     list_to_add = list(set(student_ids).difference(existing_student_ids))
+    remove_from_previous_group(list_to_add, user_id)
     db.session.bulk_save_objects(
         [
             StudentGroup(
@@ -960,7 +962,14 @@ def make_student_groups(current_user):
     return jsonify(data)
 
     
-    return "groups"
+def remove_from_previous_group(student_list, user_id):
+    students = StudentGroup.query.filter_by(user_id=user_id).filter(StudentGroup.student_id.in_(student_list)).all()
+    print("students", students)
+    for student in students:
+        db.session.delete(student)
+        db.session.commit()
+    return "cool"
+
 
 @app.route("/api/add-group", methods=['POST'])
 @token_required

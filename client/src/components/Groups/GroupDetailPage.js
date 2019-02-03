@@ -1,6 +1,5 @@
 import React from "react";
 import GroupTable from "../Tables/GroupTable";
-import TableContainer from "../../containers/Tables/TableContainer";
 const GroupDetailPage = props => (
   <div className="container" style={{ fontFamily: "krub" }}>
     <h1>{props.group.name}</h1>
@@ -11,6 +10,8 @@ const GroupDetailPage = props => (
         </li>
       ))}
     </ul>
+    <br />
+    <h4>Shared words, letters, and sounds</h4>
     <br />
     <GroupTable group={props.group} />
   </div>
