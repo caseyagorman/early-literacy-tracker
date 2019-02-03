@@ -522,10 +522,10 @@ def get_students(current_user):
             reading_level = student.readinglevels[0].reading_level
             last_reading_update = student.readinglevels[0].update_date.strftime("%a, %b %d")
             print("yes reading level ", reading_level)
-        if student.studentgroups == []: 
-                group = ""
-        else:
-            group = student.studentgroups[0].group_name
+        # if student.studentgroups == []: 
+        #         group = ""
+        # else:
+        #     group = student.studentgroups[0].group_name
     
  
         last_word_test = get_test_dates(student.student_id, "words")
@@ -575,7 +575,7 @@ def get_students(current_user):
             'allStudentSoundCounts': all_student_sound_counts,
             'readingLevel': reading_level,
             'lastReadingLevelUpdate': last_reading_update,
-            'group': group
+            # 'group': group
         }
         student_list.append(student)
     end = time.time()
@@ -1033,12 +1033,33 @@ def group_detail(current_user, group):
     student_group = StudentGroup.query.filter_by(
         group_id=group_id).options(db.joinedload('students')).all()
     student_list = []
+    student_ids =[]
     for student in student_group:
        student_list.append(student.students.name)
-    group = {
-        'groupName': group_object.group_name,
-        'students': student_list
-    }
+       student_ids.append(student.student_id)
+    student_items_dict ={}
+    for student in student_ids:
+        student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student).first()
+        student_items = StudentItem.query.filter_by(user_id=user_id, student_id=student, item_type="words").options(db.joinedload('students')).options(db.joinedload('items')).all()
+        
+        for item in student_items:
+            if item.students.name not in student_items_dict:
+                student_items_dict[item.students.name] = ["words"] 
+                print(student_items_dict)
+                student_items_dict[item.students.name]["words"] = item.items.item
+            elif item.students.name in student_items_dict:
+                student_items_dict[items.student.names]["words"].append(item.items.item)
+    print("student_items_dict", student_items_dict)
+    return jsonify(student_items_dict)
+    
+
+
+
+
+    # group = {
+    #     'groupName': group_object.group_name,
+    #     'students': student_list
+    # }
     return jsonify(group)
 
 if __name__ == "__main__":
