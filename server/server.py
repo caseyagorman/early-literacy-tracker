@@ -994,25 +994,14 @@ def get_all_groups(current_user):
     groups = Group.query.filter_by(user_id=user_id).all()
     group_dict = {}
     for group in groups:
-        group_dict[group.group_id] = {'name': group.group_name}
-    print("group dict", group_dict)
-
-
+        group_dict[group.group_id] = {'name': group.group_name, 'students': []}
     student_groups = StudentGroup.query.filter_by(user_id=user_id).options(db.joinedload('groups')).options(db.joinedload('students')).all()
 
     for entry in student_groups:
         if entry.groups.group_id in group_dict:
-            if not group_dict[entry.groups.group_id].get('students'):
-                group_dict[entry.groups.group_id].update({'students': [entry.students.name]})
-            elif group_dict[entry.groups.group_id]['students']:
-                group_dict[entry.groups.group_id]['students'].append(entry.students.name)
-    print("group dict", group_dict)
-            
-     
+            group_dict[entry.groups.group_id]['students'].append(entry.students.name)
+        
 
-
-    
-    # print(group_dict)
     return jsonify(group_dict)
 
 

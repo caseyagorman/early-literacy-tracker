@@ -6,13 +6,17 @@ const AssignGroupFormPage = props => (
     <Link
       style={{ fontSize: 24, display: "inline-block", color: "#018f75" }}
       to={{
-        pathname: `/group-detail/${props.group}`
+        pathname: `/group-detail/${props.group.name}`
       }}
     >
-      {props.group}
+      {props.group.name}
     </Link>
-    <DeleteGroup group={props.group} />
-
+    <DeleteGroup group={props.group.name} />
+    <br />
+    Current members:
+    {props.group.students.map(student => (
+      <li>{student}</li>
+    ))}
     <form
       onSubmit={props.handleSubmit}
       style={{ width: 250, fontFamily: "krub" }}

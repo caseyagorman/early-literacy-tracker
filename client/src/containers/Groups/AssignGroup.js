@@ -21,6 +21,7 @@ class AssignGroup extends React.Component {
     return (
       <div className="container">
         <AssignGroupPage />
+        {console.log("object values", Object.values(groups))}
         {Object.values(groups).map(group => (
           <AssignGroupForm students={students} group={group} />
         ))}
