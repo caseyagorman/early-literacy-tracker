@@ -12,6 +12,7 @@ class AssignGroup extends React.Component {
   }
 
   displayAssignGroupForm(students, groups) {
+    console.log("GROUPS!", groups);
     if (students === null || students.students === null || groups === null) {
       return <p>loading...</p>;
     }

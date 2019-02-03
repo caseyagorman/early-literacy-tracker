@@ -966,11 +966,16 @@ def make_student_groups(current_user):
 @token_required
 def add_group(current_user):
     group_name = request.get_json()
-    user_id = current_user.public_id
-    new_group = Group(user_id=user_id, group_name=group_name)
-    db.session.add(new_group)
-    db.session.commit()
-    return jsonify(group_name)
+    if group_name != " " and group_name !="":
+        user_id = current_user.public_id
+        table = str.maketrans({key: None for key in string.punctuation})
+        group_name = group_name.translate(table) 
+        print("group_name", group_name)
+        new_group = Group(user_id=user_id, group_name=group_name)
+        db.session.add(new_group)
+        db.session.commit()
+        return jsonify(group_name)
+ 
 
 
 @app.route("/api/all-groups")
@@ -980,6 +985,7 @@ def get_all_groups():
     group_list = []
     for entry in groups:
         group_list.append(entry.group_name)
+    print("group list", group_list)
     end = time.time()
     elapsed_time = end - start
     print('getting student list took', elapsed_time)
@@ -1004,6 +1010,19 @@ def get_all_students(current_user):
     elapsed_time = end - start
     print('getting student list took', elapsed_time)
     return jsonify(student_list)
+
+@app.route("/api/delete-group", methods=['POST'])
+@token_required
+def delete_group(current_user):
+    group_name = request.get_json()
+    print("group name", group_name)
+    user_id = current_user.public_id
+    group = Group.query.filter_by(
+        group_name=group_name, user_id=user_id).first()
+    db.session.delete(group)
+    db.session.commit()
+    return 'group deleted!'
+
 
 if __name__ == "__main__":
 

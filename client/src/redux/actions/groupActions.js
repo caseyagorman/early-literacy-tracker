@@ -1,5 +1,5 @@
 import * as types from "./actionTypes";
-
+import history from "../../history";
 function assignGroupApi() {
   return "http://localhost:5000/api/assign-group";
 }
@@ -33,7 +33,9 @@ export function assignGroup(students, groupName, user) {
         "x-access-token": user
       },
       body: JSON.stringify({ students, groupName })
-    }).then(response => response.json());
+    })
+      .then(response => response.json())
+      .then(user => fetchGroups(user));
   };
 }
 
@@ -65,7 +67,10 @@ export function addGroup(groupName, user) {
       "x-access-token": user
     },
     body: JSON.stringify(groupName)
-  }).then(response => response.json());
+  })
+    .then(response => response.json())
+    .then(user => fetchGroups(user))
+    .then(() => history.push("/manage-groups"));
 }
 
 export function deleteGroup(group, user) {

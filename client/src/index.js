@@ -123,7 +123,7 @@ const AppRouter = () => (
         component={userIsAuthenticated(AssignReadingLevel)}
       />
       <Route
-        path="/manage-group/"
+        path="/manage-groups/"
         component={userIsAuthenticated(AssignGroup)}
       />
       <Route path="/create-group/" component={userIsAuthenticated(AddGroup)} />
