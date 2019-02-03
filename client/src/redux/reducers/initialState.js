@@ -37,5 +37,6 @@ export default {
     submittingTest: false
   },
   testResults: null,
-  readingLevels: null
+  readingLevels: null,
+  groups: null
 };

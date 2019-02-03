@@ -10,7 +10,6 @@ class AssignGroupForm extends Component {
     this.state = { groupName: "", value: [] };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.getOptions = this.getOptions.bind(this);
   }
 
@@ -18,9 +17,9 @@ class AssignGroupForm extends Component {
     event.preventDefault();
     console.log("state upon submit", this.state);
     let students = this.state.value;
-    let groupName = this.state.groupName;
+    let group = this.props.group;
     const user = this.props.auth.user.token;
-    this.props.groupActions.assignGroup(students, groupName, user);
+    this.props.groupActions.assignGroup(students, group, user);
   }
 
   handleChange(e) {
@@ -47,8 +46,8 @@ class AssignGroupForm extends Component {
       <AssignGroupFormPage
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
-        handleInputChange={this.handleInputChange}
         studentList={studentList}
+        group={this.props.group}
       />
     );
   }

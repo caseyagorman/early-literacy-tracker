@@ -940,7 +940,7 @@ def make_student_groups(current_user):
     data = request.get_json()
     students = data.get('students')
     group_name = data.get('groupName')
-    group = Group.query.filter_by(group_name=group_name, group_id=group_id, user_id=user_id).all()
+    group = Group.query.filter_by(group_name=group_name, user_id=user_id).all()
     existing_student_ids =[]
     student_list = Student.query.filter(Student.name.in_(students)).filter(Student.user_id == user_id).all()
     student_ids = [student.student_id for student in student_list]
@@ -977,12 +977,13 @@ def add_group(current_user):
 def get_all_groups():
     start = time.time()
     groups = Group.query.all()
+    group_list = []
     for entry in groups:
-        print(entry.group_name)
+        group_list.append(entry.group_name)
     end = time.time()
     elapsed_time = end - start
     print('getting student list took', elapsed_time)
-    return "cool"
+    return jsonify(group_list)
 
 
 @app.route("/api/all-students")

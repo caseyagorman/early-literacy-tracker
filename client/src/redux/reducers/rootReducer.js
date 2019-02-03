@@ -11,6 +11,7 @@ import studentUnassignedItems from "./studentUnassignedItemsReducer";
 // import itemUnassignedStudents from "./itemUnassignedStudentsReducer";
 import testResults from "./testResultsReducers";
 import readingLevels from "./readingLevelsReducers";
+import groups from "./groupReducers";
 const rootReducer = combineReducers({
   registerUser,
   auth,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   studentUnassignedItems,
   studentTest,
   testResults,
-  readingLevels
+  readingLevels,
+  groups
 });
 
 export default rootReducer;
