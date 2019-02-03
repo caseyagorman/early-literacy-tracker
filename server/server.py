@@ -988,17 +988,32 @@ def add_group(current_user):
 
 
 @app.route("/api/all-groups")
-def get_all_groups():
-    start = time.time()
-    groups = Group.query.all()
-    group_list = []
-    for entry in groups:
-        group_list.append(entry.group_name)
-    print("group list", group_list)
-    end = time.time()
-    elapsed_time = end - start
-    print('getting student list took', elapsed_time)
-    return jsonify(group_list)
+@token_required
+def get_all_groups(current_user):
+    user_id = current_user.public_id
+    groups = Group.query.filter_by(user_id=user_id).all()
+    group_dict = {}
+    for group in groups:
+        group_dict[group.group_id] = {'name': group.group_name}
+    print("group dict", group_dict)
+
+
+    student_groups = StudentGroup.query.filter_by(user_id=user_id).options(db.joinedload('groups')).options(db.joinedload('students')).all()
+
+    for entry in student_groups:
+        if entry.groups.group_id in group_dict:
+            if not group_dict[entry.groups.group_id].get('students'):
+                group_dict[entry.groups.group_id].update({'students': [entry.students.name]})
+            elif group_dict[entry.groups.group_id]['students']:
+                group_dict[entry.groups.group_id]['students'].append(entry.students.name)
+    print("group dict", group_dict)
+            
+     
+
+
+    
+    # print(group_dict)
+    return jsonify(group_dict)
 
 
 @app.route("/api/all-students")
@@ -1024,13 +1039,12 @@ def get_all_students(current_user):
 @token_required
 def delete_group(current_user):
     group_name = request.get_json()
-    print("group name", group_name)
     user_id = current_user.public_id
     group = Group.query.filter_by(
         group_name=group_name, user_id=user_id).first()
     db.session.delete(group)
     db.session.commit()
-    return 'group deleted!'
+    return "group deleted"
 
 @app.route("/api/group-detail/<group>")
 @token_required

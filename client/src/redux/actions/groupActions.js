@@ -51,6 +51,7 @@ export function assignGroup(students, groupName, user) {
 }
 
 export function fetchGroups(user) {
+  console.log("fetching groups");
   return dispatch => {
     return fetch(fetchGroupsApi(), {
       method: "GET",
@@ -103,15 +104,20 @@ export function addGroup(groupName, user) {
 
 export function deleteGroup(group, user) {
   return dispatch => {
-    return fetch(deleteGroupApi(), {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      },
-      body: JSON.stringify({ group })
-    }).then(groupType => console.log(groupType));
+    return (
+      fetch(deleteGroupApi(), {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-access-token": user
+        },
+        body: JSON.stringify(group)
+      })
+        // .then(response => response.json())
+        .then(() => dispatch(fetchGroups(user)))
+        .then(history.push("/manage-groups"))
+    );
   };
 }

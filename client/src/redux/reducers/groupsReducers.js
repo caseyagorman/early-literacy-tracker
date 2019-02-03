@@ -7,7 +7,7 @@ export default function groups(state = initialState.groups, action) {
       return action;
 
     case RECEIVE_GROUPS:
-      return Object.assign({}, state, action.groups);
+      return Object.assign({}, action.groups);
 
     default:
       return state;

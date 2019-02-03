@@ -7,9 +7,6 @@ const AssignGroupFormPage = props => (
       style={{ fontSize: 24, display: "inline-block", color: "#018f75" }}
       to={{
         pathname: `/group-detail/${props.group}`
-        // query: {
-        //   groupName: JSON.stringify(props.group)
-        // }
       }}
     >
       {props.group}
