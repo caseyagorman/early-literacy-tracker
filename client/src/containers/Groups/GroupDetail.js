@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as groupActions from "../../redux/actions/groupsActions";
+import * as groupActions from "../../redux/actions/groupActions";
 // import Deletegroup from "../Forms/Deletegroup";
 import GroupDetailPage from "../../components/Groups/GroupDetailPage";
-class groupDetail extends Component {
+class GroupDetail extends Component {
   componentDidMount() {
     const group = this.props.match.params.group;
     const user = this.props.auth.user.token;
-    this.props.groupsActions.fetchgroup(group, user);
+    this.props.groupActions.fetchGroup(group, user);
   }
 
-  displaygroupDetail(group) {
+  displayGroupDetail(group) {
     if (group === null) {
       return <div>loading...</div>;
     }
@@ -38,4 +38,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(groupDetail);
+)(GroupDetail);

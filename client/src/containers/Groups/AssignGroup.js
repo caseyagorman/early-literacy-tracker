@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentsActions from "../../redux/actions/studentsActions";
 import * as groupActions from "../../redux/actions/groupActions";
+import AssignGroupPage from "../../components/Groups/AssignGroupPage";
+
 class AssignGroup extends React.Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
@@ -16,9 +18,15 @@ class AssignGroup extends React.Component {
     if (students === null || students.students === null || groups === null) {
       return <p>loading...</p>;
     }
-    return Object.values(groups).map(group => (
-      <AssignGroupForm students={students} group={group} />
-    ));
+    return (
+      <div className="container">
+        <AssignGroupPage />
+        {Object.values(groups).map(group => (
+          <AssignGroupForm students={students} group={group} />
+        ))}
+        ;
+      </div>
+    );
   }
 
   render() {

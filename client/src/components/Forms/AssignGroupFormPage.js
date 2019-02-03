@@ -1,9 +1,14 @@
 import React from "react";
 import DeleteGroup from "../../containers/Forms/DeleteGroup";
-
+import { Link } from "react-router-dom";
 const AssignGroupFormPage = props => (
   <div style={{ fontFamily: "krub", display: "inline-block" }}>
-    <h1 style={{ display: "inline-block" }}>{props.group}</h1>
+    <Link
+      to={`/group-detail/${props.group}`}
+      style={{ fontSize: 24, display: "inline-block", color: "#018f75" }}
+    >
+      {props.group}
+    </Link>
     <DeleteGroup group={props.group} />
 
     <form
