@@ -14,10 +14,6 @@ function fetchGroupsApi() {
 function fetchGroupApi(group) {
   return `http://localhost:5000/api/group-detail/${group}`;
 }
-export function clearMessage() {
-  return { type: types.CLEAR_MESSAGE };
-}
-
 function deleteGroupApi() {
   return "http://localhost:5000/api/delete-group";
 }
@@ -86,22 +82,24 @@ export function fetchGroup(group, user) {
 }
 
 export function addGroup(groupName, user) {
-  console.log("groupName", groupName);
-  return fetch(addGroupApi(), {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "x-access-token": user
-    },
-    body: JSON.stringify(groupName)
-  })
-    .then(response => response.json())
-    .then(user => fetchGroups(user))
-    .then(() => history.push("/manage-groups"));
+  return dispatch => {
+    return (
+      fetch(addGroupApi(), {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-access-token": user
+        },
+        body: JSON.stringify(groupName)
+      })
+        // .then(response => response.json())
+        .then(() => dispatch(fetchGroups(user)))
+        .then(() => history.push("/manage-groups"))
+    );
+  };
 }
-
 export function deleteGroup(group, user) {
   return dispatch => {
     return (

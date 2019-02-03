@@ -13,10 +13,15 @@ const AssignGroupFormPage = props => (
     </Link>
     <DeleteGroup group={props.group.name} />
     <br />
-    Current members:
-    {props.group.students.map(student => (
-      <li>{student}</li>
-    ))}
+    <div style={{ height: props.maxGroupLength }}>
+      Current members:
+      <br />
+      <ul>
+        {props.group.students.map(student => (
+          <li style={{ listStyle: "none" }}>{student}</li>
+        ))}
+      </ul>
+    </div>
     <form
       onSubmit={props.handleSubmit}
       style={{ width: 250, fontFamily: "krub" }}

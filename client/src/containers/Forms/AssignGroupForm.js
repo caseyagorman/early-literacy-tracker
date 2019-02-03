@@ -16,7 +16,7 @@ class AssignGroupForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let students = this.state.value;
-    let group = this.props.group;
+    let group = this.props.group.name;
     const user = this.props.auth.user.token;
     this.props.groupActions.assignGroup(students, group, user);
   }
@@ -43,6 +43,7 @@ class AssignGroupForm extends Component {
         handleChange={this.handleChange}
         studentList={studentList}
         group={this.props.group}
+        maxGroupLength={this.props.maxGroupLength}
       />
     );
   }
