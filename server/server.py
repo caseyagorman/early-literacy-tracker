@@ -940,18 +940,16 @@ def make_student_groups(current_user):
     data = request.get_json()
     students = data.get('students')
     group_name = data.get('groupName')
-    existing_group = Group.query.filter_by(group_name=group_name, user_id=user_id).all()
+    group = Group.query.filter_by(group_name=group_name, group_id=group_id, user_id=user_id).all()
     existing_student_ids =[]
     student_list = Student.query.filter(Student.name.in_(students)).filter(Student.user_id == user_id).all()
     student_ids = [student.student_id for student in student_list]
-    for entry in existing_group:
-        existing_student_ids.append(entry.student_id)
     list_to_add = list(set(student_ids).difference(existing_student_ids))
     db.session.bulk_save_objects(
         [
-            Group(
-                group_name=group_name,
+            StudentGroup(
                 student_id=student,
+                group_id=group_id,
                 user_id=user_id
               
             )
