@@ -130,7 +130,9 @@ const AppRouter = () => (
       <Route path="/create-group/" component={userIsAuthenticated(AddGroup)} />
       <Route
         path="/group-detail/:group/"
-        component={userIsAuthenticated(GroupDetail)}
+        render={props => (
+          <GroupDetail key={props.match.params.group} {...props} />
+        )}
       />
     </div>
   </Router>

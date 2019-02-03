@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 const AssignGroupFormPage = props => (
   <div style={{ fontFamily: "krub", display: "inline-block" }}>
     <Link
-      to={`/group-detail/${props.group}`}
       style={{ fontSize: 24, display: "inline-block", color: "#018f75" }}
+      to={{
+        pathname: `/group-detail/${props.group}`
+        // query: {
+        //   groupName: JSON.stringify(props.group)
+        // }
+      }}
     >
       {props.group}
     </Link>

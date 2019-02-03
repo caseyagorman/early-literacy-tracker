@@ -14,6 +14,9 @@ function fetchGroupsApi() {
 function fetchGroupApi(group) {
   return `http://localhost:5000/api/group-detail/${group}`;
 }
+export function clearMessage() {
+  return { type: types.CLEAR_MESSAGE };
+}
 
 function deleteGroupApi() {
   return "http://localhost:5000/api/delete-group";

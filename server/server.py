@@ -1088,16 +1088,7 @@ def group_detail(current_user, group):
 
         return jsonify(group_data)
     else:
-        return jsonify({"message": "no students yet!"})
-
-
-
-
-    # group = {
-    #     'groupName': group_object.group_name,
-    #     'students': student_list
-    # }
-    return jsonify(group)
+        return jsonify({"message":"no students yet"})
 
 if __name__ == "__main__":
 

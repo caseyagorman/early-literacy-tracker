@@ -7,18 +7,15 @@ import { Link } from "react-router-dom";
 import GroupDetailPage from "../../components/Groups/GroupDetailPage";
 class GroupDetail extends Component {
   componentDidMount() {
+    console.log("group detail props", this.props);
     const group = this.props.match.params.group;
     const user = this.props.auth.user.token;
     this.props.groupActions.fetchGroup(group, user);
   }
 
   componentDidUpdate(prevProps) {
-    console.log(
-      "previous",
-      prevProps.match.params.group,
-      "current",
-      this.props.match.params.group
-    );
+    console.log("prev", prevProps);
+    console.log("this", this.props);
     if (prevProps.match.params.group !== this.props.match.params.group) {
       let user = this.props.auth.user.token;
       let group = this.props.match.params.group;
@@ -26,11 +23,8 @@ class GroupDetail extends Component {
     }
   }
   displayGroupDetail(group) {
-    console.log("group", group);
-    if (group === null) {
-      return <div>loading...</div>;
-    }
-    if (group.message) {
+    console.log(group, this.props.match.params);
+    if (group === null || group.message) {
       return (
         <div
           className="container"
