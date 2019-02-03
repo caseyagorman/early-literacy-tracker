@@ -11,6 +11,10 @@ function addGroupApi() {
 function fetchGroupsApi() {
   return "http://localhost:5000/api/all-groups";
 }
+
+function deleteGroupApi() {
+  return "http://localhost:5000/api/delete-group";
+}
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
 }
@@ -62,4 +66,19 @@ export function addGroup(groupName, user) {
     },
     body: JSON.stringify(groupName)
   }).then(response => response.json());
+}
+
+export function deleteGroup(group, user) {
+  return dispatch => {
+    return fetch(deleteGroupApi(), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      },
+      body: JSON.stringify({ group })
+    }).then(groupType => console.log(groupType));
+  };
 }
