@@ -963,6 +963,14 @@ def make_student_groups(current_user):
     
     return "groups"
 
+@app.route("/api/add-group", methods=['POST'])
+@token_required
+def add_group(current_user, ):
+    data = request.get_json()
+    user_id = current_user.public_id
+    return "added group!"
+
+    
 @app.route("/api/all-groups")
 def get_all_groups():
     start = time.time()
@@ -974,6 +982,7 @@ def get_all_groups():
     elapsed_time = end - start
     print('getting student list took', elapsed_time)
     return "cool"
+
 
 @app.route("/api/all-students")
 @token_required

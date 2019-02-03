@@ -33,6 +33,7 @@ import AssignReadingLevel from "./containers/ReadingLevel/AssignReadingLevel";
 import ResetPassword from "./containers/Users/ResetPassword";
 import ToastTest from "./containers/Toast/ToastTest";
 import AssignGroup from "./containers/Groups/AssignGroup";
+import AddGroup from "./containers/Forms/AddGroup";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -122,9 +123,10 @@ const AppRouter = () => (
         component={userIsAuthenticated(AssignReadingLevel)}
       />
       <Route
-        path="/create-group/"
+        path="/manage-group/"
         component={userIsAuthenticated(AssignGroup)}
       />
+      <Route path="/create-group/" component={userIsAuthenticated(AddGroup)} />
     </div>
   </Router>
 );

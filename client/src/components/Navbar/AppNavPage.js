@@ -5,9 +5,7 @@ import {
   Nav,
   MenuItem,
   NavDropdown,
-  Glyphicon,
-  OverlayTrigger,
-  Tooltip
+  Glyphicon
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./static/appNav.css";
@@ -91,8 +89,15 @@ const AppNavPage = props => {
               <LinkContainer to="/reading-level-charts/" id="Students">
                 <MenuItem id="Students">View Reading Level Charts</MenuItem>
               </LinkContainer>
-              <LinkContainer to="/item-charts/reading-level/" id="Students">
-                <MenuItem id="Students">Reading Strategies</MenuItem>
+            </NavDropdown>
+          </NavItem>
+          <NavItem id="Students">
+            <NavDropdown title="Groups" id="drop-down">
+              <LinkContainer to="/create-group/" id="Students">
+                <MenuItem id="Students">Create Group</MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/manage-group/" id="Students">
+                <MenuItem id="Students">Manage Groups</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </NavItem>
