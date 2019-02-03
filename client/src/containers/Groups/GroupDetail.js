@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as groupActions from "../../redux/actions/groupActions";
+import { Link } from "react-router-dom";
 // import Deletegroup from "../Forms/Deletegroup";
 import GroupDetailPage from "../../components/Groups/GroupDetailPage";
 class GroupDetail extends Component {
@@ -11,9 +12,40 @@ class GroupDetail extends Component {
     this.props.groupActions.fetchGroup(group, user);
   }
 
+  componentDidUpdate(prevProps) {
+    console.log(
+      "previous",
+      prevProps.match.params.group,
+      "current",
+      this.props.match.params.group
+    );
+    if (prevProps.match.params.group !== this.props.match.params.group) {
+      let user = this.props.auth.user.token;
+      let group = this.props.match.params.group;
+      this.props.groupActions.fetchGroup(group, user);
+    }
+  }
   displayGroupDetail(group) {
+    console.log("group", group);
     if (group === null) {
       return <div>loading...</div>;
+    }
+    if (group.message) {
+      return (
+        <div
+          className="container"
+          style={{ textAlign: "center", fontFamily: "krub", color: "black" }}
+        >
+          <h1>No students yet!</h1>
+          <br />
+          <Link
+            style={{ fontSize: 24, color: "#018f75" }}
+            to={"/manage-groups/"}
+          >
+            Add students to group
+          </Link>
+        </div>
+      );
     }
     return <GroupDetailPage group={group} />;
   }

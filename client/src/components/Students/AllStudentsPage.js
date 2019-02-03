@@ -6,6 +6,7 @@ import "./static/students.css";
 import AllStudentsInstructions from "./AllStudentsInstructions";
 const AllStudentsPage = props => (
   <div className="container">
+    {console.log("students", props.students)}
     <div style={{ fontFamily: "Krub" }}>
       <AllStudentsInstructions student={props.student} />
       <br />
