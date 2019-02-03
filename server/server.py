@@ -1037,20 +1037,45 @@ def group_detail(current_user, group):
     for student in student_group:
        student_list.append(student.students.name)
        student_ids.append(student.student_id)
-    student_items_dict ={}
+    
+    common_words = None
+    all_words = set()
+    common_letters = None
+    all_letters = set()
+    common_sounds = None
+    all_sounds = set()
     for student in student_ids:
         student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student).first()
-        student_items = StudentItem.query.filter_by(user_id=user_id, student_id=student, item_type="words").options(db.joinedload('students')).options(db.joinedload('items')).all()
-        
-        for item in student_items:
-            if item.students.name not in student_items_dict:
-                student_items_dict[item.students.name] = ["words"] 
-                print(student_items_dict)
-                student_items_dict[item.students.name]["words"] = item.items.item
-            elif item.students.name in student_items_dict:
-                student_items_dict[items.student.names]["words"].append(item.items.item)
-    print("student_items_dict", student_items_dict)
-    return jsonify(student_items_dict)
+        student_words = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="words").options(db.joinedload('students')).options(db.joinedload('items')).all()
+
+        student_list = []
+        for word in student_words:
+            student_list.append(word.items.item)
+        student_set = set(student_list)
+        all_words = all_words | student_set
+        common_words = common_words & student_set if common_words else student_set
+
+        student_letters = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="letters").options(db.joinedload('students')).options(db.joinedload('items')).all()
+        student_list = []
+        for letter in student_letters:
+            student_list.append(letter.items.item)
+        student_set = set(student_list)
+        all_letters = all_letters | student_set
+        common_letters = common_letters & student_set if common_letters else student_set
+
+        student_sounds = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="sounds").options(db.joinedload('students')).options(db.joinedload('items')).all()
+        student_list = []
+        for sound in student_sounds:
+            student_list.append(sound.items.item)
+        student_set = set(student_list)
+        all_sounds = all_sounds | student_set
+        common_sounds = common_sounds & student_set if common_sounds else student_set
+     
+    print(common_words, common_sounds, common_letters)
+    common_words = list(common_words)
+    common_letters = list(common_letters)
+    common_sounds = list(common_sounds)
+    return jsonify([common_words, common_sounds, common_letters])
     
 
 
