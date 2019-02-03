@@ -11,6 +11,9 @@ function addGroupApi() {
 function fetchGroupsApi() {
   return "http://localhost:5000/api/all-groups";
 }
+function fetchGroupApi(group) {
+  return `http://localhost:5000/api/group-detail/${group}`;
+}
 
 function deleteGroupApi() {
   return "http://localhost:5000/api/delete-group";
@@ -20,6 +23,10 @@ export function receiveStudent(student) {
 }
 export function receiveGroups(groups) {
   return { type: types.RECEIVE_GROUPS, groups: groups };
+}
+
+export function receiveGroup(group) {
+  return { type: types.RECEIVE_GROUP, group: group };
 }
 export function assignGroup(students, groupName, user) {
   return dispatch => {
@@ -54,6 +61,23 @@ export function fetchGroups(user) {
     })
       .then(response => response.json())
       .then(groups => dispatch(receiveGroups(groups)));
+  };
+}
+
+export function fetchGroup(group, user) {
+  return dispatch => {
+    return fetch(fetchGroupApi(group), {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+
+        "x-access-token": user
+      }
+    })
+      .then(response => response.json())
+      .then(group => dispatch(receiveGroup(group)));
   };
 }
 

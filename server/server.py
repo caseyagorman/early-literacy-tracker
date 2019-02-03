@@ -940,7 +940,7 @@ def make_student_groups(current_user):
     data = request.get_json()
     students = data.get('students')
     group_name = data.get('groupName')
-    group = Group.query.filter_by(group_name=group_name, user_id=user_id).all()
+    group = Group.query.filter_by(group_name=group_name, user_id=user_id).first()
     existing_student_ids =[]
     student_list = Student.query.filter(Student.name.in_(students)).filter(Student.user_id == user_id).all()
     student_ids = [student.student_id for student in student_list]
@@ -949,7 +949,7 @@ def make_student_groups(current_user):
         [
             StudentGroup(
                 student_id=student,
-                group_id=group_id,
+                group_id=group.group_id,
                 user_id=user_id
               
             )
@@ -1023,6 +1023,23 @@ def delete_group(current_user):
     db.session.commit()
     return 'group deleted!'
 
+@app.route("/api/group-detail/<group>")
+@token_required
+def group_detail(current_user, group):
+    """Display group and students in that group"""
+    user_id = current_user.public_id
+    group_object = Group.query.filter_by(group_name=group, user_id=user_id).first()
+    group_id = group_object.group_id
+    student_group = StudentGroup.query.filter_by(
+        group_id=group_id).options(db.joinedload('students')).all()
+    student_list = []
+    for student in student_group:
+       student_list.append(student.students.name)
+    group = {
+        'groupName': group_object.group_name,
+        'students': student_list
+    }
+    return jsonify(group)
 
 if __name__ == "__main__":
 
