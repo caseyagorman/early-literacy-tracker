@@ -35,6 +35,7 @@ export function assignGroup(students, groupName, user) {
       body: JSON.stringify({ students, groupName })
     })
       .then(response => response.json())
+      .then(() => alert("added!"))
       .then(user => fetchGroups(user));
   };
 }

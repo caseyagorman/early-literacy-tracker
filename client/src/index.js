@@ -34,6 +34,7 @@ import ResetPassword from "./containers/Users/ResetPassword";
 import ToastTest from "./containers/Toast/ToastTest";
 import AssignGroup from "./containers/Groups/AssignGroup";
 import AddGroup from "./containers/Forms/AddGroup";
+import GroupDetail from "./containers/Groups/GroupDetail";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
@@ -127,6 +128,10 @@ const AppRouter = () => (
         component={userIsAuthenticated(AssignGroup)}
       />
       <Route path="/create-group/" component={userIsAuthenticated(AddGroup)} />
+      <Route
+        path="/group-detail/:group/"
+        component={userIsAuthenticated(GroupDetail)}
+      />
     </div>
   </Router>
 );

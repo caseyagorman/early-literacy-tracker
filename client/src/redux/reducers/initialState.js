@@ -38,5 +38,6 @@ export default {
   },
   testResults: null,
   readingLevels: null,
-  groups: null
+  groups: null,
+  group: null
 };

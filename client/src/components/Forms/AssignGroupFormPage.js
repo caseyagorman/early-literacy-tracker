@@ -2,21 +2,19 @@ import React from "react";
 import DeleteGroup from "../../containers/Forms/DeleteGroup";
 
 const AssignGroupFormPage = props => (
-  <div style={{ fontFamily: "krub" }}>
-    <div>
-      <h1>{props.group}</h1>
-      <DeleteGroup group={props.group} />
-    </div>
+  <div style={{ fontFamily: "krub", display: "inline-block" }}>
+    <h1 style={{ display: "inline-block" }}>{props.group}</h1>
+    <DeleteGroup group={props.group} />
+
     <form
       onSubmit={props.handleSubmit}
-      style={{ float: "left", width: 250, fontFamily: "krub" }}
+      style={{ width: 250, fontFamily: "krub" }}
     >
       <label id="form-label" />
       <br />
       <select
         style={{
           fontSize: 18,
-          verticalAlign: "bottom",
           width: 200,
           minHeight: 500
         }}
@@ -28,7 +26,6 @@ const AssignGroupFormPage = props => (
           <option key={student}>{student.name}</option>
         ))}
       </select>
-      <input name="groupName" onChange={props.handleInputChange} type="text" />
       <br />
       <button
         style={{
