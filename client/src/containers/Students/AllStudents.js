@@ -19,6 +19,7 @@ class AllStudents extends Component {
     if (students.students === null) {
       return <div>loading...</div>;
     }
+    console.log(students);
     return (
       <AllStudentsPage
         studentTestActions={this.props.studentTestActions}

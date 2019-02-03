@@ -48,6 +48,8 @@ class Student(db.Model):
         'User')
     studentitems = db.relationship(
         'StudentItem', cascade="save-update, merge, delete")
+    groups = db.relationship(
+        'Group', cascade="save-update, merge, delete")
     readinglevels = db.relationship(
         'ReadingLevel', cascade="save-update, merge, delete")
     studenttestresults = db.relationship(
@@ -71,11 +73,23 @@ class ReadingLevel(db.Model):
     users = db.relationship(
         'User')
 
+class Group(db.Model):
+    __tablename__ = "groups"
+    group_id = db.Column(
+        db.Integer, autoincrement=True, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey(
+        'students.student_id'), nullable=False)
+    group_name = db.Column(db.String(100), nullable=False, unique=True)
+    user_id = db.Column(db.String(50), db.ForeignKey(
+        'users.public_id'), nullable=False)
+    students = db.relationship(
+        'Student')
+    users = db.relationship(
+        'User')
+
 class Item(db.Model):
     """table of items"""
-
     __tablename__ = "items"
-
     item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_type = db.Column(db.String(25), nullable=False)
     item = db.Column(db.String(25), nullable=False)

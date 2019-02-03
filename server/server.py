@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
 from functools import wraps
-from model import Student, Item, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
+from model import Student, Item, Group, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
 mail = None
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -180,7 +180,6 @@ def get_student_reading_leels(current_user):
     user_id = current_user.public_id
     reading_levels = ReadingLevel.query.filter_by(user_id=user_id).options(
     db.joinedload('students')).filter_by(user_id=user_id).all()
-    print("reading_levels", reading_levels)
     reading_level_dict = {}
     for entry in reading_levels:
         if entry.reading_level not in reading_level_dict:
@@ -288,7 +287,6 @@ def item_detail(current_user, item_type, item):
         'date': item_object.date_added,
         'itemType': item_object.item_type
     }
-    # student_list = sorted(student_list, key=itemgetter('name')) 
     item_detail['unlearnedStudentList'] = unlearned_student_list
     item_detail['learnedStudentList'] = learned_student_list
     item_detail['item'] = item_object
@@ -509,7 +507,7 @@ def get_students(current_user):
     start = time.time()
     user_id = current_user.public_id
     students = Student.query.filter_by(user_id=user_id).options(
-        db.joinedload('studentitems')).options(db.joinedload('readinglevels')).all()
+        db.joinedload('studentitems')).options(db.joinedload('groups')).options(db.joinedload('readinglevels')).all()
     student_list = []
     all_student_word_counts = []
     all_student_letter_counts = []
@@ -523,6 +521,10 @@ def get_students(current_user):
             reading_level = student.readinglevels[0].reading_level
             last_reading_update = student.readinglevels[0].update_date.strftime("%a, %b %d")
             print("yes reading level ", reading_level)
+        if student.groups == []: 
+                group = ""
+        else:
+            group = student.groups[0].group_name
     
  
         last_word_test = get_test_dates(student.student_id, "words")
@@ -571,7 +573,8 @@ def get_students(current_user):
             'allStudentLetterCounts': all_student_letter_counts,
             'allStudentSoundCounts': all_student_sound_counts,
             'readingLevel': reading_level,
-            'lastReadingLevelUpdate': last_reading_update
+            'lastReadingLevelUpdate': last_reading_update,
+            'group': group
         }
         student_list.append(student)
     end = time.time()
@@ -926,6 +929,70 @@ def mark_items_unlearned(current_user):
     student_item.Learned = False
     db.session.commit()
     return jsonify(student_id)
+
+
+
+@app.route("/api/assign-group", methods=["POST"])
+@token_required
+def make_student_groups(current_user):
+    user_id = current_user.public_id
+    data = request.get_json()
+    students = data.get('students')
+    group_name = data.get('groupName')
+    existing_group = Group.query.filter_by(group_name=group_name, user_id=user_id).all()
+    existing_student_ids =[]
+    student_list = Student.query.filter(Student.name.in_(students)).filter(Student.user_id == user_id).all()
+    student_ids = [student.student_id for student in student_list]
+    for entry in existing_group:
+        existing_student_ids.append(entry.student_id)
+    list_to_add = list(set(student_ids).difference(existing_student_ids))
+    db.session.bulk_save_objects(
+        [
+            Group(
+                group_name=group_name,
+                student_id=student,
+                user_id=user_id
+              
+            )
+            for student in list_to_add
+        ]
+    )    
+    db.session.commit()
+    return jsonify(data)
+
+    
+    return "groups"
+
+@app.route("/api/all-groups")
+def get_all_groups():
+    start = time.time()
+    groups = Group.query.all()
+    for entry in groups:
+        print(entry.student_id)
+        print(entry.group_name)
+    end = time.time()
+    elapsed_time = end - start
+    print('getting student list took', elapsed_time)
+    return "cool"
+
+@app.route("/api/all-students")
+@token_required
+def get_all_students(current_user):
+    start = time.time()
+    user_id = current_user.public_id
+    students = Student.query.filter_by(user_id=user_id).all()
+    student_list = []
+    for student in students:
+        student_to_add = {
+            'name': student.name,
+            'studentId': student.student_id
+        }
+        student_list.append(student_to_add)
+
+    end = time.time()
+    elapsed_time = end - start
+    print('getting student list took', elapsed_time)
+    return jsonify(student_list)
 
 if __name__ == "__main__":
 

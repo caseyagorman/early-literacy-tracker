@@ -5,6 +5,10 @@ function getStudentsApi() {
   return "http://localhost:5000/api/students";
 }
 
+function getStudentNamesApi() {
+  return "http://localhost:5000/api/all-students";
+}
+
 function addItemToNewStudentApi() {
   return "http://localhost:5000/api/add-items-to-new-students";
 }
@@ -106,5 +110,21 @@ export function deleteStudent(student, user) {
     })
       .then(() => dispatch(fetchStudents(user)))
       .then(() => history.push("/students"));
+  };
+}
+
+export function fetchStudentNames(user) {
+  return dispatch => {
+    return fetch(getStudentNamesApi(user), {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": user
+      }
+    })
+      .then(response => response.json())
+      .then(students => dispatch(receiveStudents(students)));
   };
 }
