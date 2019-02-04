@@ -6,8 +6,8 @@ import { Grid, Col, Row } from "react-bootstrap";
 const GroupDetailPage = props => (
   <div className="container" style={{ fontFamily: "krub" }}>
     <Grid>
-      <Row style={{ textAlign: "center", marginBottom: 50, fontSize: 50 }}>
-        <h1>{props.group.name}</h1>
+      <Row style={{ textAlign: "center", marginBottom: 50 }}>
+        <h1 style={{ marginLeft: -150, fontSize: 50 }}>{props.group.name}</h1>
       </Row>
       <Row>
         <div
@@ -26,7 +26,7 @@ const GroupDetailPage = props => (
             </h4>
             <ul>
               {Object.entries(props.group.readingLevels).map(student => (
-                <li style={{ fontColor: "black", fontSize: 18 }}>
+                <li style={{ fontColor: "black", fontSize: 26 }}>
                   {student[0]}, level: {student[1]}
                 </li>
               ))}
