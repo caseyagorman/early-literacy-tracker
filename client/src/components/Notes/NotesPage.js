@@ -15,7 +15,7 @@ const NotesPage = props => (
 
           <td>{note.note} </td>
           <td>
-            <DeleteNote note={note} />
+            <DeleteNote group={props.group.name} note={note} />
           </td>
         </tr>
       ))}

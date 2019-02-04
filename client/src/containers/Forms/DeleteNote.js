@@ -30,8 +30,11 @@ class DeleteNote extends Component {
 
   handleSubmit() {
     const user = this.props.auth.user.token;
-    const note = this.props.note;
-    this.props.groupActions.deleteNote(note.note, user);
+    const group = this.props.group;
+    console.log("group", group);
+    let note = this.props.note;
+    note = note.note;
+    this.props.groupActions.deleteNote(note, user, group);
   }
   submit = event => {
     event.preventDefault();

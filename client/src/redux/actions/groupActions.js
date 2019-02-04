@@ -22,8 +22,8 @@ function addNoteApi() {
   return `http://localhost:5000/api/add-note`;
 }
 
-function deleteNoteApi(group) {
-  return `http://localhost:5000/api/delete-note${group}`;
+function deleteNoteApi() {
+  return "http://localhost:5000/api/delete-note";
 }
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
@@ -150,7 +150,8 @@ export function addNote(note, group, user) {
   };
 }
 
-export function deleteNote(note, user) {
+export function deleteNote(note, user, group) {
+  console.log(note);
   return dispatch => {
     return (
       fetch(deleteNoteApi(), {
@@ -164,7 +165,8 @@ export function deleteNote(note, user) {
         body: JSON.stringify(note)
       })
         // .then(response => response.json())
-        .then(() => dispatch(fetchGroup(user)))
+        .then(() => dispatch(fetchGroup(group, user)))
+        .then(history.push(`/group-detail/${group}`))
     );
   };
 }

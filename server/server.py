@@ -1140,6 +1140,17 @@ def add_note(current_user):
         return jsonify(note)
     else:
         return jsonify({"error": "no note"})
+
+@app.route("/api/delete-note", methods=['POST'])
+@token_required
+def delete_note(current_user):
+    note = request.get_json()
+    user_id = current_user.public_id
+    note = GroupNote.query.filter_by(
+        note=note, user_id=user_id).first()
+    db.session.delete(note)
+    db.session.commit()
+    return "deleted"
 if __name__ == "__main__":
 
     app.debug = True
