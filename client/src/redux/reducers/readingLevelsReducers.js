@@ -13,6 +13,7 @@ export default function readingLevels(
       return action;
 
     case RECEIVE_READING_LEVELS:
+      state = initialState.readingLevels;
       return Object.assign({}, state, action.readingLevels);
     default:
       return state;
