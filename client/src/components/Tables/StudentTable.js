@@ -13,6 +13,7 @@ const StudentTable = (
     <thead>
       <tr>
         <th onClick={e => onSort(e, "name")}>Name</th>
+        <th onClick={e => onSort(e, "readingLevel")}>Group Name</th>
         <th onClick={e => onSort(e, "readingLevel")}>Reading Level</th>
         <th onClick={e => onSort(e, "lastWordTest")}>Last Reading Update</th>
         <th onClick={e => onSort(e, "wordCount")}>Words Learned</th>
@@ -38,6 +39,7 @@ const StudentTable = (
               </OverlayTrigger>
               <DeleteStudent student={student.studentId} />
             </td>
+            <td>{student.group}</td>
             <td>{student.readingLevel}</td>
             <td>
               {" "}

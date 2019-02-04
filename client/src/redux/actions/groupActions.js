@@ -47,7 +47,6 @@ export function assignGroup(students, groupName, user) {
 }
 
 export function fetchGroups(user) {
-  console.log("fetching groups");
   return dispatch => {
     return fetch(fetchGroupsApi(), {
       method: "GET",

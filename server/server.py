@@ -521,12 +521,11 @@ def get_students(current_user):
         else:
             reading_level = student.readinglevels[0].reading_level
             last_reading_update = student.readinglevels[0].update_date.strftime("%a, %b %d")
-            print("yes reading level ", reading_level)
-        # if student.studentgroups == []: 
-        #         group = ""
-        # else:
-        #     group = student.studentgroups[0].group_name
-    
+        if student.studentgroups == []: 
+                group_name = ""
+        else:
+            group = Group.query.filter_by(user_id=user_id, group_id=student.studentgroups[0].group_id).first()
+            group_name = group.group_name
  
         last_word_test = get_test_dates(student.student_id, "words")
         last_letter_test = get_test_dates(student.student_id, "letters")
@@ -575,7 +574,7 @@ def get_students(current_user):
             'allStudentSoundCounts': all_student_sound_counts,
             'readingLevel': reading_level,
             'lastReadingLevelUpdate': last_reading_update,
-            # 'group': group
+            'group': group_name
         }
         student_list.append(student)
     end = time.time()

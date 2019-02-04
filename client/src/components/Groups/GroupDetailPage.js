@@ -6,7 +6,7 @@ const GroupDetailPage = props => (
     <ul>
       {Object.entries(props.group.readingLevels).map(student => (
         <li style={{ fontColor: "black", fontSize: 24 }}>
-          {student[0]}, level {student[1]}
+          {student[0]}, level: {student[1]}
         </li>
       ))}
     </ul>
