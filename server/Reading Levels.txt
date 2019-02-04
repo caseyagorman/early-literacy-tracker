@@ -1,4 +1,4 @@
-<select reading level>
+<assign reading level>
 0
 A
 B

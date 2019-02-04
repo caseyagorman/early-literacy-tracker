@@ -1,8 +1,21 @@
 import React from "react";
-
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const StudentSnapshot = props => (
   <div style={{ fontSize: 18 }}>
-    {props.groupSentence}
+    {console.log("student snapshot props", props)}
+    <OverlayTrigger
+      placement={"top"}
+      overlay={
+        <Tooltip>
+          View {props.student.student.name.split(" ")[0]}'s group
+        </Tooltip>
+      }
+    >
+      <Link to={`/group-detail/${props.student.group}`}>
+        {props.groupSentence}
+      </Link>
+    </OverlayTrigger>
     <br />
     {props.readingSentence}
     <br />
