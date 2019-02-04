@@ -1,7 +1,7 @@
 import React from "react";
 import GroupTable from "../Tables/GroupTable";
 import AddNoteForm from "../../containers/Forms/AddNoteForm";
-import Notes from "../Notes/NotesPage";
+import NotesPage from "../Notes/NotesPage";
 import { Grid, Col, Row } from "react-bootstrap";
 const GroupDetailPage = props => (
   <div className="container" style={{ fontFamily: "krub" }}>
@@ -23,7 +23,7 @@ const GroupDetailPage = props => (
         </div>
         <Col>
           <div style={{ float: "right", marginRight: 200, marginTop: -40 }}>
-            <Notes group={props.group} />
+            <NotesPage group={props.group} />
             <AddNoteForm group={props.group} />
           </div>
         </Col>
