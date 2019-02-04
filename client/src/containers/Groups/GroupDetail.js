@@ -22,6 +22,21 @@ class GroupDetail extends Component {
       this.props.groupActions.fetchGroup(group, user);
     }
   }
+
+  getReadingLevels(group) {
+    console.log("group in reading levels", group.readingLevels, group.students);
+    let readingLevels = Object.keys(group.readingLevels);
+    console.log("reading levels", readingLevels);
+    console.log("students", group.students);
+    let unique1 = readingLevels.filter(o => group.students.indexOf(o) === -1);
+    let unique2 = group.students.filter(o => readingLevels.indexOf(o) === -1);
+    const noLevels = unique1.concat(unique2);
+    let newReadingLevels = group.readingLevels;
+    for (let i = 0; i < noLevels.length; i++) {
+      newReadingLevels[noLevels[i]] = "no level yet";
+    }
+    console.log("new reading levels", newReadingLevels);
+  }
   displayGroupDetail(group) {
     console.log(group, this.props.match.params);
     if (group === null || group.message) {
@@ -41,6 +56,8 @@ class GroupDetail extends Component {
         </div>
       );
     }
+    let readingLevels = this.getReadingLevels(group);
+    console.log("reading levels", readingLevels);
     return <GroupDetailPage group={group} />;
   }
 

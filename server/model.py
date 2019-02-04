@@ -27,6 +27,14 @@ class User(db.Model):
         'StudentItem', cascade="save-update, merge, delete")
     studenttestresults = db.relationship(
         'StudentTestResult', cascade="save-update, merge, delete")
+    studentgroups = db.relationship(
+        'StudentGroup', cascade="save-update, merge, delete")
+    groups = db.relationship(
+        'Group', cascade="save-update, merge, delete")
+    groupnotes = db.relationship(
+        'GroupNote', cascade="save-update, merge, delete")
+    readinglevels = db.relationship(
+        'ReadingLevel', cascade="save-update, merge, delete")
 
 
     def __repr__(self):
@@ -84,6 +92,8 @@ class Group(db.Model):
         'User')
     studentgroups = db.relationship(
         'StudentGroup', cascade="save-update, merge, delete")
+    groupnotes = db.relationship(
+        'GroupNote', cascade="save-update, merge, delete")
 
 class StudentGroup(db.Model):
     __tablename__ = "studentgroups"
@@ -101,6 +111,21 @@ class StudentGroup(db.Model):
         'User')
     groups = db.relationship(
         'Group')
+
+class GroupNote(db.Model):
+    __tablename__ = "groupnotes"
+    group_notes_id = db.Column(
+        db.Integer, autoincrement=True, primary_key=True)
+    group_id = db.Column(db.Integer, db.ForeignKey(
+        'groups.group_id'), nullable=False)
+    user_id = db.Column(db.String(50), db.ForeignKey(
+        'users.public_id'), nullable=False)
+    note = db.Column(db.String(200), nullable=False, unique=True)
+    users = db.relationship(
+        'User')
+    groups = db.relationship(
+        'Group')
+
 
 class Item(db.Model):
     """table of items"""

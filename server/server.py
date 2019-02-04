@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
 from functools import wraps
-from model import Student, StudentGroup, Item, Group, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
+from model import Student, StudentGroup, Item, Group, GroupNote, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
 mail = None
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -975,15 +975,21 @@ def remove_from_previous_group(student_list, user_id):
 @token_required
 def add_group(current_user):
     group_name = request.get_json()
-    if group_name != " " and group_name !="":
-        user_id = current_user.public_id
-        table = str.maketrans({key: None for key in string.punctuation})
-        group_name = group_name.translate(table) 
-        print("group_name", group_name)
-        new_group = Group(user_id=user_id, group_name=group_name)
-        db.session.add(new_group)
-        db.session.commit()
-        return jsonify(group_name)
+    user_id = current_user.public_id
+    print(group_name)
+    existing_group = Group.query.filter_by(user_id=user_id, group_name=group_name).first()
+    if existing_group:
+        return jsonify({"error": "group already exists"})
+    elif not existing_group: 
+        if group_name != " " and group_name !="":
+            table = str.maketrans({key: None for key in string.punctuation})
+            group_name = group_name.translate(table) 
+            new_group = Group(user_id=user_id, group_name=group_name)
+            db.session.add(new_group)
+            db.session.commit()
+            return jsonify(group_name)
+        else:
+            return jsonify({"error": "no group name"})
  
 
 
@@ -1042,6 +1048,8 @@ def group_detail(current_user, group):
     user_id = current_user.public_id
     group_object = Group.query.filter_by(group_name=group, user_id=user_id).first()
     group_id = group_object.group_id
+    group_notes = GroupNote.query.filter_by(group_id=group_id, user_id=user_id).all()
+    notes = [note.note for note in group_notes]
     student_group = StudentGroup.query.filter_by(
         group_id=group_id).options(db.joinedload('students')).all()
     if student_group: 
@@ -1094,7 +1102,8 @@ def group_detail(current_user, group):
             'words' : list(common_words),
             'letters': list(common_letters),
             'sounds': list(common_sounds),
-            'readingLevels': reading_levels
+            'readingLevels': reading_levels,
+            'notes': notes
         }
         print(group_data)
 

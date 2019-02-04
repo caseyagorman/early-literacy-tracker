@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as groupActions from "../../redux/actions/groupActions";
 import AddGroupForm from "../../components/Forms/AddGroupForm";
-
+import { bindActionCreators } from "redux";
 class AddGroup extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +11,9 @@ class AddGroup extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    console.log("add group", this.props);
+  }
   handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
@@ -41,8 +44,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    groupActions: groupActions,
-    dispatch
+    groupActions: bindActionCreators(groupActions, dispatch)
   };
 }
 

@@ -40,9 +40,9 @@ export function assignGroup(students, groupName, user) {
       },
       body: JSON.stringify({ students, groupName })
     })
-      .then(response => response.json())
       .then(() => alert("added!"))
-      .then(user => fetchGroups(user));
+      .then(() => dispatch(fetchGroups(user)))
+      .then(() => history.push("/manage-groups"));
   };
 }
 
@@ -100,6 +100,7 @@ export function addGroup(groupName, user) {
     );
   };
 }
+
 export function deleteGroup(group, user) {
   return dispatch => {
     return (

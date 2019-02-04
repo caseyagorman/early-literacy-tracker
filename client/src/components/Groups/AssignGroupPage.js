@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AssignGroupPage = props => (
   <div style={{ fontFamily: "krub" }}>
-    <h1>Assign group.</h1>
+    <h1>Assign students to groups</h1>
     <br />
     <p>
       Hold down shift to select multiple adjacent students.

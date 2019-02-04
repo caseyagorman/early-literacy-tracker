@@ -97,7 +97,7 @@ const AppNavPage = props => {
                 <MenuItem id="Students">Create Group</MenuItem>
               </LinkContainer>
               <LinkContainer to="/manage-groups/" id="Students">
-                <MenuItem id="Students">Manage Groups</MenuItem>
+                <MenuItem id="Students"> View/Manage Groups</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </NavItem>
