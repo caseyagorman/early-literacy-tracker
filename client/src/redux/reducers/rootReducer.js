@@ -13,6 +13,7 @@ import testResults from "./testResultsReducers";
 import readingLevels from "./readingLevelsReducers";
 import groups from "./groupsReducers";
 import group from "./groupReducers";
+import notes from "./notesReducers";
 const rootReducer = combineReducers({
   registerUser,
   auth,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   testResults,
   readingLevels,
   groups,
-  group
+  group,
+  notes
 });
 
 export default rootReducer;

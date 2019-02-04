@@ -1,5 +1,6 @@
 import React from "react";
 import GroupTable from "../Tables/GroupTable";
+import AddNoteForm from "../../containers/Forms/AddNoteForm";
 const GroupDetailPage = props => (
   <div className="container" style={{ fontFamily: "krub" }}>
     <h1>{props.group.name}</h1>
@@ -13,6 +14,7 @@ const GroupDetailPage = props => (
     <br />
     <h4>Shared words, letters, and sounds</h4>
     <br />
+    <AddNoteForm />
     <GroupTable group={props.group} />
   </div>
 );

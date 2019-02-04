@@ -629,6 +629,13 @@ def student_detail(current_user, student_id):
         'student_id': student_object.student_id,
         'name': student_object.name
     }
+    group = StudentGroup.query.filter_by(student_id=student_id, user_id=user_id).options(db.joinedload("groups")).first()
+    if group == []:
+        group = ""
+    if not group:
+        group = ""
+    else:
+        group = group.groups.group_name
     if reading_level == []:
         new_reading_level = ""
         last_reading_update = "N/A"
@@ -718,6 +725,7 @@ def student_detail(current_user, student_id):
     student_object['lastSoundTest'] = sound_test
     student_object['readingLevel'] = new_reading_level
     student_object['lastReadingUpdate'] = last_reading_update
+    student_object['group'] = group
     end = time.time()
     elapsed_time = end - start
     print('getting student detail took', elapsed_time)

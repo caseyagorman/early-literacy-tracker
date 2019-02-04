@@ -22,6 +22,7 @@ const AssignGroupFormPage = props => (
         ))}
       </ul>
     </div>
+    <br />
     <form
       onSubmit={props.handleSubmit}
       style={{ width: 250, fontFamily: "krub" }}

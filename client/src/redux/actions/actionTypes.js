@@ -38,4 +38,5 @@ export const FETCH_GROUPS = "FETCH_GROUPS";
 export const RECEIVE_GROUPS = "RECEIVE_GROUPS";
 export const FETCH_GROUP = "FETCH_GROUP";
 export const RECEIVE_GROUP = "RECEIVE_GROUP";
-export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const RECEIVE_NOTES = "RECEIVE_NOTES";
+export const FETCH_NOTES = "FETCH_NOTES";

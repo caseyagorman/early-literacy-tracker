@@ -2,6 +2,8 @@ import React from "react";
 
 const StudentSnapshot = props => (
   <div style={{ fontSize: 18 }}>
+    {props.groupSentence}
+    <br />
     {props.readingSentence}
     <br />
     {props.student.student.name.split(" ")[0]} knows

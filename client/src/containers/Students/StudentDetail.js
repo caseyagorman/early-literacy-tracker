@@ -55,6 +55,16 @@ class StudentDetail extends Component {
     }
     return sentenceList;
   }
+  getGroup(student) {
+    let groupSentence;
+    let name = this.props.student.student.name.split(" ")[0];
+    if (student.group) {
+      groupSentence = `${name} is in the ${student.group}.`;
+    } else {
+      groupSentence = `${name} has no assigned group yet.`;
+    }
+    return groupSentence;
+  }
 
   displayStudentDetailPage(student, tests, students) {
     if (!student || !students || !tests) {
@@ -65,9 +75,11 @@ class StudentDetail extends Component {
     }
     let testSentences = this.getTestSentence(tests);
     let readingSentence = this.getReadingSentence(student);
+    let groupSentence = this.getGroup(student);
 
     return (
       <StudentDetailPage
+        groupSentence={groupSentence}
         students={students}
         tests={tests}
         student={student}

@@ -11,6 +11,7 @@ const StudentDetailPage = props => (
   <Grid style={{ fontFamily: "Krub" }}>
     <Row>
       <Col>
+        {console.log("student detail page", props)}
         <h1 style={{ display: "inline-block" }}>
           {props.student.student.name}
         </h1>
@@ -24,6 +25,7 @@ const StudentDetailPage = props => (
       <Col>
         <div style={{ float: "left", marginBottom: 100 }}>
           <StudentSnapshot
+            groupSentence={props.groupSentence}
             student={props.student}
             tests={props.tests}
             testSentences={props.testSentences}
@@ -56,7 +58,6 @@ const StudentDetailPage = props => (
               </Link>
             }
           />
-
           <DropdownBar
             actionType={"Test Results"}
             wordAction={
@@ -87,7 +88,6 @@ const StudentDetailPage = props => (
               </Link>
             }
           />
-
           <Link
             to={`/assign-reading-level/${props.student.student.student_id}`}
           >
