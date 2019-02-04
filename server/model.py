@@ -121,6 +121,8 @@ class GroupNote(db.Model):
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
     note = db.Column(db.String(200), nullable=False, unique=True)
+    date_added = db.Column(db.DateTime, nullable=False,
+                          default=datetime.today)
     users = db.relationship(
         'User')
     groups = db.relationship(

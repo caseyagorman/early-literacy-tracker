@@ -1058,7 +1058,10 @@ def group_detail(current_user, group):
     group_notes = GroupNote.query.filter_by(group_id=group_id, user_id=user_id).all()
     notes = [note.note for note in group_notes]
     student_group = StudentGroup.query.filter_by(
-        group_id=group_id).options(db.joinedload('students')).all()
+        group_id=group_id, user_id=user_id).options(db.joinedload('students')).all()
+    group_notes = GroupNote.query.filter_by(group_id=group_id, user_id=user_id).all()
+    notes = [{'note': note.note, 'date': note.date_added.strftime("%a, %b %d")} for note in group_notes]
+
     if student_group: 
         student_names = []
         student_ids =[]
@@ -1118,6 +1121,25 @@ def group_detail(current_user, group):
     else:
         return jsonify({"message":"no students yet"})
 
+@app.route("/api/add-note", methods=['POST'])
+@token_required
+def add_note(current_user):
+    data = request.get_json()
+    group_name = data.get('group')
+    note = data.get('note')
+    user_id = current_user.public_id
+    group = Group.query.filter_by(user_id=user_id, group_name=group_name).first()
+    group_id = group.group_id
+    if note != " " and note !="":
+        table = str.maketrans({key: None for key in string.punctuation})
+        note = note.translate(table) 
+        new_note = GroupNote(user_id=user_id, group_id=group_id, note=note)
+        print("new note!", new_note)
+        db.session.add(new_note)
+        db.session.commit()
+        return jsonify(note)
+    else:
+        return jsonify({"error": "no note"})
 if __name__ == "__main__":
 
     app.debug = True

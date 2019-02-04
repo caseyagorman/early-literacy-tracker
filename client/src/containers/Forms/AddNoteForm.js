@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as notesActions from "../../redux/actions/notesActions";
-import AddNoteForm from "../../components/Forms/AddStudentForm";
-
+import * as groupActions from "../../redux/actions/groupActions";
+import AddNoteFormPage from "../../components/Forms/AddNoteFormPage";
+import { bindActionCreators } from "redux";
 class AddNote extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +14,11 @@ class AddNote extends Component {
   handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
+    let group = this.props.group.name;
     let user = this.props.auth.user.token;
-    let newNote = {
-      note: this.state.note
-    };
-    this.props.notesActions.addNote(newNote, user);
+    let note = this.state.note;
+    console.log("note", note, group);
+    this.props.groupActions.addNote(note, group, user);
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -26,7 +26,7 @@ class AddNote extends Component {
 
   render() {
     return (
-      <AddNoteForm
+      <AddNoteFormPage
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         value={this.state.value}
@@ -37,15 +37,13 @@ class AddNote extends Component {
 
 function mapStateToProps(state) {
   return {
-    notes: state.notes,
     auth: state.auth
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    notesActions: notesActions,
-    dispatch
+    groupActions: bindActionCreators(groupActions, dispatch)
   };
 }
 
