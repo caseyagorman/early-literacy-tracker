@@ -2,11 +2,22 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import DeleteNote from "../../containers/Forms/DeleteNote";
 const NotesPage = props => (
-  <Table style={{ maxWidth: 500, fontFamily: "krub" }} bordered="true">
+  <Table
+    style={{ maxWidth: 500, fontSize: 14, fontFamily: "krub" }}
+    bordered="true"
+  >
     <thead />
-    <th style={{ fontSize: 20, width: "15%" }}>Date added</th>
-    <th style={{ fontSize: 20 }}>Notes</th>
-    <th style={{ width: "10%" }}>Delete</th>
+    <th style={{ width: "15%", height: 30, verticalAlign: "bottom" }}>Added</th>
+    <th style={{ height: 30, verticalAlign: "bottom" }}> Notes</th>
+    <th
+      style={{
+        width: "10%",
+        height: 30,
+        verticalAlign: "bottom"
+      }}
+    >
+      Delete
+    </th>
 
     <tbody style={{ fontSize: 14 }}>
       {props.group.notes.map(note => (

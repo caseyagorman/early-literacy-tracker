@@ -6,15 +6,27 @@ import { Grid, Col, Row } from "react-bootstrap";
 const GroupDetailPage = props => (
   <div className="container" style={{ fontFamily: "krub" }}>
     <Grid>
-      <Row>
+      <Row style={{ textAlign: "center", marginBottom: 50, fontSize: 50 }}>
         <h1>{props.group.name}</h1>
       </Row>
       <Row>
-        <div style={{ float: "left", marginBottom: 100 }}>
+        <div
+          style={{
+            float: "left",
+            marginBottom: 100,
+            marginRight: -150,
+            marginLeft: 40,
+            marginTop: -45,
+            fontSize: 24
+          }}
+        >
           <Col>
+            <h4 style={{ marginLeft: 40, textDecoration: "underline" }}>
+              <b>Members</b>
+            </h4>
             <ul>
               {Object.entries(props.group.readingLevels).map(student => (
-                <li style={{ fontColor: "black", fontSize: 24 }}>
+                <li style={{ fontColor: "black", fontSize: 18 }}>
                   {student[0]}, level: {student[1]}
                 </li>
               ))}
@@ -22,7 +34,7 @@ const GroupDetailPage = props => (
           </Col>
         </div>
         <Col>
-          <div style={{ float: "right", marginRight: 200, marginTop: -40 }}>
+          <div style={{ float: "right", marginRight: 25, marginTop: -30 }}>
             <NotesPage group={props.group} />
             <AddNoteForm group={props.group} />
           </div>

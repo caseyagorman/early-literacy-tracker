@@ -21,7 +21,7 @@ class DeleteNote extends Component {
       );
     }
     if (!note) {
-      return <div>loading...</div>;
+      return <div />;
     }
     return (
       <DeleteButton submit={this.submit} handleSubmit={this.handleSubmit} />

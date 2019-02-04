@@ -3,6 +3,7 @@ import StudentSnapshot from "./StudentSnapshot";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import StudentDetailTable from "../Tables/StudentDetailTable";
 import ClassAverageChart from "../../containers/Charts/ClassAverageChart";
+import AssignReadingLevel from "../../containers/ReadingLevel/AssignReadingLevel";
 import { Link } from "react-router-dom";
 import DropdownBar from "./DropdownBar";
 import { Grid, Col, Row } from "react-bootstrap";
@@ -11,7 +12,6 @@ const StudentDetailPage = props => (
   <Grid style={{ fontFamily: "Krub" }}>
     <Row>
       <Col>
-        {console.log("student detail page", props)}
         <h1 style={{ display: "inline-block" }}>
           {props.student.student.name}
         </h1>
@@ -88,11 +88,6 @@ const StudentDetailPage = props => (
               </Link>
             }
           />
-          <Link
-            to={`/assign-reading-level/${props.student.student.student_id}`}
-          >
-            <button className="reading-level-button">Reading Level</button>
-          </Link>
           <Link to={`/student-item-charts/${props.student.student.student_id}`}>
             <button style={{ marginLeft: 1 }} className="reading-level-button">
               Charts
@@ -139,6 +134,18 @@ const StudentDetailPage = props => (
         </div>
       </Col>
     </Row>
+    <div
+      style={{
+        float: "left",
+        marginTop: -100,
+        marginBottom: 20,
+        marginLeft: -15
+      }}
+    >
+      <Row>
+        <AssignReadingLevel id={props.student.student.student_id} />
+      </Row>
+    </div>
     <Row>
       <StudentDetailTable student={props.student} />
     </Row>

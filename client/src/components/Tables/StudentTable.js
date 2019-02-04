@@ -39,7 +39,19 @@ const StudentTable = (
               </OverlayTrigger>
               <DeleteStudent student={student.studentId} />
             </td>
-            <td>{student.group}</td>
+            <td>
+              <OverlayTrigger
+                placement={"top"}
+                overlay={<Tooltip>view {student.name}'s group details</Tooltip>}
+              >
+                <Link
+                  to={`/group-detail/${student.group}`}
+                  style={{ color: "#44857d", textDecoration: "underline" }}
+                >
+                  {student.group}
+                </Link>
+              </OverlayTrigger>
+            </td>
             <td>{student.readingLevel}</td>
             <td>
               {" "}
@@ -54,8 +66,8 @@ const StudentTable = (
                 }
               >
                 <Link
-                  to={`/assign-reading-level/${student.studentId}`}
-                  className="underline-link"
+                  style={{ color: "#44857d", textDecoration: "underline" }}
+                  to={`/details/${student.studentId}`}
                 >
                   Update
                 </Link>

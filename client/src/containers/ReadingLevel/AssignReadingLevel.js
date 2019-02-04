@@ -11,7 +11,7 @@ class AssignReadingLevel extends React.Component {
   }
 
   displayAssignReadingLevelForm(readingLevels) {
-    let student = this.props.match.params.id;
+    let student = this.props.id;
     if (readingLevels === null) {
       return <p />;
     }

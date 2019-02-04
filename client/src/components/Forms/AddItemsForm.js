@@ -2,7 +2,7 @@ import React from "react";
 import "./static/form.css";
 const AddItemsForm = props => (
   <form onSubmit={props.handleSubmit}>
-    <div className="container">
+    <div className="container" style={{ fontFamily: "krub" }}>
       <label>
         <h3>
           Add New to{" "}
@@ -21,7 +21,14 @@ const AddItemsForm = props => (
     </div>
     <br />
     <div className="container">
-      <button id="add-item-button">
+      <button
+        style={{
+          borderRadius: 3,
+          width: 90,
+          color: "white",
+          backgroundColor: "#018f75"
+        }}
+      >
         Add {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}
       </button>
     </div>
