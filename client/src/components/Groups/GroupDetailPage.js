@@ -8,43 +8,30 @@ const GroupDetailPage = props => (
     <Grid>
       <Row style={{ textAlign: "center", marginBottom: 50 }}>
         <h1 style={{ marginLeft: -150, fontSize: 50 }}>{props.group.name}</h1>
+
+        <ul style={{ marginLeft: 400, fontSize: 14 }}>
+          {Object.entries(props.group.readingLevels).map(student => (
+            <li
+              style={{ fontColor: "black", fontSize: 14, textAlign: "justify" }}
+            >
+              {student[0]}, level: {student[1]}
+            </li>
+          ))}
+        </ul>
       </Row>
       <Row>
-        <div
-          style={{
-            float: "left",
-            marginBottom: 100,
-            marginRight: -150,
-            marginLeft: 40,
-            marginTop: -45,
-            fontSize: 24
-          }}
-        >
-          <Col>
-            <h4 style={{ marginLeft: 40, textDecoration: "underline" }}>
-              <b>Members</b>
-            </h4>
-            <ul>
-              {Object.entries(props.group.readingLevels).map(student => (
-                <li style={{ fontColor: "black", fontSize: 26 }}>
-                  {student[0]}, level: {student[1]}
-                </li>
-              ))}
-            </ul>
-          </Col>
+        <div style={{ marginRight: 25, marginTop: -30 }}>
+          <NotesPage group={props.group} />
+          <AddNoteForm group={props.group} />
         </div>
-        <Col>
-          <div style={{ float: "right", marginRight: 25, marginTop: -30 }}>
-            <NotesPage group={props.group} />
-            <AddNoteForm group={props.group} />
-          </div>
-        </Col>
       </Row>
-      <br />
-      <h4>Shared words, letters, and sounds</h4>
-      <br />
+      <Row>
+        <br />
+        <h4>Shared words, letters, and sounds</h4>
+        <br />
 
-      <GroupTable group={props.group} />
+        <GroupTable group={props.group} />
+      </Row>
     </Grid>
   </div>
 );

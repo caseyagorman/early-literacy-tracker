@@ -2,10 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import DeleteNote from "../../containers/Forms/DeleteNote";
 const NotesPage = props => (
-  <Table
-    style={{ maxWidth: 500, fontSize: 14, fontFamily: "krub" }}
-    bordered="true"
-  >
+  <Table style={{ fontSize: 14, fontFamily: "krub" }} bordered="true">
     <thead />
     <th style={{ width: "15%", height: 30, verticalAlign: "bottom" }}>Added</th>
     <th style={{ height: 30, verticalAlign: "bottom" }}> Notes</th>
