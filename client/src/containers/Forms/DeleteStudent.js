@@ -16,7 +16,7 @@ class DeleteStudent extends Component {
 
   getOptions(student) {
     if (!student) {
-      return <div>loading...</div>;
+      return <div />;
     }
     return (
       <DeleteButton handleSubmit={this.handleSubmit} submit={this.submit} />

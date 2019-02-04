@@ -14,9 +14,8 @@ class AssignGroup extends React.Component {
   }
 
   displayAssignGroupForm(students, groups) {
-    console.log("groups", groups);
     if (students === null || students.students === null || groups === null) {
-      return <p>loading...</p>;
+      return <p />;
     }
     const maxGroupArray = Object.values(groups).map(
       group => group.students.length

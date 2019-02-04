@@ -32,7 +32,7 @@ class AssignItems extends React.Component {
       !itemType ||
       !items.studentItemSets[itemType]
     ) {
-      return <p>loading...</p>;
+      return <p />;
     }
     return (
       <div className="container">

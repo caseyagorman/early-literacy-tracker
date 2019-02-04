@@ -38,7 +38,7 @@ class ItemBarChart extends Component {
 
   displayChart(dataResults) {
     if (!dataResults) {
-      return <div> loading...</div>;
+      return <div />;
     }
 
     let items = this.turnIntoArray(dataResults.items);

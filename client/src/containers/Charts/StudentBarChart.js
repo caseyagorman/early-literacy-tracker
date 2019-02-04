@@ -65,7 +65,7 @@ class StudentBarChart extends Component {
 
   displayChart(dataResults) {
     if (!dataResults) {
-      return <div> loading...</div>;
+      return <div> </div>;
     }
     console.log("dataResults", dataResults);
     let items = this.turnIntoArray(dataResults);

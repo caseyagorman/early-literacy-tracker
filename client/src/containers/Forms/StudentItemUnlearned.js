@@ -16,7 +16,7 @@ class StudentItemUnlearned extends Component {
 
   getOptions(student) {
     if (!student) {
-      return <div>loading...</div>;
+      return <div />;
     }
     return (
       <MarkUnlearnedButton

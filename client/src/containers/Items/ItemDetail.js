@@ -14,7 +14,7 @@ class ItemDetail extends Component {
 
   displayItemDetail(item) {
     if (item.item === null) {
-      return <div>loading...</div>;
+      return <div />;
     }
     return <ItemDetailPage item={item} />;
   }

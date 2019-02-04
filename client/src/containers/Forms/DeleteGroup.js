@@ -21,7 +21,7 @@ class DeleteGroup extends Component {
       );
     }
     if (!group) {
-      return <div>loading...</div>;
+      return <div />;
     }
     return (
       <DeleteButton submit={this.submit} handleSubmit={this.handleSubmit} />

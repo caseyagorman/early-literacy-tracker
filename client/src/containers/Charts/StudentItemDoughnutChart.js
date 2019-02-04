@@ -8,7 +8,7 @@ class StudentItemDoughnutChart extends Component {
   }
   displayChart(student) {
     if (!student) {
-      return <div> loading...</div>;
+      return <div> </div>;
     }
 
     const itemsDict = {

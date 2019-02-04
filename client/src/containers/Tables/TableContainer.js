@@ -13,7 +13,7 @@ class TableContainer extends Component {
 
   componentDidMount() {
     if (!this.props.actions) {
-      return <div> loading...</div>;
+      return <div> </div>;
     }
   }
 

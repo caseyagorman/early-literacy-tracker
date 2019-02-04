@@ -21,10 +21,10 @@ class ItemCharts extends Component {
 
   displayItemBarChart(items) {
     if (!items) {
-      return <div>loading...</div>;
+      return <div />;
     }
     if (items.items === null) {
-      return <div>sploading...</div>;
+      return <div />;
     }
     return (
       <ItemChartPage

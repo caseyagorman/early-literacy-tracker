@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 class StudentBarChart extends Component {
   displayChart(wordCounts, letterCounts, soundCounts, student) {
     if (!student) {
-      return <div> loading...</div>;
+      return <div />;
     }
     let classAverageWords = wordCounts;
     let classAverageLetters = letterCounts;

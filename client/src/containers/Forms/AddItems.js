@@ -33,7 +33,7 @@ class AddItem extends Component {
 
   displayAddItemsForm(student) {
     if (student.student === null) {
-      return <div>loading...</div>;
+      return <div />;
     }
 
     return (

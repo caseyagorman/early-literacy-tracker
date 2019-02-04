@@ -12,7 +12,7 @@ class StudentCharts extends Component {
 
   displayStudentChartPage(students) {
     if (!students) {
-      return <div>loading...</div>;
+      return <div />;
     }
     let itemType = this.props.match.params.itemType;
     return <StudentChartPage students={students} itemType={itemType} />;

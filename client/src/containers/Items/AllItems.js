@@ -22,10 +22,10 @@ class AllItems extends React.Component {
 
   displayItems(items) {
     if (!items) {
-      return <p>loading...</p>;
+      return <p />;
     }
     if (items.items === null) {
-      return <p>loading...</p>;
+      return <p />;
     }
 
     return (

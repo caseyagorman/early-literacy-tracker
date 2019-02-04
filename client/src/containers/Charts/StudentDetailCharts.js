@@ -9,7 +9,7 @@ class StudentDetailCharts extends Component {
   componentDidMount() {
     let studentId = this.props.match.params.id;
     if (!studentId) {
-      return <div>loading...</div>;
+      return <div />;
     }
     const user = this.props.auth.user.token;
     this.props.studentActions.fetchStudent(studentId, user);
@@ -18,10 +18,10 @@ class StudentDetailCharts extends Component {
 
   displayChartsPage(student, testResults) {
     if (student.student === null) {
-      return <div>loading...</div>;
+      return <div />;
     }
     if (testResults === null) {
-      return <div>loading...</div>;
+      return <div />;
     }
     return (
       <StudentDetailChartsPage student={student} testResults={testResults} />

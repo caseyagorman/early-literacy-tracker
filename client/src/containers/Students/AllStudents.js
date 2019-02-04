@@ -14,10 +14,10 @@ class AllStudents extends Component {
 
   displayAllStudents(students, token) {
     if (!token || !students) {
-      return <div>loading...</div>;
+      return <div />;
     }
     if (students.students === null) {
-      return <div>loading...</div>;
+      return <div />;
     }
     console.log(students);
     return (

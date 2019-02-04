@@ -4,10 +4,10 @@ import StudentDetailBarChart from "./StudentDetailBarChart";
 class ClassAverageChart extends Component {
   displayClassAverageBarChart(students, student) {
     if (!students) {
-      return <div>loading...</div>;
+      return <div />;
     }
     if (students === null) {
-      return <div>sploading...</div>;
+      return <div />;
     }
     let wordSum = students.students[0].allStudentWordCounts.reduce(add, 0);
     let letterSum = students.students[0].allStudentLetterCounts.reduce(add, 0);

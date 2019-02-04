@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 class ReadingLevelBarChart extends Component {
   displayChart(dataResults) {
     if (!dataResults) {
-      return <div> loading...</div>;
+      return <div> </div>;
     }
     let reading_levels = Object.keys(dataResults);
     let students = Object.values(dataResults);

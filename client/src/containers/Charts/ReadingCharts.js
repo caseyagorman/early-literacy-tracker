@@ -12,10 +12,10 @@ class ReadingCharts extends Component {
 
   displayReadingLevelBarChart(readingLevels) {
     if (!readingLevels) {
-      return <div>loading...</div>;
+      return <div />;
     }
     if (readingLevels === null) {
-      return <div>sploading...</div>;
+      return <div />;
     }
     return <ReadingLevelChartPage readingLevels={readingLevels} />;
   }

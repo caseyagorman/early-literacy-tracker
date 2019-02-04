@@ -10,7 +10,7 @@ class StudentDetail extends Component {
   componentDidMount() {
     let studentId = this.props.match.params.id;
     if (!studentId) {
-      return <div>loading...</div>;
+      return <div />;
     }
     const user = this.props.auth.user.token;
     this.props.studentActions.fetchStudent(studentId, user);
@@ -68,10 +68,10 @@ class StudentDetail extends Component {
 
   displayStudentDetailPage(student, tests, students) {
     if (!student || !students || !tests) {
-      return <div>loading...</div>;
+      return <div />;
     }
     if (student.student === null || students.students === null) {
-      return <div>loading...</div>;
+      return <div />;
     }
     let testSentences = this.getTestSentence(tests);
     let readingSentence = this.getReadingSentence(student);

@@ -16,7 +16,7 @@ class StudentItemLearned extends Component {
 
   getOptions(student) {
     if (!student) {
-      return <div>loading...</div>;
+      return <div />;
     }
     return (
       <MarkLearnedButton

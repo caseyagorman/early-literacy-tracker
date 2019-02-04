@@ -6,7 +6,7 @@ class StudentItemLineChart extends Component {
   getChartData(data) {
     console.log("data", data);
     if (!data) {
-      return <div>loading...</div>;
+      return <div />;
     }
     let dates = [];
     let scores = [];

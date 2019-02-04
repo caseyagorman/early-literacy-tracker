@@ -25,7 +25,7 @@ class TestStudent extends React.Component {
 
   renderTestFunction(student) {
     if (!student) {
-      return <div>loading...</div>;
+      return <div />;
     }
     const itemsDict = {
       words: "unlearnedWordList",
