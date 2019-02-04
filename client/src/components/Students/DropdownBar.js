@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Dropdown,
   DropdownToggle,
@@ -34,6 +35,7 @@ export default class DropdownBar extends React.Component {
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu">
           <DropdownItem>{this.props.wordAction}</DropdownItem>
+
           <DropdownItem>{this.props.letterAction}</DropdownItem>
           <DropdownItem>{this.props.soundAction}</DropdownItem>
         </DropdownMenu>

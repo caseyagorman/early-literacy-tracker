@@ -6,7 +6,7 @@ import ClassAverageChart from "../../containers/Charts/ClassAverageChart";
 import AssignReadingLevel from "../../containers/ReadingLevel/AssignReadingLevel";
 import { Link } from "react-router-dom";
 import DropdownBar from "./DropdownBar";
-import { Grid, Col, Row } from "react-bootstrap";
+import { Grid, Col, Row, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./static/students.css";
 const StudentDetailPage = props => (
   <Grid style={{ fontFamily: "Krub" }}>
@@ -31,96 +31,189 @@ const StudentDetailPage = props => (
             testSentences={props.testSentences}
             readingSentence={props.readingSentence}
           />
+
           <DropdownBar
             actionType={"Test Student"}
             wordAction={
-              <Link
-                to={`/test-student/words/${props.student.student.student_id}`}
-                onClick={() => props.studentTestActions.beginTest("words")}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>Test {props.student.student.name}'s words</Tooltip>
+                }
               >
-                Test Words
-              </Link>
+                <Link
+                  to={`/test-student/words/${props.student.student.student_id}`}
+                  onClick={() => props.studentTestActions.beginTest("words")}
+                >
+                  Test Words
+                </Link>
+              </OverlayTrigger>
             }
             letterAction={
-              <Link
-                to={`/test-student/letters/${props.student.student.student_id}`}
-                onClick={() => props.studentTestActions.beginTest("letters")}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>Test {props.student.student.name}'s letters</Tooltip>
+                }
               >
-                Test Letters
-              </Link>
+                <Link
+                  to={`/test-student/letters/${
+                    props.student.student.student_id
+                  }`}
+                  onClick={() => props.studentTestActions.beginTest("letters")}
+                >
+                  Test Letters
+                </Link>
+              </OverlayTrigger>
             }
             soundAction={
-              <Link
-                to={`/test-student/sounds/${props.student.student.student_id}`}
-                onClick={() => props.studentTestActions.beginTest("sounds")}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>Test {props.student.student.name}'s sounds</Tooltip>
+                }
               >
-                Test Sounds
-              </Link>
+                <Link
+                  to={`/test-student/sounds/${
+                    props.student.student.student_id
+                  }`}
+                  onClick={() => props.studentTestActions.beginTest("sounds")}
+                >
+                  Test Sounds
+                </Link>
+              </OverlayTrigger>
             }
           />
+
           <DropdownBar
             actionType={"Test Results"}
             wordAction={
-              <Link
-                to={`/student-test-results/words/${
-                  props.student.student.student_id
-                }`}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    View {props.student.student.name}'s previous word tests
+                  </Tooltip>
+                }
               >
-                Word Test Results
-              </Link>
+                <Link
+                  to={`/student-test-results/words/${
+                    props.student.student.student_id
+                  }`}
+                >
+                  Word Test Results
+                </Link>
+              </OverlayTrigger>
             }
             letterAction={
-              <Link
-                to={`/student-test-results/letters/${
-                  props.student.student.student_id
-                }`}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    View {props.student.student.name}'s previous letter tests
+                  </Tooltip>
+                }
               >
-                Letter Test Results
-              </Link>
+                <Link
+                  to={`/student-test-results/letters/${
+                    props.student.student.student_id
+                  }`}
+                >
+                  Letter Test Results
+                </Link>
+              </OverlayTrigger>
             }
             soundAction={
-              <Link
-                to={`/student-test-results/sounds/${
-                  props.student.student.student_id
-                }`}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    View {props.student.student.name}'s previous sound tests
+                  </Tooltip>
+                }
               >
-                Sound Test Results
-              </Link>
+                <Link
+                  to={`/student-test-results/sounds/${
+                    props.student.student.student_id
+                  }`}
+                >
+                  Sound Test Results
+                </Link>
+              </OverlayTrigger>
             }
           />
-          <Link to={`/student-item-charts/${props.student.student.student_id}`}>
-            <button style={{ marginLeft: 1 }} className="reading-level-button">
-              Charts
-            </button>
-          </Link>
+          <OverlayTrigger
+            placement={"top"}
+            overlay={
+              <Tooltip>view {props.student.student.name}'s data charts</Tooltip>
+            }
+          >
+            <Link
+              to={`/student-item-charts/${props.student.student.student_id}`}
+            >
+              <button
+                style={{ marginLeft: 1 }}
+                className="reading-level-button"
+              >
+                Charts
+              </button>
+            </Link>
+          </OverlayTrigger>
           <DropdownBar
             actionType={"Add"}
             wordAction={
-              <Link
-                to={`/add-custom-items/${
-                  props.student.student.student_id
-                }/words`}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    Add custom words to {props.student.student.name}
+                  </Tooltip>
+                }
               >
-                Add Words
-              </Link>
+                <Link
+                  to={`/add-custom-items/${
+                    props.student.student.student_id
+                  }/words`}
+                >
+                  Add Words
+                </Link>
+              </OverlayTrigger>
             }
             letterAction={
-              <Link
-                to={`/add-custom-items/${
-                  props.student.student.student_id
-                }/letters`}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    Add custom letters to {props.student.student.name}
+                  </Tooltip>
+                }
               >
-                Add Letters
-              </Link>
+                <Link
+                  to={`/add-custom-items/${
+                    props.student.student.student_id
+                  }/letters`}
+                >
+                  Add Letters
+                </Link>
+              </OverlayTrigger>
             }
             soundAction={
-              <Link
-                to={`/add-custom-items/${
-                  props.student.student.student_id
-                }/sounds`}
+              <OverlayTrigger
+                placement={"top"}
+                overlay={
+                  <Tooltip>
+                    Add custom sounds to {props.student.student.name}
+                  </Tooltip>
+                }
               >
-                Add Sounds
-              </Link>
+                <Link
+                  to={`/add-custom-items/${
+                    props.student.student.student_id
+                  }/sounds`}
+                >
+                  Add Sounds
+                </Link>
+              </OverlayTrigger>
             }
           />
         </div>
