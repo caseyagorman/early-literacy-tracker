@@ -1,3 +1,5 @@
+# from secrets import password
+import os
 import datetime
 from datetime import date
 from flask_mail import Message
@@ -21,13 +23,16 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
+# foo = os.environ['FOO']
+print('environment variable ==', os.environ)
+
 app.config.update(
     #EMAIL SETTINGS
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT=587,
     MAIL_USE_SSL=False,
     MAIL_USERNAME = 'caseyagorman@gmail.com',
-    MAIL_PASSWORD = "",
+    MAIL_PASSWORD = os.environ['PASSWORD'],
     MAIL_SUPPRESS_SEND = False,
     MAIL_DEFAULT_SENDER = 'caseyagorman@gmail.com',
     MAIL_USE_TLS = True,
