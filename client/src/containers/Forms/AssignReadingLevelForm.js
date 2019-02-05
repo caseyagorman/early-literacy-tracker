@@ -42,6 +42,7 @@ class AssignReadingLevelForm extends Component {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         itemList={itemList}
+        student={this.props.student}
       />
     );
   }

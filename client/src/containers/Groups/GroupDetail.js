@@ -31,7 +31,6 @@ class GroupDetail extends Component {
     }
   }
   displayGroupDetail(group) {
-    console.log("group detail", group);
     if (group === null || group.message) {
       return (
         <div
