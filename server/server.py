@@ -23,8 +23,6 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
-# foo = os.environ['FOO']
-print('environment variable ==', os.environ)
 
 app.config.update(
     #EMAIL SETTINGS
