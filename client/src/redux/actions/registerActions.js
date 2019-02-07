@@ -1,6 +1,6 @@
 import * as types from "./actionTypes";
 function registerUserApi() {
-  return "http://localhost:5000/api/register";
+  return "http://34.217.207.162/register";
 }
 
 export function clearUser(register) {
