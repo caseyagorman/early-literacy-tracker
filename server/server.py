@@ -45,11 +45,15 @@ mail = Mail(app)
 
 app.config.from_object(__name__)
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return 'You want path: %s' % path
 
-@app.route("/")
-def index():
-    print(template_dir)
-    return render_template("index.html")
+# @app.route("/")
+# def index():
+#     print(template_dir)
+#     return render_template("index.html")
 
 
 def token_required(f):
