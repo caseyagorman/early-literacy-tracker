@@ -7,8 +7,8 @@ from flask_mail import Mail
 import time
 import itertools
 import string
-from operator import itemgetter
-from flask import (Flask, jsonify, request, session, render_template
+from operator import itemgetter 
+from flask import Flask, render_template, jsonify, request, session, make_response
 from jinja2 import StrictUndefined
 from flask_cors import CORS, cross_origin
 from flask_restful import  Api, Resource, reqparse
