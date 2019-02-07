@@ -48,6 +48,7 @@ app.config.from_object(__name__)
 
 @app.route("/")
 def index():
+    print(template_dir)
     return render_template("index.html")
 
 
