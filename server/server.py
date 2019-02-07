@@ -18,7 +18,9 @@ import jwt
 from functools import wraps
 from model import Student, StudentGroup, Item, Group, GroupNote, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
 mail = None
-app = Flask(__name__)
+template_dir = os.path.abspath('../client/build')
+static_dir   = os.path.abspath('../client/build/static')
+app = Flask(__name__, static_folder=static_dir,template_folder=template_dir)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 app.debug = True
