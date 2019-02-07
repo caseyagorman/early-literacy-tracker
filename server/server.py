@@ -8,7 +8,7 @@ import time
 import itertools
 import string
 from operator import itemgetter
-from flask import (Flask, jsonify, request, session)
+from flask import (Flask, jsonify, request, session, render_template()
 from jinja2 import StrictUndefined
 from flask_cors import CORS, cross_origin
 from flask_restful import  Api, Resource, reqparse
@@ -45,6 +45,10 @@ mail = Mail(app)
 
 app.config.from_object(__name__)
 
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 def token_required(f):
