@@ -44,15 +44,11 @@ app.config.update(
 mail = Mail(app)
 
 app.config.from_object(__name__)
-
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def serve(path):
-     path_dir = os.path.abspath("../client/build") #path react build
-     if path != "" and os.path.exists(os.path.join(path_dir, path)):
-         return send_from_directory(os.path.join(path_dir), path)
-     else:
-         return send_from_directory(os.path.join(path_dir),'index.html')
+def catch_all(path):
+    return 'You want path: %s' % path
+
 # @app.route("/")
 # def index():
 #     print(template_dir)
