@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 
 function getUserApi() {
-  return "http://34.217.207.162/login";
+  return "http://34.217.207.162/api/login";
 }
 
 function requestResetPasswordApi() {
