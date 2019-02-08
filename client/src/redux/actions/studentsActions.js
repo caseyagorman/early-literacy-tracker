@@ -2,25 +2,25 @@ import * as types from "./actionTypes";
 import history from "../../history";
 
 function getStudentsApi() {
-  return "http://34.217.207.162/api/students";
+  return "http://54.68.30.124/api/students";
 }
 
 function getStudentNamesApi() {
-  return "http://34.217.207.162/api/all-students";
+  return "http://54.68.30.124/api/all-students";
 }
 
 function addItemToNewStudentApi() {
-  return "http://34.217.207.162/api/add-items-to-new-students";
+  return "http://54.68.30.124/api/add-items-to-new-students";
 }
 
 function addStudentApi() {
-  return "http://34.217.207.162/api/add-student";
+  return "http://54.68.30.124/api/add-student";
 }
 function getStudentApi(id) {
-  return `http://34.217.207.162/api/details/${id}`;
+  return `http://54.68.30.124/api/details/${id}`;
 }
 function deleteStudentApi() {
-  return "http://34.217.207.162/api/delete-student";
+  return "http://54.68.30.124/api/delete-student";
 }
 
 export function receiveStudents(students) {

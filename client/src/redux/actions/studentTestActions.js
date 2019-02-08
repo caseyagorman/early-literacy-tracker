@@ -30,11 +30,11 @@ export function answerQuestion(questionItem, answeredCorrectly) {
 }
 
 function addTestApi() {
-  return "http://34.217.207.162/api/create-student-test";
+  return "http://54.68.30.124/api/create-student-test";
 }
 
 function getStudentApi(id) {
-  return `http://34.217.207.162/api/details/${id}`;
+  return `http://54.68.30.124/api/details/${id}`;
 }
 
 export function submitStudentTest(studentTest, testType, studentId, user) {

@@ -1,14 +1,14 @@
 import * as types from "./actionTypes";
 
 function getUnassignedStudentsApi(id) {
-  return `http://34.217.207.162/api/unassigned-students/${id}`;
+  return `http://54.68.30.124/api/unassigned-students/${id}`;
 }
 
 function getItemApi(itemType, id) {
-  return `http://34.217.207.162/api/item-detail/${itemType}/${id}`;
+  return `http://54.68.30.124/api/item-detail/${itemType}/${id}`;
 }
 function addItemStudentsApi() {
-  return "http://34.217.207.162/api/add-student-to-item";
+  return "http://54.68.30.124/api/add-student-to-item";
 }
 
 export function receiveItem(item) {

@@ -2,13 +2,13 @@ import * as types from "./actionTypes";
 import history from "../../history";
 import { fetchStudents } from "./studentsActions";
 function addStudentApi() {
-  return "http://34.217.207.162/api/add-student";
+  return "http://54.68.30.124/api/add-student";
 }
 function getStudentApi(id) {
-  return `http://34.217.207.162/api/details/${id}`;
+  return `http://54.68.30.124/api/details/${id}`;
 }
 function deleteStudentApi() {
-  return "http://34.217.207.162/api/delete-student";
+  return "http://54.68.30.124/api/delete-student";
 }
 
 export function receiveStudents(students) {

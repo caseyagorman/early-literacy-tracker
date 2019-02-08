@@ -2,15 +2,15 @@ import * as types from "./actionTypes";
 import history from "../../history";
 
 function getUnassignedItemsApi(itemType) {
-  return `http://34.217.207.162/api/item_list/${itemType}`;
+  return `http://54.68.30.124/api/item_list/${itemType}`;
 }
 
 function getStudentApi(id) {
-  return `http://34.217.207.162/api/details/${id}`;
+  return `http://54.68.30.124/api/details/${id}`;
 }
 
 function addStudentItemsApi() {
-  return "http://34.217.207.162/api/add-item-to-student";
+  return "http://54.68.30.124/api/add-item-to-student";
 }
 
 export function receiveStudent(student) {
