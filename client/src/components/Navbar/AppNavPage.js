@@ -40,6 +40,9 @@ const AppNavPage = props => {
                   View Student Sound Charts
                 </MenuItem>
               </LinkContainer>
+              <LinkContainer to="/add-student" id="Students">
+                <MenuItem id="Students">Add Students</MenuItem>
+              </LinkContainer>
             </NavDropdown>
           </NavItem>
           <NavItem id="Words" eventKey={2}>
@@ -65,9 +68,6 @@ const AppNavPage = props => {
               </LinkContainer>
               <LinkContainer to="/add-items/letters/">
                 <MenuItem id="Letters">Add Letters</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/add-student" id="Students">
-                <MenuItem id="Students">Add Students</MenuItem>
               </LinkContainer>
             </NavDropdown>
           </NavItem>
