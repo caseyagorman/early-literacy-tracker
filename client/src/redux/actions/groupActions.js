@@ -1,29 +1,29 @@
 import * as types from "./actionTypes";
 import history from "../../history";
 function assignGroupApi() {
-  return "http://localhost:5000/api/assign-group";
+  return "http://34.217.207.162/api/assign-group";
 }
 
 function addGroupApi() {
-  return "http://localhost:5000/api/add-group";
+  return "http://34.217.207.162/api/add-group";
 }
 
 function fetchGroupsApi() {
-  return "http://localhost:5000/api/all-groups";
+  return "http://34.217.207.162/api/all-groups";
 }
 function fetchGroupApi(group) {
-  return `http://localhost:5000/api/group-detail/${group}`;
+  return `http://34.217.207.162/api/group-detail/${group}`;
 }
 function deleteGroupApi() {
-  return "http://localhost:5000/api/delete-group";
+  return "http://34.217.207.162/api/delete-group";
 }
 
 function addNoteApi() {
-  return `http://localhost:5000/api/add-note`;
+  return `http://34.217.207.162/api/add-note`;
 }
 
 function deleteNoteApi() {
-  return "http://localhost:5000/api/delete-note";
+  return "http://34.217.207.162/api/delete-note";
 }
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };

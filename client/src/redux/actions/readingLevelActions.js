@@ -1,16 +1,16 @@
 import history from "../../history";
 import * as types from "./actionTypes";
 function getReadingLevelApi() {
-  return "http://localhost:5000/api/get-reading-levels";
+  return "http://34.217.207.162/api/get-reading-levels";
 }
 function getStudentReadingLevelsApi() {
-  return "http://localhost:5000/api/student-reading-levels";
+  return "http://34.217.207.162/api/student-reading-levels";
 }
 function assignReadingLevelApi() {
-  return "http://localhost:5000/api/assign-reading-level";
+  return "http://34.217.207.162/api/assign-reading-level";
 }
 function getStudentApi(id) {
-  return `http://localhost:5000/api/details/${id}`;
+  return `http://34.217.207.162/api/details/${id}`;
 }
 
 export function receiveReadingLevels(readingLevels) {

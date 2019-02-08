@@ -1,16 +1,16 @@
 import history from "../../history";
 import * as types from "./actionTypes";
 function getReadingStrategiesApi() {
-  return "http://localhost:5000/api/get-reading-strategiess";
+  return "http://34.217.207.162/api/get-reading-strategiess";
 }
 function getStudentReadingStrategiesApi() {
-  return "http://localhost:5000/api/student-reading-strategies";
+  return "http://34.217.207.162/api/student-reading-strategies";
 }
 function assignReadingStrategiesApi() {
-  return "http://localhost:5000/api/assign-reading-strategies";
+  return "http://34.217.207.162/api/assign-reading-strategies";
 }
 function getStudentApi(id) {
-  return `http://localhost:5000/api/details/${id}`;
+  return `http://34.217.207.162/api/details/${id}`;
 }
 
 export function receiveReadingStrategies(readingStrategies) {

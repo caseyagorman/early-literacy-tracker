@@ -5,10 +5,10 @@ function getUserApi() {
 }
 
 function requestResetPasswordApi() {
-  return "http://localhost:5000/api/request-reset-password";
+  return "http://34.217.207.162/api/request-reset-password";
 }
 function resetPasswordApi() {
-  return "http://localhost:5000/api/reset-password";
+  return "http://34.217.207.162/api/reset-password";
 }
 export function checkUser(auth) {
   if (!auth.error) {
