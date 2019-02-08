@@ -46,8 +46,8 @@ mail = Mail(app)
 app.config.from_object(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def catch_all(path):
-    return 'You want path: %s' % path
+def index(path):
+    return render_template('index.html')
 
 # @app.route("/")
 # def index():
