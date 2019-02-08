@@ -23,7 +23,7 @@ static_dir   = os.path.abspath('../client/build/static')
 app = Flask(__name__, static_folder=static_dir,template_folder=template_dir)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
-app.debug = True
+# app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
 
 app.config.update(
@@ -48,11 +48,6 @@ app.config.from_object(__name__)
 @app.route('/<path:path>')
 def index(path):
     return render_template('index.html')
-
-# @app.route("/")
-# def index():
-#     print(template_dir)
-#     return render_template("index.html")
 
 
 def token_required(f):
@@ -1164,10 +1159,8 @@ def delete_note(current_user):
     db.session.delete(note)
     db.session.commit()
     return "deleted"
-if __name__ == "__main__":
 
-    # app.debug = True
-    # app.jinja_env.auto_reload = app.debug
+if __name__ == "__main__":
     connect_to_db(app)
     app.run(port=5000, host='0.0.0.0')
 
