@@ -20,7 +20,7 @@ const AppNavPage = props => {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <NavItem eventKey={1}>
+          <NavItem>
             <NavDropdown eventKey={3} title="Students">
               <LinkContainer to="/students">
                 <MenuItem>View Students</MenuItem>
@@ -43,7 +43,7 @@ const AppNavPage = props => {
               </LinkContainer>
             </NavDropdown>
           </NavItem>
-          <NavItem eventKey={2}>
+          <NavItem>
             <NavDropdown title="Words">
               <LinkContainer to="/items/words/">
                 <MenuItem>View Words</MenuItem>
@@ -56,8 +56,8 @@ const AppNavPage = props => {
               </LinkContainer>
             </NavDropdown>
           </NavItem>
-          <NavItem eventKey={2}>
-            <NavDropdown eventKey={3} title="Letters">
+          <NavItem>
+            <NavDropdown title="Letters">
               <LinkContainer to="/items/letters/">
                 <MenuItem>View Letters</MenuItem>
               </LinkContainer>
@@ -101,7 +101,7 @@ const AppNavPage = props => {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem id="Logout" eventKey={5} href={props.route}>
+          <NavItem href={props.route}>
             {props.navText} <span />
             <Glyphicon
               glyph="glyphicon glyphicon-off"
