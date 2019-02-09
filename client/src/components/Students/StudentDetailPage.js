@@ -22,8 +22,8 @@ const StudentDetailPage = props => (
       </Col>
     </Row>
     <Row>
-      <Col>
-        <div style={{ float: "left", marginBottom: 100 }}>
+      <div style={{ float: "left", marginBottom: 100 }}>
+        <Col>
           <StudentSnapshot
             groupSentence={props.groupSentence}
             student={props.student}
@@ -185,30 +185,20 @@ const StudentDetailPage = props => (
               />
             </div>
           </OverlayTrigger>
-
-          {/* <div
-            style={{
-              float: "left",
-              marginTop: -100,
-              marginBottom: 20,
-              marginLeft: -15
-            }}
-          > */}
           <AssignReadingLevel
             id={props.student.student.student_id}
             student={props.student.student.name.split(" ")[0]}
           />
-          {/* </div> */}
-        </div>
-      </Col>
-      <Col>
-        <div style={{ float: "right", marginTop: 30 }}>
+        </Col>
+      </div>
+      <div style={{ float: "right", marginTop: 30 }}>
+        <Col>
           <ClassAverageChart
             student={props.student}
             students={props.students}
           />
-        </div>
-      </Col>
+        </Col>
+      </div>
     </Row>
 
     <Row>
