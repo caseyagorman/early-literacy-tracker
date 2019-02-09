@@ -149,6 +149,17 @@ class AppNavPage extends React.Component {
           Dropdown
         </button>
         <div className={menuClass} aria-labelledby="dropdownMenuButton">
+          <div className="dropdown" onClick={this.toggleOpen}>
+            <button
+              className="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+            >
+              Dropdown
+            </button>
+          </div>
           <a className="dropdown-item" href="#nogo">
             Item 1
           </a>
