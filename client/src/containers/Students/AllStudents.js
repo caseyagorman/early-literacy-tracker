@@ -9,6 +9,9 @@ import { bindActionCreators } from "redux";
 class AllStudents extends Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
+    if (!user) {
+      this.props.history.push("/login/");
+    }
     this.props.studentsActions.fetchStudents(user);
   }
 
@@ -19,7 +22,6 @@ class AllStudents extends Component {
     if (students.students === null) {
       return <div />;
     }
-    console.log(students);
     return (
       <AllStudentsPage
         studentTestActions={this.props.studentTestActions}
