@@ -21,89 +21,65 @@ const AppNavPage = props => {
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-          <NavItem id="Students" eventKey={1}>
-            <NavDropdown eventKey={3} title="Students" id="drop-down">
-              <LinkContainer to="/students" id="Students">
-                <MenuItem id="Students">View Students</MenuItem>
-              </LinkContainer>
-              <LinkContainer id="Students" to="/student-charts/words/">
-                <MenuItem id="Students">View Student Word Charts</MenuItem>
-              </LinkContainer>
-              <LinkContainer id="Students" to="/student-charts/letters/">
-                <MenuItem id="Students" href="/student-charts/letters/">
-                  View Student Letter Charts
-                </MenuItem>
-              </LinkContainer>
-              <LinkContainer id="Students" to="/student-charts/sounds/">
-                <MenuItem id="Students" href="/student-charts/sounds/">
-                  View Student Sound Charts
-                </MenuItem>
-              </LinkContainer>
-            </NavDropdown>
-          </NavItem>
-          <NavItem id="Words" eventKey={2}>
-            <NavDropdown title="Words" id="drop-down">
-              <LinkContainer id="Words" to="/items/words/">
-                <MenuItem id="Words">View Words</MenuItem>
-              </LinkContainer>
-              <LinkContainer id="Words" to="/item-charts/words/">
-                <MenuItem id="Words">View Word Charts</MenuItem>
-              </LinkContainer>
-              <LinkContainer id="Words" to="/add-items/words/">
-                <MenuItem id="Words">Add Words</MenuItem>
-              </LinkContainer>
-            </NavDropdown>
-          </NavItem>
-          <NavItem id="Letters" eventKey={2}>
-            <NavDropdown eventKey={3} title="Letters" id="drop-down">
-              <LinkContainer to="/items/letters/" id="Letters">
-                <MenuItem id="Letters">View Letters</MenuItem>
-              </LinkContainer>
-              <LinkContainer id="Letters" to="/item-charts/letters/">
-                <MenuItem id="Letters">View Letter Charts</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/add-items/letters/">
-                <MenuItem id="Letters">Add Letters</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/add-student" id="Students">
-                <MenuItem id="Students">Add Students</MenuItem>
-              </LinkContainer>
-            </NavDropdown>
-          </NavItem>
-          <NavItem id="Sounds">
-            <NavDropdown title="Sounds" id="drop-down">
-              <LinkContainer to="/items/sounds/" id="Sounds">
-                <MenuItem id="Sounds">View Sounds</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/item-charts/sounds/" id="Sounds">
-                <MenuItem id="Sounds">View Sound Charts</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/add-items/sounds/">
-                <MenuItem id="Sounds">Add Sounds</MenuItem>
-              </LinkContainer>
-            </NavDropdown>
-          </NavItem>
-          <NavItem id="Students">
-            <NavDropdown title="Reading" id="drop-down">
-              <LinkContainer to="/reading-level-charts/" id="Students">
-                <MenuItem id="Students">View Reading Level Charts</MenuItem>
-              </LinkContainer>
-            </NavDropdown>
-          </NavItem>
-          <NavItem id="Students">
-            <NavDropdown title="Groups" id="drop-down">
-              <LinkContainer to="/create-group/" id="Students">
-                <MenuItem id="Students">Create Group</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/manage-groups/" id="Students">
-                <MenuItem id="Students"> View/Manage Groups</MenuItem>
-              </LinkContainer>
-            </NavDropdown>
-          </NavItem>
+        <Nav>
+          <LinkContainer to="/students" id="Students">
+            <MenuItem id="Students">View Students</MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Students" to="/student-charts/words/">
+            <MenuItem id="Students">View Student Word Charts</MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Students" to="/student-charts/letters/">
+            <MenuItem id="Students" href="/student-charts/letters/">
+              View Student Letter Charts
+            </MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Students" to="/student-charts/sounds/">
+            <MenuItem id="Students" href="/student-charts/sounds/">
+              View Student Sound Charts
+            </MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Words" to="/items/words/">
+            <MenuItem id="Words">View Words</MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Words" to="/item-charts/words/">
+            <MenuItem id="Words">View Word Charts</MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Words" to="/add-items/words/">
+            <MenuItem id="Words">Add Words</MenuItem>
+          </LinkContainer>
+          <LinkContainer to="/items/letters/" id="Letters">
+            <MenuItem id="Letters">View Letters</MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Letters" to="/item-charts/letters/">
+            <MenuItem id="Letters">View Letter Charts</MenuItem>
+          </LinkContainer>
+          <LinkContainer to="/add-items/letters/">
+            <MenuItem id="Letters">Add Letters</MenuItem>
+          </LinkContainer>
+          <LinkContainer to="/add-student" id="Students">
+            <MenuItem id="Students">Add Students</MenuItem>
+          </LinkContainer>
+
+          <LinkContainer to="/items/sounds/" id="Sounds">
+            <MenuItem id="Sounds">View Sounds</MenuItem>
+          </LinkContainer>
+          <LinkContainer to="/item-charts/sounds/" id="Sounds">
+            <MenuItem id="Sounds">View Sound Charts</MenuItem>
+          </LinkContainer>
+          <LinkContainer to="/add-items/sounds/">
+            <MenuItem id="Sounds">Add Sounds</MenuItem>
+          </LinkContainer>
+
+          <LinkContainer to="/reading-level-charts/" id="Students">
+            <MenuItem id="Students">View Reading Level Charts</MenuItem>
+          </LinkContainer>
+
+          <LinkContainer to="/create-group/" id="Students">
+            <MenuItem id="Students">Create Group</MenuItem>
+          </LinkContainer>
+          <LinkContainer to="/manage-groups/" id="Students">
+            <MenuItem id="Students"> View/Manage Groups</MenuItem>
+          </LinkContainer>
         </Nav>
         <Nav pullRight>
           <NavItem id="Logout" eventKey={5} href={props.route}>
