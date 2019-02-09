@@ -29,6 +29,7 @@ const StudentDetailPage = props => (
           <StudentSnapshot
             groupSentence={props.groupSentence}
             student={props.student}
+            e
             tests={props.tests}
             testSentences={props.testSentences}
             readingSentence={props.readingSentence}
@@ -193,7 +194,7 @@ const StudentDetailPage = props => (
           />
         </Col>
       </div>
-      <div style={{ float: "right", marginTop: 30 }}>
+      <div style={{ float: "right", marginTop: 80 }}>
         <Col>
           <ClassAverageChart
             student={props.student}
