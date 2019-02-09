@@ -25,22 +25,7 @@ const AppNavPage = props => {
           <LinkContainer to="/students" id="Students">
             <MenuItem id="Students">Students</MenuItem>
           </LinkContainer>
-          <LinkContainer id="Students" to="/student-charts/words/">
-            <MenuItem id="Students">Student Word Charts</MenuItem>
-          </LinkContainer>
-          <LinkContainer id="Students" to="/student-charts/letters/">
-            <MenuItem id="Students" href="/student-charts/letters/">
-              Student Letter Charts
-            </MenuItem>
-          </LinkContainer>
-          <LinkContainer id="Students" to="/student-charts/sounds/">
-            <MenuItem id="Students" href="/student-charts/sounds/">
-              Student Sound Charts
-            </MenuItem>
-          </LinkContainer>
-          <LinkContainer to="/reading-level-charts/" id="Students">
-            <MenuItem id="Students">Reading Level Charts</MenuItem>
-          </LinkContainer>
+
           <LinkContainer id="Words" to="/items/words/">
             <MenuItem id="Words">Words</MenuItem>
           </LinkContainer>
@@ -71,3 +56,22 @@ const AppNavPage = props => {
 };
 
 export default AppNavPage;
+
+{
+  /* <LinkContainer id="Students" to="/student-charts/words/">
+            <MenuItem id="Students">Student Word Charts</MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Students" to="/student-charts/letters/">
+            <MenuItem id="Students" href="/student-charts/letters/">
+              Student Letter Charts
+            </MenuItem>
+          </LinkContainer>
+          <LinkContainer id="Students" to="/student-charts/sounds/">
+            <MenuItem id="Students" href="/student-charts/sounds/">
+              Student Sound Charts
+            </MenuItem>
+          </LinkContainer>
+          <LinkContainer to="/reading-level-charts/" id="Students">
+            <MenuItem id="Students">Reading Level Charts</MenuItem>
+          </LinkContainer> */
+}
