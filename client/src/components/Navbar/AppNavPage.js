@@ -11,7 +11,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import "./static/appNav.css";
 const AppNavPage = props => {
   return (
-    <Navbar collapseOnSelect id="navbar">
+    <Navbar collapseOnSelect expand="lg" id="navbar">
       <Navbar.Header>
         <Navbar.Brand>
           <a href="/students" id="Brand">
