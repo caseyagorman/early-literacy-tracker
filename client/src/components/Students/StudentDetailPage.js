@@ -203,10 +203,11 @@ const StudentDetailPage = props => (
         </Col>
       </div>
     </Row>
-
-    <Row>
-      <StudentDetailTable student={props.student} />
-    </Row>
+    <div style={{ marginBottom: 40 }}>
+      <Row>
+        <StudentDetailTable student={props.student} />
+      </Row>
+    </div>
   </Grid>
 );
 
