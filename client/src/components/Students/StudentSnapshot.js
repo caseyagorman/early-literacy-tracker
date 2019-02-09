@@ -3,7 +3,6 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const StudentSnapshot = props => (
   <div style={{ fontSize: 18 }}>
-    {console.log("student snapshot props", props)}
     <OverlayTrigger
       placement={"top"}
       overlay={

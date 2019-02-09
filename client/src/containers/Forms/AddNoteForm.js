@@ -17,7 +17,6 @@ class AddNote extends Component {
     let group = this.props.group.name;
     let user = this.props.auth.user.token;
     let note = this.state.note;
-    console.log("note", note, group);
     this.props.groupActions.addNote(note, group, user);
   }
   handleChange(event) {

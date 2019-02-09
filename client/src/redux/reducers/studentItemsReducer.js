@@ -39,46 +39,6 @@ export default function studentItems(
       });
       return newState;
 
-    // delete state.studentItemSets
-    // state.studentItemSets[itemType] = studentItems;
-    // return state;
-
-    //   if (newState[1] === "words") {
-    //       console.log("words")
-    // itemSets = Object.assign({}, studentItems.studentItemSets, {
-    //   words: {
-    //     items: newState[0],
-    //     itemType: "words",
-    //     fetchingItems: false
-    //   }
-    // });
-    // return itemSets;
-    //   }
-    //   if (newState[1] === "letters") {
-    // itemSets = Object.assign({}, studentItems.studentItemSets, {
-    //   letters: {
-    //     items: newState[0],
-    //     itemType: "letters",
-    //     fetchingItems: false
-    //   }
-    // }
-    // return state;
-    //     return itemSets;
-    //   }
-    //   if (newState[1] === "sounds") {
-    //     itemSets = Object.assign(
-    //       {},
-    //       initialState.studentItems.studentItemSets,
-    //       {
-    //         sounds: {
-    //           items: newState[0],
-    //           itemType: "sounds",
-    //           fetchingItems: false
-    //         }
-    //       }
-    // );
-    // return itemSets;
-    //   }
     default:
       return state;
   }

@@ -67,7 +67,6 @@ class StudentBarChart extends Component {
     if (!dataResults) {
       return <div> </div>;
     }
-    console.log("dataResults", dataResults);
     let items = this.turnIntoArray(dataResults);
 
     let itemCounts = items[0];

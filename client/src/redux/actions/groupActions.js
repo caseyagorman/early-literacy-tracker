@@ -130,7 +130,6 @@ export function deleteGroup(group, user) {
 }
 
 export function addNote(note, group, user) {
-  console.log("user", user);
   return dispatch => {
     return (
       fetch(addNoteApi(), {
@@ -151,7 +150,6 @@ export function addNote(note, group, user) {
 }
 
 export function deleteNote(note, user, group) {
-  console.log(note);
   return dispatch => {
     return (
       fetch(deleteNoteApi(), {

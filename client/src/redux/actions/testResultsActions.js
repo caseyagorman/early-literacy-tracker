@@ -14,7 +14,6 @@ export function receiveTestResults(testResults) {
 }
 
 export function fetchTestResults(user, itemType, id) {
-  console.log("fetching test results", user, itemType, id);
   return dispatch => {
     return fetch(getStudentTestResultsApi(itemType, id), {
       method: "GET",
@@ -29,12 +28,8 @@ export function fetchTestResults(user, itemType, id) {
       .then(testResults => dispatch(receiveTestResults(testResults)));
   };
 }
-// return {
-//     type: ADD_TOAST, toast: createToast()
-//   };
 
 export function fetchAllTestResults(id, user) {
-  console.log("fetching all test results");
   return dispatch => {
     return fetch(getStudentAllTestsResultsApi(id), {
       method: "GET",

@@ -4,7 +4,6 @@ import "../../components/Charts/static/charts.css";
 
 class StudentItemLineChart extends Component {
   getChartData(data) {
-    console.log("data", data);
     if (!data) {
       return <div />;
     }
