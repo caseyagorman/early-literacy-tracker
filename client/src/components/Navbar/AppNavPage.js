@@ -1,10 +1,10 @@
 import React from "react";
 import { Navbar, NavItem, Nav, Glyphicon } from "react-bootstrap";
-import { Link } from "react-router-bootstrap";
+// import { Nav.Link } from "react-router-bootstrap";
 import "./static/appNav.css";
 const AppNavPage = props => {
   return (
-    <Navbar collapseOnSelect expand="md">
+    <Navbar collapseOnSelect expand="lg">
       <Navbar.Header>
         <Navbar.Brand>
           <a href="/students">TrackIt</a>
@@ -13,30 +13,16 @@ const AppNavPage = props => {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <NavItem>
-            <Link to="/student-charts/words/">Student Word Charts</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/student-charts/letters/">Student Letter Charts</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/student-charts/sounds/">Student Sound Charts</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/reading-level-charts/">Reading Charts</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/items/words/">Words</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/items/letters/">Letters</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/items/sounds/">Sounds</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/manage-groups/">Groups</Link>
-          </NavItem>
+          <Nav.Link to="/student-charts/words/">Student Word Charts</Nav.Link>
+          <Nav.Link to="/student-charts/letters/">
+            Student Letter Charts
+          </Nav.Link>
+          <Nav.Link to="/student-charts/sounds/">Student Sound Charts</Nav.Link>
+          <Nav.Link to="/reading-level-charts/">Reading Charts</Nav.Link>
+          <Nav.Link to="/items/words/">Words</Nav.Link>
+          <Nav.Link href="/items/letters/">Letters</Nav.Link>
+          <Nav.Link to="/items/sounds/">Sounds</Nav.Link>
+          <Nav.Link to="/manage-groups/">Groups</Nav.Link>
         </Nav>
         <Nav pullRight>
           <NavItem href={props.route}>
