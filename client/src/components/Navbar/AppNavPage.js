@@ -37,7 +37,7 @@ const AppNavPage = props => {
             <MenuItem id="Sounds">Sounds</MenuItem>
           </LinkContainer>
           <LinkContainer to="/manage-groups/" id="Students">
-            <MenuItem id="Students"> Manage Groups</MenuItem>
+            <MenuItem id="Students"> Groups</MenuItem>
           </LinkContainer>
         </Nav>
         <Nav pullRight>
@@ -56,22 +56,3 @@ const AppNavPage = props => {
 };
 
 export default AppNavPage;
-
-{
-  /* <LinkContainer id="Students" to="/student-charts/words/">
-            <MenuItem id="Students">Student Word Charts</MenuItem>
-          </LinkContainer>
-          <LinkContainer id="Students" to="/student-charts/letters/">
-            <MenuItem id="Students" href="/student-charts/letters/">
-              Student Letter Charts
-            </MenuItem>
-          </LinkContainer>
-          <LinkContainer id="Students" to="/student-charts/sounds/">
-            <MenuItem id="Students" href="/student-charts/sounds/">
-              Student Sound Charts
-            </MenuItem>
-          </LinkContainer>
-          <LinkContainer to="/reading-level-charts/" id="Students">
-            <MenuItem id="Students">Reading Level Charts</MenuItem>
-          </LinkContainer> */
-}
