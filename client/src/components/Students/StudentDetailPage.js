@@ -22,7 +22,9 @@ const StudentDetailPage = props => (
       </Col>
     </Row>
     <Row>
-      <div style={{ float: "left", marginBottom: 100 }}>
+      <div
+        style={{ float: "left", marginBottom: 100, height: 250, width: 500 }}
+      >
         <Col>
           <StudentSnapshot
             groupSentence={props.groupSentence}
