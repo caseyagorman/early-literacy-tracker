@@ -13,16 +13,18 @@ const AppNavPage = props => {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <Nav.Link to="/student-charts/words/">Student Word Charts</Nav.Link>
+          <Nav.Link href="/student-charts/words/">Student Word Charts</Nav.Link>
           <Nav.Link to="/student-charts/letters/">
             Student Letter Charts
           </Nav.Link>
-          <Nav.Link to="/student-charts/sounds/">Student Sound Charts</Nav.Link>
-          <Nav.Link to="/reading-level-charts/">Reading Charts</Nav.Link>
-          <Nav.Link to="/items/words/">Words</Nav.Link>
+          <Nav.Link href="/student-charts/sounds/">
+            Student Sound Charts
+          </Nav.Link>
+          <Nav.Link href="/reading-level-charts/">Reading Charts</Nav.Link>
+          <Nav.Link href="/items/words/">Words</Nav.Link>
           <Nav.Link href="/items/letters/">Letters</Nav.Link>
-          <Nav.Link to="/items/sounds/">Sounds</Nav.Link>
-          <Nav.Link to="/manage-groups/">Groups</Nav.Link>
+          <Nav.Link href="/items/sounds/">Sounds</Nav.Link>
+          <Nav.Link href="/manage-groups/">Groups</Nav.Link>
         </Nav>
         <Nav pullRight>
           <NavItem href={props.route}>
