@@ -12,10 +12,6 @@ class TableContainer extends Component {
   }
 
   componentDidMount() {
-    const user = this.props.auth.user.token;
-    if (!user) {
-      this.props.history.push("/login/");
-    }
     if (!this.props.actions) {
       return <div> </div>;
     }
