@@ -41,3 +41,7 @@
   color: white;
   font-size: 16px;
 }
+
+.collapse.in {
+  display: block;
+}
