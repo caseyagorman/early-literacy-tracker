@@ -146,20 +146,22 @@ const StudentTable = (
               </OverlayTrigger>
             </td>
             <td>
-              <OverlayTrigger
-                placement={"top"}
-                overlay={
-                  <Tooltip>
-                    {student.name} knows {student.soundCount}/
-                    {student.totalSoundCount} sounds
-                  </Tooltip>
-                }
-              >
-                <ProgressBar
-                  animated
-                  now={(student.soundCount / student.totalSoundCount) * 100}
-                />
-              </OverlayTrigger>
+              <div style={{ marginTop: 20 }}>
+                <OverlayTrigger
+                  placement={"top"}
+                  overlay={
+                    <Tooltip>
+                      {student.name} knows {student.soundCount}/
+                      {student.totalSoundCount} sounds
+                    </Tooltip>
+                  }
+                >
+                  <ProgressBar
+                    animated
+                    now={(student.soundCount / student.totalSoundCount) * 100}
+                  />
+                </OverlayTrigger>
+              </div>
             </td>
             <td>
               {" "}
