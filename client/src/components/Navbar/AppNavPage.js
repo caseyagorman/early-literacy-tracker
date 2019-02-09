@@ -14,7 +14,7 @@ const AppNavPage = props => {
       <Navbar.Collapse>
         <Nav>
           <Nav.Link href="/student-charts/words/">Student Word Charts</Nav.Link>
-          <Nav.Link to="/student-charts/letters/">
+          <Nav.Link href="/student-charts/letters/">
             Student Letter Charts
           </Nav.Link>
           <Nav.Link href="/student-charts/sounds/">
