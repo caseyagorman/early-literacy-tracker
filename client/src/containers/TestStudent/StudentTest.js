@@ -38,6 +38,10 @@ class StudentTest extends React.Component {
 
   endTest(e) {
     e.preventDefault();
+    if (this.props.studentTest.testItems.length === 0) {
+      this.props.history.push(`/details/${this.props.match.params.id}`);
+      return;
+    }
     this.props.studentTestActions.submitStudentTest(
       this.props.studentTest.testItems,
       this.props.studentTest.testType,
@@ -45,7 +49,6 @@ class StudentTest extends React.Component {
       this.props.user
     );
   }
-
   handleTestClick(e, studentTestItems, idx) {
     e.preventDefault();
     this.incrementIdx(idx);
