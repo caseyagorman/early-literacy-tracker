@@ -42,14 +42,6 @@
   font-size: 16px;
 }
 
-#navbar > div > div.navbar-header > button {
-  display: block !important;
-  float: left;
-  width: 100%;
-}
-
 #navbar > div > div.navbar-collapse.collapse {
   display: block !important;
-  float: left;
-  width: 100%;
 }
