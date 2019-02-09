@@ -141,7 +141,7 @@ def reset_password():
 def read_txt_file(current_user, item_type):
     unassigned_items = {'itemType': item_type, 'items': {} }
     if item_type == "words":
-        fname = ["other common words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
+        fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
     if item_type == "sounds":
         fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt"]
     if item_type == "letters":
