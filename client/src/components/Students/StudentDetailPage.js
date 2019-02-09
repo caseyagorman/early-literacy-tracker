@@ -185,6 +185,20 @@ const StudentDetailPage = props => (
               />
             </div>
           </OverlayTrigger>
+
+          <div
+            style={{
+              float: "left",
+              marginTop: -100,
+              marginBottom: 20,
+              marginLeft: -15
+            }}
+          >
+            <AssignReadingLevel
+              id={props.student.student.student_id}
+              student={props.student.student.name.split(" ")[0]}
+            />
+          </div>
         </div>
       </Col>
       <Col>
@@ -196,21 +210,7 @@ const StudentDetailPage = props => (
         </div>
       </Col>
     </Row>
-    <div
-      style={{
-        float: "left",
-        marginTop: -100,
-        marginBottom: 20,
-        marginLeft: -15
-      }}
-    >
-      <Row>
-        <AssignReadingLevel
-          id={props.student.student.student_id}
-          student={props.student.student.name.split(" ")[0]}
-        />
-      </Row>
-    </div>
+
     <Row>
       <StudentDetailTable student={props.student} />
     </Row>
