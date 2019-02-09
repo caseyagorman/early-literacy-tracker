@@ -25,8 +25,6 @@ const AppNavPage = props => {
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Features</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav>
-        <Nav>
           <NavItem id="Students" eventKey={1}>
             <NavDropdown eventKey={3} title="Students" id="drop-down">
               <LinkContainer to="/students" id="Students">
