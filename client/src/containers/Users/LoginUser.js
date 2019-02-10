@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
-import LoginUserPage from "../../components/Users/LoginUserPage";
+import LoginUserForm from "../../components/Users/LoginUserForm";
 import { ToastContainer, ToastStore } from "react-toasts";
 class LoginUser extends Component {
   constructor(props) {
@@ -54,13 +54,14 @@ class LoginUser extends Component {
   render() {
     return (
       <div>
-        <LoginUserPage
+        <LoginUserForm
           username={this.state.username}
           password={this.state.password}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          loginError={this.props.auth.loginError.error}
+          loginError={this.loginError}
         />
+
         <ToastContainer store={ToastStore} />
       </div>
     );

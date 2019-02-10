@@ -35,13 +35,14 @@ import ToastTest from "./containers/Toast/ToastTest";
 import AssignGroup from "./containers/Groups/AssignGroup";
 import AddGroup from "./containers/Forms/AddGroup";
 import GroupDetail from "./containers/Groups/GroupDetail";
+import Home from "./components/Users/Home";
 const initialState = {};
 const locationHelper = locationHelperBuilder({});
 const store = configureStore(initialState);
 const persistor = persistStore(store);
 
 const userIsAuthenticated = connectedRouterRedirect({
-  redirectPath: "/login",
+  redirectPath: "/",
   authenticatedSelector: state => state.auth.user !== null,
   wrapperDisplayName: "UserIsAuthenticated"
 });
@@ -58,19 +59,16 @@ const AppRouter = () => (
   <Router history={history}>
     <div>
       <AppNav />
-      <Route path="/register" component={RegisterUser} />
-      <Route path="/logout" component={userIsAuthenticated(LogoutUser)} />
+      <Route
+        path="/register"
+        component={userIsNotAuthenticated(RegisterUser)}
+      />
+      <Route path="/logout" component={userIsNotAuthenticated(LogoutUser)} />
       <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
-      <Route path="//" component={userIsNotAuthenticated(LoginUser)} />
+      <Route path="//" component={userIsNotAuthenticated(Home)} />
       <Route path="//" component={userIsAuthenticated(AllStudents)} />
-      <Route
-        path="/forgot-password"
-        component={userIsNotAuthenticated(RequestResetPassword)}
-      />
-      <Route
-        path="/reset-password/:resetToken"
-        component={userIsNotAuthenticated(ResetPassword)}
-      />
+      <Route path="/forgot-password" component={RequestResetPassword} />
+      <Route path="/reset-password/:resetToken" component={ResetPassword} />
       <Route path="/students" component={userIsAuthenticated(AllStudents)} />
       <Route path="/add-student" component={userIsAuthenticated(AddStudent)} />
       <Route
@@ -148,18 +146,3 @@ ReactDOM.render(
   document.getElementById("root")
 );
 serviceWorker.unregister();
-
-// import { loadState, saveState } from "./localStorage";
-// import AuthUser from "./HOC/AuthUser";
-// import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect";
-// import locationHelperBuilder from "redux-auth-wrapper/history4/locationHelper";
-// import { loadState, saveState } from "./localStorage";
-
-// const persistedState = loadState();
-// const initialState = {};
-// const store = configureStore(initialState, persistedState);
-
-// store.subscribe(() => {
-//   saveState(store.getState());
-// });
-// {
