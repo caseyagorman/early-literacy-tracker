@@ -6,7 +6,8 @@ const LoginUserForm = props => (
     <form onSubmit={props.handleSubmit} className="form-container">
       <br />
       <br />
-      <br />å<h3>Login</h3>
+      <br />
+      <h3>Login</h3>
       <br />
       <label className="login-form" id="login-form-username">
         Username
