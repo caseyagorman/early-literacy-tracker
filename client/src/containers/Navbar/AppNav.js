@@ -7,10 +7,12 @@ class AppNav extends Component {
     if (!user || user.user === null) {
       let route = "/login";
       let navText = "Login";
+      console.log("user logged in text", route, navText);
       return <AppNavPage route={route} navText={navText} />;
     } else if (user.user != null) {
       let route = "/logout";
       let navText = "Logout";
+      console.log("user not logged in text", route, navText);
       return <AppNavPage route={route} navText={navText} />;
     }
   }

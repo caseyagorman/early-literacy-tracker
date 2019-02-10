@@ -63,7 +63,7 @@ const AppRouter = () => (
         path="/register"
         component={userIsNotAuthenticated(RegisterUser)}
       />
-      <Route path="/logout" component={userIsNotAuthenticated(LogoutUser)} />
+      <Route path="/logout" component={userIsAuthenticated(LogoutUser)} />
       <Route path="/login" component={userIsNotAuthenticated(LoginUser)} />
       <Route path="//" component={userIsNotAuthenticated(Home)} />
       <Route path="//" component={userIsAuthenticated(AllStudents)} />
