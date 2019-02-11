@@ -1,14 +1,14 @@
 import * as types from "./actionTypes";
 
 function getUserApi() {
-  return "http://54.68.30.124/api/login";
+  return "/api/login";
 }
 
 function requestResetPasswordApi() {
-  return "http://54.68.30.124/api/request-reset-password";
+  return "/api/request-reset-password";
 }
 function resetPasswordApi() {
-  return "http://54.68.30.124/api/reset-password";
+  return "/api/reset-password";
 }
 export function checkUser(auth) {
   if (!auth.error) {
