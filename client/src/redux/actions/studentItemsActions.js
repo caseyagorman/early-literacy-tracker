@@ -2,18 +2,18 @@ import * as types from "./actionTypes";
 import history from "../../history";
 
 function getStudentApi(id) {
-  return `http://54.68.30.124/api/details/${id}`;
+  return `/api/details/${id}`;
 }
 
 function getUnassignedItemsApi(id, itemType) {
-  return `http://54.68.30.124/api/unassigned-items/${id}/${itemType}`;
+  return `/api/unassigned-items/${id}/${itemType}`;
 }
 
 function getMarkStudentItemLearnedApi() {
-  return "http://54.68.30.124/api/mark-items-learned";
+  return "/api/mark-items-learned";
 }
 function getMarkStudentItemUnLearnedApi() {
-  return "http://54.68.30.124/api/mark-items-unlearned";
+  return "/api/mark-items-unlearned";
 }
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };

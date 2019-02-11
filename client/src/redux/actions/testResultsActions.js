@@ -2,11 +2,11 @@ import * as types from "./actionTypes";
 import history from "../../history";
 
 function getStudentTestResultsApi(itemType, id) {
-  return `http://54.68.30.124/api/get-student-item-test/${itemType}/${id}`;
+  return `/api/get-student-item-test/${itemType}/${id}`;
 }
 
 function getStudentAllTestsResultsApi(id) {
-  return `http://54.68.30.124/api/get-all-student-tests/${id}`;
+  return `/api/get-all-student-tests/${id}`;
 }
 
 export function receiveTestResults(testResults) {

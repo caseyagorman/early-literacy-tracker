@@ -1,6 +1,6 @@
 import * as types from "./actionTypes";
 function registerUserApi() {
-  return "http://54.68.30.124/api/register";
+  return "/api/register";
 }
 
 export function clearUser(register) {

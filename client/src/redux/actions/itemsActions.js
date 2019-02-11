@@ -1,37 +1,37 @@
 import * as types from "./actionTypes";
 import history from "../../history";
 function getStudentsApi(user) {
-  return "http://54.68.30.124/api/students";
+  return "/api/students";
 }
 function getStudentApi(id) {
-  return `http://54.68.30.124/api/details/${id}`;
+  return `/api/details/${id}`;
 }
 function getItemsApi(itemType) {
-  return `http://54.68.30.124/api/items/${itemType}`;
+  return `/api/items/${itemType}`;
 }
 
 function getItemApi(itemType, id) {
-  return `http://54.68.30.124/api/item-detail/${itemType}/${id}`;
+  return `/api/item-detail/${itemType}/${id}`;
 }
 function addItemApi() {
-  return "http://54.68.30.124/api/add-item";
+  return "/api/add-item";
 }
 function deleteItemApi() {
-  return "http://54.68.30.124/api/delete-item";
+  return "/api/delete-item";
 }
 function addCustomStudentItemsApi() {
-  return "http://54.68.30.124/api/add-custom-item";
+  return "/api/add-custom-item";
 }
 
 function addStudentItemsApi() {
-  return "http://54.68.30.124/api/add-new-items-to-students";
+  return "/api/add-new-items-to-students";
 }
 
 function getUnassignedItemsApi(id, itemType) {
-  return `http://54.68.30.124/api/unassigned-items/${id}/${itemType}`;
+  return `/api/unassigned-items/${id}/${itemType}`;
 }
 function assignCustomStudentItemsApi() {
-  return "http://54.68.30.124/api/add-custom-items-to-student";
+  return "/api/add-custom-items-to-student";
 }
 
 export function receiveItem(item) {
