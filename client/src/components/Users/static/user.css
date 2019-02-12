@@ -111,9 +111,13 @@ img {
   }
 } */
 .jumbotron {
-  height: 60vh;
+  height: 50vh;
   /* width: 30vh; */
 }
 .blue-div {
+  height: 50vh;
+}
+
+.picture {
   height: 50vh;
 }

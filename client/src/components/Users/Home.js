@@ -17,37 +17,44 @@ const Home = props => (
       <div
         className="jumbotron"
         style={{
-          // height: 600,
           fontFamily: "Krub",
-          textAlign: "center",
-          background: "contain",
-          backgroundImage: `url(${bianca6})`,
-          backgroundPosition: "left",
-          backgroundSize: "66%",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: "#003d59",
+          paddingBottom: "75%",
 
-          marginTop: -20
+          backgroundColor: "white"
         }}
       >
-        {/* </Col>
-      <Col> */}
+        <div
+          className="picture"
+          style={{
+            height: "50vh",
+            width: "66%",
+            float: "left",
+            marginTop: -40,
+            backgroundPosition: "top",
+            backgroundSize: "100%",
+            backgroundImage: `url(${bianca6})`,
+            backgroundRepeat: "no-repeat"
+          }}
+        />
         <div
           className="blue-div"
           style={{
+            marginTop: -40,
+            backgroundColor: "#003d59",
+            height: "50vh",
             color: "white",
             maxHeight: 600,
-            width: "33%",
+            width: "34%",
             float: "right",
             textAlign: "center"
           }}
         >
-          <h1 style={{ fontSize: 80, textAlign: "center" }}>TrackIt!</h1>
+          {/* <h1 style={{ fontSize: 60, textAlign: "center" }}>TrackIt!</h1> */}
 
           <br />
 
           <br />
-          <p style={{ fontSize: 20, textAlign: "center" }}>
+          {/* <p style={{ fontSize: 20, textAlign: "center" }}>
             TrackIt is a tool that allows teachers <br /> to test, track, and
             manage their students'
             <br /> letters, sounds, and sight words.
@@ -77,7 +84,7 @@ const Home = props => (
                 Login
               </button>
             </Link>
-          </p>
+          </p> */}
         </div>
       </div>
       {/* </Col> */}
