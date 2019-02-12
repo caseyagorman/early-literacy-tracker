@@ -13,31 +13,31 @@ const Home = props => (
   <div>
     {console.log("it this big", window.innerHeight)}
     <Row>
-      <Col>
-        <div
-          style={{
-            height: 600,
-            fontFamily: "Krub",
-            textAlign: "center",
-            background: "contain",
-            backgroundImage: `url(${bianca6})`,
-            backgroundPosition: "left",
-            backgroundSize: "100%",
-            maxWidth: "66%",
-            backgroundRepeat: "no-repeat",
+      {/* <Col> */}
+      <div
+        className="jumbotron"
+        style={{
+          // height: 600,
+          fontFamily: "Krub",
+          textAlign: "center",
+          background: "contain",
+          backgroundImage: `url(${bianca6})`,
+          backgroundPosition: "left",
+          backgroundSize: "66%",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#003d59",
 
-            marginTop: -20
-          }}
-        />
-      </Col>
-      <Col>
+          marginTop: -20
+        }}
+      >
+        {/* </Col>
+      <Col> */}
         <div
+          className="blue-div"
           style={{
-            backgroundColor: "#003d59",
             color: "white",
-            marginTop: -600,
-            height: 600,
-            width: "34%",
+            maxHeight: 600,
+            width: "33%",
             float: "right",
             textAlign: "center"
           }}
@@ -79,7 +79,8 @@ const Home = props => (
             </Link>
           </p>
         </div>
-      </Col>
+      </div>
+      {/* </Col> */}
     </Row>
     <div
       className="container"

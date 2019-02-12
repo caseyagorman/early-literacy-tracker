@@ -104,9 +104,16 @@ img {
   font-size: 300px;
 }
 
-@media only screen and (max-width: 800px) {
+/* @media only screen and (max-width: 800px) {
   .jumbotron {
     height: 300px;
     background-size: 100%;
   }
+} */
+.jumbotron {
+  height: 60vh;
+  /* width: 30vh; */
+}
+.blue-div {
+  height: 50vh;
 }
