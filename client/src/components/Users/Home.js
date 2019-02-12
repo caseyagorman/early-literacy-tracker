@@ -6,7 +6,7 @@ import bianca from "./static/bianca.png";
 import WordData from "./static/WordData.png";
 import GroupPage from "./static/GroupPage.png";
 import DetailPage from "./static/DetailPage.png";
-import AddSounds from "./static/AddSounds.png";
+import AddWordForm from "./static/AddWordForm.png";
 import { Link } from "react-router-dom";
 import { Glyphicon, Row } from "react-bootstrap";
 const Home = props => (
@@ -158,8 +158,8 @@ const Home = props => (
           }}
         >
           <h4>View and manage students </h4>
-
-          <div style={{ height: 365, border: "1px solid #003d59" }}>
+          <br />
+          <div style={{ height: 375, border: "1px solid #003d59" }}>
             <img
               style={{ display: "inline-block", maxWidth: 500 }}
               src={StudentPage}
@@ -175,10 +175,10 @@ const Home = props => (
           }}
         >
           <h4>Check in on individual students</h4>
-
+          <br />
           <div
             style={{
-              height: 365,
+              height: 375,
               border: "1px solid #003d59",
               display: "inline-block"
             }}
@@ -195,7 +195,7 @@ const Home = props => (
           </div>
         </div>
       </Row>
-
+      <br />
       <Row>
         <div
           style={{
@@ -204,9 +204,9 @@ const Home = props => (
             float: "right"
           }}
         >
-          <h4>Something </h4>
-
-          <div style={{ height: 365, border: "1px solid #003d59" }}>
+          <h4>Individual student data </h4>
+          <br />
+          <div style={{ height: 375, border: "1px solid #003d59" }}>
             <img
               style={{ display: "inline-block", maxWidth: 500 }}
               src={StudentDetailData}
@@ -221,7 +221,8 @@ const Home = props => (
             float: "right"
           }}
         >
-          <h4>Something</h4>
+          <h4>Whole class data</h4>
+          <br />
 
           <div
             style={{
@@ -242,6 +243,7 @@ const Home = props => (
           </div>
         </div>
       </Row>
+      <br />
       <Row>
         <div
           style={{
@@ -250,7 +252,9 @@ const Home = props => (
             float: "right"
           }}
         >
-          <h4>Something else </h4>
+          <h4>Manage student groups</h4>
+          <br />
+          <br />
 
           <div style={{ height: 450, border: "1px solid #003d59" }}>
             <img
@@ -267,7 +271,11 @@ const Home = props => (
             float: "right"
           }}
         >
-          <h4>Something else</h4>
+          <h4>
+            Add whole class or custom words,
+            <br /> letters, and sounds{" "}
+          </h4>
+          <br />
 
           <div
             style={{
@@ -282,7 +290,7 @@ const Home = props => (
                 maxWidth: 500,
                 marginTop: 30
               }}
-              src={AddSounds}
+              src={AddWordForm}
               alt="Logo"
             />
           </div>
