@@ -19,7 +19,6 @@ const Home = props => (
         textAlign: "center",
         background: `url(${bianca})`,
         backgroundSize: "66%",
-        // backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#003d59",
         color: "white",
@@ -30,7 +29,6 @@ const Home = props => (
         style={{
           width: "33%",
           float: "right",
-          // marginRight: 100,
           textAlign: "center"
         }}
       >
@@ -84,7 +82,7 @@ const Home = props => (
             style={{
               backgroundColor: "rgb(68, 133, 125, 0.6)",
               border: "5px solid #003d59",
-
+              padding: 2,
               textAlign: "center",
               borderRadius: "50%",
               height: 150,
@@ -131,7 +129,6 @@ const Home = props => (
             style={{
               backgroundColor: "rgb(68, 133, 125, 0.6)",
               border: "5px solid #003d59",
-
               textAlign: "center",
               borderRadius: "50%",
               height: 150,
@@ -183,6 +180,7 @@ const Home = props => (
           <div
             style={{
               height: 505,
+              padding: 2,
               border: "1px solid #003d59",
               display: "inline-block"
             }}
@@ -213,7 +211,7 @@ const Home = props => (
         >
           <h4>Individual student data </h4>
           <br />
-          <div style={{ height: 450, border: "1px solid #003d59" }}>
+          <div style={{ height: 450, padding: 2, border: "1px solid #003d59" }}>
             {" "}
             <br />
             <br />
@@ -238,6 +236,7 @@ const Home = props => (
           <div
             style={{
               height: 450,
+              padding: 2,
               border: "1px solid #003d59",
               display: "inline-block"
             }}
@@ -271,7 +270,7 @@ const Home = props => (
           <br />
           <br />
 
-          <div style={{ height: 505, border: "1px solid #003d59" }}>
+          <div style={{ height: 505, padding: 2, border: "1px solid #003d59" }}>
             <br />
             <img
               style={{ display: "inline-block", maxWidth: 500, maxHeight: 500 }}
@@ -296,6 +295,7 @@ const Home = props => (
           <div
             style={{
               height: 505,
+              padding: 2,
               border: "1px solid #003d59",
               display: "inline-block"
             }}
