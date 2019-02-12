@@ -14,7 +14,7 @@ const Home = props => (
     <div
       className="jumbotron"
       style={{
-        maxHeight: 500,
+        height: 500,
         fontFamily: "Krub",
         textAlign: "center",
         background: `url(${bianca})`,
@@ -25,7 +25,13 @@ const Home = props => (
         marginTop: -20
       }}
     >
-      <div>
+      <div
+        style={{
+          width: 250,
+          float: "right",
+          marginRight: 50
+        }}
+      >
         <h1 style={{ fontSize: 80, textAlign: "center" }}>TrackIt!</h1>
 
         <br />
