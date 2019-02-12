@@ -154,7 +154,6 @@ const Home = props => (
             marginLeft: 140,
             display: "inline-block",
             float: "right"
-            // border: "1px solid #003d59"
           }}
         >
           <h4>View and manage students </h4>

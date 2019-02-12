@@ -19,9 +19,9 @@ class ClassAverageChart extends Component {
       return a + b;
     }
 
-    let allStudentLetterCounts = wordSum / wordLength;
-    let allStudentWordCounts = letterSum / letterLength;
-    let allStudentSoundCounts = soundSum / soundLength;
+    let allStudentLetterCounts = Math.round(letterSum / letterLength);
+    let allStudentWordCounts = Math.round(wordSum / wordLength);
+    let allStudentSoundCounts = Math.round(soundSum / soundLength);
     return (
       <StudentDetailBarChart
         allStudentLetterCounts={allStudentLetterCounts}
