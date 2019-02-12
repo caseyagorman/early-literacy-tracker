@@ -514,6 +514,7 @@ def add_items_to__new_students(current_user):
 @app.route("/api/students")
 @token_required
 def get_students(current_user):
+    # This has 20 queries
     start = time.time()
     user_id = current_user.public_id
     students = Student.query.filter_by(user_id=user_id).options(
@@ -537,26 +538,44 @@ def get_students(current_user):
             group_name = group.group_name
  
         last_word_test = get_test_dates(student.student_id, "words")
+        # This is a query
         last_letter_test = get_test_dates(student.student_id, "letters")
+        # This is a query
         last_sound_test = get_test_dates(student.student_id, "sounds")
+        # This is a query
         word_count = get_student_item_counts(student.student_id, "words")[0]
+        # This is a query
         all_student_word_counts.append(word_count)
         unlearned_word_count = get_student_item_counts(student.student_id, "words")[1]
+        # This is a query
         total_word_count = get_student_item_counts(student.student_id, "words")[2]
+        # This is a query
         letter_count = get_student_item_counts(student.student_id, "letters")[0]
+        # This is a query
         all_student_letter_counts.append(letter_count)
         unlearned_letter_count = get_student_item_counts(student.student_id, "letters")[1]
+        # This is a query
         total_letter_count = get_student_item_counts(student.student_id, "letters")[2]
+        # This is a query
         sound_count = get_student_item_counts(student.student_id, "sounds")[0]
+        # This is a query
         all_student_sound_counts.append(sound_count)
         unlearned_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
+        # This is a query
         total_sound_count = get_student_item_counts(student.student_id, "sounds")[2]
+        # This is a query
         word_list = get_student_item_list(student, "words")[0]
+        # This is a query
         unlearned_word_list = get_student_item_list(student, "words")[1]
+        # This is a query
         letter_list = get_student_item_list(student, "letters")[0]
+        # This is a query
         unlearned_letter_list = get_student_item_list(student, "letters")[1]
+        # This is a query
         sound_list = get_student_item_list(student, "sounds")[0]
+        # This is a query
         unlearned_sound_list = get_student_item_list(student, "sounds")[1]
+        # This is a query
         student = {
             'studentId': student.student_id,
             'name': student.name,
