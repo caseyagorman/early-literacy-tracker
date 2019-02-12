@@ -159,9 +159,12 @@ const Home = props => (
         >
           <h4>View and manage students </h4>
           <br />
-          <div style={{ height: 375, border: "1px solid #003d59" }}>
+          <div style={{ height: 505, border: "1px solid #003d59" }}>
+            <br />
+            <br />
+            <br />
             <img
-              style={{ display: "inline-block", maxWidth: 500 }}
+              style={{ display: "inline-block", maxWidth: 500, maxHeight: 500 }}
               src={StudentPage}
               alt="Logo"
             />
@@ -178,15 +181,18 @@ const Home = props => (
           <br />
           <div
             style={{
-              height: 375,
+              height: 505,
               border: "1px solid #003d59",
               display: "inline-block"
             }}
           >
+            <br />
+
             <img
               style={{
                 display: "inline-block",
                 maxWidth: 500,
+                maxHeight: 500,
                 marginTop: 30
               }}
               src={DetailPage}
@@ -206,9 +212,13 @@ const Home = props => (
         >
           <h4>Individual student data </h4>
           <br />
-          <div style={{ height: 375, border: "1px solid #003d59" }}>
+          <div style={{ height: 450, border: "1px solid #003d59" }}>
+            {" "}
+            <br />
+            <br />
+            <br />
             <img
-              style={{ display: "inline-block", maxWidth: 500 }}
+              style={{ display: "inline-block", maxWidth: 500, maxHeight: 425 }}
               src={StudentDetailData}
               alt="Logo"
             />
@@ -226,15 +236,19 @@ const Home = props => (
 
           <div
             style={{
-              height: 365,
+              height: 450,
               border: "1px solid #003d59",
               display: "inline-block"
             }}
           >
+            <br />
+            <br />
+            <br />
             <img
               style={{
                 display: "inline-block",
                 maxWidth: 500,
+                maxHeight: 425,
                 marginTop: 30
               }}
               src={WordData}
@@ -256,9 +270,10 @@ const Home = props => (
           <br />
           <br />
 
-          <div style={{ height: 450, border: "1px solid #003d59" }}>
+          <div style={{ height: 505, border: "1px solid #003d59" }}>
+            <br />
             <img
-              style={{ display: "inline-block", maxWidth: 500 }}
+              style={{ display: "inline-block", maxWidth: 500, maxHeight: 500 }}
               src={GroupPage}
               alt="Logo"
             />
@@ -279,15 +294,17 @@ const Home = props => (
 
           <div
             style={{
-              height: 450,
+              height: 505,
               border: "1px solid #003d59",
               display: "inline-block"
             }}
           >
+            <br />
             <img
               style={{
                 display: "inline-block",
                 maxWidth: 500,
+                maxHeight: 500,
                 marginTop: 30
               }}
               src={AddWordForm}

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import LoginUserForm from "../../components/Users/LoginUserForm";
+import AppNavLogin from "../../components/Navbar/AppNavLogin";
 import { ToastContainer, ToastStore } from "react-toasts";
 class LoginUser extends Component {
   constructor(props) {
@@ -52,8 +53,11 @@ class LoginUser extends Component {
   }
 
   render() {
+    let route = "/login";
+    let navText = "Login";
     return (
       <div>
+        <AppNavLogin route={route} navText={navText} />
         <LoginUserForm
           username={this.state.username}
           password={this.state.password}
