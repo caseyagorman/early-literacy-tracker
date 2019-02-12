@@ -103,3 +103,9 @@ img {
 #huge {
   font-size: 300px;
 }
+
+@media only screen and (max-width: 500px) {
+  .jumbotron {
+    background-size: 100% 50%;
+  }
+}
