@@ -18,6 +18,7 @@ const Home = props => (
         fontFamily: "Krub",
         textAlign: "center",
         background: `url(${bianca})`,
+        backgrounPosition: "left",
         backgroundSize: "66%",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#003d59",
@@ -27,6 +28,7 @@ const Home = props => (
     >
       <div
         style={{
+          height: "100%",
           width: "33%",
           float: "right",
           textAlign: "center"
@@ -38,10 +40,9 @@ const Home = props => (
 
         <br />
         <p style={{ fontSize: 20, textAlign: "center" }}>
-          TrackIt is a tool that allows <br /> teachers to test, track, and
-          manage <br />
-          their students' letters, sounds, and sight <br /> words. Scroll down
-          to see more!
+          TrackIt is a tool that allows teachers <br /> to test, track, and
+          manage their students'
+          <br /> letters, sounds, and sight words.
           <br />
           <br />
           <Link to={"/register"}>
