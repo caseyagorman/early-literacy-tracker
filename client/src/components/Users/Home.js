@@ -2,7 +2,7 @@ import React from "react";
 import "./static/user.css";
 import StudentDetailData from "./static/StudentDetailData.png";
 import StudentPage from "./static/StudentPage.png";
-import bianca from "./static/bianca.png";
+import bianca6 from "./static/bianca6.jpg";
 import WordData from "./static/WordData.png";
 import GroupPage from "./static/GroupPage.png";
 import DetailPage from "./static/DetailPage.png";
@@ -11,14 +11,16 @@ import { Link } from "react-router-dom";
 import { Glyphicon, Row } from "react-bootstrap";
 const Home = props => (
   <div>
+    {console.log("it this big", window.innerHeight)}
     <div
       className="jumbotron"
       style={{
         height: 600,
         fontFamily: "Krub",
         textAlign: "center",
-        background: `url(${bianca})`,
-        backgrounPosition: "left",
+        background: "contain",
+        backgroundImage: `url(${bianca6})`,
+        backgroundPosition: "left",
         backgroundSize: "66%",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#003d59",
