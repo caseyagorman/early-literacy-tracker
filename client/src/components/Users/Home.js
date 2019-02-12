@@ -25,7 +25,7 @@ const Home = props => (
         marginTop: -20
       }}
     >
-      <div style={{ marginLeft: 1000 }}>
+      <div>
         <h1 style={{ fontSize: 80, textAlign: "center" }}>TrackIt!</h1>
 
         <br />
