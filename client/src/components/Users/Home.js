@@ -18,7 +18,8 @@ const Home = props => (
         fontFamily: "Krub",
         textAlign: "center",
         background: `url(${bianca})`,
-        backgroundSize: 1000,
+        backgroundSize: "66%",
+        // backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#003d59",
         color: "white",
@@ -27,9 +28,10 @@ const Home = props => (
     >
       <div
         style={{
-          width: 500,
+          width: "33%",
           float: "right",
-          marginRight: 100
+          // marginRight: 100,
+          textAlign: "center"
         }}
       >
         <h1 style={{ fontSize: 80, textAlign: "center" }}>TrackIt!</h1>
