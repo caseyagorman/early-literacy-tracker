@@ -58,8 +58,8 @@ const userIsNotAuthenticated = connectedRouterRedirect({
 const AppRouter = () => (
   <Router history={history}>
     <div>
-      <Route path="//" component={userIsNotAuthenticated(Home)} />
       <AppNav />
+      <Route path="//" component={userIsNotAuthenticated(Home)} />
       <Route
         path="/register"
         component={userIsNotAuthenticated(RegisterUser)}
