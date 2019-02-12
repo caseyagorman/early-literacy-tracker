@@ -29,7 +29,7 @@ const Home = props => (
         style={{
           width: 250,
           float: "right",
-          marginRight: 50
+          marginRight: 0
         }}
       >
         <h1 style={{ fontSize: 80, textAlign: "center" }}>TrackIt!</h1>
@@ -72,119 +72,114 @@ const Home = props => (
       </div>
     </div>
 
-    <div className="container">
-      <div style={{ textAlign: "center", fontFamily: "Krub" }}>
-        <Row>
-          <div style={{ display: "inline-block", margin: "5%" }}>
-            <div
-              style={{
-                backgroundColor: "rgb(68, 133, 125, 0.6)",
-                border: "5px solid #003d59",
+    <div
+      className="container"
+      style={{ textAlign: "center", fontFamily: "Krub" }}
+    >
+      <Row>
+        <div style={{ display: "inline-block", margin: "5%" }}>
+          <div
+            style={{
+              backgroundColor: "rgb(68, 133, 125, 0.6)",
+              border: "5px solid #003d59",
 
-                textAlign: "center",
-                borderRadius: "50%",
-                height: 150,
-                width: 150
-              }}
-            >
-              <Glyphicon
-                style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
-                glyph="glyphicon glyphicon-pencil"
-              />
-            </div>
-            <br />
-            <p style={{ fontSize: 20, textAlign: "center" }}>
-              Test student <br />
-              phonics skills
-            </p>
+              textAlign: "center",
+              borderRadius: "50%",
+              height: 150,
+              width: 150
+            }}
+          >
+            <Glyphicon
+              style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
+              glyph="glyphicon glyphicon-pencil"
+            />
           </div>
-          <div style={{ display: "inline-block", margin: "5%" }}>
-            <div
-              style={{
-                backgroundColor: "rgb(68, 133, 125, 0.6)",
-                border: "5px solid #003d59",
-
-                textAlign: "center",
-                borderRadius: "50%",
-                height: 150,
-                width: 150
-              }}
-            >
-              <Glyphicon
-                style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
-                glyph="glyphicon glyphicon-stats"
-              />
-            </div>
-            <br />
-            <p style={{ fontSize: 20, textAlign: "center" }}>
-              Student data
-              <br />
-              visualizations
-            </p>
-          </div>
-          <div style={{ display: "inline-block", margin: "5%" }}>
-            <div
-              style={{
-                backgroundColor: "rgb(68, 133, 125, 0.6)",
-                border: "5px solid #003d59",
-
-                textAlign: "center",
-                borderRadius: "50%",
-                height: 150,
-                width: 150
-              }}
-            >
-              <Glyphicon
-                style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
-                glyph="glyphicon glyphicon-tasks"
-              />
-            </div>
-            <br />
-            <p style={{ fontSize: 20, textAlign: "center" }}>
-              Sort and group
-              <br /> students by focus
-            </p>
-          </div>
-        </Row>
-        <br />
-        <img style={{ maxWidth: 800 }} src={StudentPage} alt="Logo" />
-        <br />
-        <br />
-        <h4>
-          Check in on individual students, assign groups and reading levels
-        </h4>
-        <br />
-        <img style={{ maxWidth: 800 }} src={DetailPage} alt="Logo" />
-        <br />
-        <br />
-        <h4>View visual representations of class data</h4>
-        <br />
-        <img
-          style={{ maxWidth: 800 }}
-          src={StudentDetailData}
-          alt="Logo"
-        />{" "}
-        <br />
-        <br />
-        <img style={{ maxWidth: 800 }} src={WordData} alt="Logo" />
-        <br />
-        <br />
-        <h4>Manage groups and add notes</h4>
-        <br />
-        <br />
-        <img style={{ maxWidth: 800 }} src={GroupPage} alt="Logo" />
-        <br />
-        <br />
-        <h4>
           <br />
+          <p style={{ fontSize: 20, textAlign: "center" }}>
+            Test student <br />
+            phonics skills
+          </p>
+        </div>
+        <div style={{ display: "inline-block", margin: "5%" }}>
+          <div
+            style={{
+              backgroundColor: "rgb(68, 133, 125, 0.6)",
+              border: "5px solid #003d59",
+
+              textAlign: "center",
+              borderRadius: "50%",
+              height: 150,
+              width: 150
+            }}
+          >
+            <Glyphicon
+              style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
+              glyph="glyphicon glyphicon-stats"
+            />
+          </div>
           <br />
-          Assign words, letters, and sounds to all students as well as custom
-          words to individual students
-        </h4>
+          <p style={{ fontSize: 20, textAlign: "center" }}>
+            Student data
+            <br />
+            visualizations
+          </p>
+        </div>
+        <div style={{ display: "inline-block", margin: "5%" }}>
+          <div
+            style={{
+              backgroundColor: "rgb(68, 133, 125, 0.6)",
+              border: "5px solid #003d59",
+
+              textAlign: "center",
+              borderRadius: "50%",
+              height: 150,
+              width: 150
+            }}
+          >
+            <Glyphicon
+              style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
+              glyph="glyphicon glyphicon-tasks"
+            />
+          </div>
+          <br />
+          <p style={{ fontSize: 20, textAlign: "center" }}>
+            Sort and group
+            <br /> students by focus
+          </p>
+        </div>
+      </Row>
+      <br />
+      <img style={{ maxWidth: 800 }} src={StudentPage} alt="Logo" />
+      <br />
+      <br />
+      <h4>Check in on individual students, assign groups and reading levels</h4>
+      <br />
+      <img style={{ maxWidth: 800 }} src={DetailPage} alt="Logo" />
+      <br />
+      <br />
+      <h4>View visual representations of class data</h4>
+      <br />
+      <img style={{ maxWidth: 800 }} src={StudentDetailData} alt="Logo" />{" "}
+      <br />
+      <br />
+      <img style={{ maxWidth: 800 }} src={WordData} alt="Logo" />
+      <br />
+      <br />
+      <h4>Manage groups and add notes</h4>
+      <br />
+      <br />
+      <img style={{ maxWidth: 800 }} src={GroupPage} alt="Logo" />
+      <br />
+      <br />
+      <h4>
         <br />
         <br />
-        <img style={{ maxWidth: 800 }} src={AddSounds} alt="Logo" />
-      </div>
+        Assign words, letters, and sounds to all students as well as custom
+        words to individual students
+      </h4>
+      <br />
+      <br />
+      <img style={{ maxWidth: 800 }} src={AddSounds} alt="Logo" />
     </div>
   </div>
 );

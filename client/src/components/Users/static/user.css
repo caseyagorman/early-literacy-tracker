@@ -106,6 +106,6 @@ img {
 
 @media only screen and (max-width: 800px) {
   .jumbotron {
-    background-size: 100%;
+    background-size: 200%;
   }
 }
