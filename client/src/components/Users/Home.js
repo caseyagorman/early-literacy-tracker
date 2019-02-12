@@ -8,74 +8,79 @@ import GroupPage from "./static/GroupPage.png";
 import DetailPage from "./static/DetailPage.png";
 import AddWordForm from "./static/AddWordForm.png";
 import { Link } from "react-router-dom";
-import { Glyphicon, Row } from "react-bootstrap";
+import { Glyphicon, Row, Col } from "react-bootstrap";
 const Home = props => (
   <div>
     {console.log("it this big", window.innerHeight)}
-    <div
-      className="jumbotron"
-      style={{
-        height: 600,
-        fontFamily: "Krub",
-        textAlign: "center",
-        background: "contain",
-        backgroundImage: `url(${bianca6})`,
-        backgroundPosition: "left",
-        backgroundSize: "66%",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "#003d59",
-        color: "white",
-        marginTop: -20
-      }}
-    >
-      <div
-        style={{
-          marginTop: "5%",
-          height: "100%",
-          width: "33%",
-          float: "right",
-          textAlign: "center"
-        }}
-      >
-        <h1 style={{ fontSize: 80, textAlign: "center" }}>TrackIt!</h1>
+    <Row>
+      <Col>
+        <div
+          style={{
+            height: 600,
+            fontFamily: "Krub",
+            textAlign: "center",
+            background: "contain",
+            backgroundImage: `url(${bianca6})`,
+            backgroundPosition: "left",
+            backgroundSize: "100%",
+            maxWidth: "66%",
+            backgroundRepeat: "no-repeat",
 
-        <br />
+            marginTop: -20
+          }}
+        />
+      </Col>
+      <Col>
+        <div
+          style={{
+            backgroundColor: "#003d59",
+            color: "white",
+            marginTop: -600,
+            height: 600,
+            width: "34%",
+            float: "right",
+            textAlign: "center"
+          }}
+        >
+          <h1 style={{ fontSize: 80, textAlign: "center" }}>TrackIt!</h1>
 
-        <br />
-        <p style={{ fontSize: 20, textAlign: "center" }}>
-          TrackIt is a tool that allows teachers <br /> to test, track, and
-          manage their students'
-          <br /> letters, sounds, and sight words.
           <br />
+
           <br />
-          <Link to={"/register"}>
-            <button
-              style={{
-                backgroundColor: "#003d59",
+          <p style={{ fontSize: 20, textAlign: "center" }}>
+            TrackIt is a tool that allows teachers <br /> to test, track, and
+            manage their students'
+            <br /> letters, sounds, and sight words.
+            <br />
+            <br />
+            <Link to={"/register"}>
+              <button
+                style={{
+                  backgroundColor: "#003d59",
 
-                color: "white",
-                fontSize: 24
-              }}
-            >
-              Register
-            </button>
-          </Link>
-          <Link to={"/login"}>
-            <button
-              style={{
-                marginLeft: 10,
-                backgroundColor: "#003d59",
-                color: "white",
-                fontSize: 24
-              }}
-            >
-              Login
-            </button>
-          </Link>
-        </p>
-      </div>
-    </div>
-
+                  color: "white",
+                  fontSize: 24
+                }}
+              >
+                Register
+              </button>
+            </Link>
+            <Link to={"/login"}>
+              <button
+                style={{
+                  marginLeft: 10,
+                  backgroundColor: "#003d59",
+                  color: "white",
+                  fontSize: 24
+                }}
+              >
+                Login
+              </button>
+            </Link>
+          </p>
+        </div>
+      </Col>
+    </Row>
     <div
       className="container"
       style={{ textAlign: "center", fontFamily: "Krub" }}
