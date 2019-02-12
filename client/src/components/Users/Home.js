@@ -14,7 +14,7 @@ const Home = props => (
     <div
       className="jumbotron"
       style={{
-        height: 500,
+        height: 600,
         fontFamily: "Krub",
         textAlign: "center",
         background: `url(${bianca})`,
@@ -28,6 +28,7 @@ const Home = props => (
     >
       <div
         style={{
+          marginTop: "5%",
           height: "100%",
           width: "33%",
           float: "right",
