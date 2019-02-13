@@ -91,7 +91,7 @@ const Home = props => (
         <Col>
           <br />
           <br />
-          <h4>View and manage students </h4>
+          <h2 className="bordered-div-header">View and manage students </h2>
           <br />
           <div className="bordered-div">
             <img src={StudentPage} alt="Logo" />
@@ -99,12 +99,14 @@ const Home = props => (
         </Col>
         <Col>
           <br />
-          <h4>Check in on individual students</h4>
+          <h2 className="bordered-div-header">
+            Check in on individual students
+          </h2>
           <br />
           <div className="bordered-div">
             <br />
 
-            <img src={DetailPage} alt="Logo" />
+            <img className="student-detail" src={DetailPage} alt="Logo" />
           </div>
         </Col>
       </Row>
@@ -112,19 +114,19 @@ const Home = props => (
       <Row>
         <Col>
           <br />
-          <h4>Individual student data </h4>
+          <h2 className="bordered-div-header">Individual student data </h2>
           <br />
           <div className="bordered-div">
             <br />
             <div>
-              <img src={StudentDetailData} alt="Logo" />
+              <img className="detail-img" src={StudentDetailData} alt="Logo" />
             </div>
           </div>
         </Col>
 
         <Col>
           <br />
-          <h4>Whole class data</h4>
+          <h2 className="bordered-div-header">Whole class data</h2>
           <br />
 
           <div className="bordered-div">
@@ -141,7 +143,7 @@ const Home = props => (
       <Row>
         <Col>
           <br />
-          <h4>Manage student groups</h4>
+          <h2 className="bordered-div-header">Manage student groups</h2>
           <br />
           <div className="bordered-div">
             <br />
@@ -149,21 +151,21 @@ const Home = props => (
 
             <br />
 
-            <img src={GroupPage} alt="Logo" />
+            <img className="group-img" src={GroupPage} alt="Logo" />
           </div>
         </Col>
         <Col>
           <br />
-          <h4>
+          <h2 className="bordered-div-header">
             Add whole class or custom words,
             <br /> letters, and sounds{" "}
-          </h4>
+          </h2>
           <br />
 
           <div className="bordered-div">
             <br />
 
-            <img src={AddWordForm} alt="Logo" />
+            <img className="add-word" src={AddWordForm} alt="Logo" />
           </div>
         </Col>
       </Row>
