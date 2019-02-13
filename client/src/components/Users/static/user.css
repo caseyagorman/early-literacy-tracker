@@ -112,25 +112,28 @@
 }
 
 img {
-  border: 1px solid #003d59;
-  width: 500px;
+  width: 800px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 7%;
 }
 
 .bordered-div {
+  padding: 2px;
+  border: 1px solid #003d59;
   text-align: center;
-  width: 600px;
+  width: 900px;
+  height: 700px;
 }
 
 .header {
-  margin-top: 10%;
+  margin-top: 15%;
   font-size: 60px;
   text-align: center;
 }
 .intro {
-  font-size: 14px;
+  font-size: 18px;
   text-align: center;
 }
 
@@ -140,16 +143,6 @@ img {
   font-size: 20px;
   margin: 3%;
 }
-
-/* .first-circle {
-  background-color: rgb(68, 133, 125, 0.6);
-  border: 5px solid #003d59;
-  padding: 2;
-  text-align: center;
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
-} */
 
 .blue-div {
   height: 100%;
@@ -170,19 +163,18 @@ img {
   border-radius: 50%;
   height: 150px;
   width: 150px;
-  margin: 35px;
+  margin: 75px;
   display: inline-block;
 }
-
-/* .third-circle {
-  background-color: rgb(68, 133, 125, 0.6);
-  border: 5px solid #003d59;
-  padding: 2;
+.samples {
   text-align: center;
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
-} */
+  margin-left: 25%;
+  margin-right: 15%;
+}
+
+.circle-div {
+  text-align: center;
+}
 
 @media only screen and (max-width: 600px) {
   img {
@@ -190,7 +182,6 @@ img {
     width: 300px;
     display: block;
     margin-left: -40px;
-    /* margin-right: auto;  */
   }
 }
 
@@ -234,10 +225,6 @@ img {
     color: white;
     font-size: 10px;
   }
-}
-
-.circle-div {
-  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {

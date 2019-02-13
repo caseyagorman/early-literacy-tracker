@@ -86,9 +86,11 @@ const Home = props => (
         </div>
       </div>
     </Row>
-    <div style={{ margin: "25%" }}>
+    <div className="samples">
       <Row>
         <Col>
+          <br />
+          <br />
           <h4>View and manage students </h4>
           <br />
           <div className="bordered-div">
@@ -96,6 +98,7 @@ const Home = props => (
           </div>
         </Col>
         <Col>
+          <br />
           <h4>Check in on individual students</h4>
           <br />
           <div className="bordered-div">
@@ -108,6 +111,7 @@ const Home = props => (
       <br />
       <Row>
         <Col>
+          <br />
           <h4>Individual student data </h4>
           <br />
           <div className="bordered-div">
@@ -119,6 +123,7 @@ const Home = props => (
         </Col>
 
         <Col>
+          <br />
           <h4>Whole class data</h4>
           <br />
 
@@ -135,6 +140,7 @@ const Home = props => (
       <br />
       <Row>
         <Col>
+          <br />
           <h4>Manage student groups</h4>
           <br />
           <div className="bordered-div">
@@ -147,6 +153,7 @@ const Home = props => (
           </div>
         </Col>
         <Col>
+          <br />
           <h4>
             Add whole class or custom words,
             <br /> letters, and sounds{" "}
