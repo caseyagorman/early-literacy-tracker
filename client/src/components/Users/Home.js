@@ -50,6 +50,7 @@ const Home = props => (
           <br />
 
           <br />
+          <br />
           <p style={{ fontSize: 20, textAlign: "center" }}>
             Test student <br />
             phonics skills
@@ -61,6 +62,7 @@ const Home = props => (
             glyph="glyphicon glyphicon-stats"
           />
 
+          <br />
           <br />
           <br />
           <br />
@@ -76,6 +78,7 @@ const Home = props => (
             glyph="glyphicon glyphicon-tasks"
           />
 
+          <br />
           <br />
           <br />
           <br />
