@@ -14,146 +14,76 @@ const Home = props => (
     <Row>
       {/* <Col> */}
 
-      <div
-        className="picture"
-        style={{
-          height: "50vh",
-          width: "100%",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundImage: `url(${bianca7})`,
-          backgroundRepeat: "no-repeat"
-        }}
-      >
-        <div
-          className="blue-div"
-          style={{
-            height: "100%",
-            position: "relative",
-            float: "right",
-            zIndex: 1,
-
-            backgroundColor: "#003d59",
-
-            color: "white",
-            maxHeight: 600,
-            width: "34%",
-            display: "inline-block",
-            textAlign: "center"
-          }}
-        >
-          <h1 style={{ marginTop: "10%", fontSize: 60, textAlign: "center" }}>
+      <div className="picture">
+        <div className="blue-div">
+          <h1 className="header" style={{}}>
             TrackIt!
           </h1>
 
           <br />
 
           <br />
-          <p style={{ fontSize: 14, textAlign: "center" }}>
+          <p className="intro">
             TrackIt is a tool that allows teachers <br /> to test, track, and
             manage their students'
             <br /> letters, sounds, and sight words.
             <br />
             <br />
             <Link to={"/register"}>
-              <button
-                style={{
-                  backgroundColor: "#003d59",
-
-                  color: "white",
-                  fontSize: 20
-                }}
-              >
-                Register
-              </button>
+              <button className="welcome-button">Register</button>
             </Link>
             <Link to={"/login"}>
-              <button
-                style={{
-                  marginLeft: 10,
-                  backgroundColor: "#003d59",
-                  color: "white",
-                  fontSize: 20
-                }}
-              >
-                Login
-              </button>
+              <button className="welcome-button">Login</button>
             </Link>
           </p>
         </div>
       </div>
     </Row>
     <Row>
-      <div
-        style={{ textAlign: "center", display: "inline-block", margin: "5%" }}
-      >
-        <div
-          style={{
-            backgroundColor: "rgb(68, 133, 125, 0.6)",
-            border: "5px solid #003d59",
-            padding: 2,
-            textAlign: "center",
-            borderRadius: "50%",
-            height: 150,
-            width: 150
-          }}
-        >
+      <div className="circle-div">
+        <div className="circle">
           <Glyphicon
             style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
             glyph="glyphicon glyphicon-pencil"
           />
-        </div>
-        <br />
-        <p style={{ fontSize: 20, textAlign: "center" }}>
-          Test student <br />
-          phonics skills
-        </p>
-      </div>
-      <div style={{ display: "inline-block", margin: "5%" }}>
-        <div
-          style={{
-            backgroundColor: "rgb(68, 133, 125, 0.6)",
-            border: "5px solid #003d59",
+          <br />
+          <br />
 
-            textAlign: "center",
-            borderRadius: "50%",
-            height: 150,
-            width: 150
-          }}
-        >
+          <br />
+          <p style={{ fontSize: 20, textAlign: "center" }}>
+            Test student <br />
+            phonics skills
+          </p>
+        </div>
+        <div className="circle">
           <Glyphicon
             style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
             glyph="glyphicon glyphicon-stats"
           />
-        </div>
-        <br />
-        <p style={{ fontSize: 20, textAlign: "center" }}>
-          Student data
+
           <br />
-          visualizations
-        </p>
-      </div>
-      <div style={{ display: "inline-block", margin: "5%" }}>
-        <div
-          style={{
-            backgroundColor: "rgb(68, 133, 125, 0.6)",
-            border: "5px solid #003d59",
-            textAlign: "center",
-            borderRadius: "50%",
-            height: 150,
-            width: 150
-          }}
-        >
+          <br />
+          <br />
+          <p style={{ fontSize: 20, textAlign: "center" }}>
+            Student data
+            <br />
+            visualizations
+          </p>
+        </div>
+        <div className="circle">
           <Glyphicon
             style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
             glyph="glyphicon glyphicon-tasks"
           />
+
+          <br />
+          <br />
+          <br />
+          <p style={{ fontSize: 20, textAlign: "center" }}>
+            Sort and group
+            <br /> students
+          </p>
         </div>
-        <br />
-        <p style={{ fontSize: 20, textAlign: "center" }}>
-          Sort and group
-          <br /> students by focus
-        </p>
       </div>
     </Row>
     <div style={{ margin: "25%" }}>
