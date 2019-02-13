@@ -186,7 +186,7 @@ const StudentTable = (
         );
       })}
       <tr>
-        <td colSpan="9">
+        <td colSpan="10">
           <a href="/add-student" className="link">
             + Click to add new student
           </a>

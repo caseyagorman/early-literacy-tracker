@@ -9,7 +9,7 @@ const AllStudentsPage = props => (
     <div style={{ fontFamily: "Krub" }}>
       <AllStudentsInstructions student={props.student} />
       <br />
-      <div>
+      <div style={{ marginLeft: 20 }}>
         <TableContainer
           actions={props.studentTestActions}
           token={props.token}
