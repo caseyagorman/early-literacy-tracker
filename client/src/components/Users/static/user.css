@@ -103,7 +103,7 @@
 }
 
 .picture {
-  height: 40vh;
+  height: 60vh;
   width: 100%;
   background-position: center;
   background-size: cover;
@@ -112,7 +112,7 @@
 }
 
 img {
-  width: 700px;
+  width: 600px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -124,8 +124,8 @@ img {
   padding: 2px;
   border: 1px solid #003d59;
   text-align: center;
-  width: 900px;
-  height: 700px;
+  width: 800px;
+  height: 600px;
 }
 
 .header {
