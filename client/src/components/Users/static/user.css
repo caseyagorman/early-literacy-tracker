@@ -253,3 +253,9 @@ img {
     text-align: center;
   }
 }
+@media only screen and (max-width: 600px) {
+  .circle-div {
+    margin-left: 20px;
+    text-align: center;
+  }
+}
