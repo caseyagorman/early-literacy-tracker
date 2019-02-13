@@ -103,7 +103,7 @@
 }
 
 .picture {
-  height: 50vh;
+  height: 40vh;
   width: 100%;
   background-position: center;
   background-size: cover;
@@ -129,7 +129,7 @@ img {
 }
 
 .header {
-  margin-top: 15%;
+  /* margin-top: %; */
   font-size: 60px;
   text-align: center;
 }
