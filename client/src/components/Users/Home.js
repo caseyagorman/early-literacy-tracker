@@ -59,6 +59,7 @@ const Home = props => (
               <button
                 style={{
                   backgroundColor: "#003d59",
+
                   color: "white",
                   fontSize: 20
                 }}
@@ -82,239 +83,153 @@ const Home = props => (
         </div>
       </div>
     </Row>
+    <Row>
+      <div
+        style={{ textAlign: "center", display: "inline-block", margin: "5%" }}
+      >
+        <div
+          style={{
+            backgroundColor: "rgb(68, 133, 125, 0.6)",
+            border: "5px solid #003d59",
+            padding: 2,
+            textAlign: "center",
+            borderRadius: "50%",
+            height: 150,
+            width: 150
+          }}
+        >
+          <Glyphicon
+            style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
+            glyph="glyphicon glyphicon-pencil"
+          />
+        </div>
+        <br />
+        <p style={{ fontSize: 20, textAlign: "center" }}>
+          Test student <br />
+          phonics skills
+        </p>
+      </div>
+      <div style={{ display: "inline-block", margin: "5%" }}>
+        <div
+          style={{
+            backgroundColor: "rgb(68, 133, 125, 0.6)",
+            border: "5px solid #003d59",
 
-    <div
-      className="container"
-      style={{ textAlign: "center", fontFamily: "Krub" }}
-    >
+            textAlign: "center",
+            borderRadius: "50%",
+            height: 150,
+            width: 150
+          }}
+        >
+          <Glyphicon
+            style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
+            glyph="glyphicon glyphicon-stats"
+          />
+        </div>
+        <br />
+        <p style={{ fontSize: 20, textAlign: "center" }}>
+          Student data
+          <br />
+          visualizations
+        </p>
+      </div>
+      <div style={{ display: "inline-block", margin: "5%" }}>
+        <div
+          style={{
+            backgroundColor: "rgb(68, 133, 125, 0.6)",
+            border: "5px solid #003d59",
+            textAlign: "center",
+            borderRadius: "50%",
+            height: 150,
+            width: 150
+          }}
+        >
+          <Glyphicon
+            style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
+            glyph="glyphicon glyphicon-tasks"
+          />
+        </div>
+        <br />
+        <p style={{ fontSize: 20, textAlign: "center" }}>
+          Sort and group
+          <br /> students by focus
+        </p>
+      </div>
+    </Row>
+    <div style={{ margin: "25%" }}>
       <Row>
-        <div style={{ display: "inline-block", margin: "5%" }}>
-          <div
-            style={{
-              backgroundColor: "rgb(68, 133, 125, 0.6)",
-              border: "5px solid #003d59",
-              padding: 2,
-              textAlign: "center",
-              borderRadius: "50%",
-              height: 150,
-              width: 150
-            }}
-          >
-            <Glyphicon
-              style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
-              glyph="glyphicon glyphicon-pencil"
-            />
-          </div>
+        <Col>
+          <h4>View and manage students </h4>
           <br />
-          <p style={{ fontSize: 20, textAlign: "center" }}>
-            Test student <br />
-            phonics skills
-          </p>
-        </div>
-        <div style={{ display: "inline-block", margin: "5%" }}>
-          <div
-            style={{
-              backgroundColor: "rgb(68, 133, 125, 0.6)",
-              border: "5px solid #003d59",
-
-              textAlign: "center",
-              borderRadius: "50%",
-              height: 150,
-              width: 150
-            }}
-          >
-            <Glyphicon
-              style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
-              glyph="glyphicon glyphicon-stats"
-            />
+          <div className="bordered-div">
+            <img src={StudentPage} alt="Logo" />
           </div>
+        </Col>
+        <Col>
+          <h4>Check in on individual students</h4>
           <br />
-          <p style={{ fontSize: 20, textAlign: "center" }}>
-            Student data
+          <div className="bordered-div">
             <br />
-            visualizations
-          </p>
-        </div>
-        <div style={{ display: "inline-block", margin: "5%" }}>
-          <div
-            style={{
-              backgroundColor: "rgb(68, 133, 125, 0.6)",
-              border: "5px solid #003d59",
-              textAlign: "center",
-              borderRadius: "50%",
-              height: 150,
-              width: 150
-            }}
-          >
-            <Glyphicon
-              style={{ marginTop: 30, fontSize: 80, color: "#003d59" }}
-              glyph="glyphicon glyphicon-tasks"
-            />
+
+            <img src={DetailPage} alt="Logo" />
           </div>
-          <br />
-          <p style={{ fontSize: 20, textAlign: "center" }}>
-            Sort and group
-            <br /> students by focus
-          </p>
-        </div>
+        </Col>
       </Row>
-      <div style={{ marginLeft: 170 }}>
-        <Row>
-          <h4 style={{ marginRight: 170 }}>View and manage students </h4>
+      <br />
+      <Row>
+        <Col>
+          <h4>Individual student data </h4>
           <br />
-          <div
-            style={{
-              height: 500,
-              width: 800,
-              padding: 2,
-              border: "1px solid #003d59"
-            }}
-          >
+          <div className="bordered-div">
             <br />
-            <br />
-            <br />
-            <img
-              style={{
-                maxWidth: 600,
-                maxHeight: 500
-              }}
-              src={StudentPage}
-              alt="Logo"
-            />
+            <div>
+              <img src={StudentDetailData} alt="Logo" />
+            </div>
           </div>
-        </Row>
-        <Row>
-          <h4 style={{ marginRight: 170 }}>Check in on individual students</h4>
-          <br />
-          <div
-            style={{
-              height: 500,
-              width: 800,
-              padding: 2,
-              border: "1px solid #003d59"
-            }}
-          >
-            <br />
+        </Col>
 
-            <img
-              style={{
-                maxWidth: 600,
-                maxHeight: 500,
-                marginTop: 30
-              }}
-              src={DetailPage}
-              alt="Logo"
-            />
-          </div>
-        </Row>
-        <br />
-
-        <Row>
-          <h4 style={{ marginRight: 170 }}>Individual student data </h4>
-          <br />
-          <div
-            style={{
-              height: 500,
-              width: 800,
-              padding: 2,
-              border: "1px solid #003d59"
-            }}
-          >
-            {" "}
-            <br />
-            <br />
-            <br />
-            <img
-              style={{
-                maxWidth: 600,
-                maxHeight: 500
-              }}
-              src={StudentDetailData}
-              alt="Logo"
-            />
-          </div>
-        </Row>
-        <Row>
-          <h4 style={{ marginRight: 170 }}>Whole class data</h4>
+        <Col>
+          <h4>Whole class data</h4>
           <br />
 
-          <div
-            style={{
-              height: 500,
-              width: 800,
-              padding: 2,
-              border: "1px solid #003d59"
-            }}
-          >
+          <div className="bordered-div">
             <br />
             <br />
             <br />
-            <img
-              style={{
-                maxWidth: 600,
-                maxHeight: 500,
-                marginTop: 30
-              }}
-              src={WordData}
-              alt="Logo"
-            />
+            <div>
+              <img src={WordData} alt="Logo" />
+            </div>
           </div>
-        </Row>
-        <br />
-        <Row>
-          <h4 style={{ marginRight: 170 }}>Manage student groups</h4>
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        <Col>
+          <h4>Manage student groups</h4>
           <br />
-          <br />
-
-          <div
-            style={{
-              height: 500,
-              width: 800,
-              padding: 2,
-              border: "1px solid #003d59"
-            }}
-          >
+          <div className="bordered-div">
             <br />
-            <img
-              style={{
-                maxWidth: 600,
-                maxHeight: 500
-              }}
-              src={GroupPage}
-              alt="Logo"
-            />
-          </div>
-        </Row>
-        <br />
+            <br />
 
-        <Row>
-          <h4 style={{ marginRight: 170 }}>
+            <br />
+
+            <img src={GroupPage} alt="Logo" />
+          </div>
+        </Col>
+        <Col>
+          <h4>
             Add whole class or custom words,
             <br /> letters, and sounds{" "}
           </h4>
           <br />
 
-          <div
-            style={{
-              height: 500,
-              width: 800,
-              padding: 2,
-              border: "1px solid #003d59"
-            }}
-          >
+          <div className="bordered-div">
             <br />
-            <img
-              style={{
-                maxWidth: 600,
-                maxHeight: 400,
-                marginTop: 30
-              }}
-              src={AddWordForm}
-              alt="Logo"
-            />
+
+            <img src={AddWordForm} alt="Logo" />
           </div>
-        </Row>
-      </div>
+        </Col>
+      </Row>
     </div>
   </div>
 );

@@ -16,9 +16,7 @@
 .introduction {
   font-size: 20px;
 }
-img {
-  max-width: 300px;
-}
+
 #login-button {
   height: 40px;
   width: 70px;
@@ -110,3 +108,35 @@ img {
     background-size: 100%;
   }
 } */
+
+img {
+  border: 1px solid #003d59;
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* height: 500px; */
+}
+
+.bordered-div {
+  text-align: center;
+  width: 600px;
+  /* background-color: red; */
+}
+
+@media only screen and (max-width: 600px) {
+  img {
+    border: 1px solid #003d59;
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .bordered-div {
+    width: 300px;
+    /* border: 1px solid #003d59; */
+  }
+}
