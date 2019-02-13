@@ -8,7 +8,7 @@ import GroupPage from "./static/GroupPage.png";
 import DetailPage from "./static/DetailPage.png";
 import AddWordForm from "./static/AddWordForm.png";
 import { Link } from "react-router-dom";
-import { Glyphicon, Row } from "react-bootstrap";
+import { Glyphicon, Row, Col } from "react-bootstrap";
 const Home = props => (
   <div style={{ fontFamily: "krub" }}>
     <Row>
@@ -59,7 +59,6 @@ const Home = props => (
               <button
                 style={{
                   backgroundColor: "#003d59",
-
                   color: "white",
                   fontSize: 20
                 }}
@@ -83,6 +82,7 @@ const Home = props => (
         </div>
       </div>
     </Row>
+
     <div
       className="container"
       style={{ textAlign: "center", fontFamily: "Krub" }}
@@ -158,188 +158,160 @@ const Home = props => (
           </p>
         </div>
       </Row>
-      <div style={{ marginRight: 60 }}>
+      <div style={{ marginLeft: 170 }}>
         <Row>
+          <h4 style={{ marginRight: 170 }}>View and manage students </h4>
+          <br />
           <div
             style={{
-              marginLeft: 140,
-              display: "inline-block",
-              float: "right"
+              height: 500,
+              width: 800,
+              padding: 2,
+              border: "1px solid #003d59"
             }}
           >
-            <h4>View and manage students </h4>
             <br />
-            <div style={{ height: 505, border: "1px solid #003d59" }}>
-              <br />
-              <br />
-              <br />
-              <img
-                style={{
-                  display: "inline-block",
-                  maxWidth: 450,
-                  maxHeight: 500
-                }}
-                src={StudentPage}
-                alt="Logo"
-              />
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "inline-block",
-              float: "right"
-            }}
-          >
-            <h4>Check in on individual students</h4>
             <br />
-            <div
+            <br />
+            <img
               style={{
-                height: 505,
-                padding: 2,
-                border: "1px solid #003d59",
-                display: "inline-block"
+                maxWidth: 600,
+                maxHeight: 500
               }}
-            >
-              <br />
+              src={StudentPage}
+              alt="Logo"
+            />
+          </div>
+        </Row>
+        <Row>
+          <h4 style={{ marginRight: 170 }}>Check in on individual students</h4>
+          <br />
+          <div
+            style={{
+              height: 500,
+              width: 800,
+              padding: 2,
+              border: "1px solid #003d59"
+            }}
+          >
+            <br />
 
-              <img
-                style={{
-                  display: "inline-block",
-                  maxWidth: 450,
-                  maxHeight: 500,
-                  marginTop: 30
-                }}
-                src={DetailPage}
-                alt="Logo"
-              />
-            </div>
+            <img
+              style={{
+                maxWidth: 600,
+                maxHeight: 500,
+                marginTop: 30
+              }}
+              src={DetailPage}
+              alt="Logo"
+            />
+          </div>
+        </Row>
+        <br />
+
+        <Row>
+          <h4 style={{ marginRight: 170 }}>Individual student data </h4>
+          <br />
+          <div
+            style={{
+              height: 500,
+              width: 800,
+              padding: 2,
+              border: "1px solid #003d59"
+            }}
+          >
+            {" "}
+            <br />
+            <br />
+            <br />
+            <img
+              style={{
+                maxWidth: 600,
+                maxHeight: 500
+              }}
+              src={StudentDetailData}
+              alt="Logo"
+            />
+          </div>
+        </Row>
+        <Row>
+          <h4 style={{ marginRight: 170 }}>Whole class data</h4>
+          <br />
+
+          <div
+            style={{
+              height: 500,
+              width: 800,
+              padding: 2,
+              border: "1px solid #003d59"
+            }}
+          >
+            <br />
+            <br />
+            <br />
+            <img
+              style={{
+                maxWidth: 600,
+                maxHeight: 500,
+                marginTop: 30
+              }}
+              src={WordData}
+              alt="Logo"
+            />
           </div>
         </Row>
         <br />
         <Row>
-          <div
-            style={{
-              marginLeft: 140,
-              display: "inline-block",
-              float: "right"
-            }}
-          >
-            <h4>Individual student data </h4>
-            <br />
-            <div
-              style={{ height: 450, padding: 2, border: "1px solid #003d59" }}
-            >
-              {" "}
-              <br />
-              <br />
-              <br />
-              <img
-                style={{
-                  display: "inline-block",
-                  maxWidth: 450,
-                  maxHeight: 500
-                }}
-                src={StudentDetailData}
-                alt="Logo"
-              />
-            </div>
-          </div>
+          <h4 style={{ marginRight: 170 }}>Manage student groups</h4>
+          <br />
+          <br />
 
           <div
             style={{
-              display: "inline-block",
-              float: "right"
+              height: 500,
+              width: 800,
+              padding: 2,
+              border: "1px solid #003d59"
             }}
           >
-            <h4>Whole class data</h4>
             <br />
-
-            <div
+            <img
               style={{
-                height: 450,
-                padding: 2,
-                border: "1px solid #003d59",
-                display: "inline-block"
+                maxWidth: 600,
+                maxHeight: 500
               }}
-            >
-              <br />
-              <br />
-              <br />
-              <img
-                style={{
-                  display: "inline-block",
-                  maxWidth: 450,
-                  maxHeight: 500,
-                  marginTop: 30
-                }}
-                src={WordData}
-                alt="Logo"
-              />
-            </div>
+              src={GroupPage}
+              alt="Logo"
+            />
           </div>
         </Row>
         <br />
+
         <Row>
-          <div
-            style={{
-              marginLeft: 140,
-              display: "inline-block",
-              float: "right"
-            }}
-          >
-            <h4>Manage student groups</h4>
-            <br />
-            <br />
-
-            <div
-              style={{ height: 505, padding: 2, border: "1px solid #003d59" }}
-            >
-              <br />
-              <img
-                style={{
-                  display: "inline-block",
-                  maxWidth: 450,
-                  maxHeight: 500
-                }}
-                src={GroupPage}
-                alt="Logo"
-              />
-            </div>
-          </div>
+          <h4 style={{ marginRight: 170 }}>
+            Add whole class or custom words,
+            <br /> letters, and sounds{" "}
+          </h4>
+          <br />
 
           <div
             style={{
-              display: "inline-block",
-              float: "right"
+              height: 500,
+              width: 800,
+              padding: 2,
+              border: "1px solid #003d59"
             }}
           >
-            <h4>
-              Add whole class or custom words,
-              <br /> letters, and sounds{" "}
-            </h4>
             <br />
-
-            <div
+            <img
               style={{
-                height: 505,
-                padding: 2,
-                border: "1px solid #003d59",
-                display: "inline-block"
+                maxWidth: 600,
+                maxHeight: 400,
+                marginTop: 30
               }}
-            >
-              <br />
-              <img
-                style={{
-                  display: "inline-block",
-                  maxWidth: 450,
-                  maxHeight: 500,
-                  marginTop: 30
-                }}
-                src={AddWordForm}
-                alt="Logo"
-              />
-            </div>
+              src={AddWordForm}
+              alt="Logo"
+            />
           </div>
         </Row>
       </div>
