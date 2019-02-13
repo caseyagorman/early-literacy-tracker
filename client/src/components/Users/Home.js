@@ -91,6 +91,8 @@ const Home = props => (
         <Col>
           <br />
           <br />
+          <br />
+          <br />
           <h2 className="bordered-div-header">View and manage students </h2>
           <br />
           <div className="bordered-div">
@@ -98,6 +100,11 @@ const Home = props => (
           </div>
         </Col>
         <Col>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <br />
           <h2 className="bordered-div-header">
             Check in on individual students
@@ -114,7 +121,11 @@ const Home = props => (
       <Row>
         <Col>
           <br />
-          <h2 className="bordered-div-header">Individual student data </h2>
+          <br />
+          <br />
+          <br />
+          <br />
+          <h2 className="bordered-div-header">View student data </h2>
           <br />
           <div className="bordered-div">
             <br />
@@ -126,7 +137,11 @@ const Home = props => (
 
         <Col>
           <br />
-          <h2 className="bordered-div-header">Whole class data</h2>
+          <br />
+          <br />
+          <br />
+          <br />
+          <h2 className="bordered-div-header">View class data</h2>
           <br />
 
           <div className="bordered-div">
@@ -143,6 +158,10 @@ const Home = props => (
       <Row>
         <Col>
           <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <h2 className="bordered-div-header">Manage student groups</h2>
           <br />
           <div className="bordered-div">
@@ -155,6 +174,10 @@ const Home = props => (
           </div>
         </Col>
         <Col>
+          <br />
+          <br />
+          <br />
+          <br />
           <br />
           <h2 className="bordered-div-header">
             Add whole class or custom words,

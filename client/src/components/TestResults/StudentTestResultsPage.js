@@ -3,7 +3,7 @@ import TableContainer from "../../containers/Tables/TableContainer";
 import StudentItemLineChart from "../../containers/Charts/StudentItemLineChart";
 
 const StudentTestResultsPage = props => (
-  <div>
+  <div style={{ fontFamily: "krub" }}>
     <h2>
       {" "}
       {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)} Test

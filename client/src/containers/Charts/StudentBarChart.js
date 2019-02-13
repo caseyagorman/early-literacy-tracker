@@ -38,13 +38,13 @@ class StudentBarChart extends Component {
       if (this.props.chartType === "learned") {
         let item = obj[student];
         itemCounts.push(item[itemsKey.learnedCount]);
-        studentList.push(item.name);
+        studentList.push(item.name.split(" ")[0]);
         itemList.push(item[itemsKey.itemList]);
         totalItemCount = item[itemsKey.totalCount];
       } else if (this.props.chartType === "unlearned") {
         let item = obj[student];
         itemCounts.push(item[itemsKey.unlearnedCount]);
-        studentList.push(item.name);
+        studentList.push(item.name.split(" ")[0]);
         itemList.push(item[itemsKey.unlearnedItemList]);
         totalItemCount = item[itemsKey.totalCount];
       }
