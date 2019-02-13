@@ -2,59 +2,54 @@ import React from "react";
 import "./static/user.css";
 import StudentDetailData from "./static/StudentDetailData.png";
 import StudentPage from "./static/StudentPage.png";
-import bianca6 from "./static/bianca6.jpg";
+import bianca7 from "./static/bianca7.png";
 import WordData from "./static/WordData.png";
 import GroupPage from "./static/GroupPage.png";
 import DetailPage from "./static/DetailPage.png";
 import AddWordForm from "./static/AddWordForm.png";
 import { Link } from "react-router-dom";
-import { Glyphicon, Row, Col } from "react-bootstrap";
+import { Glyphicon, Row } from "react-bootstrap";
 const Home = props => (
-  <div>
-    {console.log("it this big", window.innerHeight)}
+  <div style={{ fontFamily: "krub" }}>
     <Row>
       {/* <Col> */}
-      <div
-        className="jumbotron"
-        style={{
-          fontFamily: "Krub",
-          paddingBottom: "75%",
 
-          backgroundColor: "white"
+      <div
+        className="picture"
+        style={{
+          height: "50vh",
+          width: "100%",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundImage: `url(${bianca7})`,
+          backgroundRepeat: "no-repeat"
         }}
       >
         <div
-          className="picture"
-          style={{
-            height: "50vh",
-            width: "66%",
-            float: "left",
-            marginTop: -40,
-            backgroundPosition: "top",
-            backgroundSize: "100%",
-            backgroundImage: `url(${bianca6})`,
-            backgroundRepeat: "no-repeat"
-          }}
-        />
-        <div
           className="blue-div"
           style={{
-            marginTop: -40,
+            height: "100%",
+            position: "relative",
+            float: "right",
+            zIndex: 1,
+
             backgroundColor: "#003d59",
-            height: "50vh",
+
             color: "white",
             maxHeight: 600,
             width: "34%",
-            float: "right",
+            display: "inline-block",
             textAlign: "center"
           }}
         >
-          {/* <h1 style={{ fontSize: 60, textAlign: "center" }}>TrackIt!</h1> */}
+          <h1 style={{ marginTop: "10%", fontSize: 60, textAlign: "center" }}>
+            TrackIt!
+          </h1>
 
           <br />
 
           <br />
-          {/* <p style={{ fontSize: 20, textAlign: "center" }}>
+          <p style={{ fontSize: 14, textAlign: "center" }}>
             TrackIt is a tool that allows teachers <br /> to test, track, and
             manage their students'
             <br /> letters, sounds, and sight words.
@@ -66,7 +61,7 @@ const Home = props => (
                   backgroundColor: "#003d59",
 
                   color: "white",
-                  fontSize: 24
+                  fontSize: 20
                 }}
               >
                 Register
@@ -78,16 +73,15 @@ const Home = props => (
                   marginLeft: 10,
                   backgroundColor: "#003d59",
                   color: "white",
-                  fontSize: 24
+                  fontSize: 20
                 }}
               >
                 Login
               </button>
             </Link>
-          </p> */}
+          </p>
         </div>
       </div>
-      {/* </Col> */}
     </Row>
     <div
       className="container"
