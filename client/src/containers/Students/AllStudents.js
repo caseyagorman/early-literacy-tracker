@@ -16,16 +16,21 @@ class AllStudents extends Component {
   }
 
   displayAllStudents(students, token) {
+    console.log("All students", students);
     if (!token || !students) {
       return <div />;
     }
     if (students.students === null) {
       return <div />;
     }
+    students = students.students;
+    console.log(students);
+    students = Object.values(students);
+    console.log(students);
     return (
       <AllStudentsPage
         studentTestActions={this.props.studentTestActions}
-        students={students.students}
+        students={students}
       />
     );
   }
