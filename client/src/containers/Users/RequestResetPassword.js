@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import RequestResetPasswordPage from "../../components/Users/RequestResetPasswordPage";
 import { ToastContainer, ToastStore } from "react-toasts";
+import AppNavLogin from "../../components/Navbar/AppNavLogin";
 class RequestResetPassword extends Component {
   constructor(props) {
     super(props);
@@ -42,8 +43,11 @@ class RequestResetPassword extends Component {
   }
 
   render() {
+    let route = "/login";
+    let navText = "Login";
     return (
       <div>
+        <AppNavLogin route={route} navText={navText} />
         <RequestResetPasswordPage
           email={this.state.email}
           handleChange={this.handleChange}

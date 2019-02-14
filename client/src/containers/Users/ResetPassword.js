@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import * as authActions from "../../redux/actions/authActions";
 import ResetPasswordForm from "../../components/Users/ResetPasswordForm";
 import { ToastContainer, ToastStore } from "react-toasts";
+
 class ResetPassword extends Component {
   constructor(props) {
     super(props);
@@ -78,12 +79,14 @@ class ResetPassword extends Component {
 
   render() {
     return (
-      <ResetPasswordForm
-        password={this.state.password}
-        confirmPassword={this.state.confirmPassword}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <div>
+        <ResetPasswordForm
+          password={this.state.password}
+          confirmPassword={this.state.confirmPassword}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
     );
   }
 }

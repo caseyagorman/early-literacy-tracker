@@ -5,6 +5,7 @@ import { ToastContainer, ToastStore } from "react-toasts";
 import * as registrationActions from "../../redux/actions/registerActions";
 import * as authActions from "../../redux/actions/authActions";
 import { bindActionCreators } from "redux";
+import AppNavLogin from "../../components/Navbar/AppNavLogin";
 import "../../components/Users/static/user.css";
 import "react-toastify/dist/ReactToastify.css";
 class RegisterUser extends Component {
@@ -67,8 +68,12 @@ class RegisterUser extends Component {
   }
 
   render() {
+    let route = "/login";
+    let navText = "Login";
     return (
       <div>
+        <AppNavLogin route={route} navText={navText} />
+
         <RegisterUserForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
