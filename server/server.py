@@ -212,56 +212,27 @@ def get_item_student_list(item_object):
             unlearned_student_list.append(student.name)
     return [student_list, unlearned_student_list]
 
+    
 @app.route("/api/items/<item_type>")
 @token_required
 def get_items(current_user, item_type):
     user_id = current_user.public_id
-    items = Item.query.filter_by(user_id=user_id).filter_by(item_type=item_type).options(
-    db.joinedload('studentitems')).filter_by(user_id=user_id).filter_by(item_type=item_type).all()
+    items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type=item_type).options(
+    db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type=item_type).options(
+        db.joinedload('students')).filter_by(user_id=user_id).all()
     item_list =[]
+    items_dict = {}
     for item in items:
-        count = get_item_student_counts(item)
-        unlearned_count = get_unlearned_item_student_counts(item)
-        student_list = get_item_student_list(item)[0]
-        unlearned_student_list = get_item_student_list(item)[1]
-        total_count = count + unlearned_count
-        item = {
-            'itemId': item.item_id,
-            'item': item.item,
-            'count': count,
-            'unlearnedCount': unlearned_count,
-            'students': student_list,
-            'unlearnedStudents':unlearned_student_list,
-            'totalCount': total_count
-        }
-        item_list.append(item)
-    return jsonify({
-        "items": item_list
-        })
-def get_item_student_list(item_object):
-    student_list = []
-    unlearned_student_list =[]
-    for item in item_object.studentitems:
-        if item.Learned == True:
-            student = Student.query.filter_by(student_id=item.student_id).first()
-            student_list.append(student.name)
-        else:
-            student = Student.query.filter_by(student_id=item.student_id).first()
-            unlearned_student_list.append(student.name)
-    return [student_list, unlearned_student_list]
+        if not items_dict.get(item.items.item_id):
+            items_dict[item.items.item_id] = {"item": item.items.item, "itemId": item.items.item_id, "itemType": item.item_type, "unlearnedCount": 0, "learnedCount": 0, "unlearnedStudents": [], "learnedStudents": [], "totalCount": 0}
+        prefix = "un" if item.Learned == False else ""
+        key = "{}learned".format(prefix)
+        items_dict[item.items.item_id][key + "Count"] += 1
+        items_dict[item.items.item_id]["totalCount"] += 1
+        items_dict[item.items.item_id][key + "Students"].append(item.students.name)
+    return jsonify(items_dict)
+            
 
-
-def get_item_student_counts(item):
-    item_id = item.item_id
-    items = StudentItem.query.filter(StudentItem.item_id == item_id).filter(
-        StudentItem.Learned == True).all()
-    return len(items)
-
-def get_unlearned_item_student_counts(item):
-    item_id = item.item_id
-    items = StudentItem.query.filter(StudentItem.item_id == item_id).filter(
-        StudentItem.Learned == False).all()
-    return len(items)
 
     
 @app.route("/api/item-detail/<item_type>/<item>")

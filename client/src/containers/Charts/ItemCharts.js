@@ -23,9 +23,8 @@ class ItemCharts extends Component {
     if (!items) {
       return <div />;
     }
-    if (items.items === null) {
-      return <div />;
-    }
+    items = Object.values(items);
+
     return (
       <ItemChartPage
         items={items}

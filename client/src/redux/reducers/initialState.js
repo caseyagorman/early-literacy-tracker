@@ -13,9 +13,7 @@ export default {
   students: {
     students: null
   },
-  items: {
-    items: null
-  },
+  items: null,
   student: {
     student: null,
     fetchingStudent: false

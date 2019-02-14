@@ -11,8 +11,8 @@ class ItemBarChart extends Component {
     let totalCount = 0;
     for (let item in obj) {
       if (this.props.chartType === "learned") {
-        itemCounts.push(obj[item].count);
-        studentList.push(obj[item].students);
+        itemCounts.push(obj[item].learnedCount);
+        studentList.push(obj[item].learnedStudents);
         itemList.push(obj[item].item);
         totalCount = obj[item].totalCount;
       } else if (this.props.chartType === "unlearned") {
@@ -41,7 +41,7 @@ class ItemBarChart extends Component {
       return <div />;
     }
 
-    let items = this.turnIntoArray(dataResults.items);
+    let items = this.turnIntoArray(dataResults);
 
     let itemCounts = items[0];
     let studentList = items[1];

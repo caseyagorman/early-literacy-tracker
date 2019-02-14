@@ -24,15 +24,9 @@ class AllItems extends React.Component {
     if (!items) {
       return <p />;
     }
-    if (items.items === null) {
-      return <p />;
-    }
-
+    items = Object.values(items);
     return (
-      <AllItemsPage
-        items={items.items}
-        itemType={this.props.match.params.itemType}
-      />
+      <AllItemsPage items={items} itemType={this.props.match.params.itemType} />
     );
   }
 
