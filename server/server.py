@@ -216,6 +216,7 @@ def get_item_student_list(item_object):
 @app.route("/api/items/<item_type>")
 @token_required
 def get_items(current_user, item_type):
+    start = time.time()
     user_id = current_user.public_id
     items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type=item_type).options(
     db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type=item_type).options(
@@ -230,6 +231,9 @@ def get_items(current_user, item_type):
         items_dict[item.items.item_id][key + "Count"] += 1
         items_dict[item.items.item_id]["totalCount"] += 1
         items_dict[item.items.item_id][key + "Students"].append(item.students.name)
+    end = time.time()
+    elapsed_time = end - start
+    print("getting all items took", elapsed_time)
     return jsonify(items_dict)
             
 

@@ -6,7 +6,8 @@ export default function items(state = initialState.items, action) {
     case FETCH_ITEMS:
       return action.items;
     case RECEIVE_ITEMS:
-      return Object.assign({}, state, action.items, {});
+      console.log("action", action);
+      return Object.assign({}, action.items);
     default:
       return state;
   }
