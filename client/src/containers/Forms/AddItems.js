@@ -38,7 +38,7 @@ class AddItem extends Component {
 
     return (
       <AddItemsForm
-        student={student.student.name}
+        student={student.name}
         itemType={this.props.match.params.itemType}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}

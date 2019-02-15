@@ -6,9 +6,7 @@ const StudentSnapshot = props => (
     <OverlayTrigger
       placement={"top"}
       overlay={
-        <Tooltip>
-          View {props.student.student.name.split(" ")[0]}'s group
-        </Tooltip>
+        <Tooltip>View {props.student.name.split(" ")[0]}'s group</Tooltip>
       }
     >
       <Link to={`/group-detail/${props.student.group}`}>
@@ -18,7 +16,7 @@ const StudentSnapshot = props => (
     <br />
     {props.readingSentence}
     <br />
-    {props.student.student.name.split(" ")[0]} knows
+    {props.student.name.split(" ")[0]} knows
     <b>
       {" "}
       {props.student.wordCount}/{props.student.totalWordCount}

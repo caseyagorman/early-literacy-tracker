@@ -5,11 +5,9 @@ import { Row, Col } from "react-bootstrap";
 const StudentDetailChartsPage = props => (
   <div className="student-detail-charts-page">
     <h1>
-      <b>{props.student.student.name}'s Data</b>
+      <b>{props.student.name}'s Data</b>
     </h1>
-    <p>
-      Hover over chart to view items {props.student.student.name} is learning.
-    </p>
+    <p>Hover over chart to view items {props.student.name} is learning.</p>
     <Row>
       <Col lg="4">
         <h3> Words</h3>
@@ -38,8 +36,7 @@ const StudentDetailChartsPage = props => (
     </Row>
     <br />
     <p>
-      Hover over chart to view {props.student.student.name}'s scores on dates
-      listed.
+      Hover over chart to view {props.student.name}'s scores on dates listed.
     </p>
     <Row>
       <Col lg="4">

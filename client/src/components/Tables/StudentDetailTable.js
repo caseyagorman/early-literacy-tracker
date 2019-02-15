@@ -24,6 +24,7 @@ const borderBottomStyle = {
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered className="student-detail-table">
+      {console.log("STUDENT DETAIL TABLE", student)}
       <thead>
         <tr>
           <th id="table-header" colSpan="2" style={thStyle}>
@@ -33,9 +34,8 @@ const StudentDetailTable = student => (
               placement={"top"}
               overlay={
                 <Tooltip>
-                  {student.student.student.name} knows{" "}
-                  {student.student.wordCount}/{student.student.totalWordCount}{" "}
-                  words
+                  {student.student.name} knows {student.student.wordCount}/
+                  {student.student.totalWordCount} words
                 </Tooltip>
               }
             >
@@ -55,8 +55,7 @@ const StudentDetailTable = student => (
               placement={"top"}
               overlay={
                 <Tooltip>
-                  {student.student.student.name} knows{" "}
-                  {student.student.letterCount}/
+                  {student.student.name} knows {student.student.letterCount}/
                   {student.student.totalLetterCount} letters
                 </Tooltip>
               }
@@ -78,9 +77,8 @@ const StudentDetailTable = student => (
               placement={"top"}
               overlay={
                 <Tooltip>
-                  {student.student.student.name} knows{" "}
-                  {student.student.soundCount}/{student.student.totalSoundCount}{" "}
-                  sounds
+                  {student.student.name} knows {student.student.soundCount}/
+                  {student.student.totalSoundCount} sounds
                 </Tooltip>
               }
             >
@@ -123,7 +121,7 @@ const StudentDetailTable = student => (
                 <li>
                   <StudentItemUnlearned
                     item={item}
-                    student={student.student.student.student_id}
+                    student={student.student.student_id}
                   />
                   <Link
                     className="link"
@@ -146,9 +144,10 @@ const StudentDetailTable = student => (
             <ul className="unordered-list">
               {student.student.unlearnedWordList.map(item => (
                 <li>
+                  {console.log("item", item)}
                   <StudentItemLearned
                     item={item}
-                    student={student.student.student.student_id}
+                    student={student.student.student_id}
                   />
                   <Link
                     className="link"
@@ -172,9 +171,10 @@ const StudentDetailTable = student => (
             <ul className="unordered-list">
               {student.student.letterList.map(item => (
                 <li>
+                  {console.log("item", item)}
                   <StudentItemUnlearned
                     item={item}
-                    student={student.student.student.student_id}
+                    student={student.student_id}
                   />
                   <Link
                     className="link"
@@ -198,7 +198,7 @@ const StudentDetailTable = student => (
                 <li>
                   <StudentItemLearned
                     item={item}
-                    student={student.student.student.student_id}
+                    student={student.student.student_id}
                   />
                   <Link
                     className="link"
@@ -222,7 +222,7 @@ const StudentDetailTable = student => (
                 <li>
                   <StudentItemUnlearned
                     item={item}
-                    student={student.student.student.student_id}
+                    student={student.student.student_id}
                   />
                   <Link
                     className="link"
@@ -246,7 +246,7 @@ const StudentDetailTable = student => (
                 <li>
                   <StudentItemLearned
                     item={item}
-                    student={student.student.student.student_id}
+                    student={student.student.student_id}
                   />
                   <Link
                     className="link"

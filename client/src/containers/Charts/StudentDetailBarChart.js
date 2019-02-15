@@ -16,7 +16,7 @@ class StudentBarChart extends Component {
     let soundTotal = student.totalSoundCount;
     let total = Math.max(wordTotal, letterTotal, soundTotal);
     let studentData = {
-      label: student.student.name.split(" ")[0],
+      label: student.name.split(" ")[0],
       data: [studentWordCounts, studentLetterCounts, studentSoundCounts],
       backgroundColor: "rgb(1, 143, 117, 0.8)"
     };

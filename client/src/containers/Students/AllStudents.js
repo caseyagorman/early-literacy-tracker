@@ -24,9 +24,7 @@ class AllStudents extends Component {
       return <div />;
     }
     students = students.students;
-    console.log(students);
     students = Object.values(students);
-    console.log(students);
     return (
       <AllStudentsPage
         studentTestActions={this.props.studentTestActions}

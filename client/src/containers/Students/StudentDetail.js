@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as studentActions from "../../redux/actions/studentActions";
-import * as studentsActions from "../../redux/actions/studentsActions";
 import * as studentTestActions from "../../redux/actions/studentTestActions";
 import * as testResultsActions from "../../redux/actions/testResultsActions";
 import StudentDetailPage from "../../components/Students/StudentDetailPage";
@@ -15,24 +14,23 @@ class StudentDetail extends Component {
     const user = this.props.auth.user.token;
     this.props.studentActions.fetchStudent(studentId, user);
     this.props.testResultsActions.fetchAllTestResults(studentId, user);
-    this.props.studentsActions.fetchStudents(user);
   }
   getReadingSentence(student) {
     let readingSentence;
     if (student.readingLevel) {
       readingSentence =
-        student.student.name.split(" ")[0] +
+        student.name.split(" ")[0] +
         " is reading at a level " +
         student.readingLevel +
         ".";
     } else if (student.readingLevel === "") {
       readingSentence =
-        student.student.name.split(" ")[0] + " has no reading level yet.";
+        student.name.split(" ")[0] + " has no reading level yet.";
     }
     return readingSentence;
   }
   getTestSentence(tests) {
-    let name = this.props.student.student.name.split(" ")[0];
+    let name = this.props.student.name.split(" ")[0];
     let sentenceList = [];
     for (let key in tests) {
       let test = tests[key];
@@ -57,7 +55,7 @@ class StudentDetail extends Component {
   }
   getGroup(student) {
     let groupSentence;
-    let name = this.props.student.student.name.split(" ")[0];
+    let name = this.props.student.name.split(" ")[0];
     if (student.group) {
       groupSentence = `${name} is in the ${student.group}.`;
     } else {
@@ -66,11 +64,12 @@ class StudentDetail extends Component {
     return groupSentence;
   }
 
-  displayStudentDetailPage(student, tests, students) {
-    if (!student || !students || !tests) {
+  displayStudentDetailPage(student, tests) {
+    console.log("student in student detail", student);
+    if (!student || !tests) {
       return <div />;
     }
-    if (student.student === null || students.students === null) {
+    if (student.student === null) {
       return <div />;
     }
     let testSentences = this.getTestSentence(tests);
@@ -80,7 +79,6 @@ class StudentDetail extends Component {
     return (
       <StudentDetailPage
         groupSentence={groupSentence}
-        students={students}
         tests={tests}
         student={student}
         testSentences={testSentences}
@@ -93,8 +91,7 @@ class StudentDetail extends Component {
   render() {
     return this.displayStudentDetailPage(
       this.props.student,
-      this.props.testResults,
-      this.props.students
+      this.props.testResults
     );
   }
 }
@@ -102,7 +99,6 @@ class StudentDetail extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     studentActions: bindActionCreators(studentActions, dispatch),
-    studentsActions: bindActionCreators(studentsActions, dispatch),
     studentTestActions: bindActionCreators(studentTestActions, dispatch),
     testResultsActions: bindActionCreators(testResultsActions, dispatch)
   };

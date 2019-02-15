@@ -45,7 +45,7 @@ class StudentTest extends React.Component {
     this.props.studentTestActions.submitStudentTest(
       this.props.studentTest.testItems,
       this.props.studentTest.testType,
-      this.props.student.student.student_id,
+      this.props.student.student_id,
       this.props.user
     );
   }

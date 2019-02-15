@@ -2,19 +2,27 @@ import React, { Component } from "react";
 import StudentDetailBarChart from "./StudentDetailBarChart";
 
 class ClassAverageChart extends Component {
-  displayClassAverageBarChart(students, student) {
-    if (!students) {
+  displayClassAverageBarChart(student) {
+    console.log("class average bar chart", student);
+    if (!student) {
       return <div />;
     }
-    if (students === null) {
+    if (student === null) {
       return <div />;
     }
-    let wordSum = students.students[0].allStudentWordCounts.reduce(add, 0);
-    let letterSum = students.students[0].allStudentLetterCounts.reduce(add, 0);
-    let soundSum = students.students[0].allStudentSoundCounts.reduce(add, 0);
-    let wordLength = students.students[0].allStudentWordCounts.length;
-    let letterLength = students.students[0].allStudentLetterCounts.length;
-    let soundLength = students.students[0].allStudentSoundCounts.length;
+    let classAverages = student.classAverages;
+    let wordSum = student.classAverages["wordLists"].map(item => item.length);
+    wordSum = wordSum.reduce(add, 0);
+    let wordLength = classAverages["wordLists"].length;
+    let letterSum = student.classAverages["letterLists"].map(
+      item => item.length
+    );
+    letterSum = letterSum.reduce(add, 0);
+    let letterLength = classAverages["letterLists"].length;
+    let soundSum = student.classAverages["soundLists"].map(item => item.length);
+    soundSum = soundSum.reduce(add, 0);
+    let soundLength = classAverages["soundLists"].length;
+
     function add(a, b) {
       return a + b;
     }
@@ -22,6 +30,7 @@ class ClassAverageChart extends Component {
     let allStudentLetterCounts = Math.round(letterSum / letterLength);
     let allStudentWordCounts = Math.round(wordSum / wordLength);
     let allStudentSoundCounts = Math.round(soundSum / soundLength);
+    console.log("all student word counts", allStudentWordCounts);
     return (
       <StudentDetailBarChart
         allStudentLetterCounts={allStudentLetterCounts}
@@ -32,10 +41,7 @@ class ClassAverageChart extends Component {
     );
   }
   render() {
-    return this.displayClassAverageBarChart(
-      this.props.students,
-      this.props.student
-    );
+    return this.displayClassAverageBarChart(this.props.student);
   }
 }
 
