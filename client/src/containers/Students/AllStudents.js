@@ -16,7 +16,6 @@ class AllStudents extends Component {
   }
 
   displayAllStudents(students, token) {
-    console.log("All students", students);
     if (!token || !students) {
       return <div />;
     }

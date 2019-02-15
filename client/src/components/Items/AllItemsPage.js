@@ -5,7 +5,6 @@ import ItemsTable from "../Tables/ItemsTable";
 import "./static/items.css";
 const AllItemsPage = props => (
   <div className="container" id="items">
-    {console.log("item props", props)}
     <br />
     <h1 id="display-items">
       {props.itemType.charAt(0).toUpperCase() + props.itemType.slice(1)}

@@ -49,7 +49,6 @@ export function assignGroup(students, groupName, user) {
       },
       body: JSON.stringify({ students, groupName })
     })
-      .then(() => alert("added!"))
       .then(() => dispatch(fetchGroups(user)))
       .then(() => history.push("/manage-groups"));
   };

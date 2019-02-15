@@ -33,7 +33,7 @@ class AssignReadingLevelForm extends Component {
   }
   getOptions(itemList) {
     if (!itemList) {
-      return <div>Loading!</div>;
+      return <div />;
     }
     itemList = Object.values(itemList);
 

@@ -59,7 +59,7 @@ class AssignStudents extends Component {
 
   getList(itemUnassignedStudents) {
     if (!itemUnassignedStudents) {
-      return <div>Loading!</div>;
+      return <div />;
     }
     let studentList = [];
     for (let key in itemUnassignedStudents) {

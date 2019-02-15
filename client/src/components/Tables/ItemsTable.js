@@ -8,7 +8,10 @@ const ItemsTable = (items, onSort, route, itemType) => (
   <Table bordered="true" hover="true">
     <thead>
       <tr>
-        <th onClick={e => onSort(e, "item")}> {itemType}</th>
+        <th onClick={e => onSort(e, "item")}>
+          {" "}
+          {itemType.charAt(0).toUpperCase() + itemType.slice(1)}
+        </th>
         <th onClick={e => onSort(e, "unlearnedCount")}> Unlearned Count</th>
         <th onClick={e => onSort(e, "learnedCount")}> Learned Count</th>
       </tr>

@@ -18,7 +18,9 @@ const AssignGroupFormPage = props => (
       <br />
       <ul>
         {props.group.students.map(student => (
-          <li style={{ listStyle: "none" }}>{student}</li>
+          <li key={"liGroupForm" + student} style={{ listStyle: "none" }}>
+            {student}
+          </li>
         ))}
       </ul>
     </div>
@@ -39,8 +41,8 @@ const AssignGroupFormPage = props => (
         multiple="true "
         value={props.value}
       >
-        {props.studentList[0].map(student => (
-          <option key={student}>{student.name}</option>
+        {props.studentList.map(student => (
+          <option key={"optionGroupForm" + student.name}>{student.name}</option>
         ))}
       </select>
       <br />

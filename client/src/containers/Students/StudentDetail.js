@@ -65,7 +65,6 @@ class StudentDetail extends Component {
   }
 
   displayStudentDetailPage(student, tests) {
-    console.log("student in student detail", student);
     if (!student || !tests) {
       return <div />;
     }

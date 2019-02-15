@@ -13,7 +13,7 @@ class TestStudent extends React.Component {
 
   turnIntoArray(obj) {
     if (!obj) {
-      return <p>Loading...</p>;
+      return <p />;
     }
     let list = [];
     for (let key in obj) {

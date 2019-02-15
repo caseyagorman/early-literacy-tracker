@@ -12,12 +12,11 @@ import "./static/appNav.css";
 const AppNavPage = props => {
   return (
     <Navbar style={{ border: 1 }} collapseOnSelect id="navbar">
-      {console.log("ROUTE!", props.route)}
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/students" id="Brand">
-            TrackIt
-          </a>
+          <LinkContainer to="/students" id="Brand">
+            <MenuItem id="Students">TrackIt</MenuItem>
+          </LinkContainer>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>

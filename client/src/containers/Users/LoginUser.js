@@ -18,11 +18,7 @@ class LoginUser extends Component {
       this.updateInput("token", newProps.auth.user.token);
       this.updateInput("username", newProps.auth.user.username);
       this.props.history.push("/students");
-    } /* else if (newProps.auth.loginError.error === "incorrect password") {
-      this.props.authActions.clearErrors();
-      let errorMessage = "incorrect password";
-      return this.displayToast(errorMessage);
-    }*/
+    }
   }
 
   displayToast(error) {

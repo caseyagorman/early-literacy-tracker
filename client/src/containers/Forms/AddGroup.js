@@ -11,9 +11,6 @@ class AddGroup extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    console.log("add group", this.props);
-  }
   handleSubmit(event) {
     event.preventDefault();
     event.target.reset();

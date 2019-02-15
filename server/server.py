@@ -73,7 +73,6 @@ def token_required(f):
 @cross_origin()
 def add_user():
     data = request.get_json()
-    print("data", data)
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
@@ -143,7 +142,7 @@ def read_txt_file(current_user, item_type):
     if item_type == "words":
         fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
     if item_type == "sounds":
-        fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt"]
+        fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt", "blends.txt"]
     if item_type == "letters":
         fname = ["capital letters.txt", "lowercase letters.txt"]
     
@@ -170,7 +169,7 @@ def get_reading_levels(current_user):
 def add_reading_level(current_user):
     user_id = current_user.public_id
     data = request.get_json()
-    student_id = data.get('student')
+    student_id = data.get('student')[0]
     reading_level = data.get('readingLevel')
 
     student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student_id).first()
@@ -233,7 +232,6 @@ def get_items(current_user, item_type):
         items_dict[item.items.item_id][key + "Students"].append(item.students.name)
     end = time.time()
     elapsed_time = end - start
-    print("getting all items took", elapsed_time)
     return jsonify(items_dict)
             
 
@@ -315,7 +313,6 @@ def add_student(current_user):
             Student(
                 name=name,
                 user_id=user_id,
-              
             )
             for name in names
         ]
@@ -517,9 +514,6 @@ def get_students(current_user):
                 'unlearnedSoundList': [],
                 'totalSoundCount': 0,
                 'lastSoundTest': "",
-                # 'allStudentWordCounts': all_student_word_count,
-                # 'allStudentLetterCounts': all_student_letter_count,
-                # 'allStudentSoundCounts': all_student_sound_count,
                 'readingLevel': "",
                 'lastReadingLevelUpdate': "",
                 'group': ""
@@ -534,9 +528,9 @@ def get_students(current_user):
         soundTest = tests.get('lastSoundTest')
         if soundTest == None:
             soundTest = "N/A"
-        student_dict[student.student_id]['lastWordTest'] = tests.get('lastWordTest')
-        student_dict[student.student_id]['lastLetterTest'] = tests.get('lastLetterTest')
-        student_dict[student.student_id]['lastSoundTest'] = tests.get('lastSoundTest')
+        student_dict[student.student_id]['lastWordTest'] = wordTest
+        student_dict[student.student_id]['lastLetterTest'] = letterTest
+        student_dict[student.student_id]['lastSoundTest'] = soundTest
         student_dict[student.student_id]['group'] = get_student_group(student, user_id)
         student_dict[student.student_id]['readingLevel'] = get_all_student_reading_levels(student)[0]
         student_dict[student.student_id]['lastReadingLevelUpdate'] = get_all_student_reading_levels(student)[1]
@@ -628,7 +622,11 @@ def get_student_group(student, user_id):
 
 def get_student_test_dates(student):
     test_dict = {}
-    if student.studenttestresults[-1].test_type == "words":
+    if student.studenttestresults == []:
+        test_dict['lastWordTest'] = "N/A"
+        test_dict['lastLetterTest'] = "N/A"
+        test_dict['lastSoundTest'] = "N/A"
+    elif student.studenttestresults[-1].test_type == "words":
         lastWordTest = student.studenttestresults[-1].test_date
         test_dict['lastWordTest'] = lastWordTest.strftime("%a, %b %d")
     elif student.studenttestresults[-1].test_type == "letters":
@@ -698,29 +696,12 @@ def student_detail(current_user, student_id):
     averages = get_class_averages(user_id)
     student_items = Item.query.filter(Item.custom.is_(False)).all()
     student = Student.query.filter_by(
-        student_id=student_id, user_id=user_id).first()
-    reading_level = ReadingLevel.query.filter_by(student_id=student_id, user_id=user_id).first()
+        student_id=student_id, user_id=user_id).options(db.joinedload('studentgroups')).options(db.joinedload('readinglevels')).all()
     student_items = StudentItem.query.filter_by(
         student_id=student_id).options(db.joinedload('items')).all()
     student_dict = {}
-    group = StudentGroup.query.filter_by(student_id=student_id, user_id=user_id).options(db.joinedload("groups")).first()
-    if group == []:
-        group = ""
-    if not group:
-        group = ""
-    else:
-        group = group.groups.group_name
-    if reading_level == []:
-        new_reading_level = ""
-        last_reading_update = "N/A"
-    if not reading_level: 
-        new_reading_level = ""
-        last_reading_update = "N/A"
-    else:
-        new_reading_level = reading_level.reading_level
-        last_reading_update = reading_level.update_date.strftime("%a, %b %d")
 
-    items = StudentItem.query.filter_by(user_id=user_id, student_id=student.student_id).options(db.joinedload('items')).all()
+    items = StudentItem.query.filter_by(user_id=user_id, student_id=student_id).options(db.joinedload('items')).all()
     item_dict = get_student_detail_item_dict(items)
     student_dict['classAverages'] = get_class_averages(user_id)
     student_dict['wordList'] = item_dict.get("wordList")
@@ -738,11 +719,11 @@ def student_detail(current_user, student_id):
     student_dict['totalWordCount'] = item_dict.get("totalWordCount")
     student_dict['totalLetterCount'] = item_dict.get("totalLetterCount")
     student_dict['totalSoundCount'] = item_dict.get("totalSoundCount")
-    student_dict['student_id'] = student.student_id,
-    student_dict['name'] = student.name
-    student_dict['readingLevel'] = new_reading_level
-    student_dict['lastReadingUpdate'] = last_reading_update
-    student_dict['group'] = group
+    student_dict['student_id'] = student[0].student_id,
+    student_dict['name'] = student[0].name
+    student_dict['readingLevel'] = get_all_student_reading_levels(student[0])[0]
+    student_dict['lastReadingUpdate'] = get_all_student_reading_levels(student[0])[1]
+    student_dict['group'] = get_student_group(student[0], user_id)
     end = time.time()
     elapsed_time = end - start
     print('getting student detail took', elapsed_time)
@@ -801,9 +782,7 @@ def get_student_detail_item_dict(items):
 def create_student_test(current_user):
     """creates new student  test row in db, calls update_correct_items
     and update_incorrect_items functions"""
-
     data = request.get_json()
-    print("data", data)
     student_test = data.get('studentTest')
     test_type = data.get('testType')
     student_id = data.get('studentId')[0]
@@ -831,8 +810,7 @@ def update_correct_items(student_id, correct_items, test_type, user_id):
     Item.item.in_(correct_items)).all()
     for item in student_item_list:
         if item.items.item in correct_items:
-            if item.correct_count >= 1:
-                item.Learned = True
+            item.Learned = True
             item.correct_count = StudentItem.correct_count + 1
             db.session.commit()
     return "correct items"
@@ -894,11 +872,9 @@ def get_student_item_test(current_user, item_type, student):
 @token_required
 def get_all_student_tests(current_user,  student_id):
     """get list of student test results, word_counts and chart_data"""
-    print("GETTING STUDENT TESTS")
     user_id = current_user.public_id
     student_tests = StudentTestResult.query.filter_by(
         student_id=student_id, user_id=user_id).all()
-    print("student_tests", student_tests)
     test_data = {}
     word_test_list = []
     letter_test_list = []
@@ -936,7 +912,6 @@ def get_all_student_tests(current_user,  student_id):
         "letterTest": letter_test_list,
         "soundTest": sound_test_list,
     }
-    print("TEST OBJECT", test_object)
     return jsonify(test_object)
 
 def get_item_counts(student_items):
@@ -980,7 +955,6 @@ def get_student_item_test_list(student_test):
 @token_required
 def mark_items_learned(current_user):
     data = request.get_json()
-    print("data", data)
     student_id = data.get('studentId')[0]
     item = data.get('item')
     item = item['item_id']
@@ -994,7 +968,7 @@ def mark_items_learned(current_user):
 @token_required
 def mark_items_unlearned(current_user):
     data = request.get_json()
-    student_id = data.get('studentId')
+    student_id = data.get('studentId')[0]
     item = data.get('item')
     item = item['item_id']
     user_id = current_user.public_id
@@ -1036,7 +1010,6 @@ def make_student_groups(current_user):
     
 def remove_from_previous_group(student_list, user_id):
     students = StudentGroup.query.filter_by(user_id=user_id).filter(StudentGroup.student_id.in_(student_list)).all()
-    print("students", students)
     for student in students:
         db.session.delete(student)
         db.session.commit()
@@ -1048,7 +1021,6 @@ def remove_from_previous_group(student_list, user_id):
 def add_group(current_user):
     group_name = request.get_json()
     user_id = current_user.public_id
-    print(group_name)
     existing_group = Group.query.filter_by(user_id=user_id, group_name=group_name).first()
     if existing_group:
         return jsonify({"error": "group already exists"})
@@ -1180,8 +1152,6 @@ def group_detail(current_user, group):
             'readingLevels': reading_levels,
             'notes': notes
         }
-        print(group_data)
-
         return jsonify(group_data)
     else:
         return jsonify({"message":"no students yet"})
@@ -1199,7 +1169,6 @@ def add_note(current_user):
         table = str.maketrans({key: None for key in string.punctuation})
         note = note.translate(table) 
         new_note = GroupNote(user_id=user_id, group_id=group_id, note=note)
-        print("new note!", new_note)
         db.session.add(new_note)
         db.session.commit()
         return jsonify(note)

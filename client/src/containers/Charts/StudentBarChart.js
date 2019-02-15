@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 class StudentBarChart extends Component {
   turnIntoArray(obj) {
     if (!obj) {
-      return <p>Loading...</p>;
+      return <p />;
     }
     let itemCounts = [];
     let studentList = [];

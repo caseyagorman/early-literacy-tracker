@@ -122,7 +122,7 @@ const StudentDetailPage = props => (
               placement={"top"}
               overlay={
                 <Tooltip>
-                  view {props.student.name.split(" ")[0]}'s data charts
+                  View {props.student.name.split(" ")[0]}'s data charts
                 </Tooltip>
               }
             >

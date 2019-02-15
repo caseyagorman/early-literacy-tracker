@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import * as itemsActions from "../../redux/actions/itemsActions";
 import * as studentActions from "../../redux/actions/studentActions";
 import * as authActions from "../../redux/actions/authActions";
+import { ToastContainer, ToastStore } from "react-toasts";
 import AddItemsForm from "../../components/Forms/AddItemsForm";
 class AddItem extends Component {
   constructor(props) {
@@ -26,25 +27,43 @@ class AddItem extends Component {
     const item = this.state.newItem;
     const itemType = this.props.match.params.itemType;
     this.props.itemsActions.addCustomItem(item, user, student, itemType);
+    return this.displayToast("added!");
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  displayToast(message) {
+    return (
+      <div>
+        {ToastStore.success(message)}
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
+    );
+  }
   displayAddItemsForm(student) {
     if (student.student === null) {
       return <div />;
     }
 
     return (
-      <AddItemsForm
-        student={student.name}
-        itemType={this.props.match.params.itemType}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        type={this.props.itemType}
-        value={this.state.newItem}
-      />
+      <div style={{ fontFamily: "krub", display: "inline-block" }}>
+        <AddItemsForm
+          student={student.name}
+          itemType={this.props.match.params.itemType}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          type={this.props.itemType}
+          value={this.state.newItem}
+        />
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
     );
   }
 

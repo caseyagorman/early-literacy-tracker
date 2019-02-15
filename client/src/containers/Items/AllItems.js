@@ -13,8 +13,6 @@ class AllItems extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("fffffffffffff");
-
     if (prevProps.match.params.itemType !== this.props.match.params.itemType) {
       let user = this.props.auth.user.token;
       let itemType = this.props.match.params.itemType;

@@ -24,7 +24,6 @@ const borderBottomStyle = {
 const StudentDetailTable = student => (
   <div className="student-table">
     <Table bordered className="student-detail-table">
-      {console.log("STUDENT DETAIL TABLE", student)}
       <thead>
         <tr>
           <th id="table-header" colSpan="2" style={thStyle}>
@@ -144,7 +143,6 @@ const StudentDetailTable = student => (
             <ul className="unordered-list">
               {student.student.unlearnedWordList.map(item => (
                 <li>
-                  {console.log("item", item)}
                   <StudentItemLearned
                     item={item}
                     student={student.student.student_id}
@@ -171,16 +169,15 @@ const StudentDetailTable = student => (
             <ul className="unordered-list">
               {student.student.letterList.map(item => (
                 <li>
-                  {console.log("item", item)}
                   <StudentItemUnlearned
                     item={item}
-                    student={student.student_id}
+                    student={student.student.student_id}
                   />
                   <Link
                     className="link"
                     to={`/item-detail/letters/${item.item_id}`}
                   >
-                    {item.item}{" "}
+                    {item.item}
                   </Link>
                 </li>
               ))}

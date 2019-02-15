@@ -9,7 +9,7 @@ import AssignGroupPage from "../../components/Groups/AssignGroupPage";
 class AssignGroup extends React.Component {
   componentDidMount() {
     const user = this.props.auth.user.token;
-    this.props.studentsActions.fetchStudentNames(user);
+    this.props.studentsActions.fetchStudents(user);
     this.props.groupActions.fetchGroups(user);
   }
 
@@ -22,7 +22,7 @@ class AssignGroup extends React.Component {
     );
     let maxGroupLength = Math.max(...maxGroupArray);
     maxGroupLength = maxGroupLength * 20;
-
+    students = Object.values(students.students);
     return (
       <div className="container">
         <AssignGroupPage />

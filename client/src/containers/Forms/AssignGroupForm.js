@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as groupActions from "../../redux/actions/groupActions";
 import AssignGroupFormPage from "../../components/Forms/AssignGroupFormPage";
+import { ToastContainer, ToastStore } from "react-toasts";
 import "../../components/Forms/static/form.css";
+
 class AssignGroupForm extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,19 @@ class AssignGroupForm extends Component {
     let group = this.props.group.name;
     const user = this.props.auth.user.token;
     this.props.groupActions.assignGroup(students, group, user);
+    return this.displayToast("added!");
+  }
+
+  displayToast(message) {
+    return (
+      <div>
+        {ToastStore.success(message)}
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
+    );
   }
 
   handleChange(e) {
@@ -34,17 +49,23 @@ class AssignGroupForm extends Component {
 
   getOptions(studentList) {
     if (!studentList) {
-      return <div>Loading!</div>;
+      return <div />;
     }
-    studentList = Object.values(studentList);
+
     return (
-      <AssignGroupFormPage
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        studentList={studentList}
-        group={this.props.group}
-        maxGroupLength={this.props.maxGroupLength}
-      />
+      <div style={{ fontFamily: "krub", display: "inline-block" }}>
+        <AssignGroupFormPage
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          studentList={studentList}
+          group={this.props.group}
+          maxGroupLength={this.props.maxGroupLength}
+        />
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
     );
   }
 

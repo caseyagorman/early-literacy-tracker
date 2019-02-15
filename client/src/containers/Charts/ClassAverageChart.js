@@ -3,7 +3,6 @@ import StudentDetailBarChart from "./StudentDetailBarChart";
 
 class ClassAverageChart extends Component {
   displayClassAverageBarChart(student) {
-    console.log("class average bar chart", student);
     if (!student) {
       return <div />;
     }
@@ -30,7 +29,6 @@ class ClassAverageChart extends Component {
     let allStudentLetterCounts = Math.round(letterSum / letterLength);
     let allStudentWordCounts = Math.round(wordSum / wordLength);
     let allStudentSoundCounts = Math.round(soundSum / soundLength);
-    console.log("all student word counts", allStudentWordCounts);
     return (
       <StudentDetailBarChart
         allStudentLetterCounts={allStudentLetterCounts}

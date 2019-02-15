@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as itemsActions from "../../redux/actions/itemsActions";
 import AssignItemsFormPage from "../../components/Forms/AssignItemsFormPage";
+import { ToastContainer, ToastStore } from "react-toasts";
 import "../../components/Forms/static/form.css";
 class AssignItemsForm extends Component {
   constructor(props) {
@@ -13,12 +14,25 @@ class AssignItemsForm extends Component {
     this.getOptions = this.getOptions.bind(this);
   }
 
+  displayToast(message) {
+    return (
+      <div>
+        {ToastStore.success(message)}
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
+    );
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     let itemType = this.props.itemType;
     let items = this.state.value;
     const user = this.props.auth.user.token;
     this.props.itemsActions.addItem(items, user, itemType);
+    return this.displayToast(`${itemType} added!`);
   }
 
   handleChange(e) {
@@ -34,17 +48,23 @@ class AssignItemsForm extends Component {
 
   getOptions(itemList) {
     if (!itemList) {
-      return <div>Loading!</div>;
+      return <div />;
     }
 
     return (
-      <AssignItemsFormPage
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        itemList={itemList}
-        listTitle={this.props.listTitle}
-        itemType={this.props.itemType}
-      />
+      <div style={{ fontFamily: "krub", display: "inline-block" }}>
+        <AssignItemsFormPage
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          itemList={itemList}
+          listTitle={this.props.listTitle}
+          itemType={this.props.itemType}
+        />
+        <ToastContainer
+          position={ToastContainer.POSITION.TOP_RIGHT}
+          store={ToastStore}
+        />
+      </div>
     );
   }
 

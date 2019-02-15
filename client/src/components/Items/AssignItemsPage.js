@@ -4,7 +4,7 @@ const AssignItemsPage = props => (
   <div className="assign-items-page">
     <h2>
       {" "}
-      <b>Assign {props.itemType} to all students.</b>
+      <b>Assign {props.itemType} to all students</b>
     </h2>
     <br />
     <p>
