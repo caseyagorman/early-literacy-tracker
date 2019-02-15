@@ -48,14 +48,15 @@
   display: inline-block;
   margin-right: 3px;
   font-size: 16px;
-  color: #018f75;
+  color: #a54d5a;
+
   cursor: pointer;
 }
 #mark-unlearned-button {
   display: inline-block;
   margin-right: 3px;
   font-size: 16px;
-  color: #a54d5a;
+  color: #018f75;
   cursor: pointer;
 }
 

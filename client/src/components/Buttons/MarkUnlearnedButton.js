@@ -1,15 +1,16 @@
 import React from "react";
-import { Glyphicon } from "react-bootstrap";
+import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 
-const MarkLearnedButton = props => (
+const MarkUnlearnedButton = props => (
   <form id="mark-unlearned-button">
-    <Glyphicon
-      title="click to mark as unlearned"
-      glyph="glyphicon glyphicon-remove"
-      onClick={props.submit}
-      data-toggle="tooltip"
-    />
+    <OverlayTrigger overlay={<Tooltip>click to mark as unlearned</Tooltip>}>
+      <Glyphicon
+        glyph="glyphicon glyphicon-ok"
+        onClick={props.submit}
+        data-toggle="tooltip"
+      />
+    </OverlayTrigger>
   </form>
 );
 
-export default MarkLearnedButton;
+export default MarkUnlearnedButton;

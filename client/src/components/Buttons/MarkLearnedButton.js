@@ -6,10 +6,9 @@ const MarkLearnedButton = props => (
   <form id="mark-learned-button">
     <OverlayTrigger overlay={<Tooltip>click to mark as learned</Tooltip>}>
       <Glyphicon
-        title="click to mark as learned"
-        glyph="glyphicon glyphicon-ok"
+        glyph="glyphicon glyphicon-remove"
         onClick={props.submit}
-        id="ok"
+        data-toggle="tooltip"
       />
     </OverlayTrigger>
   </form>
