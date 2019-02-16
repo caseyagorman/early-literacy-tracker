@@ -14,9 +14,9 @@ const AppNavPage = props => {
     <Navbar style={{ border: 1 }} collapseOnSelect id="navbar">
       <Navbar.Header>
         <Navbar.Brand>
-          <LinkContainer to="/students" id="Brand">
-            <MenuItem id="Students">TrackIt</MenuItem>
-          </LinkContainer>
+          <a href="/students" id="Brand">
+            TrackIt
+          </a>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>

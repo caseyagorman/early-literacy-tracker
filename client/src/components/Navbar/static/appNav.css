@@ -12,6 +12,7 @@
 #Brand {
   background-color: #003d59;
   color: white;
+  list-style-type: none;
 }
 #drop-down {
   color: white;
