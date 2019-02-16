@@ -183,13 +183,13 @@ img {
 }
 @media only screen and (max-width: 600px) {
   img {
-    width: 300px;
+    width: 285px;
     display: block;
   }
 }
 @media only screen and (max-width: 600px) {
   .group-img {
-    width: 300px;
+    width: 280px;
     display: block;
     margin-top: -30px;
   }
@@ -197,7 +197,7 @@ img {
 
 @media only screen and (max-width: 600px) {
   .detail-img {
-    width: 300px;
+    width: 280x;
     display: block;
     margin-top: 20px;
   }
@@ -205,7 +205,7 @@ img {
 @media only screen and (max-width: 600px) {
   .student-detail {
     margin-top: -15px;
-    width: 300px;
+    width: 280px;
     display: block;
     /* margin-top: 20px; */
   }
@@ -213,7 +213,7 @@ img {
 @media only screen and (max-width: 600px) {
   .add-word {
     margin-top: -20px;
-    width: 300px;
+    width: 280px;
     display: block;
     /* margin-top: 20px; */
   }
@@ -222,8 +222,9 @@ img {
 @media only screen and (max-width: 600px) {
   .bordered-div {
     border: 1px solid #003d59;
-    width: 350px;
-    height: 250px;
+    width: 300px;
+    height: 240px;
+    margin-left: -60px;
   }
 }
 
@@ -285,5 +286,6 @@ img {
 @media only screen and (max-width: 600px) {
   .bordered-div-header {
     font-size: 20px;
+    margin-left: 20px;
   }
 }

@@ -521,13 +521,13 @@ def get_students(current_user):
         tests = get_student_test_dates(student)
         wordTest = tests.get('lastWordTest')
         if wordTest == None:
-            wordTest = "N/A"
+            wordTest = ""
         letterTest = tests.get('lastLetterTest')
         if letterTest == None:
-            letterTest = "N/A"
+            letterTest = ""
         soundTest = tests.get('lastSoundTest')
         if soundTest == None:
-            soundTest = "N/A"
+            soundTest = ""
         student_dict[student.student_id]['lastWordTest'] = wordTest
         student_dict[student.student_id]['lastLetterTest'] = letterTest
         student_dict[student.student_id]['lastSoundTest'] = soundTest
@@ -606,7 +606,7 @@ def get_class_averages(user_id):
 def get_all_student_reading_levels(student):
         if student.readinglevels == []: 
             reading_level = ""
-            last_reading_level_update = "N/A"
+            last_reading_level_update = ""
         else:
             reading_level = student.readinglevels[0].reading_level
             last_reading_level_update = student.readinglevels[0].update_date.strftime("%a, %b %d")
@@ -623,9 +623,9 @@ def get_student_group(student, user_id):
 def get_student_test_dates(student):
     test_dict = {}
     if student.studenttestresults == []:
-        test_dict['lastWordTest'] = "N/A"
-        test_dict['lastLetterTest'] = "N/A"
-        test_dict['lastSoundTest'] = "N/A"
+        test_dict['lastWordTest'] = ""
+        test_dict['lastLetterTest'] = ""
+        test_dict['lastSoundTest'] = ""
     elif student.studenttestresults[-1].test_type == "words":
         lastWordTest = student.studenttestresults[-1].test_date
         test_dict['lastWordTest'] = lastWordTest.strftime("%a, %b %d")
@@ -844,7 +844,7 @@ def get_test_dates(current_user, student, test_type):
         most_recent = test_dates[-1].test_date
         most_recent = most_recent.strftime("%a, %b %d")
     else:
-        most_recent = "N/A"
+        most_recent = ""
     return most_recent
 
 
