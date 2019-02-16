@@ -15,9 +15,10 @@ const AddStudentForm = props => (
         <div className="container">
           <FormGroup controlId="formControlsTextarea">
             <FormControl
+              style={{ height: 200, fontSize: 16 }}
               name="names"
               componentClass="textarea"
-              placeholder="add names"
+              placeholder="add student names"
               value={props.value}
               onChange={props.handleChange}
             />

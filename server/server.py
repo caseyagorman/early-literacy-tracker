@@ -467,7 +467,6 @@ def add_items_to__new_students(current_user):
     item_list = Item.query.filter_by(user_id = user_id).filter_by(custom = False ).all()
     items = [(item.item_id, item.item_type)for item in item_list]
     student_ids = [student.student_id for student in student_list]
-
     db.session.bulk_save_objects(
         [
             StudentItem(
@@ -609,7 +608,7 @@ def get_all_student_reading_levels(student):
             last_reading_level_update = ""
         else:
             reading_level = student.readinglevels[0].reading_level
-            last_reading_level_update = student.readinglevels[0].update_date.strftime("%a, %b %d")
+            last_reading_level_update = student.readinglevels[0].update_date.strftime("%b %d")
         return [reading_level, last_reading_level_update]
         
 def get_student_group(student, user_id):
@@ -628,13 +627,13 @@ def get_student_test_dates(student):
         test_dict['lastSoundTest'] = ""
     elif student.studenttestresults[-1].test_type == "words":
         lastWordTest = student.studenttestresults[-1].test_date
-        test_dict['lastWordTest'] = lastWordTest.strftime("%a, %b %d")
+        test_dict['lastWordTest'] = lastWordTest.strftime("%b %d")
     elif student.studenttestresults[-1].test_type == "letters":
         lastLetterTest = student.studenttestresults[-1].test_date
-        test_dict['lastLetterTest'] = lastLetterTest.strftime("%a, %b %d")
+        test_dict['lastLetterTest'] = lastLetterTest.strftime("%b %d")
     elif student.studenttestresults[-1].test_type == "sounds":
         lastSoundTest = student.studenttestresults[-1].test_date
-        test_dict['lastSoundTest'] = lastSoundTest.strftime("%a, %b %d")
+        test_dict['lastSoundTest'] = lastSoundTest.strftime("%b %d")
     return test_dict
 
 def get_student_item_dict(items):
@@ -842,7 +841,7 @@ def get_test_dates(current_user, student, test_type):
     test_dates = StudentTestResult.query.filter_by(user_id=user_id, student_id=student_id, test_type=test_type).all()
     if test_dates != []:
         most_recent = test_dates[-1].test_date
-        most_recent = most_recent.strftime("%a, %b %d")
+        most_recent = most_recent.strftime("%b %d")
     else:
         most_recent = ""
     return most_recent
@@ -881,7 +880,7 @@ def get_all_student_tests(current_user,  student_id):
     sound_test_list = []
 
     for test in student_tests:
-        test_date = test.test_date.strftime("%a, %b %d")
+        test_date = test.test_date.strftime("%b %d")
         student_test_object = {
             'studentId': test.student_id,
             'score': test.score,
@@ -940,7 +939,7 @@ def get_student_item_test_list(student_test):
     """is called by get_student_item_test, returns list of student tests"""
     student_test_list = []
     for student in student_test:
-        test_date = student.test_date.strftime("%a, %b %d")
+        test_date = student.test_date.strftime("%b %d")
         student_test_object = {
             'studentId': student.student_id,
             'score': student.score,
@@ -1097,7 +1096,7 @@ def group_detail(current_user, group):
     student_group = StudentGroup.query.filter_by(
         group_id=group_id, user_id=user_id).options(db.joinedload('students')).all()
     group_notes = GroupNote.query.filter_by(group_id=group_id, user_id=user_id).all()
-    notes = [{'note': note.note, 'date': note.date_added.strftime("%a, %b %d")} for note in group_notes]
+    notes = [{'note': note.note, 'date': note.date_added.strftime("%b %d")} for note in group_notes]
 
     if student_group: 
         student_names = []
