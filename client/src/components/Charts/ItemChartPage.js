@@ -17,7 +17,7 @@ const ItemChartPage = props => (
     </Row>
     <Row>
       <Col>
-        <div style={{ float: "left" }}>
+        <div>
           <ItemBarChart
             items={props.items}
             itemType={props.itemType}
@@ -26,7 +26,7 @@ const ItemChartPage = props => (
         </div>
       </Col>
       <Col>
-        <div style={{ float: "right" }}>
+        <div>
           <ItemBarChart
             items={props.items}
             itemType={props.itemType}
