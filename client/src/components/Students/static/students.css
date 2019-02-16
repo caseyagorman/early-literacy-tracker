@@ -12,7 +12,7 @@
 }
 
 button.dropdown-item {
-  font-size: 14px;
+  font-size: 16px;
   background-color: white;
   font-family: "Krub", sans-serif;
   color: rgb(0, 61, 89);
@@ -21,7 +21,6 @@ button.dropdown-item {
 
 a {
   color: rgb(0, 61, 89);
-  font-size: 14px;
   font-family: "Krub", sans-serif;
 }
 
