@@ -18,7 +18,10 @@ const AssignGroupFormPage = props => (
       <br />
       <ul>
         {props.group.students.map(student => (
-          <li key={"liGroupForm" + student} style={{ listStyle: "none" }}>
+          <li
+            key={"liGroupForm" + student}
+            style={{ fontSize: 16, listStyle: "none" }}
+          >
             {student}
           </li>
         ))}
@@ -33,7 +36,7 @@ const AssignGroupFormPage = props => (
       <br />
       <select
         style={{
-          fontSize: 18,
+          fontSize: 16,
           width: 200,
           minHeight: 500
         }}

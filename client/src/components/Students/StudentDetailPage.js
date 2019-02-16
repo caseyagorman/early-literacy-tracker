@@ -42,11 +42,12 @@ const StudentDetailPage = props => (
               </Tooltip>
             }
           >
-            <div style={{ width: 110, display: "inline-block" }}>
+            <div style={{ fontSize: 14, width: 110, display: "inline-block" }}>
               <DropdownBar
                 actionType={"Test Student"}
                 wordAction={
                   <Link
+                    style={{ color: "rgb(0, 61, 89)" }}
                     to={`/test-student/words/${props.student.student_id}`}
                     onClick={() => props.studentTestActions.beginTest("words")}
                   >

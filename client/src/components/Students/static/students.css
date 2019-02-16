@@ -11,31 +11,17 @@
   border: 1px solid white;
 }
 
-/* div.dropdown-menu.show {
-  font-size: 18px;
-
-  font-family: "Krub", sans-serif;
-  color: black;
-  border: 1px solid rgb(0, 61, 89, 0.7);
-} */
-/* 
-h6.dropdown-menu.dropdown-header {
-  font-size: 18px;
-  background-color: rgb(0, 61, 89, 0.7);
-  font-family: "Krub", sans-serif;
-  color: white;
-} */
-
 button.dropdown-item {
   font-size: 14px;
   background-color: white;
   font-family: "Krub", sans-serif;
-  color: rgb(0, 61, 89, 0.7);
+  color: rgb(0, 61, 89);
   border: none;
 }
 
 a {
-  color: rgb(0, 61, 89, 0.7);
+  color: rgb(0, 61, 89);
+  font-size: 14px;
   font-family: "Krub", sans-serif;
 }
 
