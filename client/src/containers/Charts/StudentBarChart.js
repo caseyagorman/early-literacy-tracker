@@ -90,7 +90,7 @@ class StudentBarChart extends Component {
       maintainAspectRatio: true,
       aspectRatio: 1,
       scales: {
-        lable: [
+        label: [
           {
             fontSize: 18,
             fontColor: "black"
@@ -115,7 +115,7 @@ class StudentBarChart extends Component {
         xAxes: [
           {
             ticks: {
-              fontSize: 12,
+              fontSize: 10,
               fontColor: "black"
             }
           }

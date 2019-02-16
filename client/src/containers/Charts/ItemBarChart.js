@@ -36,6 +36,16 @@ class ItemBarChart extends Component {
     }
   }
 
+  getLabel() {
+    if (this.props.chartType === "learned") {
+      let label = "learned";
+      return label;
+    } else {
+      let label = "unlearned";
+      return label;
+    }
+  }
+
   displayChart(dataResults) {
     if (!dataResults) {
       return <div />;
@@ -62,7 +72,7 @@ class ItemBarChart extends Component {
       maintainAspectRatio: true,
       aspectRatio: 1,
       scales: {
-        lable: [
+        label: [
           {
             fontSize: 18,
             fontFamily: "Krub",
@@ -102,7 +112,7 @@ class ItemBarChart extends Component {
 
       datasets: [
         {
-          label: "Students",
+          label: this.getLabel(),
 
           backgroundColor: this.getChartColor(),
           borderColor: this.getChartColor(),
