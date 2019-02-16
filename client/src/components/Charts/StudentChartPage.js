@@ -13,22 +13,22 @@ const StudentChartPage = props => (
     </Row>
     <Row>
       <Col>
-        <div style={{ float: "left" }}>
-          <StudentBarChart
-            students={props.students.students}
-            itemType={props.itemType}
-            chartType={"learned"}
-          />
-        </div>
+        {/* <div style={{ marginLeft: -200, float: "left" }}> */}
+        <StudentBarChart
+          students={props.students.students}
+          itemType={props.itemType}
+          chartType={"learned"}
+        />
+        {/* </div> */}
       </Col>
       <Col>
-        <div style={{ float: "right" }}>
-          <StudentBarChart
-            students={props.students.students}
-            itemType={props.itemType}
-            chartType={"unlearned"}
-          />
-        </div>
+        {/* <div style={{ marginRight: -200, float: "right" }}> */}
+        <StudentBarChart
+          students={props.students.students}
+          itemType={props.itemType}
+          chartType={"unlearned"}
+        />
+        {/* </div> */}
       </Col>
     </Row>
   </Grid>

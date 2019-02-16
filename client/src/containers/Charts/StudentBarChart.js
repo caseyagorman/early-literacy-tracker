@@ -115,7 +115,7 @@ class StudentBarChart extends Component {
         xAxes: [
           {
             ticks: {
-              fontSize: 10,
+              fontSize: 14,
               fontColor: "black"
             }
           }
@@ -138,7 +138,7 @@ class StudentBarChart extends Component {
         }
       ]
     };
-    return <Bar height={400} width={550} data={data} options={options} />;
+    return <Bar height={400} width={800} data={data} options={options} />;
   }
   render() {
     return this.displayChart(this.props.students);
