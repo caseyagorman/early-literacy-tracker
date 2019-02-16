@@ -620,20 +620,29 @@ def get_student_group(student, user_id):
     return group_name
 
 def get_student_test_dates(student):
-    test_dict = {}
-    if student.studenttestresults == []:
-        test_dict['lastWordTest'] = ""
-        test_dict['lastLetterTest'] = ""
-        test_dict['lastSoundTest'] = ""
-    elif student.studenttestresults[-1].test_type == "words":
-        lastWordTest = student.studenttestresults[-1].test_date
-        test_dict['lastWordTest'] = lastWordTest.strftime("%b %d")
-    elif student.studenttestresults[-1].test_type == "letters":
-        lastLetterTest = student.studenttestresults[-1].test_date
-        test_dict['lastLetterTest'] = lastLetterTest.strftime("%b %d")
-    elif student.studenttestresults[-1].test_type == "sounds":
-        lastSoundTest = student.studenttestresults[-1].test_date
-        test_dict['lastSoundTest'] = lastSoundTest.strftime("%b %d")
+    test_dict = {
+        'lastWordTest': "",
+        'lastLetterTest': "",
+        'lastSoundTest': "",
+        }
+
+    for test in student.studenttestresults:
+        if test.test_type == "words":
+            if test_dict['lastWordTest'] == "":
+                test_dict['lastWordTest'] = test.test_date.strftime("%b %d")
+            else:
+                pass
+        elif test.test_type == "letters":
+            if test_dict['lastLetterTest'] == "":
+                test_dict['lastLetterTest'] = test.test_date.strftime("%b %d")
+            else:
+                pass
+        elif test.test_type == "sounds":
+            if test_dict['lastSoundTest'] == "":
+                test_dict['lastSoundTest'] = test.test_date.strftime("%b %d")
+            else:
+                pass
+  
     return test_dict
 
 def get_student_item_dict(items):
