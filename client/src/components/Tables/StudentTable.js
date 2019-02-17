@@ -28,7 +28,6 @@ const StudentTable = (
       {students.map(function(student) {
         return (
           <tr key={student.student_id}>
-            {console.log(student)}
             <td>
               <OverlayTrigger
                 placement={"top"}

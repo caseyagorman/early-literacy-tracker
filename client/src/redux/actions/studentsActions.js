@@ -63,26 +63,21 @@ export function fetchStudent(student, user) {
   };
 }
 export function addStudent(students, user) {
-  return (
-    fetch(addStudentApi(), {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      },
-      body: JSON.stringify(students)
-    })
-      .then(response => response.json())
-      // .then(result => console.log("result", result));
-      .then(students => addItemsToNewStudents(user, students))
-  );
-  // .then(() => history.push("/students"));
+  return fetch(addStudentApi(), {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-access-token": user
+    },
+    body: JSON.stringify(students)
+  })
+    .then(response => response.json())
+    .then(students => addItemsToNewStudents(user, students));
 }
 
 export function addItemsToNewStudents(user, students) {
-  console.log("adding items to new students", students);
   return fetch(addItemToNewStudentApi(), {
     method: "POST",
     mode: "cors",
