@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
+import moment from "moment";
 import { Table, OverlayTrigger, Tooltip, ProgressBar } from "react-bootstrap";
 const StudentTable = (
   students,
@@ -13,9 +14,11 @@ const StudentTable = (
     <thead>
       <tr>
         <th onClick={e => onSort(e, "name")}>Name</th>
-        <th onClick={e => onSort(e, "readingLevel")}>Group Name</th>
+        <th onClick={e => onSort(e, "group")}>Group Name</th>
         <th onClick={e => onSort(e, "readingLevel")}>Reading Level</th>
-        <th onClick={e => onSort(e, "lastWordTest")}>Last Reading Update</th>
+        <th onClick={e => onSort(e, "lastReadingLevelUpdate")}>
+          Last Reading Update
+        </th>
         <th onClick={e => onSort(e, "wordCount")}>Words Learned</th>
         <th onClick={e => onSort(e, "lastWordTest")}>Last Word Test </th>
         <th onClick={e => onSort(e, "letterCount")}>Letters Learned </th>
@@ -85,14 +88,13 @@ const StudentTable = (
                 }
               >
                 <ProgressBar
-                  animated
                   now={(student.wordCount / student.totalWordCount) * 100}
                 />
               </OverlayTrigger>
             </td>
             <td>
               {" "}
-              {student.lastWordTest}
+              {student.lastWordTest.slice(0, -12)}
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -121,14 +123,13 @@ const StudentTable = (
                 }
               >
                 <ProgressBar
-                  animated
                   now={(student.letterCount / student.totalLetterCount) * 100}
                 />
               </OverlayTrigger>
             </td>
             <td>
               {" "}
-              {student.lastLetterTest}
+              {student.lastLetterTest.slice(0, -12)}
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -157,14 +158,13 @@ const StudentTable = (
                   }
                 >
                   <ProgressBar
-                    animated
                     now={(student.soundCount / student.totalSoundCount) * 100}
                   />
                 </OverlayTrigger>
               </div>
             </td>
             <td>
-              {student.lastSoundTest}
+              {student.lastSoundTest.slice(0, -12)}
               <br />
               <OverlayTrigger
                 placement={"top"}

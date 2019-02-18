@@ -608,7 +608,7 @@ def get_all_student_reading_levels(student):
             last_reading_level_update = ""
         else:
             reading_level = student.readinglevels[0].reading_level
-            last_reading_level_update = student.readinglevels[0].update_date.strftime("%b %d")
+            last_reading_level_update = student.readinglevels[0].update_date
         return [reading_level, last_reading_level_update]
         
 def get_student_group(student, user_id):
@@ -629,17 +629,17 @@ def get_student_test_dates(student):
     for test in student.studenttestresults:
         if test.test_type == "words":
             if test_dict['lastWordTest'] == "":
-                test_dict['lastWordTest'] = test.test_date.strftime("%b %d")
+                test_dict['lastWordTest'] = test.test_date
             else:
                 pass
         elif test.test_type == "letters":
             if test_dict['lastLetterTest'] == "":
-                test_dict['lastLetterTest'] = test.test_date.strftime("%b %d")
+                test_dict['lastLetterTest'] = test.test_date
             else:
                 pass
         elif test.test_type == "sounds":
             if test_dict['lastSoundTest'] == "":
-                test_dict['lastSoundTest'] = test.test_date.strftime("%b %d")
+                test_dict['lastSoundTest'] = test.test_date
             else:
                 pass
   
@@ -850,7 +850,7 @@ def get_test_dates(current_user, student, test_type):
     test_dates = StudentTestResult.query.filter_by(user_id=user_id, student_id=student_id, test_type=test_type).all()
     if test_dates != []:
         most_recent = test_dates[-1].test_date
-        most_recent = most_recent.strftime("%b %d")
+        most_recent = most_recent
     else:
         most_recent = ""
     return most_recent
@@ -890,7 +890,7 @@ def get_all_student_tests(current_user,  student_id):
     sound_test_list = []
 
     for test in student_tests:
-        test_date = test.test_date.strftime("%b %d")
+        test_date = test.test_date
         student_test_object = {
             'studentId': test.student_id,
             'score': test.score,
@@ -949,7 +949,7 @@ def get_student_item_test_list(student_test):
     """is called by get_student_item_test, returns list of student tests"""
     student_test_list = []
     for student in student_test:
-        test_date = student.test_date.strftime("%b %d")
+        test_date = student.test_date
         student_test_object = {
             'studentId': student.student_id,
             'score': student.score,
@@ -958,6 +958,7 @@ def get_student_item_test_list(student_test):
             'incorrectItems': student.incorrect_items
         }
         student_test_list.append(student_test_object)
+    print("student_test_list", student_test_list)
     return student_test_list
 
 @app.route("/api/mark-items-learned", methods=["POST"])
@@ -1106,7 +1107,7 @@ def group_detail(current_user, group):
     student_group = StudentGroup.query.filter_by(
         group_id=group_id, user_id=user_id).options(db.joinedload('students')).all()
     group_notes = GroupNote.query.filter_by(group_id=group_id, user_id=user_id).all()
-    notes = [{'note': note.note, 'date': note.date_added.strftime("%b %d")} for note in group_notes]
+    notes = [{'note': note.note, 'date': note.date_added} for note in group_notes]
 
     if student_group: 
         student_names = []
