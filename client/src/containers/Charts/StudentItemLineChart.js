@@ -18,6 +18,7 @@ class StudentItemLineChart extends Component {
         scores.push(data[i].score);
         dates.push(data[i].testDate);
       }
+      console.log("dates", dates);
     }
     return this.displayChartData(dates, scores);
   }
