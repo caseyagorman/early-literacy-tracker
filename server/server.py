@@ -43,7 +43,7 @@ app.config.update(
     MAIL_PORT=587,
     MAIL_USE_SSL=False,
     MAIL_USERNAME = 'caseyagorman@gmail.com',
-    MAIL_PASSWORD = os.environ['PASSWORD'],
+    # MAIL_PASSWORD = os.environ['PASSWORD'],
     MAIL_SUPPRESS_SEND = False,
     MAIL_DEFAULT_SENDER = 'caseyagorman@gmail.com',
     MAIL_USE_TLS = True,
