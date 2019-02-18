@@ -25,7 +25,7 @@ static_dir   = os.path.abspath('../client/build/static')
 app = Flask(__name__, static_folder=static_dir,template_folder=template_dir)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
-# app.debug = True
+app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
 
 testing_options_dir = "testing-options"
@@ -157,7 +157,7 @@ def read_txt_file(current_user, item_type):
     # if item_type == "letters":
     #     fname = ["capital letters.txt", "lowercase letters.txt"]
     
-    fnames = os.path.listdir(os.path.join(testing_options_dir, item_type))
+    fnames = [os.path.join(testing_options_dir, item_type, fname) for fname in os.listdir(os.path.join(testing_options_dir, item_type))]
 
     for fn in fnames:
             with open(fn) as f:
