@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
+import moment from "moment";
 import "../../components/Charts/static/charts.css";
 
 class StudentItemLineChart extends Component {
@@ -16,7 +17,7 @@ class StudentItemLineChart extends Component {
       data = data.testData[itemType].studentTestList;
       for (let i = 0; i < data.length; i++) {
         scores.push(data[i].score);
-        dates.push(data[i].testDate);
+        dates.push(moment(data[i].testDate).format("ddd MMM Do"));
       }
       console.log("dates", dates);
     }
