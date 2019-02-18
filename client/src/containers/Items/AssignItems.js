@@ -37,13 +37,16 @@ class AssignItems extends React.Component {
     return (
       <div className="container">
         <AssignItemsPage itemType={itemType} />
-        {Object.entries(items.studentItemSets[itemType]).map(itemSet => (
-          <AssignItemsForm
-            listTitle={itemSet[0]}
-            itemList={itemSet[1]}
-            itemType={itemType}
-          />
-        ))}
+        {Object.entries(items.studentItemSets[itemType]).map(
+          (itemSet, index) => (
+            <AssignItemsForm
+              key={index}
+              listTitle={itemSet[0]}
+              itemList={itemSet[1]}
+              itemType={itemType}
+            />
+          )
+        )}
       </div>
     );
   }
