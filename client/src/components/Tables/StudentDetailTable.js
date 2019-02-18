@@ -22,7 +22,7 @@ const borderBottomStyle = {
 };
 
 const StudentDetailTable = student => (
-  <div className="student-table">
+  <div className="student-table" style={{ marginTop: 30 }}>
     <Table bordered className="student-detail-table">
       <thead>
         <tr>

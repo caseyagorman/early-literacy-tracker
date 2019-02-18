@@ -41,6 +41,7 @@ export function fetchAllTestResults(id, user) {
       }
     })
       .then(response => response.json())
+
       .then(testResults => dispatch(receiveTestResults(testResults)));
   };
 }

@@ -873,6 +873,7 @@ def get_student_item_test(current_user, item_type, student):
     item_counts = get_item_counts(student_items)
     test_data = {'itemCounts': item_counts, 'studentTestList':student_test_list, 'learnedItemList': learned_items_list
     }
+    print("test data", test_data)
     return test_data
 
 

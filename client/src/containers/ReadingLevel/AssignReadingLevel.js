@@ -16,9 +16,7 @@ class AssignReadingLevel extends React.Component {
       return <p />;
     }
     return (
-      <div className="container">
-        <AssignReadingLevelForm itemList={readingLevels} student={student} />
-      </div>
+      <AssignReadingLevelForm itemList={readingLevels} student={student} />
     );
   }
 
