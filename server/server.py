@@ -1,13 +1,14 @@
 # from secrets import password
-import os
 import datetime
-from datetime import date
+import itertools
+from functools import wraps
+import os
+# import path
+import string
 import time
+
 from flask_mail import Message
 from flask_mail import Mail
-import time
-import itertools
-import string
 from operator import itemgetter 
 from flask import Flask, render_template, jsonify, request, session, make_response, send_from_directory
 from jinja2 import StrictUndefined
@@ -16,8 +17,8 @@ from flask_restful import  Api, Resource, reqparse
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
-from functools import wraps
 from model import Student, StudentGroup, Item, Group, GroupNote, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
+
 mail = None
 template_dir = os.path.abspath('../client/build')
 static_dir   = os.path.abspath('../client/build/static')
@@ -26,6 +27,15 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 # app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
+
+testing_options_dir = "testing-options"
+
+    # if item_type == "words":
+    #     fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
+    # if item_type == "sounds":
+    #     fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt", "blends.txt"]
+    # if item_type == "letters":
+    #     fname = ["capital letters.txt", "lowercase letters.txt"]
 
 app.config.update(
     #EMAIL SETTINGS
@@ -140,14 +150,16 @@ def reset_password():
 @token_required
 def read_txt_file(current_user, item_type):
     unassigned_items = {'itemType': item_type, 'items': {} }
-    if item_type == "words":
-        fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
-    if item_type == "sounds":
-        fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt", "blends.txt"]
-    if item_type == "letters":
-        fname = ["capital letters.txt", "lowercase letters.txt"]
+    # if item_type == "words":
+    #     fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
+    # if item_type == "sounds":
+    #     fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt", "blends.txt"]
+    # if item_type == "letters":
+    #     fname = ["capital letters.txt", "lowercase letters.txt"]
     
-    for fn in fname:
+    fnames = os.path.listdir(os.path.join(testing_options_dir, item_type))
+
+    for fn in fnames:
             with open(fn) as f:
                 content = f.readlines()
                 content = [x.strip() for x in content] 
@@ -180,7 +192,7 @@ def add_reading_level(current_user):
         student_reading_level.update_date = int(time.time())
         db.session.commit()
     else:
-        db.session.add(ReadingLevel(student_id=student_id, user_id=user_id, reading_level=reading_level, update_date=date.today()))
+        db.session.add(ReadingLevel(student_id=student_id, user_id=user_id, reading_level=reading_level, update_date=datetime.date.today()))
         db.session.commit()
 
     return jsonify(data)
