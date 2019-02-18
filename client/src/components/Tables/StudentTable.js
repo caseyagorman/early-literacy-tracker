@@ -94,7 +94,7 @@ const StudentTable = (
             </td>
             <td>
               {" "}
-              {student.lastWordTest.slice(0, -12)}
+              {student.lastWordTest}
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -129,7 +129,7 @@ const StudentTable = (
             </td>
             <td>
               {" "}
-              {student.lastLetterTest.slice(0, -12)}
+              {student.lastLetterTest}
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -164,7 +164,7 @@ const StudentTable = (
               </div>
             </td>
             <td>
-              {student.lastSoundTest.slice(0, -12)}
+              {student.lastSoundTest}
               <br />
               <OverlayTrigger
                 placement={"top"}

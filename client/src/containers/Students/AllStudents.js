@@ -4,6 +4,7 @@ import * as studentsActions from "../../redux/actions/studentsActions";
 import * as authActions from "../../redux/actions/authActions";
 import * as studentTestActions from "../../redux/actions/studentTestActions";
 import AllStudentsPage from "../../components/Students/AllStudentsPage";
+import Time from "react-time";
 import { bindActionCreators } from "redux";
 
 class AllStudents extends Component {
@@ -22,8 +23,37 @@ class AllStudents extends Component {
     if (students.students === null) {
       return <div />;
     }
-    students = students.students;
-    students = Object.values(students);
+    let oldStudents = students.students;
+    oldStudents = Object.values(oldStudents);
+    students = [];
+    for (let i = 0; i < oldStudents.length; i++) {
+      if (
+        oldStudents[i].lastLetterTest ||
+        oldStudents[i].lastWordTest ||
+        oldStudents[i].lastSoundTest ||
+        oldStudents[i].lastReadingLevelUpdate
+      ) {
+        oldStudents[i].lastReadingLevelUpdate = (
+          <Time
+            value={oldStudents[i].lastReadingLevelUpdate}
+            format="MM/DD/YYYY"
+          />
+        );
+        oldStudents[i].lastLetterTest = (
+          <Time value={oldStudents[i].lastLetterTest} format="MM/DD/YYYY" />
+        );
+        oldStudents[i].lastWordTest = (
+          <Time value={oldStudents[i].lastLetterTest} format="MM/DD/YYYY" />
+        );
+        oldStudents[i].lastSoundTest = (
+          <Time value={oldStudents[i].lastLetterTest} format="MM/DD/YYYY" />
+        );
+        console.log("old students", oldStudents[i]);
+      }
+      students.push(oldStudents[i]);
+    }
+    console.log("students", students);
+
     return (
       <AllStudentsPage
         studentTestActions={this.props.studentTestActions}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import moment from "moment";
 
 class TableContainer extends Component {
   constructor(props) {
@@ -20,9 +19,7 @@ class TableContainer extends Component {
 
   sortArray(array, sortKey, reverseSort) {
     array = array.slice();
-    if (sortKey === "lastWordTest") {
-      console.log("bark");
-    } else if (sortKey) {
+    if (sortKey) {
       array.sort(function(a, b) {
         return a[sortKey] < b[sortKey] ? 1 : a[sortKey] > b[sortKey] ? -1 : 0;
       });
