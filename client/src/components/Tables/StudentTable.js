@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import moment from "moment";
 import { Table, OverlayTrigger, Tooltip, ProgressBar } from "react-bootstrap";
+
+const renderDate = (date) => {
+  return moment(date).format("ddd, hA");
+}
+
 const StudentTable = (
   students,
   onSort,
@@ -58,7 +63,7 @@ const StudentTable = (
             <td>{student.readingLevel}</td>
             <td>
               {" "}
-              {student.lastReadingLevelUpdate}
+              {renderDate(student.lastReadingLevelUpdate)}
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -94,7 +99,7 @@ const StudentTable = (
             </td>
             <td>
               {" "}
-              {student.lastWordTest}
+              {renderDate(student.lastWordTest)}
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -129,7 +134,7 @@ const StudentTable = (
             </td>
             <td>
               {" "}
-              {student.lastLetterTest}
+              {renderDate(student.lastLetterTest)}
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -164,7 +169,7 @@ const StudentTable = (
               </div>
             </td>
             <td>
-              {student.lastSoundTest}
+              {renderDate(student.lastSoundTest)}
               <br />
               <OverlayTrigger
                 placement={"top"}

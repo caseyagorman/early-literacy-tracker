@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 class TableContainer extends Component {
   constructor(props) {
     super(props);
     this.sortArray = this.sortArray.bind(this);
+    this.sortDates = this.sortDates.bind(this);
+    this.sortWrapper = this.sortWrapper.bind(this);
     this.onSort = this.onSort.bind(this);
     this.state = {
       sortKey: undefined,
@@ -17,8 +20,24 @@ class TableContainer extends Component {
     }
   }
 
+  sortDates(array, sortKey, reverseSort) {
+    array = array.slice();
+    if (sortKey) {
+      array.sort((a, b) => {
+        const dateA = moment(a[sortKey]).valueOf();
+        const dateB = moment(b[sortKey]).valueOf();
+        return dateA - dateB;
+      })
+    }
+    if (reverseSort) {
+      array.reverse();
+    }
+
+    return array;
+
+  }
+
   sortArray(array, sortKey, reverseSort) {
-    console.log("sortArray array", array);
     array = array.slice();
     if (sortKey) {
       array.sort(function(a, b) {
@@ -29,6 +48,20 @@ class TableContainer extends Component {
       array.reverse();
     }
     return array;
+  }
+
+  sortWrapper(array, sortKey, reverseSort) {
+    const dateKeys = [
+      "lastLetterTest",
+      "lastReadingLevelUpdate",
+      "lastSoundTest",
+      "lastWordTest",
+    ];
+    if (dateKeys.indexOf(sortKey) !== -1) {
+      return this.sortDates(array, sortKey, reverseSort)
+    } else {
+      return this.sortArray(array, sortKey, reverseSort)
+    }
   }
 
   onSort(e, sortKey) {
@@ -48,7 +81,12 @@ class TableContainer extends Component {
   render() {
     let actions = this.props.actions;
     let route = this.props.route;
-    let tableElements = this.sortArray(
+    // let tableElements = this.sortArray(
+    //   this.props.tableElements,
+    //   this.state.sortKey,
+    //   this.state.reverseSort
+    // );
+    let tableElements = this.sortWrapper(
       this.props.tableElements,
       this.state.sortKey,
       this.state.reverseSort
