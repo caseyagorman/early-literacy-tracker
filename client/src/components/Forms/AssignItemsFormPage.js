@@ -1,13 +1,25 @@
 import React from "react";
 import "./static/form.css";
 
+const formatItemsTitle = string => {
+  let name = string.split("/");
+  name = name[name.length - 1];
+  name = name
+    .split("-")
+    .map(word => {
+      return word[0].toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+  return name;
+};
+
 const AssignItemsFormPage = props => (
   <form
     onSubmit={props.handleSubmit}
     style={{ float: "left", width: 250, fontFamily: "krub" }}
   >
     <label id="form-label">
-      <b>{props.listTitle}</b>
+      <b>{formatItemsTitle(props.listTitle)}</b>
     </label>
     <br />
     <select
