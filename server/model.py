@@ -20,11 +20,11 @@ class User(db.Model):
     email = db.Column(db.String(64), nullable=False, unique=True)
     password = db.Column(db.String(128))
     created = db.Column(db.DateTime, nullable=False,
-                           default=datetime.now)
+                        default=datetime.now)
 
     students = db.relationship(
         'Student', cascade="save-update, merge, delete")
-    items = db.relationship('Item', cascade="save-update, merge, delete") 
+    items = db.relationship('Item', cascade="save-update, merge, delete")
     studentitems = db.relationship(
         'StudentItem', cascade="save-update, merge, delete")
     studenttestresults = db.relationship(
@@ -37,7 +37,6 @@ class User(db.Model):
         'GroupNote', cascade="save-update, merge, delete")
     readinglevels = db.relationship(
         'ReadingLevel', cascade="save-update, merge, delete")
-
 
     def __repr__(self):
         return f"<User id={self.public_id} email={self.email}>"
@@ -64,8 +63,10 @@ class Student(db.Model):
         'ReadingLevel', cascade="save-update, merge, delete")
     studenttestresults = db.relationship(
         'StudentTestResult', cascade="save-update, merge, delete")
+
     def __repr__(self):
         return f"<Student student_id={self.student_id} first_name={self.name}>"
+
 
 class ReadingLevel(db.Model):
     __tablename__ = "readinglevels"
@@ -77,17 +78,18 @@ class ReadingLevel(db.Model):
         'users.public_id'), nullable=False)
     reading_level = db.Column(db.String(25), nullable=False)
     update_date = db.Column(db.DateTime, nullable=True,
-                          default=datetime.today)
+                            default=datetime.today)
     students = db.relationship(
         'Student')
     users = db.relationship(
         'User')
 
+
 class Group(db.Model):
     __tablename__ = "groups"
     group_id = db.Column(
         db.Integer, autoincrement=True, primary_key=True)
-    group_name = db.Column(db.String(100), nullable=False, unique=True)
+    group_name = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
     users = db.relationship(
@@ -96,6 +98,7 @@ class Group(db.Model):
         'StudentGroup', cascade="save-update, merge, delete")
     groupnotes = db.relationship(
         'GroupNote', cascade="save-update, merge, delete")
+
 
 class StudentGroup(db.Model):
     __tablename__ = "studentgroups"
@@ -114,6 +117,7 @@ class StudentGroup(db.Model):
     groups = db.relationship(
         'Group')
 
+
 class GroupNote(db.Model):
     __tablename__ = "groupnotes"
     group_notes_id = db.Column(
@@ -122,9 +126,9 @@ class GroupNote(db.Model):
         'groups.group_id'), nullable=False)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
-    note = db.Column(db.String(200), nullable=False, unique=True)
+    note = db.Column(db.String(200), nullable=False)
     date_added = db.Column(db.DateTime, nullable=False,
-                          default=datetime.today)
+                           default=datetime.today)
     users = db.relationship(
         'User')
     groups = db.relationship(
@@ -137,9 +141,8 @@ class Item(db.Model):
     item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_type = db.Column(db.String(25), nullable=False)
     item = db.Column(db.String(25), nullable=False)
-    # date_added = db.Column(db.DateTime, nullable=False,
-    #                        default=datetime.today)
-    date_added = db.Column(db.TIMESTAMP, nullable=False, default=time.time)
+    date_added = db.Column(db.DateTime, nullable=False,
+                           default=datetime.today)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
     custom = db.Column(db.Boolean, unique=False, default=False)
@@ -150,7 +153,6 @@ class Item(db.Model):
 
     def __repr__(self):
         return f"<Item item_id={self.item_id} item={self.item}>"
-
 
 
 class StudentItem(db.Model):
@@ -212,7 +214,6 @@ class StudentTestResult(db.Model):
     def __repr__(self):
         return f"<StudentTestResults student_test_id={self.student_test_id}>"
 
-
     # def __repr__(self):
     #     return f"<StudentTestResults student_test_id={self.student_test_id}>"
 
@@ -229,4 +230,3 @@ if __name__ == "__main__":
     from server import app
     connect_to_db(app)
     print("Connected to DB.")
-
