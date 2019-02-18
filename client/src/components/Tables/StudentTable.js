@@ -5,7 +5,11 @@ import moment from "moment";
 import { Table, OverlayTrigger, Tooltip, ProgressBar } from "react-bootstrap";
 
 const renderDate = (date) => {
-  return moment(date).format("ddd, hA");
+  date = moment(date).format("ddd MMM Do");
+  if (date === "Invalid date") {
+    date = "Not tested";
+  }
+  return date;
 }
 
 const StudentTable = (
