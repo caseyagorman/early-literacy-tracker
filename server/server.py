@@ -2,6 +2,7 @@
 import os
 import datetime
 from datetime import date
+import time
 from flask_mail import Message
 from flask_mail import Mail
 import time
@@ -175,7 +176,8 @@ def add_reading_level(current_user):
     student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student_id).first()
     if student_reading_level:
         student_reading_level.reading_level = reading_level
-        student_reading_level.update_date = date.today()
+        # student_reading_level.update_date = date.today()
+        student_reading_level.update_date = int(time.time())
         db.session.commit()
     else:
         db.session.add(ReadingLevel(student_id=student_id, user_id=user_id, reading_level=reading_level, update_date=date.today()))
