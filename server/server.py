@@ -457,9 +457,13 @@ def add_custom_items_to_student(current_user):
 def add_items_to__new_students(current_user):
     data = request.get_json()
     names = data.get("names")
-    table = str.maketrans({key: None for key in string.punctuation})
-    new_names = names.translate(table)  
-    new_names = new_names.splitlines()
+    print("names", names)
+    # table = str.maketrans({key: None for key in string.punctuation})
+    # print("table", table)
+    # new_names = names.translate(table)  
+    # print("new_names", new_names)
+    new_names = names.splitlines()
+    print(new_names)
     user_id = current_user.public_id
     student_list = Student.query.filter(Student.name.in_(new_names)).filter(Student.user_id == user_id).all()
     item_list = Item.query.filter_by(user_id = user_id).filter_by(custom = False ).all()
