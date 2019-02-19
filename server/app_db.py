@@ -53,10 +53,18 @@ class App_Db(object):
         for tablename in self.tablenames:
             tb = pd.read_csv(os.path.join(self.output_dir, tablename))
             tb.to_sql(tablename, engine, if_exists='append', index=False)
+    
+    def reset(self):
+        self.drop_db()
+        self.create_db()
+        self.init_db()
+        self.load_data()
+
 
 if __name__ == "__main__":
     students_db = App_Db('students')
-    students_db.drop_db()
-    students_db.create_db()
-    students_db.init_db()
-    students_db.load_data()
+    students_db.reset()
+    # students_db.drop_db()
+    # students_db.create_db()
+    # students_db.init_db()
+    # students_db.load_data()
