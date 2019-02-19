@@ -1178,8 +1178,6 @@ def add_note(current_user):
     group = Group.query.filter_by(user_id=user_id, group_name=group_name).first()
     group_id = group.group_id
     if note != " " and note !="":
-        # table = str.maketrans({key: None for key in string.punctuation})
-        # note = note.translate(table) 
         new_note = GroupNote(user_id=user_id, group_id=group_id, note=note)
         db.session.add(new_note)
         db.session.commit()
