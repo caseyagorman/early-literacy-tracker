@@ -57,6 +57,17 @@ const LoginUserForm = props => (
         here.
       </Link>
     </form>
+
+    <Link
+      style={{
+        color: "#44857d",
+        textDecoration: "underline",
+        textDecorationColor: "#44857d"
+      }}
+      to="/register"
+    >
+      or create a new account
+    </Link>
   </div>
 );
 

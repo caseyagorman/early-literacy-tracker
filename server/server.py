@@ -117,7 +117,7 @@ def request_reset_password():
     user_created = user_created.replace(" ", "-")
     password_link = user.password + "-" + user_created
     msg = Message("New password link",
-                body=f"http://localhost:3000/reset-password/{password_link}/",
+                body=f"https://earlyreadingtracker.com/reset-password/{password_link}/",
                   sender="caseyagorman@gmail.com",
                   recipients=[email])
     return mail.send(msg)
