@@ -137,9 +137,9 @@ class Item(db.Model):
     item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_type = db.Column(db.String(25), nullable=False)
     item = db.Column(db.String(25), nullable=False)
-    # date_added = db.Column(db.DateTime, nullable=False,
-    #                        default=datetime.today)
-    date_added = db.Column(db.TIMESTAMP, nullable=False, default=time.time)
+    date_added = db.Column(db.DateTime, nullable=False,
+                           default=datetime.today)
+    # date_added = db.Column(db.DateTime, nullable=False, default=time.time)
     user_id = db.Column(db.String(50), db.ForeignKey(
         'users.public_id'), nullable=False)
     custom = db.Column(db.Boolean, unique=False, default=False)
