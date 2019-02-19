@@ -26,15 +26,14 @@ class TableContainer extends Component {
       array.sort((a, b) => {
         const dateA = moment(a[sortKey]).valueOf();
         const dateB = moment(b[sortKey]).valueOf();
-        return dateA - dateB;
-      })
+        return dateB - dateA;
+      });
     }
     if (reverseSort) {
       array.reverse();
     }
 
     return array;
-
   }
 
   sortArray(array, sortKey, reverseSort) {
@@ -55,12 +54,12 @@ class TableContainer extends Component {
       "lastLetterTest",
       "lastReadingLevelUpdate",
       "lastSoundTest",
-      "lastWordTest",
+      "lastWordTest"
     ];
     if (dateKeys.indexOf(sortKey) !== -1) {
-      return this.sortDates(array, sortKey, reverseSort)
+      return this.sortDates(array, sortKey, reverseSort);
     } else {
-      return this.sortArray(array, sortKey, reverseSort)
+      return this.sortArray(array, sortKey, reverseSort);
     }
   }
 

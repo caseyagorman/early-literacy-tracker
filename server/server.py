@@ -25,17 +25,10 @@ static_dir   = os.path.abspath('../client/build/static')
 app = Flask(__name__, static_folder=static_dir,template_folder=template_dir)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
-app.debug = True
+# app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
 
 testing_options_dir = "testing-options"
-
-    # if item_type == "words":
-    #     fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
-    # if item_type == "sounds":
-    #     fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt", "blends.txt"]
-    # if item_type == "letters":
-    #     fname = ["capital letters.txt", "lowercase letters.txt"]
 
 app.config.update(
     #EMAIL SETTINGS
@@ -43,7 +36,7 @@ app.config.update(
     MAIL_PORT=587,
     MAIL_USE_SSL=False,
     MAIL_USERNAME = 'caseyagorman@gmail.com',
-    # MAIL_PASSWORD = os.environ['PASSWORD'],
+    MAIL_PASSWORD = os.environ['PASSWORD'],
     MAIL_SUPPRESS_SEND = False,
     MAIL_DEFAULT_SENDER = 'caseyagorman@gmail.com',
     MAIL_USE_TLS = True,
@@ -150,13 +143,6 @@ def reset_password():
 @token_required
 def read_txt_file(current_user, item_type):
     unassigned_items = {'itemType': item_type, 'items': {} }
-    # if item_type == "words":
-    #     fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
-    # if item_type == "sounds":
-    #     fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt", "blends.txt"]
-    # if item_type == "letters":
-    #     fname = ["capital letters.txt", "lowercase letters.txt"]
-    
     fnames = [os.path.join(testing_options_dir, item_type, fname) for fname in os.listdir(os.path.join(testing_options_dir, item_type))]
 
     for fn in fnames:
@@ -188,7 +174,6 @@ def add_reading_level(current_user):
     student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student_id).first()
     if student_reading_level:
         student_reading_level.reading_level = reading_level
-        # student_reading_level.update_date = date.today()
         student_reading_level.update_date = int(time.time())
         db.session.commit()
     else:
@@ -311,7 +296,6 @@ def get_unassigned_students_item(current_user, item):
         }
 
         student_list.append(student)
-    # student_list = sorted(student_list, key=itemgetter('student'))
     return jsonify([student_list])
 
 @app.route("/api/add-student", methods=['POST'])

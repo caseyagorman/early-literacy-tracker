@@ -4,13 +4,14 @@ import DeleteStudent from "../../containers/Forms/DeleteStudent";
 import moment from "moment";
 import { Table, OverlayTrigger, Tooltip, ProgressBar } from "react-bootstrap";
 
-const renderDate = (date) => {
+const renderDate = date => {
+  // return date;
   date = moment(date).format("ddd MMM Do");
   if (date === "Invalid date") {
     date = "Not tested";
   }
   return date;
-}
+};
 
 const StudentTable = (
   students,
