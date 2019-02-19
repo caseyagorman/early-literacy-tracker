@@ -1,2 +1,3 @@
-. secret.sh
+
+. secrets.sh
 python3 server.py

@@ -1,6 +1,17 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import DeleteNote from "../../containers/Forms/DeleteNote";
+import moment from "moment";
+
+const renderDate = date => {
+  // return date;
+  date = moment(date).format("ddd MMM Do");
+  if (date === "Invalid date") {
+    date = "Not tested";
+  }
+  return date;
+};
+
 const NotesPage = props => (
   <Table style={{ fontSize: 14, fontFamily: "krub" }} bordered="true">
     <thead />
@@ -19,7 +30,7 @@ const NotesPage = props => (
     <tbody style={{ fontSize: 14 }}>
       {props.group.notes.map(note => (
         <tr>
-          <td>{note.date}</td>
+          <td>{renderDate(note.date)}</td>
 
           <td>{note.note} </td>
           <td>

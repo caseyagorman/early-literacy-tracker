@@ -19,8 +19,11 @@ class LoginUser extends Component {
       this.updateInput("username", newProps.auth.user.username);
       this.props.history.push("/students");
     }
+    if (newProps.auth.loginError.error) {
+      let errorMessage = newProps.auth.loginError.error;
+      return this.displayToast(errorMessage);
+    }
   }
-
   displayToast(error) {
     return (
       <div>
