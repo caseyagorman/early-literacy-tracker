@@ -13,6 +13,10 @@ class LoginUser extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.authActions.clearErrors();
+  }
+
   componentDidUpdate(newProps) {
     if (!newProps.auth.loginError.error && newProps.auth.isAuthenticated) {
       this.updateInput("token", newProps.auth.user.token);
@@ -62,7 +66,7 @@ class LoginUser extends Component {
           password={this.state.password}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          loginError={this.loginError}
+          loginError={this.props.auth.loginErrorMessage}
         />
 
         <ToastContainer store={ToastStore} />

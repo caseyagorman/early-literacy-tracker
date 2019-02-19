@@ -21,7 +21,8 @@ export default function auth(state = initialState.auth, action) {
       return Object.assign({}, state, {
         user: null,
         isAuthenticated: false,
-        loginError: action.auth
+        loginError: true,
+        loginErrorMessage: action.auth.error
       });
     case CLEAR_ERRORS:
       return Object.assign({}, state, {
