@@ -60,7 +60,6 @@ export function resetPassword(user) {
       },
       body: JSON.stringify(user)
     }).then(newUser => dispatch(checkNewUser(newUser)));
-    // .catch(err => console.error(err));
   };
 }
 
@@ -75,7 +74,5 @@ export function requestResetPassword(user) {
       },
       body: JSON.stringify(user)
     }).then(response => response.json());
-    // .then(user => dispatch(checkUser(user)))
-    // .catch(err => console.error(err));
   };
 }

@@ -457,13 +457,7 @@ def add_custom_items_to_student(current_user):
 def add_items_to__new_students(current_user):
     data = request.get_json()
     names = data.get("names")
-    print("names", names)
-    # table = str.maketrans({key: None for key in string.punctuation})
-    # print("table", table)
-    # new_names = names.translate(table)  
-    # print("new_names", new_names)
     new_names = names.splitlines()
-    print(new_names)
     user_id = current_user.public_id
     student_list = Student.query.filter(Student.name.in_(new_names)).filter(Student.user_id == user_id).all()
     item_list = Item.query.filter_by(user_id = user_id).filter_by(custom = False ).all()
@@ -875,7 +869,6 @@ def get_student_item_test(current_user, item_type, student):
     item_counts = get_item_counts(student_items)
     test_data = {'itemCounts': item_counts, 'studentTestList':student_test_list, 'learnedItemList': learned_items_list
     }
-    print("test data", test_data)
     return test_data
 
 
@@ -960,7 +953,6 @@ def get_student_item_test_list(student_test):
             'incorrectItems': student.incorrect_items
         }
         student_test_list.append(student_test_object)
-    print("student_test_list", student_test_list)
     return student_test_list
 
 @app.route("/api/mark-items-learned", methods=["POST"])
