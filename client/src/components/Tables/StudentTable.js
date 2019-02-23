@@ -5,7 +5,6 @@ import moment from "moment";
 import { Table, OverlayTrigger, Tooltip, ProgressBar } from "react-bootstrap";
 
 const renderDate = date => {
-  // return date;
   date = moment(date).format("ddd MMM Do");
   if (date === "Invalid date") {
     date = "Not tested";
@@ -23,25 +22,46 @@ const StudentTable = (
   <Table bordered>
     <thead>
       <tr>
-        <th onClick={e => onSort(e, "name")}>Name</th>
-        <th onClick={e => onSort(e, "group")}>Group Name</th>
-        <th onClick={e => onSort(e, "readingLevel")}>Reading Level</th>
-        <th onClick={e => onSort(e, "lastReadingLevelUpdate")}>
+        <th id="students-table" onClick={e => onSort(e, "name")}>
+          Name
+        </th>
+        <th id="students-table" onClick={e => onSort(e, "group")}>
+          Group Name
+        </th>
+        <th id="students-table" onClick={e => onSort(e, "readingLevel")}>
+          Reading Level
+        </th>
+        <th
+          id="students-table"
+          onClick={e => onSort(e, "lastReadingLevelUpdate")}
+        >
           Last Reading Update
         </th>
-        <th onClick={e => onSort(e, "wordCount")}>Words Learned</th>
-        <th onClick={e => onSort(e, "lastWordTest")}>Last Word Test </th>
-        <th onClick={e => onSort(e, "letterCount")}>Letters Learned </th>
-        <th onClick={e => onSort(e, "lastLetterTest")}>Last Letter Test </th>
-        <th onClick={e => onSort(e, "soundCount")}>Sounds Learned </th>
-        <th onClick={e => onSort(e, "lastSoundTest")}>Last Sound Test </th>
+        <th id="students-table" onClick={e => onSort(e, "wordCount")}>
+          Words Learned
+        </th>
+        <th id="students-table" onClick={e => onSort(e, "lastWordTest")}>
+          Last Word Test{" "}
+        </th>
+        <th id="students-table" onClick={e => onSort(e, "letterCount")}>
+          Letters Learned{" "}
+        </th>
+        <th id="students-table" onClick={e => onSort(e, "lastLetterTest")}>
+          Last Letter Test{" "}
+        </th>
+        <th id="students-table" onClick={e => onSort(e, "soundCount")}>
+          Sounds Learned{" "}
+        </th>
+        <th id="students-table" onClick={e => onSort(e, "lastSoundTest")}>
+          Last Sound Test{" "}
+        </th>
       </tr>
     </thead>
     <tbody className="students-table">
       {students.map(function(student) {
         return (
           <tr key={student.student_id}>
-            <td>
+            <td id="students-table">
               <OverlayTrigger
                 placement={"top"}
                 overlay={<Tooltip>view {student.name}'s data</Tooltip>}
@@ -50,9 +70,9 @@ const StudentTable = (
                   <h3 id="student-name-table-header">{student.name}</h3>
                 </Link>
               </OverlayTrigger>
-              <DeleteStudent student={student.studentId} />
+              <DeleteStudent id="delete-student" student={student.studentId} />
             </td>
-            <td>
+            <td id="students-table">
               <OverlayTrigger
                 placement={"top"}
                 overlay={<Tooltip>view {student.name}'s group details</Tooltip>}
@@ -65,8 +85,8 @@ const StudentTable = (
                 </Link>
               </OverlayTrigger>
             </td>
-            <td>{student.readingLevel}</td>
-            <td>
+            <td id="students-table">{student.readingLevel}</td>
+            <td id="students-table">
               {" "}
               {renderDate(student.lastReadingLevelUpdate)}
               <br />
@@ -86,7 +106,7 @@ const StudentTable = (
                 </Link>
               </OverlayTrigger>
             </td>
-            <td>
+            <td id="students-table">
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -102,7 +122,7 @@ const StudentTable = (
                 />
               </OverlayTrigger>
             </td>
-            <td>
+            <td id="students-table">
               {" "}
               {renderDate(student.lastWordTest)}
               <br />
@@ -121,7 +141,7 @@ const StudentTable = (
                 </Link>
               </OverlayTrigger>
             </td>
-            <td>
+            <td id="students-table">
               <br />
               <OverlayTrigger
                 placement={"top"}
@@ -137,7 +157,7 @@ const StudentTable = (
                 />
               </OverlayTrigger>
             </td>
-            <td>
+            <td id="students-table">
               {" "}
               {renderDate(student.lastLetterTest)}
               <br />
@@ -156,7 +176,7 @@ const StudentTable = (
                 </Link>
               </OverlayTrigger>
             </td>
-            <td>
+            <td id="students-table">
               <div style={{ marginTop: 20 }}>
                 <OverlayTrigger
                   placement={"top"}
@@ -173,7 +193,7 @@ const StudentTable = (
                 </OverlayTrigger>
               </div>
             </td>
-            <td>
+            <td id="students-table">
               {renderDate(student.lastSoundTest)}
               <br />
               <OverlayTrigger
@@ -195,7 +215,7 @@ const StudentTable = (
         );
       })}
       <tr>
-        <td colSpan="10">
+        <td id="students-table" colSpan="10">
           <a href="/add-student" className="link">
             + Click to add new student
           </a>

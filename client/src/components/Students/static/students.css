@@ -38,3 +38,9 @@ a {
 #bar-chart {
   margin-top: -100px;
 }
+
+@media only screen and (max-width: 600px) {
+  .students-table {
+    margin-left: -15px;
+  }
+}

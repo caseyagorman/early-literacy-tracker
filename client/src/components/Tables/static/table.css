@@ -7,7 +7,15 @@
 
 .students-table {
   font-size: 14px;
+  margin-left: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  .students-table {
+    margin-left: -15px;
+  }
+}
+
 th {
   font-size: 14px;
   text-align: center;
@@ -33,4 +41,14 @@ ul {
 
 #item-name-list {
   color: #44857d;
+}
+@media only screen and (max-width: 600px) {
+  #student-name-table-header {
+    font-size: 8px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #students-table {
+    font-size: 4px;
+  }
 }
