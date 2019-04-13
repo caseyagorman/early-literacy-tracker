@@ -62,14 +62,7 @@ def token_required(f):
 @bp.route("/item_list/<item_type>")
 @token_required
 def read_txt_file(current_user, item_type):
-    unassigned_items = {'itemType': item_type, 'items': {} }
-    # if item_type == "words":
-    #     fname = ["other words.txt", "dolch 2.txt", "dolch primer.txt",  "dolch pre primer.txt"]
-    # if item_type == "sounds":
-    #     fname=["sounds.txt", "digraphs.txt", "r controlled vowels.txt", "vowel patterns.txt", "blends.txt"]
-    # if item_type == "letters":
-    #     fname = ["capital letters.txt", "lowercase letters.txt"]
-    
+    unassigned_items = {'itemType': item_type, 'items': {} } 
     fnames = [os.path.join(testing_options_dir, item_type, fname) for fname in os.listdir(os.path.join(testing_options_dir, item_type))]
 
     for fn in fnames:
