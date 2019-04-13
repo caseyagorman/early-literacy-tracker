@@ -36,7 +36,7 @@ app.config.update(
     MAIL_PORT=587,
     MAIL_USE_SSL=False,
     MAIL_USERNAME = 'caseyagorman@gmail.com',
-    MAIL_PASSWORD = os.environ['PASSWORD'],
+    # MAIL_PASSWORD = os.environ['PASSWORD'],
     MAIL_SUPPRESS_SEND = False,
     MAIL_DEFAULT_SENDER = 'caseyagorman@gmail.com',
     MAIL_USE_TLS = True,
@@ -1123,20 +1123,20 @@ def group_detail(current_user, group):
             student_word_list = []
             for word in student_words:
                 student_word_list.append(word.items.item)
-            words_list.append(student_word_list)
+            words_list.append(student_list)
 
 
             student_letters = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="letters").options(db.joinedload('students')).options(db.joinedload('items')).all()
             student_letter_list = []
             for letter in student_letters:
                 student_letter_list.append(letter.items.item)
-            letters_list.append(student_letter_list)
+            letter_list.append(student_letter_list)
 
             student_sounds = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="sounds").options(db.joinedload('students')).options(db.joinedload('items')).all()
             student_sound_list = []
             for sound in student_sounds:
                 student_sound_list.append(sound.items.item)
-            sounds_list.append(student_sound_list)
+            sound_list.append(student_sound_list)
 
 
         word_result = set(words_list[0])
@@ -1195,8 +1195,8 @@ def delete_note(current_user):
 
 if __name__ == "__main__":
     app.debug = True
-    # app.jinja_env.auto_reload = app.debug
-    # connect_to_db(app)
+    app.jinja_env.auto_reload = app.debug
+    connect_to_db(app)
     app.run(port=5000, host='0.0.0.0')
 
 
