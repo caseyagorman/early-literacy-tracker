@@ -25,7 +25,7 @@ static_dir   = os.path.abspath('../client/build/static')
 app = Flask(__name__, static_folder=static_dir,template_folder=template_dir)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
-# app.debug = True
+app.debug = True
 app.config['SECRET_KEY'] = 'super-secret'
 
 testing_options_dir = "testing-options"
@@ -1097,62 +1097,67 @@ def group_detail(current_user, group):
     group_object = Group.query.filter_by(group_name=group, user_id=user_id).first()
     group_id = group_object.group_id
     group_notes = GroupNote.query.filter_by(group_id=group_id, user_id=user_id).all()
-    notes = [note.note for note in group_notes]
     student_group = StudentGroup.query.filter_by(
         group_id=group_id, user_id=user_id).options(db.joinedload('students')).all()
-    group_notes = GroupNote.query.filter_by(group_id=group_id, user_id=user_id).all()
     notes = [{'note': note.note, 'date': note.date_added} for note in group_notes]
-
+    words_list = []
+    letters_list = []
+    sounds_list = []
     if student_group: 
         student_names = []
         student_ids =[]
         for student in student_group:
             student_names.append(student.students.name)
             student_ids.append(student.student_id)
-            
-        common_words = None
-        all_words = set()
-        common_letters = None
-        all_letters = set()
-        common_sounds = None
-        all_sounds = set()
+
+
         reading_levels ={}
+
+
         for student in student_ids:
             student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student).options(db.joinedload('students')).first()
             if student_reading_level:
                 reading_levels[student_reading_level.students.name] = student_reading_level.reading_level
-            student_words = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="words").options(db.joinedload('students')).options(db.joinedload('items')).all()
 
-            student_list = []
+            student_words = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="words").options(db.joinedload('students')).options(db.joinedload('items')).all()
+            student_word_list = []
             for word in student_words:
-                student_list.append(word.items.item)
-            student_set = set(student_list)
-            all_words = all_words | student_set
-            common_words = common_words & student_set if common_words else student_set
+                student_word_list.append(word.items.item)
+            words_list.append(student_word_list)
+
 
             student_letters = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="letters").options(db.joinedload('students')).options(db.joinedload('items')).all()
-            student_list = []
+            student_letter_list = []
             for letter in student_letters:
-                student_list.append(letter.items.item)
-            student_set = set(student_list)
-            all_letters = all_letters | student_set
-            common_letters = common_letters & student_set if common_letters else student_set
+                student_letter_list.append(letter.items.item)
+            letters_list.append(student_letter_list)
 
             student_sounds = StudentItem.query.filter(StudentItem.Learned.is_(False)).filter_by(user_id=user_id, student_id=student, item_type="sounds").options(db.joinedload('students')).options(db.joinedload('items')).all()
-            student_list = []
+            student_sound_list = []
             for sound in student_sounds:
-                student_list.append(sound.items.item)
-            student_set = set(student_list)
-            all_sounds = all_sounds | student_set
-            common_sounds = common_sounds & student_set if common_sounds else student_set
+                student_sound_list.append(sound.items.item)
+            sounds_list.append(student_sound_list)
+
+
+        word_result = set(words_list[0])
+        for word in words_list[1:]:
+           word_result.intersection_update(word)
         
-        
+        letter_result = set(letters_list[0])
+        for letter in letters_list[1:]:
+           letter_result.intersection_update(letter)
+    
+        sound_result = set(sounds_list[0])
+        for sound in sounds_list[1:]:
+           sound_result.intersection_update(sound)
+    
+    
         group_data = {
             'name': group,
             'students': student_names,
-            'words' : list(common_words),
-            'letters': list(common_letters),
-            'sounds': list(common_sounds),
+            'words' : list(word_result),
+            'letters': list(letter_result),
+            'sounds': list(sound_result),
             'readingLevels': reading_levels,
             'notes': notes
         }
@@ -1189,7 +1194,9 @@ def delete_note(current_user):
     return "deleted"
 
 if __name__ == "__main__":
-    connect_to_db(app)
+    app.debug = True
+    # app.jinja_env.auto_reload = app.debug
+    # connect_to_db(app)
     app.run(port=5000, host='0.0.0.0')
 
 
