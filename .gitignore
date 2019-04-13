@@ -1,3 +1,8 @@
 server/__pycache__/
 server/env
+server/env/*
 server/secrets.sh
+
+*.pyc
+.pytest_cache
+.vagrant
