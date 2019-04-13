@@ -28,7 +28,7 @@ import jwt
 from app.model import Student, StudentGroup, Item, Group, GroupNote, StudentItem, StudentTestResult, ReadingLevel, connect_to_db, db, User
 
 
-# from app import app
+from app import app
 
 # current_app.config.from_object(__name__)
 @bp.route('/', defaults={'path': ''})
