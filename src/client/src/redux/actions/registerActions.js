@@ -1,6 +1,6 @@
 import * as types from "./actionTypes";
 function registerUserApi() {
-  return "/api/register";
+  return "/auth/register";
 }
 
 export function clearUser(register) {

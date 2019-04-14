@@ -6,7 +6,7 @@ import os
 from flask import current_app
 
 
-from secrets import password
+# from secrets import password
 import datetime
 import itertools
 from functools import wraps
@@ -32,6 +32,7 @@ from app.model import Student, StudentGroup, Item, Group, GroupNote, StudentItem
 @cross_origin()
 def add_user():
     data = request.get_json()
+    print(data)
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')

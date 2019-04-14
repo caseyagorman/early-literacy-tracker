@@ -1,15 +1,11 @@
 import * as types from "./actionTypes";
 
-function getUserApi() {
-  return "/api/login";
-}
+import {
+  getUserApi,
+  requestResetPasswordApi,
+  resetPasswordApi
+} from "./apiUrls";
 
-function requestResetPasswordApi() {
-  return "/api/request-reset-password";
-}
-function resetPasswordApi() {
-  return "/api/reset-password";
-}
 export function checkUser(auth) {
   if (!auth.error) {
     return { type: types.SET_USER, auth: auth };
@@ -60,6 +56,7 @@ export function resetPassword(user) {
       },
       body: JSON.stringify(user)
     }).then(newUser => dispatch(checkNewUser(newUser)));
+    // .catch(err => console.error(err));
   };
 }
 
@@ -74,5 +71,7 @@ export function requestResetPassword(user) {
       },
       body: JSON.stringify(user)
     }).then(response => response.json());
+    // .then(user => dispatch(checkUser(user)))
+    // .catch(err => console.error(err));
   };
 }

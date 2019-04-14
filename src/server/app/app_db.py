@@ -1,9 +1,9 @@
 import os
 import sqlalchemy
 import sqlalchemy_utils
-# import pandas as pd
+import pandas as pd
 
-# import app.model
+import app.model
 # import server
 
 
@@ -38,11 +38,7 @@ class App_Db(object):
     def drop_db(self):
         sqlalchemy_utils.drop_database(self.engine.url)
 
-
-db = App_Db('test')
-c = db.engine.connect()
-
-   def dump_data(self):
+    def dump_data(self):
         for tablename in self.tablenames:
             tb = pd.read_sql_table(tablename, self.engine)
             tb.to_csv(os.path.join(self.output_dir, tablename), index=False)
@@ -67,7 +63,7 @@ c = db.engine.connect()
         self.create_db()
         self.init_db()
         self.load_data()
-
+    
     def start(self):
         self.create_db()
         self.init_db()
