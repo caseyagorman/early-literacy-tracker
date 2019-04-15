@@ -1,30 +1,16 @@
 import * as types from "./actionTypes";
 import history from "../../history";
-function assignGroupApi() {
-  return "/api/assign-group";
-}
 
-function addGroupApi() {
-  return "/api/add-group";
-}
+import {
+  assignGroupApi,
+  addGroupApi,
+  fetchGroupsApi,
+  fetchGroupApi,
+  deleteGroupApi,
+  addNoteApi,
+  deleteNoteApi  
+} from "./apiUrls";
 
-function fetchGroupsApi() {
-  return "/api/all-groups";
-}
-function fetchGroupApi(group) {
-  return `/api/group-detail/${group}`;
-}
-function deleteGroupApi() {
-  return "/api/delete-group";
-}
-
-function addNoteApi() {
-  return `/api/add-note`;
-}
-
-function deleteNoteApi() {
-  return "/api/delete-note";
-}
 export function receiveStudent(student) {
   return { type: types.RECEIVE_STUDENT, student: student };
 }

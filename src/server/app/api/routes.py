@@ -57,8 +57,6 @@ def token_required(f):
 
 
 
-
-
 @bp.route("/item_list/<item_type>")
 @token_required
 def read_txt_file(current_user, item_type):
@@ -74,6 +72,7 @@ def read_txt_file(current_user, item_type):
     return jsonify(unassigned_items)
 
 
+
 @bp.route("/reading-levels")
 @token_required
 def get_reading_levels(current_user):
@@ -82,6 +81,7 @@ def get_reading_levels(current_user):
         reading_levels = fn.readlines()
         reading_levels = [x.strip() for x in reading_levels] 
     return jsonify(reading_levels)
+
 
 @bp.route("/students/<student_id>/reading-level", methods=['POST'])
 @token_required
@@ -94,7 +94,6 @@ def add_reading_level(current_user, student_id):
     student_reading_level = ReadingLevel.query.filter_by(user_id=user_id, student_id=student_id).first()
     if student_reading_level:
         student_reading_level.reading_level = reading_level
-        # student_reading_level.update_date = date.today()
         student_reading_level.update_date = db.func.current_timestamp()
         db.session.commit()
     else:
@@ -154,32 +153,6 @@ def get_items(current_user, item_type):
     elapsed_time = end - start
     return jsonify(items_dict)
 
-# # Expected query params: type
-# @bp.route("/items")
-# @token_required
-# def get_items(current_user):
-#     start = time.time()
-#     user_id = current_user.public_id
-#     item_type = request.args.get('item_type')
-#     items = StudentItem.query.filter_by(user_id=user_id).filter_by(item_type=item_type).options(
-#     db.joinedload('items')).filter_by(user_id=user_id).filter_by(item_type=item_type).options(
-#         db.joinedload('students')).filter_by(user_id=user_id).all()
-#     item_list =[]
-#     items_dict = {}
-#     for item in items:
-#         if not items_dict.get(item.items.item_id):
-#             items_dict[item.items.item_id] = {"item": item.items.item, "itemId": item.items.item_id, "itemType": item.item_type, "unlearnedCount": 0, "learnedCount": 0, "unlearnedStudents": [], "learnedStudents": [], "totalCount": 0}
-#         prefix = "un" if item.Learned == False else ""
-#         key = "{}learned".format(prefix)
-#         items_dict[item.items.item_id][key + "Count"] += 1
-#         items_dict[item.items.item_id]["totalCount"] += 1
-#         items_dict[item.items.item_id][key + "Students"].append(item.students.name)
-#     end = time.time()
-#     elapsed_time = end - start
-#     return jsonify(items_dict)
-            
-
-
     
 @bp.route("/items/<item_type>/<item>")
 @token_required
@@ -219,7 +192,7 @@ def item_detail(current_user, item_type, item):
     item_detail['item'] = item_object
     return jsonify(item_detail)
 
-# @bp.route("/unassigned-students/<item>")
+
 @bp.route("/items/<item>")
 @token_required
 def get_unassigned_students_item(current_user, item):
@@ -242,7 +215,6 @@ def get_unassigned_students_item(current_user, item):
         }
 
         student_list.append(student)
-    # student_list = sorted(student_list, key=itemgetter('student'))
     return jsonify([student_list])
 
 @bp.route("/add-student", methods=['POST'])
@@ -789,6 +761,7 @@ def calculate_score(known_items, unknown_items):
 @bp.route("/get-test-dates")
 @token_required
 def get_test_dates(current_user, student, test_type):
+    """get past test dates for idnvidual student"""
     user_id = current_user.public_id
     student_id = student 
     test_type = test_type
@@ -909,6 +882,7 @@ def get_student_item_test_list(student_test):
 @bp.route("/mark-items-learned", methods=["POST"])
 @token_required
 def mark_items_learned(current_user):
+    """update student item as learned"""
     data = request.get_json()
     student_id = data.get('studentId')[0]
     item = data.get('item')
@@ -922,6 +896,7 @@ def mark_items_learned(current_user):
 @bp.route("/mark-items-unlearned", methods=["POST"])
 @token_required
 def mark_items_unlearned(current_user):
+    """update student item as unlearned"""
     data = request.get_json()
     student_id = data.get('studentId')[0]
     item = data.get('item')
@@ -937,6 +912,7 @@ def mark_items_unlearned(current_user):
 @bp.route("/assign-group", methods=["POST"])
 @token_required
 def make_student_groups(current_user):
+    """assign students to group"""
     user_id = current_user.public_id
     data = request.get_json()
     students = data.get('students')
@@ -964,16 +940,18 @@ def make_student_groups(current_user):
 
     
 def remove_from_previous_group(student_list, user_id):
+    """remove student from their previous group"""
     students = StudentGroup.query.filter_by(user_id=user_id).filter(StudentGroup.student_id.in_(student_list)).all()
     for student in students:
         db.session.delete(student)
         db.session.commit()
-    return "cool"
+    return "student removed"
 
 
 @bp.route("/add-group", methods=['POST'])
 @token_required
 def add_group(current_user):
+    """add new group"""
     group_name = request.get_json()
     user_id = current_user.public_id
     existing_group = Group.query.filter_by(user_id=user_id, group_name=group_name).first()
@@ -995,6 +973,7 @@ def add_group(current_user):
 @bp.route("/all-groups")
 @token_required
 def get_all_groups(current_user):
+    """get all groups and students in each group"""
     user_id = current_user.public_id
     groups = Group.query.filter_by(user_id=user_id).all()
     group_dict = {}
@@ -1013,6 +992,7 @@ def get_all_groups(current_user):
 @bp.route("/students/names")
 @token_required
 def get_all_students(current_user):
+    """get all student names only"""
     start = time.time()
     user_id = current_user.public_id
     students = Student.query.filter_by(user_id=user_id).all()
@@ -1032,6 +1012,7 @@ def get_all_students(current_user):
 @bp.route("/delete-group", methods=['POST'])
 @token_required
 def delete_group(current_user):
+    """delete a group"""
     group_name = request.get_json()
     user_id = current_user.public_id
     group = Group.query.filter_by(
@@ -1044,6 +1025,7 @@ def delete_group(current_user):
 @bp.route("/add-note", methods=['POST'])
 @token_required
 def add_note(current_user):
+    """add a group note"""
     data = request.get_json()
     group_name = data.get('group')
     note = data.get('note')
@@ -1133,6 +1115,7 @@ def group_detail(current_user, group):
             'readingLevels': reading_levels,
             'notes': notes
         }
+        print(group_data)
         return jsonify(group_data)
     else:
         return jsonify({"message":"no students yet"})
@@ -1141,6 +1124,7 @@ def group_detail(current_user, group):
 @bp.route("/delete-note", methods=['POST'])
 @token_required
 def delete_note(current_user):
+    """delete group note"""
     note = request.get_json()
     user_id = current_user.public_id
     note = GroupNote.query.filter_by(

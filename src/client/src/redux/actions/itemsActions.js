@@ -1,38 +1,22 @@
 import * as types from "./actionTypes";
 import history from "../../history";
-function getStudentsApi(user) {
-  return "/api/students";
-}
-function getStudentApi(id) {
-  return `/api/details/${id}`;
-}
-function getItemsApi(itemType) {
-  return `/api/items/${itemType}`;
-}
+import {
+  getItemsApi,
+  getItemApi,
+  addItemApi,
+  addCustomStudentItemsApi,
+  assignCustomStudentItemsApi,
+  deleteItemApi,
+  addStudentItemsApi,
+  getStudentApi,
+  getUnassignedItemsApi,
+  getStudentsApi
+} from "./apiUrls";
 
-function getItemApi(itemType, id) {
-  return `/api/item-detail/${itemType}/${id}`;
-}
-function addItemApi() {
-  return "/api/add-item";
-}
-function deleteItemApi() {
-  return "/api/delete-item";
-}
-function addCustomStudentItemsApi() {
-  return "/api/add-custom-item";
-}
+import {fetchStudents} from "./studentsActions"
 
-function addStudentItemsApi() {
-  return "/api/add-new-items-to-students";
-}
+import {fetchStudent} from "./studentActions"
 
-function getUnassignedItemsApi(id, itemType) {
-  return `/api/unassigned-items/${id}/${itemType}`;
-}
-function assignCustomStudentItemsApi() {
-  return "/api/add-custom-items-to-student";
-}
 
 export function receiveItem(item) {
   return { type: types.RECEIVE_ITEM, item: item };
@@ -182,22 +166,6 @@ export function assignStudentItems(user, studentItems) {
   };
 }
 
-export function fetchStudent(student, user) {
-  return dispatch => {
-    return fetch(getStudentApi(student), {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      }
-    })
-      .then(response => response.json())
-      .then(student => dispatch(receiveStudent(student)));
-  };
-}
-
 export function fetchUnassignedItems(student, user, itemType) {
   return dispatch => {
     return fetch(getUnassignedItemsApi(student, itemType), {
@@ -213,20 +181,5 @@ export function fetchUnassignedItems(student, user, itemType) {
       .then(studentItems =>
         dispatch(receiveStudentUnassignedItems(studentItems))
       );
-  };
-}
-export function fetchStudents(user) {
-  return dispatch => {
-    return fetch(getStudentsApi(user), {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": user
-      }
-    })
-      .then(response => response.json())
-      .then(students => dispatch(receiveStudents(students)));
   };
 }

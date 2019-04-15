@@ -34,7 +34,7 @@ function addTestApi() {
 }
 
 function getStudentApi(id) {
-  return `/api/details/${id}`;
+  return `/api/students/${id}`;
 }
 
 export function submitStudentTest(studentTest, testType, studentId, user) {
@@ -52,7 +52,7 @@ export function submitStudentTest(studentTest, testType, studentId, user) {
       .then(response => response.json())
       .then(() => dispatch(receiveStudentTest()))
       .then(() => dispatch(fetchStudent(studentId, user)))
-      .then(() => history.push(`/details/${studentId}`));
+      .then(() => history.push(`/students/${studentId}`));
   };
 }
 export function receiveStudent(student) {

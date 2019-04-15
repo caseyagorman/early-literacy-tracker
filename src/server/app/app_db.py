@@ -4,7 +4,7 @@ import sqlalchemy_utils
 import pandas as pd
 
 import app.model
-# import server
+
 
 
 class App_Db(object):
@@ -73,7 +73,4 @@ class App_Db(object):
 if __name__ == "__main__":
     students_db = App_Db('students')
     students_db.reset()
-    # students_db.drop_db()
-    # students_db.create_db()
-    # students_db.init_db()
-    # students_db.load_data()
+

@@ -10,7 +10,7 @@ function assignReadingStrategiesApi() {
   return "/api/assign-reading-strategies";
 }
 function getStudentApi(id) {
-  return `/api/details/${id}`;
+  return `/api/students/${id}`;
 }
 
 export function receiveReadingStrategies(readingStrategies) {
@@ -76,7 +76,7 @@ export function assignReadingStrategies(readingStrategies, user, student) {
     })
       .then(response => response.json())
       .then(() => dispatch(fetchStudent(student, user)))
-      .then(() => history.push(`/details/${student}`));
+      .then(() => history.push(`/students/${student}`));
   };
 }
 

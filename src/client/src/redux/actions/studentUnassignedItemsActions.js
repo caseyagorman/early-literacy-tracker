@@ -6,7 +6,7 @@ function getUnassignedItemsApi(itemType) {
 }
 
 function getStudentApi(id) {
-  return `/api/details/${id}`;
+  return `/api/students/${id}`;
 }
 
 function addStudentItemsApi() {

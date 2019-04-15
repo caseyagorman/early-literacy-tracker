@@ -6,7 +6,7 @@ function getStudentsApi() {
 }
 
 function getStudentNamesApi() {
-  return "/api/all-students";
+  return "/api/stuents/names";
 }
 
 function addItemToNewStudentApi() {
@@ -17,10 +17,10 @@ function addStudentApi() {
   return "/api/add-student";
 }
 function getStudentApi(id) {
-  return `/api/details/${id}`;
+  return `/api/students/${id}`;
 }
-function deleteStudentApi() {
-  return "/api/delete-student";
+function deleteStudentApi(id) {
+  return `/api/students/${id}`;
 }
 
 export function receiveStudents(students) {
@@ -94,8 +94,8 @@ export function addItemsToNewStudents(user, students) {
 
 export function deleteStudent(student, user) {
   return dispatch => {
-    return fetch(deleteStudentApi(), {
-      method: "POST",
+    return fetch(deleteStudentApi(student), {
+      method: "DELETE",
       mode: "cors",
       headers: {
         Accept: "application/json",

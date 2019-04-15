@@ -1,15 +1,10 @@
+
 import * as types from "./actionTypes";
-
-function getUnassignedStudentsApi(id) {
-  return `/api/unassigned-students/${id}`;
-}
-
-function getItemApi(itemType, id) {
-  return `/api/item-detail/${itemType}/${id}`;
-}
-function addItemStudentsApi() {
-  return "/api/add-student-to-item";
-}
+import {
+  getUnassignedStudentsApi,
+  addItemStudentsApi,
+  getItemApi
+} from "./apiUrls"
 
 export function receiveItem(item) {
   return { type: types.RECEIVE_ITEM, item: item };

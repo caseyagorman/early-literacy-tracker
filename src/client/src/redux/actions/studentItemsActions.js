@@ -2,7 +2,7 @@ import * as types from "./actionTypes";
 import history from "../../history";
 
 function getStudentApi(id) {
-  return `/api/details/${id}`;
+  return `/api/students/${id}`;
 }
 
 function getUnassignedItemsApi(id, itemType) {
