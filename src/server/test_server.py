@@ -10,9 +10,11 @@ from app import app_db
 def client():
     """sets up db and server, performs test, tears down"""
     db = app_db.App_Db('test')
+    # create instance of database class  
     db.reset()
+    # call reset method on new database 
     app = create_app('test')
-
+    # create clean instance of the app using the database 'test' instead of the default students database
     client = app.test_client()
 
     yield client

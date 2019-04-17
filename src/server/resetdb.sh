@@ -6,7 +6,8 @@ from app.auth import routesfrom flask import Blueprint
 
 bp = Blueprint('auth', __name__)
 
-from app.auth import routes# chmod +x whatever you're executing ./
+from app.auth import routes
+# chmod +x whatever you're executing ./
 # bash resetdb.sh
 
 dropdb users

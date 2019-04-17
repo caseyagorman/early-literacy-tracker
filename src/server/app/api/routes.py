@@ -399,6 +399,161 @@ def delete_student(current_user, student_id):
     db.session.commit()
     return 'student deleted!'
 
+# @app.route("/api/students")
+# @token_required
+# def get_students(current_user):
+#     start = time.time()
+#     user_id = current_user.public_id
+#     students = Student.query.filter_by(user_id=user_id).options(
+#         db.joinedload('studentitems')).all()
+#     student_list = []
+#     for student in students:
+#         last_word_test = get_test_dates(student.student_id, "words")
+#         last_letter_test = get_test_dates(student.student_id, "letters")
+#         last_sound_test = get_test_dates(student.student_id, "sounds")
+#         word_count = get_student_item_counts(student.student_id, "words")[0]
+#         unlearned_word_count = get_student_item_counts(student.student_id, "words")[1]
+#         total_word_count = get_student_item_counts(student.student_id, "words")[2]
+#         letter_count = get_student_item_counts(student.student_id, "letters")[0]
+#         unlearned_letter_count = get_student_item_counts(student.student_id, "letters")[1]
+#         total_letter_count = get_student_item_counts(student.student_id, "letters")[2]
+#         sound_count = get_student_item_counts(student.student_id, "sounds")[0]
+#         unlearned_sound_count = get_student_item_counts(student.student_id, "sounds")[1]
+#         total_sound_count = get_student_item_counts(student.student_id, "sounds")[2]
+#         word_list = get_student_item_list(student, "words")[0]
+#         unlearned_word_list = get_student_item_list(student, "words")[1]
+#         letter_list = get_student_item_list(student, "letters")[0]
+#         unlearned_letter_list = get_student_item_list(student, "letters")[1]
+#         sound_list = get_student_item_list(student, "sounds")[0]
+#         unlearned_sound_list = get_student_item_list(student, "sounds")[1]
+#         student = {
+#             'studentId': student.student_id,
+#             'name': student.name,
+#             'wordCount': word_count,
+#             'wordList': word_list,
+#             'unlearnedWordList': unlearned_word_list,
+#             'totalWordCount': total_word_count,
+#             'unlearnedWordCount': unlearned_word_count,
+#             'lastWordTest': last_word_test,
+#             'letterCount': letter_count,
+#             'unlearnedLetterCount': unlearned_letter_count,
+#             'letterList': letter_list,
+#             'unlearnedLetterList': unlearned_letter_list,
+#             'totalLetterCount': total_letter_count,
+#             'lastLetterTest': last_letter_test,
+#             'soundCount': sound_count,
+#             'unlearnedSoundCount': unlearned_sound_count,
+#             'soundList': sound_list,
+#             'unlearnedSoundList': unlearned_sound_list,
+#             'totalSoundCount': total_sound_count,
+#             'lastSoundTest': last_sound_test
+#         }
+#         student_list.append(student)
+#     end = time.time()
+#     elapsed_time = end - start
+#     print(student_list)
+#     print('getting all students took', elapsed_time)
+
+#     return jsonify(student_list)
+
+
+# @app.route("/api/details/<student_id>")
+# @token_required
+# def student_detail(current_user, student_id):
+#     """Show student detail"""
+#     start = time.time()
+#     user_id = current_user.public_id
+#     student_object = Student.query.filter_by(
+#         student_id=student_id, user_id=user_id).first()
+#     student_items = StudentItem.query.filter_by(
+#         student_id=student_id).options(db.joinedload('items')).all()
+#     student = {
+#         'student_id': student_object.student_id,
+#         'name': student_object.name
+#     }
+#     word_list = []
+#     letter_list = []
+#     sound_list = []
+#     unlearned_word_list = []
+#     unlearned_letter_list = []
+#     unlearned_sound_list = []
+#     word_test = get_test_dates(student_id, "words")
+#     letter_test = get_test_dates(student_id, "letters")
+#     sound_test = get_test_dates(student_id, "sounds")
+#     student_object = {}
+#     for item in student_items:
+#         if item.item_type == "words":
+#             if item.Learned == True:
+#                 word = {
+#                     'item_id': item.items.item_id,
+#                     'item': item.items.item,
+#                 }
+#                 word_list.append(word)
+#             else:
+#                 unlearned_word = {
+#                     'item_id': item.items.item_id,
+#                     'item': item.items.item
+#                     }
+#                 unlearned_word_list.append(unlearned_word)
+#         elif item.item_type == "letters":
+#             if item.Learned == True:
+#                 letter = {
+#                     'item_id': item.items.item_id,
+#                     'item': item.items.item,
+#                 }
+#                 letter_list.append(letter)
+#             else:
+#                 unlearned_letter = {
+#                     'item_id': item.items.item_id,
+#                     'item': item.items.item}
+#                 unlearned_letter_list.append(unlearned_letter)
+
+#         elif item.item_type == "sounds":
+#             if item.Learned == True:
+#                 sound = {
+#                     'item_id': item.items.item_id,
+#                     'item': item.items.item,
+#                 }
+#                 sound_list.append(sound)
+#             else:
+#                 unlearned_sound = {
+#                     'item_id': item.items.item_id,
+#                     'item': item.items.item}
+#                 unlearned_sound_list.append(unlearned_sound)
+#     word_count = len(word_list)
+#     unlearned_word_count = len(unlearned_word_list)
+    
+#     total_words = word_count + unlearned_word_count
+#     letter_count = len(letter_list)
+#     unlearned_letter_count = len(unlearned_letter_list)
+#     total_letters = letter_count + unlearned_letter_count
+#     sound_count = len(sound_list)
+#     unlearned_sound_count = len(unlearned_sound_list)
+#     total_sounds = sound_count + unlearned_sound_count
+#     student_object['student'] = student
+#     student_object['wordCount'] = word_count
+#     student_object['unlearnedWordCount'] = unlearned_word_count
+#     student_object['totalWordCount'] = total_words
+#     student_object['wordList'] = word_list
+#     student_object['unlearnedWordList'] = unlearned_word_list
+#     student_object['lastWordTest'] = word_test
+#     student_object['letterCount'] = letter_count
+#     student_object['unlearnedLetterCount'] = unlearned_letter_count
+#     student_object['totalLetterCount'] = total_letters
+#     student_object['letterList'] = letter_list
+#     student_object['unlearnedLetterList'] = unlearned_letter_list
+#     student_object['lastLetterTest'] = letter_test
+#     student_object['soundCount'] = sound_count
+#     student_object['unlearnedSoundCount'] = unlearned_sound_count
+#     student_object['totalSoundCount'] = total_sounds
+#     student_object['soundList'] = sound_list
+#     student_object['unlearnedSoundList'] = unlearned_sound_list
+#     student_object['lastSoundTest'] = sound_test
+#     end = time.time()
+#     elapsed_time = end - start
+#     print('getting student detail took', elapsed_time)
+#     return jsonify(student_object)
+
 @bp.route("/students")
 @token_required
 def get_students(current_user):
