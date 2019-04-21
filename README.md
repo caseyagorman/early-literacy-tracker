@@ -2,7 +2,24 @@
 
 Early literacy tracker is a webapp designed to help teachers test and tracker their students' progress in letter, sound, and high frequency word acquisition.
 
+
+
 ## Getting Started
+
+### Prerequisites
+
+```
+npm
+```
+```
+vagrant
+```
+```
+python3
+```
+
+
+### Installing
 
 Create students database
 
