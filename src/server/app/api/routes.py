@@ -946,7 +946,6 @@ def get_student_item_test(current_user, item_type, student):
     item_counts = get_item_counts(student_items)
     test_data = {'itemCounts': item_counts, 'studentTestList':student_test_list, 'learnedItemList': learned_items_list
     }
-    print("test data", test_data)
     return test_data
 
 
@@ -1031,7 +1030,6 @@ def get_student_item_test_list(student_test):
             'incorrectItems': student.incorrect_items
         }
         student_test_list.append(student_test_object)
-    print("student_test_list", student_test_list)
     return student_test_list
 
 @bp.route("/mark-items-learned", methods=["POST"])
@@ -1270,7 +1268,6 @@ def group_detail(current_user, group):
             'readingLevels': reading_levels,
             'notes': notes
         }
-        print(group_data)
         return jsonify(group_data)
     else:
         return jsonify({"message":"no students yet"})
