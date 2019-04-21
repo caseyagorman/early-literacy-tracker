@@ -9,9 +9,12 @@ Create students database
 
 ```
 createdb students
+```
 python model.py 
+```
 db.create_all()
 
+```
 Install and start virtual environment
 
 ```
