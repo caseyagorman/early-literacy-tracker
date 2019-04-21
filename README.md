@@ -14,7 +14,6 @@ python -i model.py
 ```
 ```
 db.create_all()
-
 ```
 Install and start virtual environment
 
