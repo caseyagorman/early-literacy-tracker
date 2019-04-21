@@ -4,13 +4,14 @@ Early literacy tracker is a webapp designed to help teachers test and tracker th
 
 ## Getting Started
 
-```
 Create students database
 
 ```
 createdb students
 ```
-python model.py 
+```
+python -i model.py 
+```
 ```
 db.create_all()
 
@@ -20,22 +21,23 @@ Install and start virtual environment
 ```
 virtualenv env
 ```
-
+```
 source env/bin/activate
 
 ```
+Install requirements
+```
 pip3 install -r requirements.txt
 ```
+Start Flask server
 ```
 python server.py
-
+```
 
 
 ## Authors
 
 * **Casey Gorman**
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
