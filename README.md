@@ -1,4 +1,4 @@
-# TrackIt!, the early literacy tracker
+# Early Literacy Tracker
 
 TrackIt! is a webapp designed to help teachers test and tracker their students' progress in letter, sound, and high frequency word acquisition.
 
