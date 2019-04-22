@@ -9,7 +9,7 @@ TrackIt uses a Flask server, React-Redux frontend, and PostgreSQL database.
 
 ### Prerequisites
 npm: https://www.npmjs.com/get-npm
-```
+
 python: https://www.python.org/downloads/
 
 ### Installing
