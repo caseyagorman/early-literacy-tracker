@@ -1,52 +1,38 @@
 # Early Literacy Tracker
 
-Early literacy tracker is a webapp designed to help teachers test and tracker their students' progress in letter, sound, and high frequency word acquisition.
+TrackIt! is a webapp designed to help teachers test and tracker their students' progress in letter, sound, and high frequency word acquisition.
 
+TrackIt uses a Flask server, React-Redux frontend, and PostgreSQL database.  
 
 
 ## Getting Started
 
 ### Prerequisites
-
-```
-npm
-```
-```
-vagrant
-```
-```
-python3
-```
-
+npm: https://www.npmjs.com/get-npm
+python: https://www.python.org/downloads/
 
 ### Installing
-
-Create students database
-
+Installing and running backend server
+If first time using:
 ```
-createdb students
-```
-```
-python -i model.py 
-```
-```
-db.create_all()
-```
-Install and start virtual environment
+cd env
+vagrant init
+cd ..
+bash devtools.sh
 
 ```
-virtualenv env
+If not first time:
 ```
+bash devtools.sh
+cd src/server
+bash server-setup.sh
 ```
-source env/bin/activate
+Installing and running frontend server
+In new tab or terminal:
 ```
-Install requirements
-```
-pip3 install -r requirements.txt
-```
-Start Flask server
-```
-python server.py
+early-literacy-tracker/src/client
+npm install
+npm start
 ```
 
 
